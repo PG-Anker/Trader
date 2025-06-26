@@ -1,0 +1,116 @@
+I want to create a crypto trading bot that will automatically trade ustd pairs for me in bybit through the bybit api, the base currency will always be usdt. there must be 2 selections on the dashboard 
+
+1) for spot buy where it analyse the market and automatically buy a crypto asset with usdt and sell it for profit 
+
+2) where it does leverage trading automatically using usdt to long and or short trades  
+
+so the home page I must be able to choose between spot and leverage trading 
+
+For reach spot trading and leverage trading I need the following tabs
+
+ 
+Dashboard 
+Symbol = ie. USDT/BTC
+Direction = UP for spot trading and Long or Short for leverage trading 
+Entry = entry price
+Stop loss = where stop loss is set at
+Take profit = where take profit is set at 
+Quantity = qty bought for spot trading and qty long or short for leverage trading
+Current Price = updated current price 
+Status = is trade still open or closed 
+PnL = current profit loss
+Action = option to sell at market price in spot trading and option to close position for leverage trading  
+
+Summary
+I need another tab with comprehensive Summary that shows all trades taken how much was loss trades how much was won trades and how much is still open 
+
+Bot Log
+I need a active log tab that show what the trading bot is doing ie checking trade setup/ trade taken/ monitoring trade/ no trade signal/ trade score/ etc. 
+
+System Error
+I need a system error tab that show any trade errors or api errors or webhook errors 
+
+Settings 
+I need a settings tab to change the following 
+how much usdt to use per trade 
+Change indicator parameters, ie RSI, EMA, etc.
+Ddd bybit api key and details to link the live api to bybit
+
+here is options to consider when building the algorithm for the bot when using spot buy and when using leverage long or short 
+
+
+🧭 By Trading Style
+1. Trend Following
+"Ride the wave."
+•	Goal: Enter in the direction of an existing trend.
+•	Timeframe: Any (works on 1-min to weekly).
+•	Indicators: EMA/SMA, MACD, ADX, Ichimoku, SuperTrend.
+•	Entry: On pullbacks or breakouts aligned with trend.
+•	Exit: Trailing stop, opposite signal, or break of trendline.
+
+2. Mean Reversion
+"Buy low, sell high" — expect price to return to the average.
+•	Goal: Trade reversals or pullbacks from extremes.
+•	Timeframe: Short to mid-term.
+•	Indicators: RSI (<30 or >70), Bollinger Bands, Stochastic, Z-score.
+•	Entry: When price deviates significantly from average.
+•	Exit: When price reverts to mean (e.g., back to EMA or VWAP).
+
+
+3. Breakout Trading
+"Capture explosive moves."
+•	Goal: Enter early into a strong move when price breaks out of a range or level.
+•	Timeframe: Intraday to swing.
+•	Indicators: Price action, volume, ORB (Opening Range Breakout), Donchian Channels.
+•	Entry: Above resistance or below support.
+•	Exit: Measured move target or trailing stop.
+
+
+4. Pullback Trading
+"Buy the dip in an uptrend."
+•	Goal: Trade retracements in a larger trend.
+•	Timeframe: Any.
+•	Indicators: Fibonacci levels, EMAs, RSI (40–50 zone), volume.
+•	Entry: After a controlled pullback shows reversal signs.
+•	Exit: At new highs/lows or R:R-based targets.
+
+
+5. Scalping
+"Quick in, quick out — many small trades."
+•	Goal: Capture small price moves repeatedly.
+•	Timeframe: Seconds to minutes.
+•	Indicators: Price action, order book, VWAP, L2 data.
+•	Execution: Needs tight spreads, fast execution, often not ideal for spot crypto due to fees.
+
+
+6. Swing Trading
+"Catch the meat of the move."
+•	Goal: Hold for several hours to days to capture short- to medium-term moves.
+•	Timeframe: 4H to daily.
+•	Indicators: RSI, MACD, trendlines, support/resistance, EMA.
+•	Entry: Breakouts, pullbacks, or mean reversion.
+•	Exit: R:R targets, reversal signals.
+
+
+7. Range-Bound (Channel) Trading
+"Buy low, sell high in a range."
+•	Goal: Profit from predictable highs and lows within a sideways market.
+•	Timeframe: Any, works best in consolidation.
+•	Indicators: Bollinger Bands, RSI, horizontal SR zones.
+•	Risk: Breakouts invalidate the setup.
+
+________________________________________
+🔁 By Market Behavior
+Market Type	Best Strategy Types
+Trending	Trend-following, pullback
+Ranging	Mean reversion, range-bound, reversal
+Volatile/Explosive	Breakout, ORB, momentum scalping
+Low-volume	Avoid or trade long-term breakouts only
+________________________________________
+⚙️ Strategy Combinations (Advanced)
+You can combine multiple strategies for adaptive bots:
+•	Trend mode vs. Range mode → Switch logic based on ADX or EMA slope.
+•	Dual-strategy → Mean reversion when RSI is low; breakout when volume spikes.
+•	Multi-timeframe → Trend on daily, entry on 15-min pullbacks.
+
+
