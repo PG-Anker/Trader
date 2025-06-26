@@ -50,19 +50,19 @@ export const useWebSocket = (options: UseWebSocketOptions = {}) => {
         }
       };
 
-      wsRef.current.onclose = () => {
+      wsRef.current.onclose = (event) => {
         console.log('WebSocket disconnected');
         onClose?.();
         
-        // Attempt to reconnect
-        if (reconnectAttemptsRef.current < maxReconnectAttempts) {
+        // Only reconnect if the connection wasn't closed manually
+        if (!event.wasClean && reconnectAttemptsRef.current < maxReconnectAttempts) {
           reconnectAttemptsRef.current++;
           console.log(`Attempting to reconnect... (${reconnectAttemptsRef.current}/${maxReconnectAttempts})`);
           
           reconnectTimeoutRef.current = setTimeout(() => {
             connect();
           }, reconnectInterval);
-        } else {
+        } else if (reconnectAttemptsRef.current >= maxReconnectAttempts) {
           console.log('Max reconnection attempts reached');
         }
       };
