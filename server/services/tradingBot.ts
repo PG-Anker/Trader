@@ -1,6 +1,7 @@
 import { EventEmitter } from 'events';
 import { BybitService } from './bybit';
 import { TechnicalAnalysis, TradingSignal } from './technicalAnalysis';
+import { DeepSeekAIService, type MarketDataForAI, type TechnicalDataForAI, type AITradingSignal } from './deepseekAI';
 import { IStorage } from '../storage';
 import { InsertBotLog, InsertSystemError, InsertPosition, InsertTrade } from '@shared/schema';
 
@@ -9,6 +10,7 @@ export class TradingBot extends EventEmitter {
   private userId: number = 0;
   private analysisInterval: NodeJS.Timeout | null = null;
   private monitoringInterval: NodeJS.Timeout | null = null;
+  private deepSeekAI: DeepSeekAIService | null = null;
   private watchedSymbols: string[] = [
     'BTCUSDT', 'ETHUSDT', 'ADAUSDT', 'SOLUSDT', 'DOTUSDT', 
     'MATICUSDT', 'LINKUSDT', 'AVAXUSDT', 'UNIUSDT', 'LTCUSDT'
@@ -45,9 +47,20 @@ export class TradingBot extends EventEmitter {
     if (settings.apiKey && settings.secretKey) {
       this.bybitService.setCredentials(
         settings.apiKey,
-        settings.secretKey,
-        settings.environment === 'mainnet'
+        settings.secretKey
       );
+    }
+
+    // Initialize AI service if enabled
+    if (settings.aiTradingEnabled) {
+      try {
+        this.deepSeekAI = new DeepSeekAIService();
+        await this.deepSeekAI.initialize();
+        await this.log('INFO', 'DeepSeek AI service initialized for AI trading', {});
+      } catch (error) {
+        await this.logError('AI Initialization Error', `Failed to initialize DeepSeek AI: ${error.message}`, 'TradingBot.start');
+        this.deepSeekAI = null;
+      }
     }
 
     // Start WebSocket connection for real-time prices
@@ -234,33 +247,52 @@ export class TradingBot extends EventEmitter {
           dataPoints: klineData.length
         });
 
-        // Perform technical analysis
-        const { indicators, signals } = TechnicalAnalysis.analyzeSymbol(klineData, settings);
-
-        await this.log('ANALYSIS', `${symbol} analysis complete`, {
-          symbol,
-          rsi: indicators.rsi.toFixed(2),
-          macdCross: indicators.macd.macd > indicators.macd.signal ? 'Bullish' : 'Bearish',
-          adx: indicators.adx.toFixed(2),
-          signalsFound: signals.length
-        });
-
-        // Process signals
-        for (const signal of signals) {
-          signal.symbol = symbol;
+        // Use AI trading if enabled, otherwise use technical analysis
+        if (settings.aiTradingEnabled && this.deepSeekAI?.isReady()) {
+          await this.log('ANALYSIS', `${symbol} AI analysis started`, { symbol });
           
-          await this.log('SIGNAL', `${symbol}: ${signal.strategy} ${signal.direction} signal`, {
-            symbol,
-            confidence: signal.confidence,
-            strategy: signal.strategy,
-            entryPrice: signal.entryPrice
-          });
+          try {
+            const aiSignal = await this.performAIAnalysis(symbol, klineData, settings);
+            
+            if (aiSignal && aiSignal.action !== 'HOLD' && aiSignal.confidence >= settings.minConfidence) {
+              // Convert AI signal to trading signal format
+              const tradingSignal: TradingSignal = {
+                symbol,
+                direction: aiSignal.action === 'BUY' ? 'LONG' : 'SHORT',
+                entryPrice: aiSignal.entryPrice || parseFloat(klineData[klineData.length - 1].close),
+                stopLoss: aiSignal.stopLoss,
+                takeProfit: aiSignal.takeProfit,
+                confidence: aiSignal.confidence,
+                strategy: 'AI_DEEPSEEK',
+                reasoning: aiSignal.reasoning
+              };
 
-          // Check if we should execute the trade
-          if (await this.shouldExecuteTrade(signal, settings)) {
-            await this.executeTrade(signal, settings);
-            opportunitiesFound++;
+              await this.log('SIGNAL', `${symbol}: AI ${tradingSignal.direction} signal`, {
+                symbol,
+                confidence: tradingSignal.confidence,
+                strategy: 'AI_DEEPSEEK',
+                reasoning: aiSignal.reasoning,
+                riskLevel: aiSignal.riskLevel
+              });
+
+              // Check if we should execute the AI trade
+              if (await this.shouldExecuteTrade(tradingSignal, settings)) {
+                await this.executeTrade(tradingSignal, settings);
+                opportunitiesFound++;
+              }
+            }
+          } catch (error) {
+            await this.logError('AI Analysis Error', `AI analysis failed for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`, 'TradingBot.runAnalysis');
+            
+            // Fall back to technical analysis if AI fails
+            await this.log('INFO', `Falling back to technical analysis for ${symbol}`, { symbol });
+            const { indicators, signals } = TechnicalAnalysis.analyzeSymbol(klineData, settings);
+            await this.processTraditionalSignals(signals, symbol, settings, indicators);
           }
+        } else {
+          // Traditional technical analysis
+          const { indicators, signals } = TechnicalAnalysis.analyzeSymbol(klineData, settings);
+          await this.processTraditionalSignals(signals, symbol, settings, indicators);
         }
 
         // Small delay between symbol analysis
@@ -310,6 +342,92 @@ export class TradingBot extends EventEmitter {
     }
 
     return true;
+  }
+
+  private async processTraditionalSignals(signals: TradingSignal[], symbol: string, settings: any, indicators: any): Promise<void> {
+    await this.log('ANALYSIS', `${symbol} technical analysis complete`, {
+      symbol,
+      rsi: indicators.rsi.toFixed(2),
+      macdCross: indicators.macd.macd > indicators.macd.signal ? 'Bullish' : 'Bearish',
+      adx: indicators.adx.toFixed(2),
+      signalsFound: signals.length
+    });
+
+    // Process traditional signals
+    for (const signal of signals) {
+      signal.symbol = symbol;
+      
+      await this.log('SIGNAL', `${symbol}: ${signal.strategy} ${signal.direction} signal`, {
+        symbol,
+        confidence: signal.confidence,
+        strategy: signal.strategy,
+        entryPrice: signal.entryPrice
+      });
+
+      // Check if we should execute the trade
+      if (await this.shouldExecuteTrade(signal, settings)) {
+        await this.executeTrade(signal, settings);
+      }
+    }
+  }
+
+  private async performAIAnalysis(symbol: string, klineData: any[], settings: any): Promise<AITradingSignal | null> {
+    if (!this.deepSeekAI?.isReady()) {
+      throw new Error('DeepSeek AI service not available');
+    }
+
+    // Get current market data
+    const latestKline = klineData[klineData.length - 1];
+    const oldestKline = klineData[0];
+    const currentPrice = parseFloat(latestKline.close);
+    const oldPrice = parseFloat(oldestKline.close);
+    const priceChange24h = ((currentPrice - oldPrice) / oldPrice) * 100;
+
+    // Calculate technical indicators for AI
+    const { indicators } = TechnicalAnalysis.analyzeSymbol(klineData, settings);
+
+    // Prepare market data for AI
+    const marketData: MarketDataForAI = {
+      symbol,
+      currentPrice,
+      priceChange24h,
+      volume24h: parseFloat(latestKline.volume),
+      highPrice24h: Math.max(...klineData.slice(-24).map(k => parseFloat(k.high))),
+      lowPrice24h: Math.min(...klineData.slice(-24).map(k => parseFloat(k.low))),
+      timestamp: new Date()
+    };
+
+    // Calculate support and resistance levels
+    const highs = klineData.slice(-50).map(k => parseFloat(k.high));
+    const lows = klineData.slice(-50).map(k => parseFloat(k.low));
+    const support = Math.min(...lows);
+    const resistance = Math.max(...highs);
+
+    // Prepare technical data for AI
+    const technicalData: TechnicalDataForAI = {
+      rsi: indicators.rsi,
+      macd: {
+        macd: indicators.macd.macd,
+        signal: indicators.macd.signal,
+        histogram: indicators.macd.histogram
+      },
+      ema: {
+        fast: indicators.ema.fast,
+        slow: indicators.ema.slow
+      },
+      bollinger: {
+        upper: indicators.bollinger.upper,
+        middle: indicators.bollinger.middle,
+        lower: indicators.bollinger.lower
+      },
+      adx: indicators.adx,
+      support,
+      resistance
+    };
+
+    // Get AI analysis based on current trading mode
+    const tradingMode = 'spot'; // You can get this from settings or context
+    return await this.deepSeekAI.analyzeMarketData(marketData, technicalData, tradingMode);
   }
 
   private async executeTrade(signal: TradingSignal, settings: any): Promise<void> {

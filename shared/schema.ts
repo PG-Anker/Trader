@@ -30,6 +30,7 @@ export const tradingSettings = sqliteTable("trading_settings", {
   macdSignal: integer("macd_signal").notNull().default(9),
   adxPeriod: integer("adx_period").notNull().default(14),
   strategies: text("strategies").notNull().default('{"trendFollowing": true, "meanReversion": true, "breakoutTrading": false, "pullbackTrading": true}'),
+  aiTradingEnabled: integer("ai_trading_enabled", { mode: "boolean" }).notNull().default(false),
   timeframe: text("timeframe").notNull().default("15m"),
   minConfidence: integer("min_confidence").notNull().default(75),
   updatedAt: text("updated_at").default("CURRENT_TIMESTAMP"),

@@ -153,19 +153,34 @@ export default function Dashboard() {
               <h2 className="text-2xl font-bold">{getTabTitle()}</h2>
               <p className="text-gray-400">{getModeDescription()}</p>
               
-              {/* Paper Trading Indicator */}
-              {activeTab === 'dashboard' && settings && (settings.spotPaperTrading || settings.leveragePaperTrading) && (
-                <div className="mt-2 flex items-center space-x-2 px-3 py-1.5 bg-blue-500/20 border border-blue-500/30 rounded-lg">
-                  <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></div>
-                  <span className="text-xs font-medium text-blue-300">
-                    Paper Trading Active - {
-                      settings.spotPaperTrading && settings.leveragePaperTrading
-                        ? "Both Modes"
-                        : settings.spotPaperTrading
-                        ? "Spot Only"
-                        : "Leverage Only"
-                    }
-                  </span>
+              {/* Trading Mode Indicators */}
+              {activeTab === 'dashboard' && settings && (
+                <div className="mt-2 space-y-2">
+                  {/* AI Trading Indicator */}
+                  {settings.aiTradingEnabled && (
+                    <div className="flex items-center space-x-2 px-3 py-1.5 bg-purple-500/20 border border-purple-500/30 rounded-lg">
+                      <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse"></div>
+                      <span className="text-xs font-medium text-purple-300">
+                        AI Trading Enabled - DeepSeek Analysis
+                      </span>
+                    </div>
+                  )}
+                  
+                  {/* Paper Trading Indicator */}
+                  {(settings.spotPaperTrading || settings.leveragePaperTrading) && (
+                    <div className="flex items-center space-x-2 px-3 py-1.5 bg-blue-500/20 border border-blue-500/30 rounded-lg">
+                      <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></div>
+                      <span className="text-xs font-medium text-blue-300">
+                        Paper Trading Active - {
+                          settings.spotPaperTrading && settings.leveragePaperTrading
+                            ? "Both Modes"
+                            : settings.spotPaperTrading
+                            ? "Spot Only"
+                            : "Leverage Only"
+                        }
+                      </span>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

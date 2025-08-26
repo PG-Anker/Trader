@@ -63,6 +63,7 @@ export interface TradingSettings {
   environment: 'mainnet';
   spotPaperTrading: boolean;
   leveragePaperTrading: boolean;
+  aiTradingEnabled: boolean;
   rsiPeriod: number;
   rsiLow: number;
   rsiHigh: number;

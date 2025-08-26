@@ -52,6 +52,7 @@ export function initializeDatabase() {
         strategies TEXT NOT NULL DEFAULT '{"trendFollowing": true, "meanReversion": true, "breakoutTrading": false, "pullbackTrading": true}',
         timeframe TEXT NOT NULL DEFAULT '15m',
         min_confidence INTEGER NOT NULL DEFAULT 75,
+        ai_trading_enabled INTEGER NOT NULL DEFAULT 0,
         updated_at TEXT DEFAULT CURRENT_TIMESTAMP
       )
     `);
@@ -145,11 +146,11 @@ export function initializeDatabase() {
       INSERT INTO trading_settings (
         id, user_id, usdt_per_trade, max_positions, risk_per_trade, stop_loss, take_profit,
         environment, spot_paper_trading, leverage_paper_trading, rsi_period, rsi_low, rsi_high,
-        ema_fast, ema_slow, macd_signal, adx_period, strategies, timeframe, min_confidence
+        ema_fast, ema_slow, macd_signal, adx_period, strategies, timeframe, min_confidence, ai_trading_enabled
       ) VALUES (
         1, 1, '100.00', 10, '2.50', '3.00', '6.00',
         'mainnet', 1, 1, 14, 30, 70,
-        12, 26, 9, 14, '{"trendFollowing": true, "meanReversion": true, "breakoutTrading": false, "pullbackTrading": true}', '15m', 75
+        12, 26, 9, 14, '{"trendFollowing": true, "meanReversion": true, "breakoutTrading": false, "pullbackTrading": true}', '15m', 75, 0
       )
     `);
 

@@ -25,6 +25,7 @@ const settingsSchema = z.object({
   environment: z.enum(["mainnet"]),
   spotPaperTrading: z.boolean(),
   leveragePaperTrading: z.boolean(),
+  aiTradingEnabled: z.boolean(),
   rsiPeriod: z.number().min(1, "RSI period must be at least 1"),
   rsiLow: z.number().min(1, "RSI low must be at least 1"),
   rsiHigh: z.number().min(1, "RSI high must be at least 1"),
@@ -65,6 +66,7 @@ export function SettingsTab() {
       environment: "mainnet",
       spotPaperTrading: true,
       leveragePaperTrading: true,
+      aiTradingEnabled: false,
       rsiPeriod: 14,
       rsiLow: 30,
       rsiHigh: 70,
@@ -119,6 +121,7 @@ export function SettingsTab() {
         environment: settings.environment || 'mainnet',
         spotPaperTrading: settings.spotPaperTrading ?? true,
         leveragePaperTrading: settings.leveragePaperTrading ?? true,
+        aiTradingEnabled: settings.aiTradingEnabled ?? false,
         rsiPeriod: settings.rsiPeriod || 14,
         rsiLow: settings.rsiLow || 30,
         rsiHigh: settings.rsiHigh || 70,
@@ -291,6 +294,34 @@ export function SettingsTab() {
                 <p className="text-sm text-muted-foreground">
                   Paper trading simulates trades without using real money, even when connected to mainnet API.
                 </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">AI Trading Mode</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="aiTradingEnabled"
+                    checked={form.watch('aiTradingEnabled')}
+                    onCheckedChange={(checked) => 
+                      form.setValue('aiTradingEnabled', !!checked)
+                    }
+                  />
+                  <Label htmlFor="aiTradingEnabled">Enable AI Trading with DeepSeek</Label>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  When enabled, DeepSeek AI will analyze market data and make trading decisions instead of traditional technical indicators.
+                </p>
+                {form.watch('aiTradingEnabled') && (
+                  <div className="p-3 bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                    <p className="text-xs text-blue-600 dark:text-blue-400">
+                      ⚠️ AI trading requires stable internet connection and may be slower than traditional indicators.
+                    </p>
+                  </div>
+                )}
               </CardContent>
             </Card>
 

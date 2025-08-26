@@ -114,6 +114,10 @@ Key entities include:
 
 ```
 Changelog:
+- August 26, 2025. Added AI trading with DeepSeek integration via web automation
+- August 26, 2025. Created production deployment configuration (Docker, PM2, Nginx)
+- August 26, 2025. Added comprehensive build and deployment scripts for Ubuntu
+- August 26, 2025. Implemented AI trading indicators and controls in dashboard
 - August 26, 2025. Migrated from PostgreSQL to local SQLite database
 - August 26, 2025. Removed all testnet code, now uses Bybit mainnet only
 - August 26, 2025. Added paper trading mode for both spot and leverage trading

@@ -102,7 +102,7 @@ export class DatabaseStorage implements IStorage {
         riskPerTrade: "2.5",
         stopLoss: "3.0",
         takeProfit: "6.0",
-        environment: "testnet",
+        environment: "mainnet",
         rsiPeriod: 14,
         rsiLow: 30,
         rsiHigh: 70,
@@ -110,12 +110,7 @@ export class DatabaseStorage implements IStorage {
         emaSlow: 26,
         macdSignal: 9,
         adxPeriod: 14,
-        strategies: {
-          trendFollowing: true,
-          meanReversion: true,
-          breakoutTrading: false,
-          pullbackTrading: true
-        },
+        strategies: '{"trendFollowing": true, "meanReversion": true, "breakoutTrading": false, "pullbackTrading": true}',
         timeframe: "15m",
         minConfidence: 75
       };
@@ -134,7 +129,7 @@ export class DatabaseStorage implements IStorage {
   async updateTradingSettings(userId: number, updates: Partial<InsertTradingSettings>): Promise<TradingSettings> {
     const [settings] = await db
       .update(tradingSettings)
-      .set({ ...updates, updatedAt: new Date() })
+      .set({ ...updates, updatedAt: new Date().toISOString() })
       .where(eq(tradingSettings.userId, userId))
       .returning();
     
