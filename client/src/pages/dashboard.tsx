@@ -40,6 +40,12 @@ export default function Dashboard() {
     refetchInterval: 10000, // Refetch every 10 seconds
   });
 
+  // Fetch trading settings for paper trading status
+  const { data: settings } = useQuery({
+    queryKey: ['/api/settings'],
+    refetchInterval: 30000, // Refetch every 30 seconds
+  });
+
   useEffect(() => {
     if (portfolio) {
       setPortfolioData(portfolio);
@@ -146,6 +152,22 @@ export default function Dashboard() {
             <div>
               <h2 className="text-2xl font-bold">{getTabTitle()}</h2>
               <p className="text-gray-400">{getModeDescription()}</p>
+              
+              {/* Paper Trading Indicator */}
+              {activeTab === 'dashboard' && settings && (settings.spotPaperTrading || settings.leveragePaperTrading) && (
+                <div className="mt-2 flex items-center space-x-2 px-3 py-1.5 bg-blue-500/20 border border-blue-500/30 rounded-lg">
+                  <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></div>
+                  <span className="text-xs font-medium text-blue-300">
+                    Paper Trading Active - {
+                      settings.spotPaperTrading && settings.leveragePaperTrading
+                        ? "Both Modes"
+                        : settings.spotPaperTrading
+                        ? "Spot Only"
+                        : "Leverage Only"
+                    }
+                  </span>
+                </div>
+              )}
             </div>
             <div className="flex items-center space-x-4">
               <div className="text-right">

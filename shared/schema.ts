@@ -1,25 +1,27 @@
-import { pgTable, text, serial, integer, boolean, decimal, timestamp, jsonb } from "drizzle-orm/pg-core";
+import { sqliteTable, text, integer, real } from "drizzle-orm/sqlite-core";
 import { relations } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
+export const users = sqliteTable("users", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
 });
 
-export const tradingSettings = pgTable("trading_settings", {
-  id: serial("id").primaryKey(),
+export const tradingSettings = sqliteTable("trading_settings", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
   userId: integer("user_id").notNull(),
-  usdtPerTrade: decimal("usdt_per_trade", { precision: 10, scale: 2 }).notNull().default("100"),
+  usdtPerTrade: text("usdt_per_trade").notNull().default("100"),
   maxPositions: integer("max_positions").notNull().default(10),
-  riskPerTrade: decimal("risk_per_trade", { precision: 5, scale: 2 }).notNull().default("2.5"),
-  stopLoss: decimal("stop_loss", { precision: 5, scale: 2 }).notNull().default("3.0"),
-  takeProfit: decimal("take_profit", { precision: 5, scale: 2 }).notNull().default("6.0"),
+  riskPerTrade: text("risk_per_trade").notNull().default("2.5"),
+  stopLoss: text("stop_loss").notNull().default("3.0"),
+  takeProfit: text("take_profit").notNull().default("6.0"),
   apiKey: text("api_key"),
   secretKey: text("secret_key"),
-  environment: text("environment").notNull().default("testnet"),
+  environment: text("environment").notNull().default("mainnet"),
+  spotPaperTrading: integer("spot_paper_trading", { mode: "boolean" }).notNull().default(true),
+  leveragePaperTrading: integer("leverage_paper_trading", { mode: "boolean" }).notNull().default(true),
   rsiPeriod: integer("rsi_period").notNull().default(14),
   rsiLow: integer("rsi_low").notNull().default(30),
   rsiHigh: integer("rsi_high").notNull().default(70),
@@ -27,77 +29,79 @@ export const tradingSettings = pgTable("trading_settings", {
   emaSlow: integer("ema_slow").notNull().default(26),
   macdSignal: integer("macd_signal").notNull().default(9),
   adxPeriod: integer("adx_period").notNull().default(14),
-  strategies: jsonb("strategies").notNull().default('{"trendFollowing": true, "meanReversion": true, "breakoutTrading": false, "pullbackTrading": true}'),
+  strategies: text("strategies").notNull().default('{"trendFollowing": true, "meanReversion": true, "breakoutTrading": false, "pullbackTrading": true}'),
   timeframe: text("timeframe").notNull().default("15m"),
   minConfidence: integer("min_confidence").notNull().default(75),
-  updatedAt: timestamp("updated_at").defaultNow(),
+  updatedAt: text("updated_at").default("CURRENT_TIMESTAMP"),
 });
 
-export const positions = pgTable("positions", {
-  id: serial("id").primaryKey(),
+export const positions = sqliteTable("positions", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
   userId: integer("user_id").notNull(),
   symbol: text("symbol").notNull(),
   direction: text("direction").notNull(), // "UP", "LONG", "SHORT"
-  entryPrice: decimal("entry_price", { precision: 15, scale: 8 }).notNull(),
-  currentPrice: decimal("current_price", { precision: 15, scale: 8 }).notNull(),
-  stopLoss: decimal("stop_loss", { precision: 15, scale: 8 }),
-  takeProfit: decimal("take_profit", { precision: 15, scale: 8 }),
-  quantity: decimal("quantity", { precision: 15, scale: 8 }).notNull(),
-  pnl: decimal("pnl", { precision: 15, scale: 8 }).notNull().default("0"),
+  entryPrice: text("entry_price").notNull(),
+  currentPrice: text("current_price").notNull(),
+  stopLoss: text("stop_loss"),
+  takeProfit: text("take_profit"),
+  quantity: text("quantity").notNull(),
+  pnl: text("pnl").notNull().default("0"),
   status: text("status").notNull().default("open"), // "open", "closed"
   tradingMode: text("trading_mode").notNull(), // "spot", "leverage"
   strategy: text("strategy"),
+  isPaperTrade: integer("is_paper_trade", { mode: "boolean" }).notNull().default(true),
   bybitOrderId: text("bybit_order_id"),
-  createdAt: timestamp("created_at").defaultNow(),
-  closedAt: timestamp("closed_at"),
+  createdAt: text("created_at").default("CURRENT_TIMESTAMP"),
+  closedAt: text("closed_at"),
 });
 
-export const trades = pgTable("trades", {
-  id: serial("id").primaryKey(),
+export const trades = sqliteTable("trades", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
   userId: integer("user_id").notNull(),
   symbol: text("symbol").notNull(),
   direction: text("direction").notNull(),
-  entryPrice: decimal("entry_price", { precision: 15, scale: 8 }).notNull(),
-  exitPrice: decimal("exit_price", { precision: 15, scale: 8 }).notNull(),
-  quantity: decimal("quantity", { precision: 15, scale: 8 }).notNull(),
-  pnl: decimal("pnl", { precision: 15, scale: 8 }).notNull(),
+  entryPrice: text("entry_price").notNull(),
+  exitPrice: text("exit_price").notNull(),
+  quantity: text("quantity").notNull(),
+  pnl: text("pnl").notNull(),
   duration: integer("duration"), // in minutes
   strategy: text("strategy"),
   tradingMode: text("trading_mode").notNull(),
-  entryTime: timestamp("entry_time").notNull(),
-  exitTime: timestamp("exit_time").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
+  isPaperTrade: integer("is_paper_trade", { mode: "boolean" }).notNull().default(true),
+  entryTime: text("entry_time").notNull(),
+  exitTime: text("exit_time").notNull(),
+  createdAt: text("created_at").default("CURRENT_TIMESTAMP"),
 });
 
-export const botLogs = pgTable("bot_logs", {
-  id: serial("id").primaryKey(),
+export const botLogs = sqliteTable("bot_logs", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
   userId: integer("user_id").notNull(),
   level: text("level").notNull(), // "INFO", "ANALYSIS", "SIGNAL", "TRADE", "ORDER", "MONITOR", "SCAN", "STRATEGY"
   message: text("message").notNull(),
   symbol: text("symbol"),
-  data: jsonb("data"),
-  createdAt: timestamp("created_at").defaultNow(),
+  data: text("data"), // JSON string
+  createdAt: text("created_at").default("CURRENT_TIMESTAMP"),
 });
 
-export const systemErrors = pgTable("system_errors", {
-  id: serial("id").primaryKey(),
+export const systemErrors = sqliteTable("system_errors", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
   userId: integer("user_id").notNull(),
   level: text("level").notNull(), // "INFO", "WARNING", "ERROR"
   title: text("title").notNull(),
   message: text("message").notNull(),
   source: text("source"),
   errorCode: text("error_code"),
-  resolved: boolean("resolved").notNull().default(false),
-  createdAt: timestamp("created_at").defaultNow(),
+  resolved: integer("resolved", { mode: "boolean" }).notNull().default(false),
+  createdAt: text("created_at").default("CURRENT_TIMESTAMP"),
 });
 
-export const marketData = pgTable("market_data", {
-  id: serial("id").primaryKey(),
+export const marketData = sqliteTable("market_data", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
   symbol: text("symbol").notNull(),
-  price: decimal("price", { precision: 15, scale: 8 }).notNull(),
-  volume: decimal("volume", { precision: 15, scale: 8 }).notNull(),
-  change24h: decimal("change_24h", { precision: 5, scale: 2 }),
-  timestamp: timestamp("timestamp").defaultNow(),
+  price: text("price").notNull(),
+  volume: text("volume").notNull(),
+  change24h: text("change_24h"),
+  timestamp: text("timestamp").default("CURRENT_TIMESTAMP"),
 });
 
 // Relations

@@ -11,6 +11,7 @@ export interface Position {
   status: 'open' | 'closed';
   tradingMode: 'spot' | 'leverage';
   strategy?: string;
+  isPaperTrade: boolean;
   createdAt: string;
 }
 
@@ -25,6 +26,7 @@ export interface Trade {
   duration: number;
   strategy?: string;
   tradingMode: 'spot' | 'leverage';
+  isPaperTrade: boolean;
   entryTime: string;
   exitTime: string;
 }
@@ -58,7 +60,9 @@ export interface TradingSettings {
   takeProfit: string;
   apiKey?: string;
   secretKey?: string;
-  environment: 'testnet' | 'mainnet';
+  environment: 'mainnet';
+  spotPaperTrading: boolean;
+  leveragePaperTrading: boolean;
   rsiPeriod: number;
   rsiLow: number;
   rsiHigh: number;

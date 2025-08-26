@@ -22,10 +22,10 @@ CryptoBot Pro is an automated cryptocurrency trading platform that integrates wi
 - **Database Provider**: Neon serverless PostgreSQL
 
 ### Data Storage Solutions
-- **Primary Database**: PostgreSQL via Neon serverless
+- **Primary Database**: Local SQLite with better-sqlite3 driver
 - **ORM**: Drizzle with type-safe schema definitions
 - **Schema Location**: `shared/schema.ts` for frontend/backend sharing
-- **Migration Management**: Drizzle Kit for database migrations
+- **Database Initialization**: Custom init script creates SQLite tables and default data
 
 ## Key Components
 
@@ -114,6 +114,11 @@ Key entities include:
 
 ```
 Changelog:
+- August 26, 2025. Migrated from PostgreSQL to local SQLite database
+- August 26, 2025. Removed all testnet code, now uses Bybit mainnet only
+- August 26, 2025. Added paper trading mode for both spot and leverage trading
+- August 26, 2025. Added paper trading indicators to dashboard UI
+- August 26, 2025. Updated schema to support paper trading flags
 - June 26, 2025. Initial setup
 ```
 

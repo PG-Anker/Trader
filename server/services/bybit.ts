@@ -34,36 +34,23 @@ export interface BybitTicker {
 export class BybitService extends EventEmitter {
   private apiKey: string = '';
   private secretKey: string = '';
-  private isTestnet: boolean = true;
-  private baseUrl: string = '';
-  private wsUrl: string = '';
+  private baseUrl: string = 'https://api.bybit.com';
+  private wsUrl: string = 'wss://stream.bybit.com/v5/public/spot';
   private ws: WebSocket | null = null;
 
   constructor() {
     super();
-    this.updateUrls();
+    // Always use mainnet - no testnet support
   }
 
-  private updateUrls() {
-    if (this.isTestnet) {
-      this.baseUrl = 'https://api-testnet.bybit.com';
-      this.wsUrl = 'wss://stream-testnet.bybit.com/v5/public/spot';
-    } else {
-      this.baseUrl = 'https://api.bybit.com';
-      this.wsUrl = 'wss://stream.bybit.com/v5/public/spot';
-    }
-  }
-
-  setCredentials(apiKey: string, secretKey: string, isMainnet: boolean = false) {
+  setCredentials(apiKey: string, secretKey: string) {
     this.apiKey = apiKey;
     this.secretKey = secretKey;
-    this.isTestnet = !isMainnet;
-    this.updateUrls();
   }
 
-  async testConnection(apiKey: string, secretKey: string, isMainnet: boolean = false): Promise<{ success: boolean; message: string }> {
+  async testConnection(apiKey: string, secretKey: string): Promise<{ success: boolean; message: string }> {
     try {
-      this.setCredentials(apiKey, secretKey, isMainnet);
+      this.setCredentials(apiKey, secretKey);
       
       // Test the connection by fetching account balance
       const response = await this.makeRequest('GET', '/v5/account/wallet-balance', {

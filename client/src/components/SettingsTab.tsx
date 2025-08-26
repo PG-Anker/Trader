@@ -22,7 +22,9 @@ const settingsSchema = z.object({
   takeProfit: z.string().min(1, "Take profit is required"),
   apiKey: z.string().optional(),
   secretKey: z.string().optional(),
-  environment: z.enum(["testnet", "mainnet"]),
+  environment: z.enum(["mainnet"]),
+  spotPaperTrading: z.boolean(),
+  leveragePaperTrading: z.boolean(),
   rsiPeriod: z.number().min(1, "RSI period must be at least 1"),
   rsiLow: z.number().min(1, "RSI low must be at least 1"),
   rsiHigh: z.number().min(1, "RSI high must be at least 1"),
@@ -60,7 +62,9 @@ export function SettingsTab() {
       riskPerTrade: "2.5",
       stopLoss: "3.0",
       takeProfit: "6.0",
-      environment: "testnet",
+      environment: "mainnet",
+      spotPaperTrading: true,
+      leveragePaperTrading: true,
       rsiPeriod: 14,
       rsiLow: 30,
       rsiHigh: 70,
@@ -80,7 +84,7 @@ export function SettingsTab() {
   });
 
   const testConnectionMutation = useMutation({
-    mutationFn: async (data: { apiKey: string; secretKey: string; environment: string }) => {
+    mutationFn: async (data: { apiKey: string; secretKey: string }) => {
       const response = await apiRequest('POST', '/api/test-connection', data);
       return response.json();
     },
@@ -112,7 +116,9 @@ export function SettingsTab() {
         takeProfit: settings.takeProfit || "6.0",
         apiKey: settings.apiKey || '',
         secretKey: settings.secretKey || '',
-        environment: settings.environment || 'testnet',
+        environment: settings.environment || 'mainnet',
+        spotPaperTrading: settings.spotPaperTrading ?? true,
+        leveragePaperTrading: settings.leveragePaperTrading ?? true,
         rsiPeriod: settings.rsiPeriod || 14,
         rsiLow: settings.rsiLow || 30,
         rsiHigh: settings.rsiHigh || 70,
@@ -166,7 +172,6 @@ export function SettingsTab() {
   const testConnection = () => {
     const apiKey = form.getValues('apiKey');
     const secretKey = form.getValues('secretKey');
-    const environment = form.getValues('environment');
     
     if (!apiKey || !secretKey) {
       toast({
@@ -178,7 +183,7 @@ export function SettingsTab() {
     }
     
     setIsTestingConnection(true);
-    testConnectionMutation.mutate({ apiKey, secretKey, environment });
+    testConnectionMutation.mutate({ apiKey, secretKey });
     setTimeout(() => setIsTestingConnection(false), 2000);
   };
 
@@ -230,13 +235,12 @@ export function SettingsTab() {
             <Label htmlFor="environment">Environment</Label>
             <Select 
               value={form.watch('environment')} 
-              onValueChange={(value) => form.setValue('environment', value as 'testnet' | 'mainnet')}
+              onValueChange={(value) => form.setValue('environment', value as 'mainnet')}
             >
               <SelectTrigger>
                 <SelectValue placeholder="Select environment" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="testnet">Testnet (Recommended for testing)</SelectItem>
                 <SelectItem value="mainnet">Mainnet (Live trading)</SelectItem>
               </SelectContent>
             </Select>
@@ -259,6 +263,37 @@ export function SettingsTab() {
         </CardHeader>
         <CardContent>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-base">Paper Trading Mode</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="spotPaperTrading"
+                    checked={form.watch('spotPaperTrading')}
+                    onCheckedChange={(checked) => 
+                      form.setValue('spotPaperTrading', !!checked)
+                    }
+                  />
+                  <Label htmlFor="spotPaperTrading">Enable Paper Trading for Spot Trading</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="leveragePaperTrading"
+                    checked={form.watch('leveragePaperTrading')}
+                    onCheckedChange={(checked) => 
+                      form.setValue('leveragePaperTrading', !!checked)
+                    }
+                  />
+                  <Label htmlFor="leveragePaperTrading">Enable Paper Trading for Leverage Trading</Label>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Paper trading simulates trades without using real money, even when connected to mainnet API.
+                </p>
+              </CardContent>
+            </Card>
+
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="usdtPerTrade">USDT Per Trade</Label>
