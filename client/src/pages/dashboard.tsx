@@ -30,6 +30,12 @@ export default function Dashboard() {
     }
   }, []);
 
+  // Fetch trading settings for paper trading status
+  const { data: settings } = useQuery({
+    queryKey: ['/api/settings'],
+    refetchInterval: 30000, // Refetch every 30 seconds
+  });
+
   // Determine if we're in paper trading mode
   const isPaperTrade = settings?.spotPaperTrading || settings?.leveragePaperTrading;
 
@@ -37,18 +43,14 @@ export default function Dashboard() {
   const { data: dashboardData, refetch: refetchDashboard } = useQuery({
     queryKey: ['/api/dashboard', { paperTrade: isPaperTrade }],
     refetchInterval: 30000, // Refetch every 30 seconds
+    enabled: !!settings, // Wait for settings to load
   });
 
   // Fetch portfolio data
   const { data: portfolio } = useQuery({
     queryKey: ['/api/portfolio', { paperTrade: isPaperTrade }],
     refetchInterval: 10000, // Refetch every 10 seconds
-  });
-
-  // Fetch trading settings for paper trading status
-  const { data: settings } = useQuery({
-    queryKey: ['/api/settings'],
-    refetchInterval: 30000, // Refetch every 30 seconds
+    enabled: !!settings, // Wait for settings to load
   });
 
   // Fetch bot status
@@ -62,6 +64,18 @@ export default function Dashboard() {
       setBotStatus(botStatusData);
     }
   }, [botStatusData]);
+
+  // Show loading spinner while settings are loading
+  if (!settings) {
+    return (
+      <div className="flex h-screen items-center justify-center bg-crypto-dark-900 text-white">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+          <p className="mt-4 text-lg">Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   useEffect(() => {
     if (portfolio) {
