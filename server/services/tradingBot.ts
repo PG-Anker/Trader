@@ -4,7 +4,7 @@ import { TechnicalAnalysis, TradingSignal } from './technicalAnalysis';
 import { DeepSeekAIService, type MarketDataForAI, type TechnicalDataForAI, type AITradingSignal } from './deepseekAI';
 import { IStorage } from '../storage';
 import { InsertBotLog, InsertSystemError, InsertPosition, InsertTrade } from '@shared/schema';
-import { ccxtMarketData, type MarketData as CCXTMarketData } from './ccxtMarketData';
+import { CCXTMarketDataService } from './ccxtMarketData';
 
 export class TradingBot extends EventEmitter {
   private isRunning: boolean = false;
@@ -12,16 +12,17 @@ export class TradingBot extends EventEmitter {
   private analysisInterval: NodeJS.Timeout | null = null;
   private monitoringInterval: NodeJS.Timeout | null = null;
   private deepSeekAI: DeepSeekAIService | null = null;
-  private watchedSymbols: string[] = [
-    'BTCUSDT', 'ETHUSDT', 'ADAUSDT', 'SOLUSDT', 'DOTUSDT', 
-    'MATICUSDT', 'LINKUSDT', 'AVAXUSDT', 'UNIUSDT', 'LTCUSDT'
-  ];
+  private watchedSymbols: string[] = [];
+  private ccxtMarketData: CCXTMarketDataService;
 
   constructor(
     private bybitService: BybitService,
     private storage: IStorage
   ) {
     super();
+    
+    // Initialize CCXT market data service
+    this.ccxtMarketData = new CCXTMarketDataService();
     
     // Listen to Bybit price updates
     this.bybitService.on('ticker', this.handlePriceUpdate.bind(this));
@@ -37,6 +38,27 @@ export class TradingBot extends EventEmitter {
     this.isRunning = true;
 
     await this.log('INFO', 'Trading bot started', {});
+
+    // Initialize CCXT market data and fetch all USDT pairs
+    try {
+      await this.ccxtMarketData.initialize();
+      this.watchedSymbols = await this.ccxtMarketData.getTopTradingPairs(100); // Get top 100 pairs by volume
+      
+      await this.log('INFO', `Loaded ${this.watchedSymbols.length} USDT trading pairs from CCXT`, {
+        totalPairs: this.watchedSymbols.length,
+        samplePairs: this.watchedSymbols.slice(0, 10)
+      });
+    } catch (error) {
+      await this.logError('CCXT Initialization Error', `Failed to load market pairs: ${error instanceof Error ? error.message : 'Unknown error'}`, 'TradingBot.start');
+      
+      // Fallback to hardcoded symbols if CCXT fails
+      this.watchedSymbols = [
+        'BTC/USDT', 'ETH/USDT', 'ADA/USDT', 'SOL/USDT', 'DOT/USDT',
+        'MATIC/USDT', 'LINK/USDT', 'AVAX/USDT', 'UNI/USDT', 'LTC/USDT'
+      ];
+      
+      await this.log('INFO', 'Using fallback symbol list', { symbolCount: this.watchedSymbols.length });
+    }
 
     // Get trading settings
     const settings = await this.storage.getTradingSettings(userId);
@@ -278,8 +300,11 @@ export class TradingBot extends EventEmitter {
 
     for (const symbol of this.watchedSymbols) {
       try {
+        // Convert CCXT format (BTC/USDT) to Bybit format (BTCUSDT)
+        const bybitSymbol = symbol.replace('/', '');
+        
         // Get kline data for analysis
-        const klineData = await this.bybitService.getKlines(symbol, settings.timeframe, 200);
+        const klineData = await this.bybitService.getKlines(bybitSymbol, settings.timeframe, 200);
         
         if (klineData.length < 50) {
           continue;
