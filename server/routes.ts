@@ -6,6 +6,7 @@ import { z } from "zod";
 import { insertTradingSettingsSchema, insertPositionSchema, insertBotLogSchema, insertSystemErrorSchema } from "@shared/schema";
 import { BybitService } from "./services/bybit";
 import { TradingBot } from "./services/tradingBot";
+import { setupAuthRoutes, requireAuth } from "./auth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
@@ -39,12 +40,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   };
 
+  // Setup authentication routes
+  setupAuthRoutes(app);
+
   // API Routes
 
   // Get dashboard data
-  app.get("/api/dashboard", async (req, res) => {
+  app.get("/api/dashboard", requireAuth, async (req, res) => {
     try {
-      const userId = 1; // TODO: Get from session/auth
+      const userId = (req as any).user.id;
       
       const [positions, stats, opportunities, performance] = await Promise.all([
         storage.getOpenPositions(userId),
@@ -66,9 +70,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get summary data
-  app.get("/api/summary", async (req, res) => {
+  app.get("/api/summary", requireAuth, async (req, res) => {
     try {
-      const userId = 1; // TODO: Get from session/auth
+      const userId = (req as any).user.id;
       
       const [summary, tradeHistory] = await Promise.all([
         storage.getTradingSummary(userId),
@@ -98,9 +102,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get system errors
-  app.get("/api/system-errors", async (req, res) => {
+  app.get("/api/system-errors", requireAuth, async (req, res) => {
     try {
-      const userId = 1; // TODO: Get from session/auth
+      const userId = (req as any).user.id;
       const errors = await storage.getSystemErrors(userId, 50);
       res.json(errors);
     } catch (error) {
@@ -110,9 +114,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get trading settings
-  app.get("/api/settings", async (req, res) => {
+  app.get("/api/settings", requireAuth, async (req, res) => {
     try {
-      const userId = 1; // TODO: Get from session/auth
+      const userId = (req as any).user.id;
       const settings = await storage.getTradingSettings(userId);
       res.json(settings);
     } catch (error) {
@@ -122,9 +126,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update trading settings
-  app.post("/api/settings", async (req, res) => {
+  app.post("/api/settings", requireAuth, async (req, res) => {
     try {
-      const userId = 1; // TODO: Get from session/auth
+      const userId = (req as any).user.id;
       const validatedData = insertTradingSettingsSchema.parse({
         ...req.body,
         userId
@@ -139,16 +143,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Test API connection
-  app.post("/api/test-connection", async (req, res) => {
+  app.post("/api/test-connection", requireAuth, async (req, res) => {
     try {
-      const userId = 1; // TODO: Get from session/auth
+      const userId = (req as any).user.id;
       const settings = await storage.getTradingSettings(userId);
       
       if (!settings?.apiKey || !settings?.secretKey) {
         return res.status(400).json({ message: "API credentials not configured" });
       }
       
-      const result = await bybitService.testConnection(settings.apiKey, settings.secretKey, settings.environment === 'mainnet');
+      const result = await bybitService.testConnection(settings.apiKey, settings.secretKey);
       res.json(result);
     } catch (error) {
       console.error('Test connection error:', error);
@@ -160,7 +164,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/positions/:id/close", async (req, res) => {
     try {
       const positionId = parseInt(req.params.id);
-      const userId = 1; // TODO: Get from session/auth
+      const userId = (req as any).user.id;
       
       const result = await tradingBot.closePosition(positionId, userId);
       
@@ -178,10 +182,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Start/stop trading bot
-  app.post("/api/bot/:action", async (req, res) => {
+  app.post("/api/bot/:action", requireAuth, async (req, res) => {
     try {
       const action = req.params.action;
-      const userId = 1; // TODO: Get from session/auth
+      const userId = (req as any).user.id;
       
       if (action === 'start') {
         await tradingBot.start(userId);
@@ -199,9 +203,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Clear logs
-  app.delete("/api/bot-logs", async (req, res) => {
+  app.delete("/api/bot-logs", requireAuth, async (req, res) => {
     try {
-      const userId = 1; // TODO: Get from session/auth
+      const userId = (req as any).user.id;
       await storage.clearBotLogs(userId);
       res.json({ message: "Logs cleared" });
     } catch (error) {
@@ -211,9 +215,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get portfolio data
-  app.get("/api/portfolio", async (req, res) => {
+  app.get("/api/portfolio", requireAuth, async (req, res) => {
     try {
-      const userId = 1; // TODO: Get from session/auth
+      const userId = (req as any).user.id;
       const portfolio = await storage.getPortfolioData(userId);
       res.json(portfolio);
     } catch (error) {

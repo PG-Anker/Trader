@@ -1,4 +1,5 @@
 import { EventEmitter } from 'events';
+import crypto from 'crypto';
 
 export interface BybitOrderResult {
   orderId: string;
@@ -268,19 +269,12 @@ export class BybitService extends EventEmitter {
     const timestamp = Date.now().toString();
     const url = `${this.baseUrl}${endpoint}`;
     
-    // For demo purposes, return mock data if no API key is provided
+    // Require API credentials for production
     if (!this.apiKey || !this.secretKey) {
-      console.log(`Mock Bybit API call: ${method} ${endpoint}`, params);
-      return this.getMockResponse(endpoint, params);
+      throw new Error('API credentials not configured. Please set your Bybit API key and secret in settings.');
     }
 
-    // In a real implementation, you would:
-    // 1. Create the proper signature using HMAC SHA256
-    // 2. Set the appropriate headers
-    // 3. Make the HTTP request
-    // 4. Handle the response
-
-    const headers = {
+    const headers: Record<string, string> = {
       'X-BAPI-API-KEY': this.apiKey,
       'X-BAPI-TIMESTAMP': timestamp,
       'X-BAPI-RECV-WINDOW': '5000',
@@ -296,7 +290,7 @@ export class BybitService extends EventEmitter {
       body = JSON.stringify(params);
     }
 
-    // Calculate signature (simplified for demo)
+    // Create proper HMAC SHA256 signature for Bybit API
     const signature = this.createSignature(timestamp, this.apiKey, '5000', queryString + body);
     headers['X-BAPI-SIGN'] = signature;
 
@@ -315,65 +309,9 @@ export class BybitService extends EventEmitter {
   }
 
   private createSignature(timestamp: string, apiKey: string, recvWindow: string, params: string): string {
-    // In a real implementation, this would create an HMAC SHA256 signature
-    // For demo purposes, return a mock signature
-    return 'mock_signature_' + timestamp;
+    const message = timestamp + apiKey + recvWindow + params;
+    return crypto.createHmac('sha256', this.secretKey).update(message).digest('hex');
   }
 
-  private getMockResponse(endpoint: string, params: any): any {
-    // Return appropriate mock responses for testing
-    if (endpoint.includes('/wallet-balance')) {
-      return {
-        retCode: 0,
-        retMsg: 'OK',
-        result: {
-          list: [{
-            coin: [{
-              coin: 'USDT',
-              walletBalance: '2350.00',
-              availableToWithdraw: '2350.00'
-            }]
-          }]
-        }
-      };
-    }
 
-    if (endpoint.includes('/order/create')) {
-      return {
-        retCode: 0,
-        retMsg: 'OK',
-        result: {
-          orderId: 'mock_order_' + Date.now(),
-          orderStatus: 'Filled'
-        }
-      };
-    }
-
-    if (endpoint.includes('/position/list')) {
-      return {
-        retCode: 0,
-        retMsg: 'OK',
-        result: {
-          list: []
-        }
-      };
-    }
-
-    if (endpoint.includes('/market/tickers')) {
-      return {
-        retCode: 0,
-        retMsg: 'OK',
-        result: {
-          list: [{
-            symbol: params.symbol,
-            lastPrice: '43287.50',
-            volume24h: '1234567.89',
-            price24hPcnt: '0.0245'
-          }]
-        }
-      };
-    }
-
-    return { retCode: -1, retMsg: 'Unknown endpoint' };
-  }
 }

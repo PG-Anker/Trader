@@ -136,10 +136,10 @@ export function initializeDatabase() {
       )
     `);
 
-    // Insert initial data
+    // Insert default user and settings - user should change credentials on first login
     sqlite.exec(`
       INSERT INTO users (id, username, password) VALUES 
-      (1, 'admin', 'admin123')
+      (1, 'admin', '$2b$10$K7gI5qOQVqfNX7fCJqJ5BeSKhm/X2yj6c5QxQqJjqKjFjhFj5F4J.')
     `);
 
     sqlite.exec(`

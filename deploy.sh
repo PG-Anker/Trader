@@ -63,17 +63,6 @@ sudo apt-get install -y google-chrome-stable
 echo "📦 Installing PM2..."
 sudo npm install -g pm2
 
-# Create application directory
-APP_DIR="/opt/cryptobot-pro"
-echo "📁 Creating application directory: $APP_DIR"
-sudo mkdir -p $APP_DIR
-sudo chown $USER:$USER $APP_DIR
-
-# Copy application files
-echo "📁 Copying application files..."
-cp -r . $APP_DIR/
-cd $APP_DIR
-
 # Install dependencies
 echo "📦 Installing dependencies..."
 npm ci --only=production
@@ -93,10 +82,10 @@ echo "✏️ Please edit .env file with your configuration"
 
 # Configure systemd service
 echo "⚙️ Creating systemd service..."
-sudo tee /etc/systemd/system/cryptobot-pro.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/Trader.service > /dev/null <<EOF
 [Unit]
-Description=CryptoBot Pro Trading Bot
-Documentation=https://github.com/your-repo/cryptobot-pro
+Description=CryptoBot Trader
+Documentation=https://github.com/PG-Anker/Trader
 After=network.target
 
 [Service]
@@ -115,28 +104,10 @@ RestartSec=10
 WantedBy=multi-user.target
 EOF
 
-# Configure Nginx (optional)
-read -p "🌐 Do you want to configure Nginx reverse proxy? (y/n): " configure_nginx
-if [ "$configure_nginx" = "y" ]; then
-    echo "📦 Installing Nginx..."
-    sudo apt-get install -y nginx
-    
-    echo "⚙️ Configuring Nginx..."
-    sudo cp nginx.conf /etc/nginx/sites-available/cryptobot-pro
-    sudo ln -sf /etc/nginx/sites-available/cryptobot-pro /etc/nginx/sites-enabled/
-    sudo rm -f /etc/nginx/sites-enabled/default
-    
-    sudo nginx -t
-    sudo systemctl restart nginx
-    sudo systemctl enable nginx
-    
-    echo "✅ Nginx configured and started"
-fi
-
 # Configure firewall
 echo "🔒 Configuring firewall..."
 sudo ufw allow 22/tcp
-sudo ufw allow 5001/tcp
+sudo ufw allow 3000/tcp
 if [ "$configure_nginx" = "y" ]; then
     sudo ufw allow 80/tcp
     sudo ufw allow 443/tcp
@@ -156,7 +127,7 @@ echo "📊 Service Status:"
 sudo systemctl status cryptobot-pro --no-pager -l
 echo ""
 echo "🌐 Application URLs:"
-echo "  - Direct: http://$(hostname -I | awk '{print $1}'):5001"
+echo "  - Direct: http://$(hostname -I | awk '{print $1}'):3000"
 if [ "$configure_nginx" = "y" ]; then
     echo "  - Nginx: http://$(hostname -I | awk '{print $1}')/"
 fi

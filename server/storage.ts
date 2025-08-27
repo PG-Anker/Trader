@@ -78,6 +78,18 @@ export class DatabaseStorage implements IStorage {
     return user || undefined;
   }
 
+  async getUserById(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
+  }
+
+  async updateUserPassword(id: number, hashedPassword: string): Promise<void> {
+    await db
+      .update(users)
+      .set({ password: hashedPassword })
+      .where(eq(users.id, id));
+  }
+
   async createUser(insertUser: InsertUser): Promise<User> {
     const [user] = await db
       .insert(users)
@@ -385,30 +397,9 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getTradingOpportunities(): Promise<any[]> {
-    // Return mock opportunities for now - in real implementation this would analyze market data
-    return [
-      {
-        symbol: "SOLUSDT",
-        strategy: "Bullish Breakout",
-        confidence: 87,
-        description: "Bullish Breakout Signal",
-        indicators: "RSI: 45, MACD: Bullish"
-      },
-      {
-        symbol: "MATICUSDT", 
-        strategy: "Mean Reversion",
-        confidence: 72,
-        description: "Mean Reversion Setup",
-        indicators: "BB: Oversold, Volume: High"
-      },
-      {
-        symbol: "DOTUSDT",
-        strategy: "Trend Following", 
-        confidence: 91,
-        description: "Trend Following Entry",
-        indicators: "EMA Cross, ADX: 65"
-      }
-    ];
+    // This will be populated by the trading bot's real-time analysis
+    // For now, return empty array until real signals are generated
+    return [];
   }
 
   async getStrategyPerformance(userId: number): Promise<any[]> {
@@ -446,8 +437,8 @@ export class DatabaseStorage implements IStorage {
 
     const totalValue = parseFloat((positionsResult[0]?.totalValue || 0).toString()) || 0;
 
-    // Mock available balance - in real implementation this would come from Bybit API
-    const availableBalance = "2350.00";
+    // Available balance will be fetched from Bybit API in real implementation
+    const availableBalance = "0.00";
 
     return {
       totalValue: (totalValue + parseFloat(availableBalance)).toFixed(2),
