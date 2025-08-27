@@ -64,6 +64,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // API Routes
 
+  // Health check endpoint - ensure this works before other routes
+  app.get("/api/health", (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.json({ 
+      status: "ok", 
+      timestamp: new Date().toISOString(),
+      database: "sqlite",
+      sessions: Object.keys(sessions).length 
+    });
+  });
+
   // Get dashboard data
   app.get("/api/dashboard", requireAuth, async (req, res) => {
     try {

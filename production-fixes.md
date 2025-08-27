@@ -6,10 +6,10 @@
 User reports "invalid credentials" when running the bot on production Ubuntu server.
 
 ### Root Cause Analysis
-1. **Environment Variables**: Production may not have proper DATABASE_URL or session storage configured
-2. **Authentication System**: Session-based auth may not persist in production environment  
-3. **Database Connection**: PostgreSQL connection issues in Ubuntu environment
-4. **Build Configuration**: Missing environment variables in production build
+1. **SQLite Database**: Production may not have the SQLite database file properly initialized
+2. **Authentication System**: Session-based auth using in-memory storage doesn't persist across restarts
+3. **Database Connection**: SQLite file permissions or path issues in Ubuntu environment
+4. **Build Configuration**: Missing NODE_ENV and other environment variables
 
 ### Solution Steps
 
@@ -36,26 +36,26 @@ npm install connect-pg-simple express-session
 npm install connect-redis redis
 ```
 
-#### 3. Production Database Setup
+#### 3. Production SQLite Database Setup
 ```bash
-# Ensure PostgreSQL is running
-sudo systemctl status postgresql
-sudo systemctl start postgresql
+# Initialize SQLite database in production
+npm run db:migrate
 
-# Create database and user
-sudo -u postgres psql
-CREATE DATABASE cryptobot;
-CREATE USER cryptobot_user WITH PASSWORD 'strong_password';
-GRANT ALL PRIVILEGES ON DATABASE cryptobot TO cryptobot_user;
+# Or manually initialize:
+node -e "import('./server/initDb.js').then(m => m.initializeDatabase())"
+
+# Check database file exists and has correct permissions
+ls -la database.sqlite
+chmod 644 database.sqlite
 ```
 
 #### 4. Production Environment File
 Create `.env.production`:
 ```env
 NODE_ENV=production
-DATABASE_URL=postgresql://cryptobot_user:strong_password@localhost:5432/cryptobot
 PORT=80
 SESSION_SECRET=your_secure_session_secret_here
+# SQLite database file will be created automatically
 ```
 
 #### 5. Build and Run Production
@@ -71,12 +71,41 @@ NODE_ENV=production node dist/index.js
 ```
 
 ### Immediate Fix for Development
-The current issue in Replit development is that bot logs API was missing authentication. This has been fixed by:
-1. Adding `requireAuth` middleware to `/api/bot-logs` endpoint
-2. Using proper user ID from session instead of hardcoded value
+The issues in Replit development:
+1. ✅ Bot logs API was missing authentication - now fixed with requireAuth middleware
+2. ✅ SQLite database exists but sessions are in-memory and reset on server restart
+3. ✅ Added health check endpoint to verify server status
+4. ✅ Updated production guide for SQLite instead of PostgreSQL
 
-### Next Steps for Production
-1. Set up proper session persistence (PostgreSQL or Redis)
-2. Configure environment variables correctly
-3. Ensure database connectivity
-4. Test authentication flow in production environment
+### Immediate Fix for Production Ubuntu Server
+The "invalid credentials" error is likely due to:
+
+**Step 1: Initialize SQLite Database**
+```bash
+# In your project directory on Ubuntu server:
+node -e "import('./server/initDb.js').then(m => m.initializeDatabase())"
+ls -la database.sqlite  # Verify file exists
+```
+
+**Step 2: Create Admin User**
+```bash
+# After database is initialized, create admin user:
+node -e "
+import('./server/initDb.js').then(async (m) => {
+  await m.initializeDatabase();
+  console.log('Admin user created - username: admin, password: admin123');
+});"
+```
+
+**Step 3: Test Server**
+```bash
+# Test if server responds:
+curl http://localhost:5000/api/health
+
+# Test login:
+curl -X POST http://localhost:5000/api/auth/login \
+  -H 'Content-Type: application/json' \
+  -d '{"username":"admin","password":"admin123"}'
+```
+
+The bot will work in paper trading mode without Bybit API credentials.
