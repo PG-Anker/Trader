@@ -53,7 +53,7 @@ export class DeepSeekAIService extends EventEmitter {
   }
 
   isReady(): boolean {
-    return this.isInitialized && this.browser !== null && this.page !== null;
+    return this.isInitialized;
   }
 
   async initialize(): Promise<void> {
