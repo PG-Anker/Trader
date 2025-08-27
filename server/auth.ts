@@ -33,7 +33,10 @@ export function requireAuth(req: express.Request, res: express.Response, next: e
                    req.headers['authorization']?.replace('Bearer ', '') ||
                    req.cookies?.sessionId;
   
-  console.log('Auth check - Session ID:', sessionId, 'Sessions available:', sessions.size);
+  // Reduce logging spam - only log when session ID exists
+  if (sessionId) {
+    console.log('Auth check - Session ID:', sessionId?.substring(0, 8) + '...', 'Sessions available:', sessions.size);
+  }
   
   if (!sessionId) {
     return res.status(401).json({ message: 'Authentication required' });
