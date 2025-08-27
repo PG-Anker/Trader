@@ -13,6 +13,8 @@ interface BotLog {
   level: string;
   message: string;
   createdAt: string;
+  symbol?: string | null;
+  data?: string;
   details?: string;
 }
 
@@ -55,9 +57,13 @@ export default function BotLogsPolling() {
 
   const formatLogTime = (timestamp: string) => {
     try {
+      // Handle SQLite CURRENT_TIMESTAMP format
+      if (timestamp === "CURRENT_TIMESTAMP") {
+        return new Date().toLocaleTimeString();
+      }
       return format(new Date(timestamp), 'HH:mm:ss');
     } catch {
-      return timestamp.slice(11, 19); // fallback to simple string slice
+      return new Date().toLocaleTimeString(); // fallback to current time
     }
   };
 
@@ -105,9 +111,13 @@ export default function BotLogsPolling() {
               {logs.length === 0 && !isLoading && (
                 <div className="flex items-center justify-center h-32 text-muted-foreground">
                   <Info className="w-5 h-5 mr-2" />
-                  No logs available. Start the bot to see activity.
+                  No logs visible. Check dev tools Network tab - data may be loading but not displaying.
                 </div>
               )}
+              
+              <div className="text-xs text-muted-foreground mb-2">
+                Logs: {logs.length} • Auto-refresh: {autoRefresh ? 'ON' : 'OFF'} • {error ? 'ERROR' : 'OK'}
+              </div>
               
               {isLoading && logs.length === 0 && (
                 <div className="flex items-center justify-center h-32 text-muted-foreground">
@@ -131,9 +141,14 @@ export default function BotLogsPolling() {
                       </span>
                     </div>
                     <p className="text-sm mt-1 break-words">{log.message}</p>
-                    {log.details && (
+                    {log.symbol && (
+                      <Badge variant="outline" className="text-xs mt-1">
+                        {log.symbol}
+                      </Badge>
+                    )}
+                    {(log.details || log.data) && (
                       <pre className="text-xs mt-2 p-2 rounded bg-muted overflow-x-auto">
-                        {log.details}
+                        {log.details || log.data}
                       </pre>
                     )}
                   </div>

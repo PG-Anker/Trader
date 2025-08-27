@@ -70,8 +70,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ 
       status: "ok", 
       timestamp: new Date().toISOString(),
-      database: "sqlite",
-      sessions: Object.keys(sessions).length 
+      database: "sqlite"
     });
   });
 
