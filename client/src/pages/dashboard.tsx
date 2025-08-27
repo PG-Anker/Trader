@@ -6,8 +6,8 @@ import { PositionsTable } from "@/components/PositionsTable";
 import { TradingOpportunities } from "@/components/TradingOpportunities";
 import { StrategyPerformance } from "@/components/StrategyPerformance";
 import { SummaryTab } from "@/components/SummaryTab";
-import { BotLogTab } from "@/components/BotLogTab";
-import { SystemErrorTab } from "@/components/SystemErrorTab";
+import BotLogs from "@/components/BotLogs";
+import SystemErrors from "@/components/SystemErrors";
 import { SettingsTab } from "@/components/SettingsTab";
 import { BotControl } from "@/components/BotControl";
 import { useWebSocket } from "@/hooks/useWebSocket";
@@ -266,8 +266,8 @@ export default function Dashboard() {
           )}
 
           {activeTab === 'summary' && <SummaryTab />}
-          {activeTab === 'bot-log' && <BotLogTab />}
-          {activeTab === 'system-error' && <SystemErrorTab />}
+          {activeTab === 'bot-log' && <BotLogs />}
+          {activeTab === 'system-error' && <SystemErrors />}
           {activeTab === 'settings' && <SettingsTab />}
         </main>
       </div>

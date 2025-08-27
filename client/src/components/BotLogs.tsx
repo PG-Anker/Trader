@@ -103,23 +103,23 @@ export default function BotLogs() {
               {logs.map((log: BotLog) => (
                 <div
                   key={log.id}
-                  className="flex items-start space-x-3 p-3 rounded-lg bg-crypto-dark-800 border border-crypto-dark-700 hover:border-crypto-dark-600 transition-colors"
+                  className="flex items-start space-x-3 p-2 rounded border-l-4 border-l-blue-500 bg-crypto-dark-800/50 hover:bg-crypto-dark-800 transition-colors text-xs"
                 >
                   <div className="flex-shrink-0 mt-0.5">
                     {getLogIcon(log.level)}
                   </div>
                   
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between mb-1">
-                      <Badge variant={getLogBadgeVariant(log.level)} className="text-xs">
-                        {log.level.toUpperCase()}
-                      </Badge>
-                      <span className="text-xs text-gray-400">
+                    <div className="flex items-center space-x-2 mb-1">
+                      <span className="text-xs text-gray-400 font-mono min-w-[60px]">
                         {formatLogTime(log.createdAt)}
                       </span>
+                      <Badge variant={getLogBadgeVariant(log.level)} className="text-xs px-1 py-0">
+                        {log.level}
+                      </Badge>
                     </div>
                     
-                    <p className="text-sm text-gray-200 mb-1">
+                    <p className="text-xs text-gray-200 font-mono leading-relaxed">
                       {log.message}
                     </p>
                     
