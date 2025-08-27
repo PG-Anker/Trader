@@ -19,7 +19,7 @@ export default function Dashboard() {
   const [tradingMode, setTradingMode] = useState<'spot' | 'leverage'>('spot');
   const [positions, setPositions] = useState<Position[]>([]);
   const [portfolioData, setPortfolioData] = useState<PortfolioData>({ totalValue: '0', availableBalance: '0' });
-  const [botStatus, setBotStatus] = useState({ isRunning: false, startedAt: null, lastActivity: null });
+  const [botStatus, setBotStatus] = useState({ isRunning: false, startedAt: null, lastActivity: null, userId: null });
   const { toast } = useToast();
 
   // Get initial trading mode from localStorage
@@ -37,7 +37,7 @@ export default function Dashboard() {
   });
 
   // Determine if we're in paper trading mode
-  const isPaperTrade = settings?.spotPaperTrading || settings?.leveragePaperTrading;
+  const isPaperTrade = Boolean(settings?.spotPaperTrading || settings?.leveragePaperTrading);
 
   // Fetch dashboard data
   const { data: dashboardData, refetch: refetchDashboard } = useQuery({
@@ -61,31 +61,27 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (botStatusData) {
-      setBotStatus(botStatusData);
+      setBotStatus({
+        isRunning: botStatusData.isRunning || false,
+        startedAt: botStatusData.startedAt || null,
+        lastActivity: botStatusData.lastActivity || null,
+        userId: botStatusData.userId || null
+      });
     }
   }, [botStatusData]);
 
-  // Show loading spinner while settings are loading
-  if (!settings) {
-    return (
-      <div className="flex h-screen items-center justify-center bg-crypto-dark-900 text-white">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
-          <p className="mt-4 text-lg">Loading dashboard...</p>
-        </div>
-      </div>
-    );
-  }
-
   useEffect(() => {
     if (portfolio) {
-      setPortfolioData(portfolio);
+      setPortfolioData({
+        totalValue: portfolio.totalValue || '0',
+        availableBalance: portfolio.availableBalance || '0'
+      });
     }
   }, [portfolio]);
 
   useEffect(() => {
     if (dashboardData?.positions) {
-      setPositions(dashboardData.positions);
+      setPositions(dashboardData.positions || []);
     }
   }, [dashboardData]);
 
@@ -173,6 +169,18 @@ export default function Dashboard() {
       : 'Leverage Trading - Long and short positions with margin';
   };
 
+  // Show loading spinner while settings are loading
+  if (!settings) {
+    return (
+      <div className="flex h-screen items-center justify-center bg-crypto-dark-900 text-white">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+          <p className="mt-4 text-lg">Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-screen overflow-hidden bg-crypto-dark-900 text-white">
       {/* Sidebar */}
@@ -196,7 +204,7 @@ export default function Dashboard() {
               {activeTab === 'dashboard' && settings && (
                 <div className="mt-2 space-y-2">
                   {/* AI Trading Indicator */}
-                  {settings.aiTradingEnabled && (
+                  {(settings as any)?.aiTradingEnabled && (
                     <div className="flex items-center space-x-2 px-3 py-1.5 bg-purple-500/20 border border-purple-500/30 rounded-lg">
                       <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse"></div>
                       <span className="text-xs font-medium text-purple-300">
@@ -206,14 +214,14 @@ export default function Dashboard() {
                   )}
                   
                   {/* Paper Trading Indicator */}
-                  {(settings.spotPaperTrading || settings.leveragePaperTrading) && (
+                  {((settings as any)?.spotPaperTrading || (settings as any)?.leveragePaperTrading) && (
                     <div className="flex items-center space-x-2 px-3 py-1.5 bg-blue-500/20 border border-blue-500/30 rounded-lg">
                       <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></div>
                       <span className="text-xs font-medium text-blue-300">
                         Paper Trading Active - {
-                          settings.spotPaperTrading && settings.leveragePaperTrading
+                          (settings as any)?.spotPaperTrading && (settings as any)?.leveragePaperTrading
                             ? "Both Modes"
-                            : settings.spotPaperTrading
+                            : (settings as any)?.spotPaperTrading
                             ? "Spot Only"
                             : "Leverage Only"
                         }
@@ -240,7 +248,7 @@ export default function Dashboard() {
         <main className="flex-1 overflow-auto p-6">
           {activeTab === 'dashboard' && (
             <div className="space-y-6">
-              <StatsCards data={dashboardData?.stats} />
+              <StatsCards data={dashboardData?.stats || {}} />
               
               {/* Bot Control Component */}
               <BotControl status={botStatus} />
@@ -251,8 +259,8 @@ export default function Dashboard() {
                 onPositionClose={refetchDashboard}
               />
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <TradingOpportunities data={dashboardData?.opportunities} />
-                <StrategyPerformance data={dashboardData?.performance} />
+                <TradingOpportunities data={dashboardData?.opportunities || []} />
+                <StrategyPerformance data={dashboardData?.performance || []} />
               </div>
             </div>
           )}
