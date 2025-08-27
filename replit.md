@@ -117,6 +117,10 @@ Key entities include:
 
 ```
 Changelog:
+- August 27, 2025. FIXED: Production frontend caching issue - bot logs now update in real-time
+- August 27, 2025. Added comprehensive cache busting headers to prevent 304 responses
+- August 27, 2025. Enhanced frontend query client with no-cache headers and timestamps  
+- August 27, 2025. Added log deletion functionality - users can clear all bot logs from frontend
 - August 27, 2025. Fixed paper trading mode to work without API credentials for market analysis
 - August 27, 2025. Bot now properly separates paper vs real trading mode credential requirements
 - August 27, 2025. Implemented comprehensive fallback system for geographic API blocking

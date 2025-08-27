@@ -129,8 +129,27 @@ export default function BotLogsPolling() {
                 </div>
               )}
               
-              <div className="text-xs text-muted-foreground mb-2">
-                Logs: {logs.length} • Auto-refresh: {autoRefresh ? 'ON' : 'OFF'} • {error ? 'ERROR' : 'OK'}
+              <div className="flex justify-between items-center mb-2">
+                <div className="text-xs text-muted-foreground">
+                  Logs: {logs.length} • Auto-refresh: {autoRefresh ? 'ON' : 'OFF'} • {error ? 'ERROR' : 'OK'}
+                </div>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => {
+                    if (confirm('Delete all bot logs?')) {
+                      fetch('/api/bot-logs', { 
+                        method: 'DELETE',
+                        headers: {
+                          'X-Session-ID': localStorage.getItem('sessionId') || ''
+                        }
+                      }).then(() => refetch());
+                    }
+                  }}
+                  className="text-xs h-6"
+                >
+                  Clear Logs
+                </Button>
               </div>
               
               {isLoading && logs.length === 0 && (

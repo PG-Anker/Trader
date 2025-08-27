@@ -124,6 +124,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/bot-logs", requireAuth, async (req, res) => {
     try {
       const userId = (req as any).user.id;
+      
+      // Disable caching for real-time updates
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+      res.setHeader('ETag', Date.now().toString()); // Force fresh data
+      
       const logs = await storage.getBotLogs(userId, 100);
       res.json(logs);
     } catch (error) {
