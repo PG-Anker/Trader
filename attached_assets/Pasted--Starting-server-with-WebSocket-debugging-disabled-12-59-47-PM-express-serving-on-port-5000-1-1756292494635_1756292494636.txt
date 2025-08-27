@@ -1,0 +1,204 @@
+🚀 Starting server with WebSocket debugging disabled...
+12:59:47 PM [express] serving on port 5000
+1:00:02 PM [express] GET /api/dashboard 401 in 6ms :: {"message":"Authentication required"}
+1:00:02 PM [express] GET /api/portfolio 401 in 1ms :: {"message":"Authentication required"}
+1:00:02 PM [express] GET /api/settings 401 in 2ms :: {"message":"Authentication required"}
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+1:00:09 PM [express] GET /api/summary 401 in 1ms :: {"message":"Authentication required"}
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+1:00:11 PM [express] GET /api/bot-logs 304 in 13ms :: []
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+1:00:12 PM [express] GET /api/portfolio 401 in 1ms :: {"message":"Authentication required"}
+WebSocket client disconnected
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+1:00:16 PM [express] GET /api/system-errors 401 in 3ms :: {"message":"Authentication required"}
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client disconnected
+1:00:17 PM [express] GET /api/settings 401 in 5ms :: {"message":"Authentication required"}
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+1:00:22 PM [express] GET /api/portfolio 401 in 4ms :: {"message":"Authentication required"}
