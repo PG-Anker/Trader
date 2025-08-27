@@ -9,6 +9,7 @@ import { SummaryTab } from "@/components/SummaryTab";
 import { BotLogTab } from "@/components/BotLogTab";
 import { SystemErrorTab } from "@/components/SystemErrorTab";
 import { SettingsTab } from "@/components/SettingsTab";
+import { BotControl } from "@/components/BotControl";
 import { useWebSocket } from "@/hooks/useWebSocket";
 import { useToast } from "@/hooks/use-toast";
 import type { Position, BotLog, SystemError, PortfolioData } from "@/lib/types";
@@ -18,6 +19,7 @@ export default function Dashboard() {
   const [tradingMode, setTradingMode] = useState<'spot' | 'leverage'>('spot');
   const [positions, setPositions] = useState<Position[]>([]);
   const [portfolioData, setPortfolioData] = useState<PortfolioData>({ totalValue: '0', availableBalance: '0' });
+  const [botStatus, setBotStatus] = useState({ isRunning: false, startedAt: null, lastActivity: null });
   const { toast } = useToast();
 
   // Get initial trading mode from localStorage
@@ -45,6 +47,18 @@ export default function Dashboard() {
     queryKey: ['/api/settings'],
     refetchInterval: 30000, // Refetch every 30 seconds
   });
+
+  // Fetch bot status
+  const { data: botStatusData } = useQuery({
+    queryKey: ['/api/bot/status'],
+    refetchInterval: 5000, // Refetch every 5 seconds
+  });
+
+  useEffect(() => {
+    if (botStatusData) {
+      setBotStatus(botStatusData);
+    }
+  }, [botStatusData]);
 
   useEffect(() => {
     if (portfolio) {
@@ -106,6 +120,10 @@ export default function Dashboard() {
                 : pos
             )
           );
+          break;
+
+        case 'bot_status_update':
+          setBotStatus(message.data);
           break;
       }
     },
@@ -206,6 +224,10 @@ export default function Dashboard() {
           {activeTab === 'dashboard' && (
             <div className="space-y-6">
               <StatsCards data={dashboardData?.stats} />
+              
+              {/* Bot Control Component */}
+              <BotControl status={botStatus} />
+              
               <PositionsTable 
                 positions={positions} 
                 tradingMode={tradingMode}

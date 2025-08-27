@@ -54,6 +54,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication routes
   setupAuthRoutes(app);
 
+  // Bot status tracking
+  let botStatus = {
+    isRunning: false,
+    userId: null as number | null,
+    startedAt: null as string | null,
+    lastActivity: null as string | null
+  };
+
   // API Routes
 
   // Get dashboard data
@@ -228,17 +236,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const userId = (req as any).user.id;
       
       if (action === 'start') {
+        if (botStatus.isRunning) {
+          return res.status(400).json({ message: "Trading bot is already running" });
+        }
+        
         await tradingBot.start(userId);
-        res.json({ message: "Trading bot started" });
+        botStatus = {
+          isRunning: true,
+          userId,
+          startedAt: new Date().toISOString(),
+          lastActivity: new Date().toISOString()
+        };
+        
+        // Broadcast bot status update
+        broadcast({
+          type: 'bot_status_update',
+          data: botStatus
+        });
+        
+        res.json({ 
+          success: true,
+          message: "Trading bot started",
+          status: botStatus
+        });
       } else if (action === 'stop') {
+        if (!botStatus.isRunning) {
+          return res.status(400).json({ message: "Trading bot is not running" });
+        }
+        
         await tradingBot.stop();
-        res.json({ message: "Trading bot stopped" });
+        botStatus = {
+          isRunning: false,
+          userId: null,
+          startedAt: null,
+          lastActivity: new Date().toISOString()
+        };
+        
+        // Broadcast bot status update
+        broadcast({
+          type: 'bot_status_update',
+          data: botStatus
+        });
+        
+        res.json({ 
+          success: true,
+          message: "Trading bot stopped",
+          status: botStatus
+        });
       } else {
-        res.status(400).json({ message: "Invalid action" });
+        res.status(400).json({ message: "Invalid action. Use 'start' or 'stop'" });
       }
     } catch (error) {
       console.error('Bot action error:', error);
-      res.status(500).json({ message: "Failed to perform bot action" });
+      res.status(500).json({ 
+        success: false,
+        message: error instanceof Error ? error.message : "Failed to perform bot action"
+      });
     }
   });
 
@@ -268,22 +321,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Set up real-time data broadcasting
   tradingBot.on('log', (log) => {
+    // Update last activity timestamp
+    if (botStatus.isRunning) {
+      botStatus.lastActivity = new Date().toISOString();
+    }
+    
     broadcast({
       type: 'bot_log',
       data: log
     });
   });
 
-  // Auto-start trading bot for all authenticated users
-  setTimeout(async () => {
-    try {
-      console.log('🤖 Auto-starting trading bot...');
-      await tradingBot.start(1); // User ID 1 (admin user)
-      console.log('✅ Trading bot started automatically');
-    } catch (error) {
-      console.error('❌ Failed to auto-start trading bot:', error);
-    }
-  }, 5000); // Start after 5 seconds to allow server initialization
+  // Get bot status endpoint
+  app.get("/api/bot/status", requireAuth, async (req, res) => {
+    res.json({
+      isRunning: botStatus.isRunning,
+      startedAt: botStatus.startedAt,
+      lastActivity: botStatus.lastActivity,
+      userId: botStatus.userId
+    });
+  });
 
   tradingBot.on('error', (error) => {
     broadcast({
