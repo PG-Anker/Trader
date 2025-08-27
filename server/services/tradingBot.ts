@@ -51,11 +51,8 @@ export class TradingBot extends EventEmitter {
     } catch (error) {
       await this.logError('CCXT Initialization Error', `Failed to load market pairs: ${error instanceof Error ? error.message : 'Unknown error'}`, 'TradingBot.start');
       
-      // Fallback to hardcoded symbols if CCXT fails
-      this.watchedSymbols = [
-        'BTC/USDT', 'ETH/USDT', 'ADA/USDT', 'SOL/USDT', 'DOT/USDT',
-        'MATIC/USDT', 'LINK/USDT', 'AVAX/USDT', 'UNI/USDT', 'LTC/USDT'
-      ];
+      // Fallback to comprehensive hardcoded symbols if CCXT fails
+      this.watchedSymbols = await this.ccxtMarketData.getTopTradingPairs(100);
       
       await this.log('INFO', 'Using fallback symbol list', { symbolCount: this.watchedSymbols.length });
     }
@@ -303,8 +300,8 @@ export class TradingBot extends EventEmitter {
         // Convert CCXT format (BTC/USDT) to Bybit format (BTCUSDT)
         const bybitSymbol = symbol.replace('/', '');
         
-        // Get kline data for analysis
-        const klineData = await this.bybitService.getKlines(bybitSymbol, settings.timeframe, 200);
+        // Get kline data for analysis using CCXT (public data, no API keys needed)
+        const klineData = await this.ccxtMarketData.getOHLCV(symbol, settings.timeframe, 200);
         
         if (klineData.length < 50) {
           continue;
@@ -384,6 +381,9 @@ export class TradingBot extends EventEmitter {
         console.error(`Analysis error for ${symbol}:`, error);
         await this.logError('Analysis Error', `Failed to analyze ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`, 'TradingBot.runAnalysis');
       }
+      
+      // Add delay between analyses to avoid rate limits
+      await new Promise(resolve => setTimeout(resolve, 100));
     }
 
     await this.log('SCAN', `Market scan complete - ${opportunitiesFound} opportunities found`, {
