@@ -111,9 +111,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get bot logs
-  app.get("/api/bot-logs", async (req, res) => {
+  app.get("/api/bot-logs", requireAuth, async (req, res) => {
     try {
-      const userId = 1; // TODO: Get from session/auth
+      const userId = (req as any).user.id;
       const logs = await storage.getBotLogs(userId, 100);
       res.json(logs);
     } catch (error) {

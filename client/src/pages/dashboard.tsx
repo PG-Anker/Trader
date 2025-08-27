@@ -31,7 +31,7 @@ export default function Dashboard() {
   }, []);
 
   // Fetch trading settings for paper trading status
-  const { data: settings } = useQuery({
+  const { data: settings } = useQuery<any>({
     queryKey: ['/api/settings'],
     refetchInterval: 30000, // Refetch every 30 seconds
   });
@@ -40,21 +40,21 @@ export default function Dashboard() {
   const isPaperTrade = Boolean(settings?.spotPaperTrading || settings?.leveragePaperTrading);
 
   // Fetch dashboard data
-  const { data: dashboardData, refetch: refetchDashboard } = useQuery({
+  const { data: dashboardData, refetch: refetchDashboard } = useQuery<any>({
     queryKey: ['/api/dashboard', { paperTrade: isPaperTrade }],
     refetchInterval: 30000, // Refetch every 30 seconds
     enabled: !!settings, // Wait for settings to load
   });
 
   // Fetch portfolio data
-  const { data: portfolio } = useQuery({
+  const { data: portfolio } = useQuery<any>({
     queryKey: ['/api/portfolio', { paperTrade: isPaperTrade }],
     refetchInterval: 10000, // Refetch every 10 seconds
     enabled: !!settings, // Wait for settings to load
   });
 
   // Fetch bot status
-  const { data: botStatusData } = useQuery({
+  const { data: botStatusData } = useQuery<any>({
     queryKey: ['/api/bot/status'],
     refetchInterval: 5000, // Refetch every 5 seconds
   });
