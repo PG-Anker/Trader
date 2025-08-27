@@ -1,0 +1,58 @@
+Every REST API call (/api/dashboard, /api/portfolio, /api/settings, etc.) is returning 401 Authentication required.
+That means the backend is expecting some form of authentication (likely a session cookie, JWT, or API key), but the frontend is not sending it.
+
+Your WebSocket keeps connecting/disconnecting from 127.0.0.1.
+This often happens when the client is rejected after connecting (again, usually because of missing authentication headers, or because it’s trying to connect to ws://127.0.0.1:5000 instead of your deployed hostname).
+
+Things to check:
+
+✅ Auth Middleware in Express
+Your backend likely has something like this:
+
+app.use("/api", authMiddleware, apiRouter);
+
+
+If authMiddleware expects a token or session, you need to confirm:
+
+How does the frontend normally authenticate in dev? (Login page → JWT stored in localStorage or cookie?)
+
+Are you setting the Authorization: Bearer <token> header in requests?
+
+On deployment, is your login flow working? If not, the API will always return 401.
+
+✅ Frontend requests
+Check your client/ code — when it calls:
+
+fetch("/api/dashboard")
+
+
+…is it attaching an auth header or credentials? If it’s missing, you’ll get exactly what you’re seeing.
+
+For example, it may need to be:
+
+fetch("/api/dashboard", {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+  credentials: "include"
+});
+
+
+✅ WebSocket Authentication
+If your WebSocket is protected, you need to pass the token when connecting:
+
+const ws = new WebSocket(`ws://your-server:5000?token=${token}`);
+
+
+And on the server, validate it in the connection handler.
+
+✅ Deployment config
+On Replit it probably worked because everything was localhost and auto-included cookies.
+When deploying, CORS, HTTPS, and cookie security settings can break auth unless configured.
+
+If you’re using cookies, make sure SameSite=None; Secure is set for cross-domain requests.
+
+If you’re using JWT, make sure it’s actually stored and sent with requests.
+
+👉 To move forward:
+Can you confirm how your bot’s frontend is supposed to authenticate? (JWT, API key, or session cookies?) That will tell us exactly why everything is failing with 401.

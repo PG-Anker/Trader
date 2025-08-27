@@ -21,7 +21,7 @@ export const useWebSocket = (options: UseWebSocketOptions = {}) => {
     onClose,
     onError,
     reconnectInterval = 10000,
-    maxReconnectAttempts = 1
+    maxReconnectAttempts = 3
   } = options;
 
   const wsRef = useRef<WebSocket | null>(null);
@@ -30,6 +30,13 @@ export const useWebSocket = (options: UseWebSocketOptions = {}) => {
 
   const connect = useCallback(() => {
     try {
+      // Only connect if we have authentication
+      const sessionId = localStorage.getItem('sessionId');
+      if (!sessionId) {
+        console.log('No session ID - skipping WebSocket connection');
+        return;
+      }
+
       const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
       const wsUrl = `${protocol}//${window.location.host}/ws`;
       
