@@ -63,12 +63,17 @@ export class TradingBot extends EventEmitter {
       throw new Error('Trading settings not found');
     }
 
-    // Configure Bybit service
-    if (settings.apiKey && settings.secretKey) {
+    // Configure Bybit service (only needed for real trading, not paper trading)
+    if (settings.apiKey && settings.secretKey && !settings.paperTrading) {
       this.bybitService.setCredentials(
         settings.apiKey,
         settings.secretKey
       );
+      await this.log('INFO', 'Bybit API credentials configured for real trading', {});
+    } else if (settings.paperTrading) {
+      await this.log('INFO', 'Paper trading mode - no API credentials needed for analysis', {});
+    } else {
+      await this.log('INFO', 'No API credentials provided - running in analysis-only mode', {});
     }
 
     // Initialize AI service if enabled
@@ -83,15 +88,18 @@ export class TradingBot extends EventEmitter {
       }
     }
 
-    // Start WebSocket connection for real-time prices (skip if no credentials)
-    if (settings.apiKey && settings.secretKey) {
+    // Start WebSocket connection for real-time prices (only for real trading)
+    if (settings.apiKey && settings.secretKey && !settings.paperTrading) {
       try {
-        this.bybitService.connectWebSocket(this.watchedSymbols);
+        // Convert CCXT format to Bybit format for WebSocket
+        const bybitSymbols = this.watchedSymbols.map(s => s.replace('/', ''));
+        this.bybitService.connectWebSocket(bybitSymbols);
+        await this.log('INFO', 'WebSocket connected for real trading mode', { symbolCount: bybitSymbols.length });
       } catch (error) {
         await this.logError('WebSocket Connection Error', `Failed to connect WebSocket: ${error instanceof Error ? error.message : 'Unknown error'}`, 'TradingBot.start');
       }
     } else {
-      await this.log('INFO', 'Skipping WebSocket connection - no API credentials provided', {});
+      await this.log('INFO', 'Skipping WebSocket connection - using CCXT for market data', {});
     }
 
     // Start analysis loop
@@ -264,7 +272,8 @@ export class TradingBot extends EventEmitter {
 
     await this.log('SCAN', `Market scan started - analyzing ${this.watchedSymbols.length} symbols`, {
       watchedSymbols: this.watchedSymbols,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      tradingMode: settings.paperTrading ? 'paper' : 'real'
     });
 
     const settings = await this.storage.getTradingSettings(this.userId);

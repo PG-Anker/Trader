@@ -117,6 +117,10 @@ Key entities include:
 
 ```
 Changelog:
+- August 27, 2025. Fixed paper trading mode to work without API credentials for market analysis
+- August 27, 2025. Bot now properly separates paper vs real trading mode credential requirements
+- August 27, 2025. Implemented comprehensive fallback system for geographic API blocking
+- August 27, 2025. Bot analyzes 100 USDT pairs using mock data when real APIs are blocked
 - August 27, 2025. Integrated CCXT for comprehensive market data collection from all Bybit USDT pairs
 - August 27, 2025. Implemented complete paper trading vs real trading data separation
 - August 27, 2025. Added manual bot start/stop functionality with status indicators
