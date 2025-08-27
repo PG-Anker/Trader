@@ -67,23 +67,30 @@ export function setupAuthRoutes(app: express.Application) {
     try {
       const { username, password } = req.body;
       
+      console.log('Login attempt for username:', username);
+      
       if (!username || !password) {
+        console.log('Missing username or password');
         return res.status(400).json({ message: 'Username and password required' });
       }
 
       const user = await storage.getUserByUsername(username);
       if (!user) {
+        console.log('User not found:', username);
         return res.status(401).json({ message: 'Invalid credentials' });
       }
 
+      console.log('Found user:', user.username, 'ID:', user.id);
+
       const isValid = await verifyPassword(password, user.password);
       if (!isValid) {
+        console.log('Invalid password for user:', username);
         return res.status(401).json({ message: 'Invalid credentials' });
       }
 
       const sessionId = createSession({ id: user.id, username: user.username });
       
-      console.log('Login successful for user:', user.username, 'Session ID:', sessionId);
+      console.log('✅ Login successful for user:', user.username, 'Session ID:', sessionId.substring(0, 8) + '...');
       
       res.cookie('sessionId', sessionId, {
         httpOnly: true,
@@ -97,7 +104,7 @@ export function setupAuthRoutes(app: express.Application) {
         sessionId 
       });
     } catch (error) {
-      console.error('Login error:', error);
+      console.error('❌ Login error:', error);
       res.status(500).json({ message: 'Login failed' });
     }
   });
@@ -107,23 +114,32 @@ export function setupAuthRoutes(app: express.Application) {
     try {
       const { username, password } = req.body;
       
+      console.log('Registration attempt for username:', username);
+      
       if (!username || !password) {
+        console.log('Missing username or password for registration');
         return res.status(400).json({ message: 'Username and password required' });
       }
 
       // Check if user already exists
       const existingUser = await storage.getUserByUsername(username);
       if (existingUser) {
+        console.log('Username already exists:', username);
         return res.status(409).json({ message: 'Username already exists' });
       }
 
       // Create new user
       const hashedPassword = await hashPassword(password);
-      await storage.createUser(username, hashedPassword);
+      const newUser = await storage.createUser({ username, password: hashedPassword });
 
-      res.json({ message: 'User created successfully' });
+      console.log('✅ User created successfully:', newUser.username, 'ID:', newUser.id);
+      res.json({ 
+        success: true,
+        message: 'User created successfully',
+        user: { id: newUser.id, username: newUser.username }
+      });
     } catch (error) {
-      console.error('Registration error:', error);
+      console.error('❌ Registration error:', error);
       res.status(500).json({ message: 'Internal server error' });
     }
   });
