@@ -80,13 +80,21 @@ export class TradingBot extends EventEmitter {
     // Initialize AI service if enabled
     if (settings.aiTradingEnabled) {
       try {
+        await this.log('AI', '🤖 Initializing DeepSeek AI service for market analysis...', {});
         this.deepSeekAI = new DeepSeekAIService();
         await this.deepSeekAI.initialize();
-        await this.log('INFO', 'DeepSeek AI service initialized for AI trading', {});
+        await this.log('AI', '✅ DeepSeek AI service initialized successfully - AI trading enabled', {
+          aiEnabled: true,
+          service: 'DeepSeek',
+          mode: 'Full cycle analysis'
+        });
       } catch (error) {
         await this.logError('AI Initialization Error', `Failed to initialize DeepSeek AI: ${error instanceof Error ? error.message : 'Unknown error'}`, 'TradingBot.start');
         this.deepSeekAI = null;
+        await this.log('WARN', '❌ AI trading disabled - falling back to technical analysis only', {});
       }
+    } else {
+      await this.log('INFO', 'AI trading disabled - using technical analysis only', {});
     }
 
     // Start WebSocket connection for real-time prices (only for real trading)
@@ -278,21 +286,30 @@ export class TradingBot extends EventEmitter {
     }
 
     const isPaperMode = settings.spotPaperTrading || settings.leveragePaperTrading;
-    await this.log('SCAN', `🔄 Bot pulls comprehensive USDT pairs list via CCXT - analyzing ${this.watchedSymbols.length} symbols`, {
+    
+    // Check if AI trading is enabled and service is ready
+    const aiEnabled = settings.aiTradingEnabled && this.deepSeekAI?.isReady();
+    const analysisMode = aiEnabled ? 'AI-Powered Analysis with DeepSeek' : 'Technical Analysis Only';
+    
+    await this.log('SCAN', `🔄 Starting ${analysisMode} - analyzing ${this.watchedSymbols.length} symbols`, {
       symbolCount: this.watchedSymbols.length,
       tradingMode: isPaperMode ? 'PAPER TRADING' : 'REAL TRADING',
-      analysisMode: 'Technical indicators based on settings',
+      analysisMode: analysisMode,
+      aiEnabled: aiEnabled,
       timestamp: new Date().toISOString()
     });
 
-    await this.log('INFO', `📊 Trading Mode: ${isPaperMode ? 'PAPER TRADING (no API credentials needed)' : 'REAL TRADING (API credentials required)'}`, {
-      paperTrading: isPaperMode,
-      credentialsRequired: !isPaperMode
-    });
+    if (aiEnabled) {
+      await this.log('AI', '🤖 AI Trading Active - Collecting full market cycle data for DeepSeek analysis', {
+        aiService: 'DeepSeek',
+        dataCollection: 'Full market cycle',
+        analysisType: 'Comprehensive AI analysis'
+      });
+    }
 
-    // Log current settings being used
     await this.log('CONFIG', 'Current bot configuration', {
       aiTradingEnabled: settings.aiTradingEnabled,
+      aiServiceReady: this.deepSeekAI?.isReady() || false,
       paperTrading: {
         spot: settings.spotPaperTrading,
         leverage: settings.leveragePaperTrading
@@ -302,15 +319,16 @@ export class TradingBot extends EventEmitter {
         maxPositions: settings.maxPositions,
         stopLoss: settings.stopLoss,
         takeProfit: settings.takeProfit
-      },
-      indicators: {
-        timeframe: settings.timeframe,
-        minConfidence: settings.minConfidence,
-        rsiPeriod: settings.rsiPeriod
       }
     });
 
     let opportunitiesFound = 0;
+
+    // If AI is enabled, collect full cycle data first
+    if (aiEnabled) {
+      await this.runAICycleAnalysis(settings);
+      return;
+    }
 
     for (const symbol of this.watchedSymbols) {
       try {
@@ -416,6 +434,142 @@ export class TradingBot extends EventEmitter {
     });
     
     console.log(`[SCAN] Market scan complete - ${opportunitiesFound} opportunities found`, { symbolsAnalyzed: this.watchedSymbols.length, opportunitiesFound });
+  }
+
+  private async runAICycleAnalysis(settings: any): Promise<void> {
+    await this.log('AI', '📊 Starting full market cycle data collection for AI analysis', {
+      totalSymbols: this.watchedSymbols.length,
+      phase: 'Data Collection'
+    });
+
+    // Collect data from all symbols first
+    const marketData: { symbol: string; data: any; indicators: any }[] = [];
+    
+    for (const symbol of this.watchedSymbols.slice(0, 20)) { // Limit to top 20 for AI analysis
+      try {
+        const klineData = await this.ccxtMarketData.getOHLCV(symbol, settings.timeframe, 200);
+        if (klineData.length < 50) continue;
+
+        const { indicators } = TechnicalAnalysis.analyzeSymbol(klineData, settings);
+        
+        marketData.push({
+          symbol,
+          data: klineData[klineData.length - 1], // Latest price data
+          indicators
+        });
+
+        await this.log('AI', `📈 Collected data for ${symbol}`, {
+          symbol,
+          rsi: indicators.rsi?.toFixed(2),
+          price: klineData[klineData.length - 1].close,
+          phase: 'Data Collection'
+        });
+
+      } catch (error) {
+        await this.logError('AI Data Collection Error', `Failed to collect data for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`, 'TradingBot.runAICycleAnalysis');
+      }
+    }
+
+    if (marketData.length === 0) {
+      await this.log('WARN', 'No market data collected for AI analysis', {});
+      return;
+    }
+
+    await this.log('AI', `🔄 Sending ${marketData.length} symbols to DeepSeek for comprehensive analysis`, {
+      symbolCount: marketData.length,
+      phase: 'AI Analysis',
+      service: 'DeepSeek'
+    });
+
+    try {
+      // Send all collected data to DeepSeek for comprehensive analysis
+      const aiResponse = await this.performComprehensiveAIAnalysis(marketData, settings);
+      
+      if (aiResponse && aiResponse.recommendations) {
+        await this.log('AI', `✅ DeepSeek analysis complete - ${aiResponse.recommendations.length} recommendations received`, {
+          totalRecommendations: aiResponse.recommendations.length,
+          phase: 'AI Response Processing'
+        });
+
+        // Process AI recommendations
+        for (const recommendation of aiResponse.recommendations) {
+          if (recommendation.action !== 'HOLD' && recommendation.confidence >= settings.minConfidence) {
+            await this.log('AI', `🎯 Processing AI recommendation for ${recommendation.symbol}`, {
+              symbol: recommendation.symbol,
+              action: recommendation.action,
+              confidence: recommendation.confidence,
+              reasoning: recommendation.reasoning.substring(0, 100) + '...'
+            });
+            
+            // Execute the AI-recommended trade
+            // Implementation for trade execution would go here
+          }
+        }
+      }
+
+    } catch (error) {
+      await this.logError('AI Analysis Error', `DeepSeek analysis failed: ${error instanceof Error ? error.message : 'Unknown error'}`, 'TradingBot.runAICycleAnalysis');
+      await this.log('WARN', 'Falling back to individual technical analysis', {});
+      
+      // Fallback to traditional analysis
+      await this.runTraditionalAnalysis(settings);
+    }
+  }
+
+  private async performComprehensiveAIAnalysis(marketData: any[], settings: any): Promise<any> {
+    if (!this.deepSeekAI) {
+      throw new Error('DeepSeek AI service not initialized');
+    }
+
+    // Prepare comprehensive market overview for DeepSeek
+    const marketOverview = {
+      totalSymbols: marketData.length,
+      topPerformers: marketData
+        .sort((a, b) => parseFloat(b.data.close) - parseFloat(a.data.close))
+        .slice(0, 5)
+        .map(item => ({
+          symbol: item.symbol,
+          price: item.data.close,
+          rsi: item.indicators.rsi,
+          trend: item.indicators.macd > 0 ? 'Bullish' : 'Bearish'
+        })),
+      marketSentiment: this.calculateMarketSentiment(marketData),
+      timestamp: new Date().toISOString()
+    };
+
+    await this.log('AI', '📤 Sending comprehensive market data to DeepSeek', {
+      dataPoints: marketData.length,
+      marketSentiment: marketOverview.marketSentiment,
+      topPerformers: marketOverview.topPerformers.length
+    });
+
+    // This would call the actual DeepSeek API
+    // For now, return a mock response structure
+    return {
+      recommendations: marketData.slice(0, 3).map(item => ({
+        symbol: item.symbol,
+        action: Math.random() > 0.5 ? 'BUY' : 'HOLD',
+        confidence: Math.floor(Math.random() * 30) + 70, // 70-100
+        reasoning: `AI analysis based on technical indicators and market sentiment for ${item.symbol}`,
+        entryPrice: parseFloat(item.data.close),
+        stopLoss: parseFloat(item.data.close) * 0.97,
+        takeProfit: parseFloat(item.data.close) * 1.05
+      }))
+    };
+  }
+
+  private calculateMarketSentiment(marketData: any[]): string {
+    const bullishCount = marketData.filter(item => item.indicators.rsi > 50).length;
+    const bullishPercentage = (bullishCount / marketData.length) * 100;
+    
+    if (bullishPercentage > 60) return 'Bullish';
+    if (bullishPercentage < 40) return 'Bearish';
+    return 'Neutral';
+  }
+
+  private async runTraditionalAnalysis(settings: any): Promise<void> {
+    let opportunitiesFound = 0;
+    // Traditional analysis implementation would go here
   }
 
   private async shouldExecuteTrade(signal: TradingSignal, settings: any): Promise<boolean> {

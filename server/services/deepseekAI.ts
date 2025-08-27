@@ -52,6 +52,10 @@ export class DeepSeekAIService extends EventEmitter {
     super();
   }
 
+  isReady(): boolean {
+    return this.isInitialized && this.browser !== null && this.page !== null;
+  }
+
   async initialize(): Promise<void> {
     try {
       console.log('Initializing DeepSeek AI service...');

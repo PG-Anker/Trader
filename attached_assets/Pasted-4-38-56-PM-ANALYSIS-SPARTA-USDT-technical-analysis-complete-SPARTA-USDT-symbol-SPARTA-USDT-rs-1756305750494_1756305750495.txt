@@ -1,0 +1,100 @@
+4:38:56 PM
+ANALYSIS
+SPARTA/USDT technical analysis complete[SPARTA/USDT]
+{"symbol":"SPARTA/USDT","rsi":"48.12","macdCross":"Bullish","adx":"2.03","signalsFound":0}
+4:38:56 PM
+ANALYSIS
+📈 Analyzing SPARTA/USDT with technical indicators[SPARTA/USDT]
+{"symbol":"SPARTA/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+4:38:56 PM
+ANALYSIS
+EOS/USDT technical analysis complete[EOS/USDT]
+{"symbol":"EOS/USDT","rsi":"55.43","macdCross":"Bearish","adx":"11.23","signalsFound":0}
+4:38:56 PM
+ANALYSIS
+📈 Analyzing EOS/USDT with technical indicators[EOS/USDT]
+{"symbol":"EOS/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+4:38:56 PM
+ANALYSIS
+KNC/USDT technical analysis complete[KNC/USDT]
+{"symbol":"KNC/USDT","rsi":"47.06","macdCross":"Bearish","adx":"20.78","signalsFound":0}
+4:38:56 PM
+ANALYSIS
+📈 Analyzing KNC/USDT with technical indicators[KNC/USDT]
+{"symbol":"KNC/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+4:38:56 PM
+ANALYSIS
+UNI/USDT technical analysis complete[UNI/USDT]
+{"symbol":"UNI/USDT","rsi":"44.34","macdCross":"Bullish","adx":"6.04","signalsFound":0}
+4:38:56 PM
+ANALYSIS
+📈 Analyzing UNI/USDT with technical indicators[UNI/USDT]
+{"symbol":"UNI/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+4:38:56 PM
+ANALYSIS
+CAKE/USDT technical analysis complete[CAKE/USDT]
+{"symbol":"CAKE/USDT","rsi":"47.21","macdCross":"Bullish","adx":"15.05","signalsFound":0}
+4:38:56 PM
+ANALYSIS
+📈 Analyzing CAKE/USDT with technical indicators[CAKE/USDT]
+{"symbol":"CAKE/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+4:38:56 PM
+ANALYSIS
+IOTA/USDT technical analysis complete[IOTA/USDT]
+{"symbol":"IOTA/USDT","rsi":"44.57","macdCross":"Bearish","adx":"9.29","signalsFound":0}
+4:38:56 PM
+ANALYSIS
+📈 Analyzing IOTA/USDT with technical indicators[IOTA/USDT]
+{"symbol":"IOTA/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+4:38:56 PM
+ANALYSIS
+REN/USDT technical analysis complete[REN/USDT]
+{"symbol":"REN/USDT","rsi":"45.77","macdCross":"Bullish","adx":"24.39","signalsFound":0}
+4:38:56 PM
+ANALYSIS
+📈 Analyzing REN/USDT with technical indicators[REN/USDT]
+{"symbol":"REN/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+4:38:56 PM
+ANALYSIS
+LINK/USDT technical analysis complete[LINK/USDT]
+{"symbol":"LINK/USDT","rsi":"62.19","macdCross":"Bearish","adx":"33.95","signalsFound":0}
+4:38:56 PM
+ANALYSIS
+📈 Analyzing LINK/USDT with technical indicators[LINK/USDT]
+{"symbol":"LINK/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+4:38:56 PM
+ANALYSIS
+LINEAR/USDT technical analysis complete[LINEAR/USDT]
+{"symbol":"LINEAR/USDT","rsi":"49.84","macdCross":"Bearish","adx":"17.32","signalsFound":0}
+4:38:56 PM
+ANALYSIS
+📈 Analyzing LINEAR/USDT with technical indicators[LINEAR/USDT]
+{"symbol":"LINEAR/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+4:38:56 PM
+ANALYSIS
+XMR/USDT technical analysis complete[XMR/USDT]
+{"symbol":"XMR/USDT","rsi":"46.28","macdCross":"Bearish","adx":"8.46","signalsFound":0}
+4:38:56 PM
+ANALYSIS
+📈 Analyzing XMR/USDT with technical indicators[XMR/USDT]
+{"symbol":"XMR/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+4:38:56 PM
+ANALYSIS
+BAL/USDT technical analysis complete[BAL/USDT]
+{"symbol":"BAL/USDT","rsi":"57.28","macdCross":"Bullish","adx":"4.88","signalsFound":0}
+4:38:56 PM
+ANALYSIS
+📈 Analyzing BAL/USDT with technical indicators[BAL/USDT]
+{"symbol":"BAL/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+4:38:56 PM
+ANALYSIS
+AVAX/USDT technical analysis complete[AVAX/USDT]
+{"symbol":"AVAX/USDT","rsi":"43.20","macdCross":"Bearish","adx":"3.78","signalsFound":0}
+4:38:56 PM
+ANALYSIS
+📈 Analyzing AVAX/USDT with technical indicators[AVAX/USDT]
+{"symbol":"AVAX/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+4:38:56 PM
+ANALYSIS
+SFP/USDT technical analysis complete[SFP/USDT]
+{"symbol":"SFP/USDT","rsi":"56.99","macdCross":"Bullish","adx":"22.73","signalsFound":0}
