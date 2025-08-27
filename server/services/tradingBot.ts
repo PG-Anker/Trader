@@ -285,11 +285,8 @@ export class TradingBot extends EventEmitter {
           continue;
         }
 
-        await this.log('ANALYSIS', `Analyzing ${symbol}`, {
-          symbol,
-          timeframe: settings.timeframe,
-          dataPoints: klineData.length
-        });
+        await this.log('INFO', `📊 Checking trade setup for ${symbol}`, { symbol });
+        await this.log('INFO', `Fetching OHLCV for ${symbol}`, { symbol });
 
         // Use AI trading if enabled, otherwise use technical analysis
         if (settings.aiTradingEnabled && this.deepSeekAI?.isReady()) {
@@ -337,6 +334,22 @@ export class TradingBot extends EventEmitter {
           // Traditional technical analysis
           const { indicators, signals } = TechnicalAnalysis.analyzeSymbol(klineData, settings);
           await this.processTraditionalSignals(signals, symbol, settings, indicators);
+          
+          // Log analysis result in swing bot format
+          const score = this.calculateTradeScore(indicators);
+          const scoreCategory = this.getScoreCategory(score);
+          const signalEmoji = signals.length > 0 ? '✅' : '❌';
+          const signalText = signals.length > 0 ? 'Signal found' : 'No signal';
+          
+          await this.log('INFO', `${symbol}: ${signalEmoji} ${signalText} | Score: ${score.toFixed(1)} (${scoreCategory})`, {
+            symbol,
+            score,
+            category: scoreCategory,
+            signals: signals.length,
+            rsi: indicators.rsi?.toFixed(2),
+            ema: indicators.ema20?.toFixed(6),
+            macd: indicators.macd?.toFixed(6)
+          });
         }
 
         // Small delay between symbol analysis
@@ -352,6 +365,8 @@ export class TradingBot extends EventEmitter {
       symbolsAnalyzed: this.watchedSymbols.length,
       opportunitiesFound
     });
+    
+    console.log(`[SCAN] Market scan complete - ${opportunitiesFound} opportunities found`, { symbolsAnalyzed: this.watchedSymbols.length, opportunitiesFound });
   }
 
   private async shouldExecuteTrade(signal: TradingSignal, settings: any): Promise<boolean> {
@@ -681,5 +696,54 @@ export class TradingBot extends EventEmitter {
     } catch (error) {
       console.error('Failed to save system error:', error);
     }
+  }
+
+  private calculateTradeScore(indicators: any): number {
+    let score = 0;
+    
+    // RSI scoring (0-2 points)
+    if (indicators.rsi) {
+      if (indicators.rsi < 30) score += 2; // Oversold
+      else if (indicators.rsi < 40) score += 1.5;
+      else if (indicators.rsi > 70) score += 2; // Overbought
+      else if (indicators.rsi > 60) score += 1.5;
+      else score += 1; // Neutral
+    }
+    
+    // MACD scoring (0-2 points)
+    if (indicators.macd && indicators.macdSignal) {
+      if (indicators.macd > indicators.macdSignal) score += 1.5; // Bullish
+      else score += 0.5; // Bearish
+    }
+    
+    // EMA trend scoring (0-2 points)
+    if (indicators.ema20 && indicators.ema50) {
+      if (indicators.ema20 > indicators.ema50) score += 1.5; // Uptrend
+      else score += 0.5; // Downtrend
+    }
+    
+    // Bollinger Bands scoring (0-1 point)
+    if (indicators.bollingerUpper && indicators.bollingerLower && indicators.currentPrice) {
+      const bbPosition = (indicators.currentPrice - indicators.bollingerLower) / 
+                        (indicators.bollingerUpper - indicators.bollingerLower);
+      if (bbPosition < 0.2 || bbPosition > 0.8) score += 1; // Near bands
+      else score += 0.5; // Middle range
+    }
+    
+    // Volume scoring (0-1 point)
+    if (indicators.volume && indicators.averageVolume) {
+      if (indicators.volume > indicators.averageVolume * 1.5) score += 1; // High volume
+      else score += 0.5; // Normal volume
+    }
+    
+    return Math.min(score, 10); // Cap at 10
+  }
+  
+  private getScoreCategory(score: number): string {
+    if (score >= 8) return 'strong buy';
+    if (score >= 6.5) return 'buy';
+    if (score >= 5) return 'hold';
+    if (score >= 3) return 'hold';
+    return 'avoid';
   }
 }
