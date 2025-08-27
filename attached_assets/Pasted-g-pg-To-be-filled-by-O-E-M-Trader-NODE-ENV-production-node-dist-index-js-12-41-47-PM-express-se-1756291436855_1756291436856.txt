@@ -1,0 +1,24 @@
+g@pg-To-be-filled-by-O-E-M:~/Trader$ NODE_ENV=production node dist/index.js
+12:41:47 PM [express] serving on port 5000
+12:41:55 PM [express] GET /api/portfolio 401 in 24ms :: {"message":"Authentication required"}
+12:41:55 PM [express] GET /api/dashboard 401 in 11ms :: {"message":"Authentication required"}
+12:41:55 PM [express] GET /api/settings 401 in 5ms :: {"message":"Authentication required"}
+12:41:59 PM [express] GET /api/dashboard 401 in 1ms :: {"message":"Authentication required"}
+12:41:59 PM [express] GET /api/portfolio 401 in 2ms :: {"message":"Authentication required"}
+12:41:59 PM [express] GET /api/settings 401 in 5ms :: {"message":"Authentication required"}
+12:42:05 PM [express] GET /api/settings 401 in 1ms :: {"message":"Authentication required"}
+12:42:09 PM [express] GET /api/portfolio 401 in 1ms :: {"message":"Authentication required"}
+12:42:19 PM [express] GET /api/portfolio 401 in 2ms :: {"message":"Authentication required"}
+12:42:23 PM [express] POST /api/settings 401 in 1ms :: {"message":"Authentication required"}
+12:42:29 PM [express] GET /api/dashboard 401 in 1ms :: {"message":"Authentication required"}
+12:42:29 PM [express] GET /api/portfolio 401 in 0ms :: {"message":"Authentication required"}
+12:42:35 PM [express] GET /api/settings 401 in 0ms :: {"message":"Authentication required"}
+12:42:39 PM [express] GET /api/portfolio 401 in 1ms :: {"message":"Authentication required"}
+12:42:49 PM [express] GET /api/portfolio 401 in 1ms :: {"message":"Authentication required"}
+12:42:59 PM [express] GET /api/dashboard 401 in 1ms :: {"message":"Authentication required"}
+12:42:59 PM [express] GET /api/portfolio 401 in 1ms :: {"message":"Authentication required"}
+12:43:04 PM [express] POST /api/test-connection 401 in 1ms :: {"message":"Authentication required"}
+12:43:05 PM [express] GET /api/settings 401 in 0ms :: {"message":"Authentication required"}
+12:43:09 PM [express] GET /api/portfolio 401 in 0ms :: {"message":"Authentication required"}
+12:43:12 PM [express] POST /api/test-connection 401 in 0ms :: {"message":"Authentication required"}
+12:43:19 PM [express] GET /api/portfolio 401 in 1ms :: {"message":"Authentication required"}

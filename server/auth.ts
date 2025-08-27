@@ -29,7 +29,11 @@ export function destroySession(sessionId: string): void {
 }
 
 export function requireAuth(req: express.Request, res: express.Response, next: express.NextFunction) {
-  const sessionId = req.headers['x-session-id'] as string || req.cookies?.sessionId;
+  const sessionId = req.headers['x-session-id'] as string || 
+                   req.headers['authorization']?.replace('Bearer ', '') ||
+                   req.cookies?.sessionId;
+  
+  console.log('Auth check - Session ID:', sessionId, 'Sessions available:', sessions.size);
   
   if (!sessionId) {
     return res.status(401).json({ message: 'Authentication required' });
@@ -37,9 +41,11 @@ export function requireAuth(req: express.Request, res: express.Response, next: e
 
   const user = getSession(sessionId);
   if (!user) {
+    console.log('Invalid session:', sessionId);
     return res.status(401).json({ message: 'Invalid session' });
   }
 
+  console.log('Auth success for user:', user.username);
   (req as any).user = user;
   next();
 }
@@ -74,6 +80,8 @@ export function setupAuthRoutes(app: express.Application) {
 
       const sessionId = createSession({ id: user.id, username: user.username });
       
+      console.log('Login successful for user:', user.username, 'Session ID:', sessionId);
+      
       res.cookie('sessionId', sessionId, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
@@ -88,6 +96,32 @@ export function setupAuthRoutes(app: express.Application) {
     } catch (error) {
       console.error('Login error:', error);
       res.status(500).json({ message: 'Login failed' });
+    }
+  });
+
+  // Register endpoint
+  app.post('/api/auth/register', async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      
+      if (!username || !password) {
+        return res.status(400).json({ message: 'Username and password required' });
+      }
+
+      // Check if user already exists
+      const existingUser = await storage.getUserByUsername(username);
+      if (existingUser) {
+        return res.status(409).json({ message: 'Username already exists' });
+      }
+
+      // Create new user
+      const hashedPassword = await hashPassword(password);
+      await storage.createUser(username, hashedPassword);
+
+      res.json({ message: 'User created successfully' });
+    } catch (error) {
+      console.error('Registration error:', error);
+      res.status(500).json({ message: 'Internal server error' });
     }
   });
 
