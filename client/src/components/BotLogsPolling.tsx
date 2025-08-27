@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Terminal, RefreshCw, AlertTriangle, Info, CheckCircle, XCircle } from "lucide-react";
+import { Terminal, RefreshCw, AlertTriangle, Info, CheckCircle, XCircle, Play, Pause, Trash2 } from "lucide-react";
 import { format } from "date-fns";
 
 interface BotLog {
@@ -20,28 +20,57 @@ interface BotLog {
 
 export default function BotLogsPolling() {
   const [autoRefresh, setAutoRefresh] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [terminalLogs, setTerminalLogs] = useState<BotLog[]>([]);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const maxLogs = 100; // Keep last 100 logs
 
   // Force refresh to bypass browser caching
   useEffect(() => {
-    if (autoRefresh) {
+    if (autoRefresh && !isPaused) {
       const interval = setInterval(() => {
         setRefreshKey(prev => prev + 1);
-      }, 4000); // Update cache key every 4 seconds
+      }, 3000); // Update cache key every 3 seconds
       return () => clearInterval(interval);
     }
-  }, [autoRefresh]);
+  }, [autoRefresh, isPaused]);
 
   // Fetch bot logs with cache busting for real-time updates
   const { data: logs = [], refetch, isLoading, error } = useQuery<BotLog[]>({
     queryKey: ['/api/bot-logs', refreshKey], // Cache busting with refresh counter
-    refetchInterval: autoRefresh ? 2000 : false, // Poll every 2 seconds
+    refetchInterval: (autoRefresh && !isPaused) ? 2000 : false, // Poll every 2 seconds when not paused
     staleTime: 0, // Always fetch fresh data
     gcTime: 0, // Don't cache at all
     retry: 3,
     refetchOnMount: 'always',
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
+    enabled: !isPaused // Disable fetching when paused
   });
+
+  // Update terminal logs when new data arrives (rolling terminal effect)
+  useEffect(() => {
+    if (logs && logs.length > 0 && !isPaused) {
+      setTerminalLogs(prevLogs => {
+        // Merge new logs with existing ones, avoiding duplicates
+        const existingIds = new Set(prevLogs.map(log => log.id));
+        const newLogs = logs.filter(log => !existingIds.has(log.id));
+        
+        if (newLogs.length > 0) {
+          const updatedLogs = [...newLogs, ...prevLogs].slice(0, maxLogs);
+          return updatedLogs;
+        }
+        return prevLogs;
+      });
+    }
+  }, [logs, isPaused]);
+
+  // Auto-scroll to top when new logs arrive (like terminal behavior)
+  useEffect(() => {
+    if (scrollAreaRef.current && !isPaused) {
+      scrollAreaRef.current.scrollTop = 0;
+    }
+  }, [terminalLogs, isPaused]);
 
   const getLogIcon = (level: string) => {
     switch (level.toUpperCase()) {
@@ -81,37 +110,67 @@ export default function BotLogsPolling() {
     }
   };
 
+  const clearLogs = async () => {
+    if (confirm('Clear all bot logs?')) {
+      try {
+        await fetch('/api/bot-logs', { 
+          method: 'DELETE',
+          headers: {
+            'X-Session-ID': localStorage.getItem('sessionId') || ''
+          }
+        });
+        setTerminalLogs([]);
+        refetch();
+      } catch (error) {
+        console.error('Failed to clear logs:', error);
+      }
+    }
+  };
+
   return (
-    <Card className="h-[500px] flex flex-col">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
-        <div className="flex items-center space-x-2">
-          <Terminal className="w-5 h-5" />
-          <div>
-            <CardTitle className="text-lg">Bot Activity Logs</CardTitle>
-            <CardDescription>Real-time trading bot activity via API polling</CardDescription>
+    <Card className="h-[600px] flex flex-col bg-gray-900 text-green-400 font-mono">
+      <CardHeader className="flex-shrink-0 bg-gray-800 border-b border-gray-700">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Terminal className="w-5 h-5 text-green-400" />
+            <CardTitle className="text-green-400">Bot Terminal - Real-time Analysis</CardTitle>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Button
+              variant={isPaused ? "default" : "outline"}
+              size="sm"
+              onClick={() => setIsPaused(!isPaused)}
+              className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900"
+            >
+              {isPaused ? <Play className="w-4 h-4 mr-2" /> : <Pause className="w-4 h-4 mr-2" />}
+              {isPaused ? 'Resume' : 'Pause'}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={clearLogs}
+              className="border-red-400 text-red-400 hover:bg-red-400 hover:text-gray-900"
+            >
+              <Trash2 className="w-4 h-4 mr-2" />
+              Clear
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => refetch()}
+              disabled={isLoading || isPaused}
+              className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900"
+            >
+              <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
+            </Button>
           </div>
         </div>
-        <div className="flex items-center space-x-2">
-          <Button
-            variant={autoRefresh ? "default" : "outline"}
-            size="sm"
-            onClick={() => setAutoRefresh(!autoRefresh)}
-          >
-            <RefreshCw className={`w-4 h-4 mr-2 ${autoRefresh ? 'animate-spin' : ''}`} />
-            {autoRefresh ? 'Auto' : 'Manual'}
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => refetch()}
-            disabled={isLoading}
-          >
-            <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
-          </Button>
+        <div className="text-xs text-green-300">
+          {isPaused ? 'PAUSED' : 'LIVE'} • Logs: {terminalLogs.length} • {error ? 'ERROR' : 'OK'}
         </div>
       </CardHeader>
 
-      <CardContent className="flex-1 overflow-hidden">
+      <CardContent className="flex-1 overflow-hidden bg-black p-2">
         {error && (
           <div className="flex items-center justify-center h-full text-red-400">
             <AlertTriangle className="w-5 h-5 mr-2" />
@@ -120,69 +179,45 @@ export default function BotLogsPolling() {
         )}
         
         {!error && (
-          <ScrollArea className="h-full">
-            <div className="space-y-2">
-              {logs.length === 0 && !isLoading && (
-                <div className="flex items-center justify-center h-32 text-muted-foreground">
-                  <Info className="w-5 h-5 mr-2" />
-                  No logs visible. Check dev tools Network tab - data may be loading but not displaying.
+          <ScrollArea className="h-full" ref={scrollAreaRef}>
+            <div className="space-y-1 font-mono text-sm">
+              {terminalLogs.length === 0 && !isLoading && (
+                <div className="flex items-center justify-center h-32 text-green-400">
+                  <Terminal className="w-5 h-5 mr-2" />
+                  {isPaused ? 'Terminal Paused - Click Resume to continue' : 'Waiting for bot data...'}
                 </div>
               )}
               
-              <div className="flex justify-between items-center mb-2">
-                <div className="text-xs text-muted-foreground">
-                  Logs: {logs.length} • Auto-refresh: {autoRefresh ? 'ON' : 'OFF'} • {error ? 'ERROR' : 'OK'}
-                </div>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  onClick={() => {
-                    if (confirm('Delete all bot logs?')) {
-                      fetch('/api/bot-logs', { 
-                        method: 'DELETE',
-                        headers: {
-                          'X-Session-ID': localStorage.getItem('sessionId') || ''
-                        }
-                      }).then(() => refetch());
-                    }
-                  }}
-                  className="text-xs h-6"
-                >
-                  Clear Logs
-                </Button>
-              </div>
-              
-              {isLoading && logs.length === 0 && (
-                <div className="flex items-center justify-center h-32 text-muted-foreground">
+              {isLoading && terminalLogs.length === 0 && (
+                <div className="flex items-center justify-center h-32 text-green-400">
                   <RefreshCw className="w-5 h-5 mr-2 animate-spin" />
-                  Loading bot logs...
+                  Connecting to bot terminal...
                 </div>
               )}
               
-              {logs.map((log) => (
-                <div key={log.id} className="flex items-start space-x-3 p-3 rounded-lg border bg-card hover:bg-accent/50 transition-colors">
-                  <div className="flex-shrink-0 mt-0.5">
-                    {getLogIcon(log.level)}
-                  </div>
+              {terminalLogs.map((log) => (
+                <div key={log.id} className="flex items-start space-x-2 py-1 hover:bg-gray-800 transition-colors">
+                  <span className="text-gray-500 text-xs w-16 flex-shrink-0">
+                    {formatLogTime(log.createdAt)}
+                  </span>
+                  <span className={`text-xs px-1 rounded ${
+                    log.level === 'ERROR' ? 'bg-red-900 text-red-300' :
+                    log.level === 'WARN' ? 'bg-yellow-900 text-yellow-300' :
+                    log.level === 'SUCCESS' ? 'bg-green-900 text-green-300' :
+                    log.level === 'ANALYSIS' ? 'bg-blue-900 text-blue-300' :
+                    'bg-gray-700 text-gray-300'
+                  }`}>
+                    {log.level}
+                  </span>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center space-x-2">
-                      <Badge variant={getLogBadgeVariant(log.level) as any} className="text-xs">
-                        {log.level.toUpperCase()}
-                      </Badge>
-                      <span className="text-xs text-muted-foreground">
-                        {formatLogTime(log.createdAt)}
-                      </span>
-                    </div>
-                    <p className="text-sm mt-1 break-words">{log.message}</p>
+                    <span className="text-green-400 break-words">{log.message}</span>
                     {log.symbol && (
-                      <Badge variant="outline" className="text-xs mt-1">
-                        {log.symbol}
-                      </Badge>
+                      <span className="text-cyan-400 ml-2">[{log.symbol}]</span>
                     )}
                     {(log.details || log.data) && (
-                      <pre className="text-xs mt-2 p-2 rounded bg-muted overflow-x-auto">
+                      <div className="text-gray-400 text-xs mt-1 pl-4 border-l border-gray-600">
                         {log.details || log.data}
-                      </pre>
+                      </div>
                     )}
                   </div>
                 </div>
