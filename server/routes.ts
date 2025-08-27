@@ -21,13 +21,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Store WebSocket connections
   const wsConnections = new Set<WebSocket>();
   
-  wss.on('connection', (ws) => {
+  wss.on('connection', (ws, req) => {
     wsConnections.add(ws);
-    console.log('WebSocket client connected');
+    console.log('WebSocket client connected from:', req.socket.remoteAddress);
+    
+    // Send immediate welcome message to confirm connection
+    ws.send(JSON.stringify({
+      type: 'connection_confirmed',
+      data: { message: 'WebSocket connected successfully', timestamp: new Date().toISOString() }
+    }));
     
     ws.on('close', () => {
       wsConnections.delete(ws);
       console.log('WebSocket client disconnected');
+    });
+    
+    ws.on('error', (error) => {
+      console.error('WebSocket error:', error);
+      wsConnections.delete(ws);
     });
   });
   

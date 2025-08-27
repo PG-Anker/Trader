@@ -115,6 +115,11 @@ Key entities include:
 
 ```
 Changelog:
+- August 27, 2025. Fixed production WebSocket connection issues and bcrypt dependencies
+- August 27, 2025. Removed all mock data and implemented production-ready authentication
+- August 27, 2025. Updated all API routes to use real user sessions instead of hardcoded IDs
+- August 27, 2025. Fixed Bybit API integration with proper HMAC SHA256 signatures
+- August 27, 2025. Created production deployment fixes for Ubuntu server deployment
 - August 26, 2025. Completed full SQLite compatibility review and optimization
 - August 26, 2025. Added AI trading with DeepSeek integration via web automation
 - August 26, 2025. Created production deployment configuration (Docker, PM2, Nginx)

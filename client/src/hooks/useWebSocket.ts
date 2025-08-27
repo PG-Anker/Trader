@@ -33,10 +33,11 @@ export const useWebSocket = (options: UseWebSocketOptions = {}) => {
       const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
       const wsUrl = `${protocol}//${window.location.host}/ws`;
       
+      console.log('Attempting WebSocket connection to:', wsUrl);
       wsRef.current = new WebSocket(wsUrl);
 
       wsRef.current.onopen = () => {
-        console.log('WebSocket connected');
+        console.log('WebSocket connected successfully to:', wsUrl);
         reconnectAttemptsRef.current = 0;
         onOpen?.();
       };
@@ -68,7 +69,8 @@ export const useWebSocket = (options: UseWebSocketOptions = {}) => {
       };
 
       wsRef.current.onerror = (error) => {
-        console.error('WebSocket error:', error);
+        console.error('WebSocket connection failed. URL:', wsUrl, 'ReadyState:', wsRef.current?.readyState);
+        console.error('Error details:', error);
         onError?.(error);
       };
 
