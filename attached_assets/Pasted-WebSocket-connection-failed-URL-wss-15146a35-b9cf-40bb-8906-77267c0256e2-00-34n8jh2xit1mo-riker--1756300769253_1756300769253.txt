@@ -1,0 +1,59 @@
+WebSocket connection failed. URL: wss://15146a35-b9cf-40bb-8906-77267c0256e2-00-34n8jh2xit1mo.riker.replit.dev/ws ReadyState: 0
+Error details: 
+Event {isTrusted: true}
+
+WebSocket connection error - will retry
+WebSocket disconnected 1006 
+Max reconnection attempts reached - stopping reconnection
+WebSocket connection failed. URL: wss://15146a35-b9cf-40bb-8906-77267c0256e2-00-34n8jh2xit1mo.riker.replit.dev/ws ReadyState: 0
+Error details: 
+Event {isTrusted: true}
+
+WebSocket connection error - will retry
+WebSocket disconnected 1006 
+Max reconnection attempts reached - stopping reconnection
+Attempting WebSocket connection to: wss://15146a35-b9cf-40bb-8906-77267c0256e2-00-34n8jh2xit1mo.riker.replit.dev/ws
+WebSocket connection failed. URL: wss://15146a35-b9cf-40bb-8906-77267c0256e2-00-34n8jh2xit1mo.riker.replit.dev/ws ReadyState: 0
+Error details: 
+Event {isTrusted: true}
+
+WebSocket connection error - will retry
+WebSocket disconnected 1006 
+Max reconnection attempts reached - stopping reconnection
+WebSocket connection failed. URL: wss://15146a35-b9cf-40bb-8906-77267c0256e2-00-34n8jh2xit1mo.riker.replit.dev/ws ReadyState: 0
+Error details: 
+Event {isTrusted: true}
+
+WebSocket connection error - will retry
+WebSocket disconnected 1006 
+Max reconnection attempts reached - stopping reconnection
+Attempting WebSocket connection to: wss://15146a35-b9cf-40bb-8906-77267c0256e2-00-34n8jh2xit1mo.riker.replit.dev/ws
+WebSocket connection failed. URL: wss://15146a35-b9cf-40bb-8906-77267c0256e2-00-34n8jh2xit1mo.riker.replit.dev/ws ReadyState: 0
+Error details: 
+Event {isTrusted: true}
+
+WebSocket connection error - will retry
+WebSocket disconnected 1006 
+Max reconnection attempts reached - stopping reconnection
+WebSocket connection failed. URL: wss://15146a35-b9cf-40bb-8906-77267c0256e2-00-34n8jh2xit1mo.riker.replit.dev/ws ReadyState: 0
+Error details: 
+Event {isTrusted: true}
+
+WebSocket connection error - will retry
+WebSocket disconnected 1006 
+Max reconnection attempts reached - stopping reconnection
+Attempting WebSocket connection to: wss://15146a35-b9cf-40bb-8906-77267c0256e2-00-34n8jh2xit1mo.riker.replit.dev/ws
+WebSocket connection failed. URL: wss://15146a35-b9cf-40bb-8906-77267c0256e2-00-34n8jh2xit1mo.riker.replit.dev/ws ReadyState: 0
+Error details: 
+Event {isTrusted: true}
+
+WebSocket connection error - will retry
+WebSocket disconnected 1006 
+Max reconnection attempts reached - stopping reconnection
+WebSocket connection failed. URL: wss://15146a35-b9cf-40bb-8906-77267c0256e2-00-34n8jh2xit1mo.riker.replit.dev/ws ReadyState: 0
+Error details: 
+Event {isTrusted: true}
+
+WebSocket connection error - will retry
+WebSocket disconnected 1006 
+Max reconnection attempts reached - stopping reconnection

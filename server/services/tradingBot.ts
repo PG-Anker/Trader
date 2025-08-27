@@ -277,10 +277,17 @@ export class TradingBot extends EventEmitter {
       return;
     }
 
-    await this.log('SCAN', `Market scan started - analyzing ${this.watchedSymbols.length} symbols`, {
-      watchedSymbols: this.watchedSymbols,
-      timestamp: new Date().toISOString(),
-      tradingMode: (settings.spotPaperTrading || settings.leveragePaperTrading) ? 'paper' : 'real'
+    const isPaperMode = settings.spotPaperTrading || settings.leveragePaperTrading;
+    await this.log('SCAN', `🔄 Bot pulls comprehensive USDT pairs list via CCXT - analyzing ${this.watchedSymbols.length} symbols`, {
+      symbolCount: this.watchedSymbols.length,
+      tradingMode: isPaperMode ? 'PAPER TRADING' : 'REAL TRADING',
+      analysisMode: 'Technical indicators based on settings',
+      timestamp: new Date().toISOString()
+    });
+
+    await this.log('INFO', `📊 Trading Mode: ${isPaperMode ? 'PAPER TRADING (no API credentials needed)' : 'REAL TRADING (API credentials required)'}`, {
+      paperTrading: isPaperMode,
+      credentialsRequired: !isPaperMode
     });
 
     // Log current settings being used
@@ -317,8 +324,12 @@ export class TradingBot extends EventEmitter {
           continue;
         }
 
-        await this.log('INFO', `📊 Checking trade setup for ${symbol}`, { symbol });
-        await this.log('INFO', `Fetching OHLCV for ${symbol}`, { symbol });
+        await this.log('ANALYSIS', `📈 Analyzing ${symbol} with technical indicators`, { 
+          symbol,
+          timeframe: settings.timeframe,
+          indicators: 'RSI, MACD, ADX, EMA',
+          analysisType: 'Technical analysis based on settings'
+        });
 
         // Use AI trading if enabled, otherwise use technical analysis
         if (settings.aiTradingEnabled && this.deepSeekAI?.isReady()) {
@@ -396,9 +407,12 @@ export class TradingBot extends EventEmitter {
       await new Promise(resolve => setTimeout(resolve, 100));
     }
 
-    await this.log('SCAN', `Market scan complete - ${opportunitiesFound} opportunities found`, {
+    await this.log('SCAN', `✅ Market scan cycle complete - comprehensive USDT analysis finished`, {
       symbolsAnalyzed: this.watchedSymbols.length,
-      opportunitiesFound
+      opportunitiesFound,
+      nextScan: '30 minutes',
+      tradingMode: (settings.spotPaperTrading || settings.leveragePaperTrading) ? 'PAPER TRADING' : 'REAL TRADING',
+      analysisCompleted: 'Technical indicators for all symbols'
     });
     
     console.log(`[SCAN] Market scan complete - ${opportunitiesFound} opportunities found`, { symbolsAnalyzed: this.watchedSymbols.length, opportunitiesFound });
