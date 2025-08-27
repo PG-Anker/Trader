@@ -30,15 +30,18 @@ export default function Dashboard() {
     }
   }, []);
 
+  // Determine if we're in paper trading mode
+  const isPaperTrade = settings?.spotPaperTrading || settings?.leveragePaperTrading;
+
   // Fetch dashboard data
   const { data: dashboardData, refetch: refetchDashboard } = useQuery({
-    queryKey: ['/api/dashboard'],
+    queryKey: ['/api/dashboard', { paperTrade: isPaperTrade }],
     refetchInterval: 30000, // Refetch every 30 seconds
   });
 
   // Fetch portfolio data
   const { data: portfolio } = useQuery({
-    queryKey: ['/api/portfolio'],
+    queryKey: ['/api/portfolio', { paperTrade: isPaperTrade }],
     refetchInterval: 10000, // Refetch every 10 seconds
   });
 

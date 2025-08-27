@@ -31,10 +31,12 @@ CryptoBot Pro is an automated cryptocurrency trading platform that integrates wi
 ## Key Components
 
 ### Trading Engine
+- **Market Data Collection**: CCXT integration for comprehensive market data from all Bybit USDT pairs
 - **Technical Analysis Service**: RSI, MACD, EMA, Bollinger Bands, ADX indicators
 - **Strategy Engine**: Supports trend following, mean reversion, breakout, and pullback strategies
 - **Risk Management**: Configurable stop-loss, take-profit, and position sizing
-- **Exchange Integration**: Bybit API integration for spot and leverage trading
+- **Exchange Integration**: Bybit API integration for trading execution (paper trading uses simulated trades)
+- **Data Separation**: Complete isolation between paper trading and real trading data
 
 ### Real-time Communication
 - **WebSocket Server**: Provides live updates for positions, market data, and system events
@@ -115,6 +117,11 @@ Key entities include:
 
 ```
 Changelog:
+- August 27, 2025. Integrated CCXT for comprehensive market data collection from all Bybit USDT pairs
+- August 27, 2025. Implemented complete paper trading vs real trading data separation
+- August 27, 2025. Added manual bot start/stop functionality with status indicators
+- August 27, 2025. Updated database schema to properly separate paper and real trading data
+- August 27, 2025. Modified API routes to filter data based on trading mode (paper/real)
 - August 27, 2025. Fixed production WebSocket connection issues and bcrypt dependencies
 - August 27, 2025. Removed all mock data and implemented production-ready authentication
 - August 27, 2025. Updated all API routes to use real user sessions instead of hardcoded IDs

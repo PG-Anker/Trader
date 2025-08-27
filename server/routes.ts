@@ -68,12 +68,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/dashboard", requireAuth, async (req, res) => {
     try {
       const userId = (req as any).user.id;
+      const isPaperTrade = req.query.paperTrade === 'true';
       
       const [positions, stats, opportunities, performance] = await Promise.all([
-        storage.getOpenPositions(userId),
-        storage.getTradingStats(userId),
+        storage.getOpenPositions(userId, isPaperTrade),
+        storage.getTradingStats(userId, isPaperTrade),
         storage.getTradingOpportunities(),
-        storage.getStrategyPerformance(userId)
+        storage.getStrategyPerformance(userId, isPaperTrade)
       ]);
       
       res.json({
@@ -92,10 +93,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/summary", requireAuth, async (req, res) => {
     try {
       const userId = (req as any).user.id;
+      const isPaperTrade = req.query.paperTrade === 'true';
       
       const [summary, tradeHistory] = await Promise.all([
-        storage.getTradingSummary(userId),
-        storage.getTradeHistory(userId, 50)
+        storage.getTradingSummary(userId, isPaperTrade),
+        storage.getTradeHistory(userId, isPaperTrade, 50)
       ]);
       
       res.json({
@@ -311,7 +313,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/portfolio", requireAuth, async (req, res) => {
     try {
       const userId = (req as any).user.id;
-      const portfolio = await storage.getPortfolioData(userId);
+      const isPaperTrade = req.query.paperTrade === 'true';
+      const portfolio = await storage.getPortfolioData(userId, isPaperTrade);
       res.json(portfolio);
     } catch (error) {
       console.error('Portfolio error:', error);

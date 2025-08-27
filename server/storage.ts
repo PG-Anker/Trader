@@ -36,14 +36,14 @@ export interface IStorage {
 
   // Position operations
   getPosition(id: number): Promise<Position | undefined>;
-  getOpenPositions(userId: number): Promise<Position[]>;
+  getOpenPositions(userId: number, isPaperTrade?: boolean): Promise<Position[]>;
   createPosition(position: InsertPosition): Promise<Position>;
   updatePosition(id: number, updates: Partial<Position>): Promise<Position>;
   closePosition(id: number, exitPrice: string, pnl: string): Promise<Position>;
 
   // Trade operations
   createTrade(trade: InsertTrade): Promise<Trade>;
-  getTradeHistory(userId: number, limit?: number): Promise<Trade[]>;
+  getTradeHistory(userId: number, isPaperTrade?: boolean, limit?: number): Promise<Trade[]>;
 
   // Bot log operations
   createBotLog(log: InsertBotLog): Promise<BotLog>;
@@ -60,11 +60,11 @@ export interface IStorage {
   getMarketData(symbol: string): Promise<MarketData | undefined>;
 
   // Dashboard data
-  getTradingStats(userId: number): Promise<any>;
-  getTradingSummary(userId: number): Promise<any>;
+  getTradingStats(userId: number, isPaperTrade?: boolean): Promise<any>;
+  getTradingSummary(userId: number, isPaperTrade?: boolean): Promise<any>;
   getTradingOpportunities(): Promise<any[]>;
-  getStrategyPerformance(userId: number): Promise<any[]>;
-  getPortfolioData(userId: number): Promise<any>;
+  getStrategyPerformance(userId: number, isPaperTrade?: boolean): Promise<any[]>;
+  getPortfolioData(userId: number, isPaperTrade?: boolean): Promise<any>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -153,11 +153,20 @@ export class DatabaseStorage implements IStorage {
     return position || undefined;
   }
 
-  async getOpenPositions(userId: number): Promise<Position[]> {
+  async getOpenPositions(userId: number, isPaperTrade?: boolean): Promise<Position[]> {
+    const conditions = [
+      eq(positions.userId, userId),
+      eq(positions.status, 'open')
+    ];
+    
+    if (isPaperTrade !== undefined) {
+      conditions.push(eq(positions.isPaperTrade, isPaperTrade));
+    }
+    
     return await db
       .select()
       .from(positions)
-      .where(and(eq(positions.userId, userId), eq(positions.status, 'open')))
+      .where(and(...conditions))
       .orderBy(desc(positions.createdAt));
   }
 
@@ -200,11 +209,17 @@ export class DatabaseStorage implements IStorage {
     return newTrade;
   }
 
-  async getTradeHistory(userId: number, limit: number = 50): Promise<Trade[]> {
+  async getTradeHistory(userId: number, isPaperTrade?: boolean, limit: number = 50): Promise<Trade[]> {
+    const conditions = [eq(trades.userId, userId)];
+    
+    if (isPaperTrade !== undefined) {
+      conditions.push(eq(trades.isPaperTrade, isPaperTrade));
+    }
+    
     return await db
       .select()
       .from(trades)
-      .where(eq(trades.userId, userId))
+      .where(and(...conditions))
       .orderBy(desc(trades.exitTime))
       .limit(limit);
   }
@@ -290,11 +305,21 @@ export class DatabaseStorage implements IStorage {
     return data || undefined;
   }
 
-  async getTradingStats(userId: number): Promise<any> {
+  async getTradingStats(userId: number, isPaperTrade?: boolean): Promise<any> {
+    const positionConditions = [eq(positions.userId, userId), eq(positions.status, 'open')];
+    const tradeConditions = [eq(trades.userId, userId)];
+    const activeTradeConditions = [eq(positions.userId, userId), eq(positions.status, 'open'), sql`CAST(${positions.pnl} AS REAL) != 0`];
+    
+    if (isPaperTrade !== undefined) {
+      positionConditions.push(eq(positions.isPaperTrade, isPaperTrade));
+      tradeConditions.push(eq(trades.isPaperTrade, isPaperTrade));
+      activeTradeConditions.push(eq(positions.isPaperTrade, isPaperTrade));
+    }
+
     const openPositionsResult = await db
       .select({ count: count() })
       .from(positions)
-      .where(and(eq(positions.userId, userId), eq(positions.status, 'open')));
+      .where(and(...positionConditions));
 
     const todayStart = new Date();
     todayStart.setHours(0, 0, 0, 0);
@@ -306,7 +331,7 @@ export class DatabaseStorage implements IStorage {
       })
       .from(trades)
       .where(and(
-        eq(trades.userId, userId),
+        ...tradeConditions,
         sql`${trades.exitTime} >= ${todayStart.toISOString()}`
       ));
 
@@ -316,7 +341,7 @@ export class DatabaseStorage implements IStorage {
         wonTrades: sum(sql`CASE WHEN CAST(${trades.pnl} AS REAL) > 0 THEN 1 ELSE 0 END`),
       })
       .from(trades)
-      .where(eq(trades.userId, userId));
+      .where(and(...tradeConditions));
 
     const openPositions = openPositionsResult[0]?.count || 0;
     const todayPnL = todayTradesResult[0]?.totalPnL || "0";
@@ -327,11 +352,7 @@ export class DatabaseStorage implements IStorage {
     const activeTradesResult = await db
       .select({ count: count() })
       .from(positions)
-      .where(and(
-        eq(positions.userId, userId), 
-        eq(positions.status, 'open'),
-        sql`CAST(${positions.pnl} AS REAL) != 0`
-      ));
+      .where(and(...activeTradeConditions));
 
     const activeTrades = activeTradesResult[0]?.count || 0;
 
@@ -343,7 +364,7 @@ export class DatabaseStorage implements IStorage {
     };
   }
 
-  async getTradingSummary(userId: number): Promise<any> {
+  async getTradingSummary(userId: number, isPaperTrade?: boolean): Promise<any> {
     const allTradesResult = await db
       .select({ 
         totalTrades: count(),
@@ -355,12 +376,12 @@ export class DatabaseStorage implements IStorage {
         avgLoss: avg(sql`CASE WHEN CAST(${trades.pnl} AS REAL) < 0 THEN CAST(${trades.pnl} AS REAL) ELSE NULL END`),
       })
       .from(trades)
-      .where(eq(trades.userId, userId));
+      .where(isPaperTrade !== undefined ? and(eq(trades.userId, userId), eq(trades.isPaperTrade, isPaperTrade)) : eq(trades.userId, userId));
 
     const openPositionsResult = await db
       .select({ count: count() })
       .from(positions)
-      .where(and(eq(positions.userId, userId), eq(positions.status, 'open')));
+      .where(isPaperTrade !== undefined ? and(eq(positions.userId, userId), eq(positions.status, 'open'), eq(positions.isPaperTrade, isPaperTrade)) : and(eq(positions.userId, userId), eq(positions.status, 'open')));
 
     const stats = allTradesResult[0] || {};
     const openTrades = openPositionsResult[0]?.count || 0;
@@ -402,7 +423,7 @@ export class DatabaseStorage implements IStorage {
     return [];
   }
 
-  async getStrategyPerformance(userId: number): Promise<any[]> {
+  async getStrategyPerformance(userId: number, isPaperTrade?: boolean): Promise<any[]> {
     const strategiesResult = await db
       .select({
         strategy: trades.strategy,
@@ -426,7 +447,7 @@ export class DatabaseStorage implements IStorage {
     });
   }
 
-  async getPortfolioData(userId: number): Promise<any> {
+  async getPortfolioData(userId: number, isPaperTrade?: boolean): Promise<any> {
     // Get total value from positions
     const positionsResult = await db
       .select({

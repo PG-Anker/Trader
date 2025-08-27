@@ -4,6 +4,7 @@ import { TechnicalAnalysis, TradingSignal } from './technicalAnalysis';
 import { DeepSeekAIService, type MarketDataForAI, type TechnicalDataForAI, type AITradingSignal } from './deepseekAI';
 import { IStorage } from '../storage';
 import { InsertBotLog, InsertSystemError, InsertPosition, InsertTrade } from '@shared/schema';
+import { ccxtMarketData, type MarketData as CCXTMarketData } from './ccxtMarketData';
 
 export class TradingBot extends EventEmitter {
   private isRunning: boolean = false;
