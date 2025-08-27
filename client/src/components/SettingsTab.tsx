@@ -98,12 +98,21 @@ export function SettingsTab() {
           description: "Bybit API connection established successfully",
         });
       } else {
+        setIsApiConnected(false);
         toast({
           title: "Connection Failed",
           description: data.message || "Failed to connect to Bybit API",
           variant: "destructive",
         });
       }
+    },
+    onError: (error) => {
+      setIsApiConnected(false);
+      toast({
+        title: "Connection Error",
+        description: "Failed to test connection. Please check your credentials.",
+        variant: "destructive",
+      });
     }
   });
 
@@ -131,12 +140,14 @@ export function SettingsTab() {
         adxPeriod: settings.adxPeriod || 14,
         timeframe: settings.timeframe || "15m",
         minConfidence: settings.minConfidence || 75,
-        strategies: settings.strategies || {
-          trendFollowing: true,
-          meanReversion: true,
-          breakoutTrading: false,
-          pullbackTrading: true,
-        }
+        strategies: typeof settings.strategies === 'string' 
+          ? JSON.parse(settings.strategies) 
+          : settings.strategies || {
+              trendFollowing: true,
+              meanReversion: true,
+              breakoutTrading: false,
+              pullbackTrading: true,
+            }
       };
       form.reset(formData);
     }
@@ -169,6 +180,7 @@ export function SettingsTab() {
   });
 
   const onSubmit = (data: SettingsFormData) => {
+    console.log('Submitting settings data:', data);
     saveSettingsMutation.mutate(data);
   };
 

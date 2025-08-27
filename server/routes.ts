@@ -140,34 +140,63 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/settings", requireAuth, async (req, res) => {
     try {
       const userId = (req as any).user.id;
+      console.log('Received settings update request:', req.body);
+      
       const validatedData = insertTradingSettingsSchema.parse({
         ...req.body,
         userId
       });
       
+      console.log('Validated settings data:', validatedData);
+      
       const settings = await storage.updateTradingSettings(userId, validatedData);
       res.json(settings);
     } catch (error) {
       console.error('Update settings error:', error);
-      res.status(500).json({ message: "Failed to update settings" });
+      if (error.name === 'ZodError') {
+        console.error('Validation errors:', error.issues);
+        res.status(400).json({ 
+          message: "Validation failed", 
+          errors: error.issues 
+        });
+      } else {
+        res.status(500).json({ message: "Failed to update settings" });
+      }
     }
   });
 
   // Test API connection
   app.post("/api/test-connection", requireAuth, async (req, res) => {
     try {
-      const userId = (req as any).user.id;
-      const settings = await storage.getTradingSettings(userId);
+      // Use credentials from request body if provided, otherwise from stored settings
+      const { apiKey: reqApiKey, secretKey: reqSecretKey } = req.body;
       
-      if (!settings?.apiKey || !settings?.secretKey) {
-        return res.status(400).json({ message: "API credentials not configured" });
+      let apiKey = reqApiKey;
+      let secretKey = reqSecretKey;
+      
+      // If no credentials in request, use stored settings
+      if (!apiKey || !secretKey) {
+        const userId = (req as any).user.id;
+        const settings = await storage.getTradingSettings(userId);
+        apiKey = settings?.apiKey;
+        secretKey = settings?.secretKey;
       }
       
-      const result = await bybitService.testConnection(settings.apiKey, settings.secretKey);
+      if (!apiKey || !secretKey) {
+        return res.status(400).json({ 
+          success: false,
+          message: "API credentials not provided. Please enter your Bybit API key and secret key." 
+        });
+      }
+      
+      const result = await bybitService.testConnection(apiKey, secretKey);
       res.json(result);
     } catch (error) {
       console.error('Test connection error:', error);
-      res.status(500).json({ message: "Connection test failed" });
+      res.status(500).json({ 
+        success: false,
+        message: "Connection test failed" 
+      });
     }
   });
 

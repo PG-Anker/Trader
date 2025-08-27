@@ -58,7 +58,7 @@ export default function Dashboard() {
     }
   }, [dashboardData]);
 
-  // WebSocket for real-time updates
+  // WebSocket for real-time updates - reduced toast spam
   useWebSocket({
     onMessage: (message) => {
       switch (message.type) {
@@ -72,10 +72,13 @@ export default function Dashboard() {
         
         case 'position_closed':
           setPositions(prev => prev.filter(pos => pos.id !== message.data.id));
-          toast({
-            title: "Position Closed",
-            description: `${message.data.symbol} position closed with PnL: ${message.data.pnl}`,
-          });
+          // Only show toast for actual position closures, not connection issues
+          if (message.data?.symbol && message.data?.pnl) {
+            toast({
+              title: "Position Closed",
+              description: `${message.data.symbol} position closed with PnL: ${message.data.pnl}`,
+            });
+          }
           refetchDashboard();
           break;
         
@@ -84,11 +87,14 @@ export default function Dashboard() {
           break;
         
         case 'system_error':
-          toast({
-            title: "System Error",
-            description: message.data.title,
-            variant: "destructive",
-          });
+          // Only show toast for high severity errors
+          if (message.data?.level === 'ERROR') {
+            toast({
+              title: "System Error",
+              description: message.data.title,
+              variant: "destructive",
+            });
+          }
           break;
         
         case 'price_update':
@@ -103,12 +109,10 @@ export default function Dashboard() {
           break;
       }
     },
+    // Remove error toast spam - connection issues are normal
     onError: () => {
-      toast({
-        title: "Connection Error",
-        description: "Lost connection to trading server",
-        variant: "destructive",
-      });
+      // Silent error handling - WebSocket will attempt reconnection automatically
+      console.log('WebSocket connection error - will retry');
     }
   });
 
