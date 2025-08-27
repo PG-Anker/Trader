@@ -150,7 +150,7 @@ export class TradingBot extends EventEmitter {
             strategy: position.strategy || 'Manual',
             tradingMode: position.tradingMode,
             entryTime: position.createdAt!,
-            exitTime: new Date(),
+            exitTime: new Date().toISOString(),
             duration: Math.floor((Date.now() - new Date(position.createdAt!).getTime()) / 60000)
           };
 
@@ -199,7 +199,7 @@ export class TradingBot extends EventEmitter {
             strategy: position.strategy || 'Manual',
             tradingMode: position.tradingMode,
             entryTime: position.createdAt!,
-            exitTime: new Date(),
+            exitTime: new Date().toISOString(),
             duration: Math.floor((Date.now() - new Date(position.createdAt!).getTime()) / 60000)
           };
 
@@ -217,7 +217,8 @@ export class TradingBot extends EventEmitter {
 
       throw new Error('Failed to execute close order');
     } catch (error) {
-      await this.logError('Close Position Error', error instanceof Error ? error.message : 'Unknown error', 'TradingBot.closePosition');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      await this.logError('Close Position Error', errorMessage, 'TradingBot.closePosition');
       throw error;
     }
   }
@@ -412,13 +413,13 @@ export class TradingBot extends EventEmitter {
         histogram: indicators.macd.histogram
       },
       ema: {
-        fast: indicators.ema.fast,
-        slow: indicators.ema.slow
+        fast: indicators.ema12,
+        slow: indicators.ema26
       },
       bollinger: {
-        upper: indicators.bollinger.upper,
-        middle: indicators.bollinger.middle,
-        lower: indicators.bollinger.lower
+        upper: indicators.bollingerUpper,
+        middle: indicators.bollingerMiddle,
+        lower: indicators.bollingerLower
       },
       adx: indicators.adx,
       support,
@@ -515,8 +516,8 @@ export class TradingBot extends EventEmitter {
 
         const currentPrice = parseFloat(ticker.lastPrice);
         const entryPrice = parseFloat(position.entryPrice);
-        const stopLoss = parseFloat(position.stopLoss);
-        const takeProfit = parseFloat(position.takeProfit);
+        const stopLoss = parseFloat(position.stopLoss || '0');
+        const takeProfit = parseFloat(position.takeProfit || '0');
 
         // Calculate PnL
         let pnl: number;

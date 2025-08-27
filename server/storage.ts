@@ -173,7 +173,7 @@ export class DatabaseStorage implements IStorage {
         status: 'closed',
         currentPrice: exitPrice,
         pnl,
-        closedAt: new Date()
+        closedAt: new Date().toISOString()
       })
       .where(eq(positions.id, id))
       .returning();
@@ -295,13 +295,13 @@ export class DatabaseStorage implements IStorage {
       .from(trades)
       .where(and(
         eq(trades.userId, userId),
-        sql`${trades.exitTime} >= ${todayStart}`
+        sql`${trades.exitTime} >= ${todayStart.toISOString()}`
       ));
 
     const allTradesResult = await db
       .select({ 
         totalTrades: count(),
-        wonTrades: sum(sql`CASE WHEN ${trades.pnl} > 0 THEN 1 ELSE 0 END`),
+        wonTrades: sum(sql`CASE WHEN CAST(${trades.pnl} AS REAL) > 0 THEN 1 ELSE 0 END`),
       })
       .from(trades)
       .where(eq(trades.userId, userId));
@@ -318,7 +318,7 @@ export class DatabaseStorage implements IStorage {
       .where(and(
         eq(positions.userId, userId), 
         eq(positions.status, 'open'),
-        sql`${positions.pnl} != '0'`
+        sql`CAST(${positions.pnl} AS REAL) != 0`
       ));
 
     const activeTrades = activeTradesResult[0]?.count || 0;
@@ -335,12 +335,12 @@ export class DatabaseStorage implements IStorage {
     const allTradesResult = await db
       .select({ 
         totalTrades: count(),
-        wonTrades: sum(sql`CASE WHEN ${trades.pnl} > 0 THEN 1 ELSE 0 END`),
-        lostTrades: sum(sql`CASE WHEN ${trades.pnl} < 0 THEN 1 ELSE 0 END`),
-        totalProfit: sum(sql`CASE WHEN ${trades.pnl} > 0 THEN ${trades.pnl} ELSE 0 END`),
-        totalLoss: sum(sql`CASE WHEN ${trades.pnl} < 0 THEN ${trades.pnl} ELSE 0 END`),
-        avgWin: avg(sql`CASE WHEN ${trades.pnl} > 0 THEN ${trades.pnl} ELSE NULL END`),
-        avgLoss: avg(sql`CASE WHEN ${trades.pnl} < 0 THEN ${trades.pnl} ELSE NULL END`),
+        wonTrades: sum(sql`CASE WHEN CAST(${trades.pnl} AS REAL) > 0 THEN 1 ELSE 0 END`),
+        lostTrades: sum(sql`CASE WHEN CAST(${trades.pnl} AS REAL) < 0 THEN 1 ELSE 0 END`),
+        totalProfit: sum(sql`CASE WHEN CAST(${trades.pnl} AS REAL) > 0 THEN CAST(${trades.pnl} AS REAL) ELSE 0 END`),
+        totalLoss: sum(sql`CASE WHEN CAST(${trades.pnl} AS REAL) < 0 THEN CAST(${trades.pnl} AS REAL) ELSE 0 END`),
+        avgWin: avg(sql`CASE WHEN CAST(${trades.pnl} AS REAL) > 0 THEN CAST(${trades.pnl} AS REAL) ELSE NULL END`),
+        avgLoss: avg(sql`CASE WHEN CAST(${trades.pnl} AS REAL) < 0 THEN CAST(${trades.pnl} AS REAL) ELSE NULL END`),
       })
       .from(trades)
       .where(eq(trades.userId, userId));
@@ -416,7 +416,7 @@ export class DatabaseStorage implements IStorage {
       .select({
         strategy: trades.strategy,
         totalTrades: count(),
-        wonTrades: sum(sql`CASE WHEN ${trades.pnl} > 0 THEN 1 ELSE 0 END`),
+        wonTrades: sum(sql`CASE WHEN CAST(${trades.pnl} AS REAL) > 0 THEN 1 ELSE 0 END`),
       })
       .from(trades)
       .where(eq(trades.userId, userId))
@@ -439,7 +439,7 @@ export class DatabaseStorage implements IStorage {
     // Get total value from positions
     const positionsResult = await db
       .select({
-        totalValue: sum(sql`CAST(${positions.quantity} AS DECIMAL) * CAST(${positions.currentPrice} AS DECIMAL)`)
+        totalValue: sum(sql`CAST(${positions.quantity} AS REAL) * CAST(${positions.currentPrice} AS REAL)`)
       })
       .from(positions)
       .where(and(eq(positions.userId, userId), eq(positions.status, 'open')));

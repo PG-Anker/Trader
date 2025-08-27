@@ -120,7 +120,7 @@ export class DeepSeekAIService extends EventEmitter {
       await this.page.keyboard.press('Enter');
       
       // Wait for response
-      await this.page.waitForTimeout(5000); // Wait 5 seconds for AI response
+      await new Promise(resolve => setTimeout(resolve, 5000)); // Wait 5 seconds for AI response
       
       // Get the latest response
       const response = await this.getLatestResponse();
@@ -139,7 +139,7 @@ export class DeepSeekAIService extends EventEmitter {
       return {
         action: 'HOLD',
         confidence: 0,
-        reasoning: `AI analysis failed: ${error.message}`,
+        reasoning: `AI analysis failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
         riskLevel: 'HIGH'
       };
     }
@@ -199,7 +199,7 @@ Analyze now and provide your recommendation:
 
     try {
       // Wait for new message to appear
-      await this.page.waitForTimeout(3000);
+      await new Promise(resolve => setTimeout(resolve, 3000));
       
       // Get all messages and find the latest AI response
       const messages = await this.page.$$eval(
@@ -286,7 +286,7 @@ Analyze now and provide your recommendation:
       return {
         action: 'HOLD',
         confidence: 0,
-        reasoning: `Failed to parse AI response: ${error.message}`,
+        reasoning: `Failed to parse AI response: ${error instanceof Error ? error.message : 'Unknown error'}`,
         riskLevel: 'HIGH'
       };
     }
