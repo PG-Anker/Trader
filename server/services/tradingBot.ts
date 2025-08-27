@@ -64,13 +64,14 @@ export class TradingBot extends EventEmitter {
     }
 
     // Configure Bybit service (only needed for real trading, not paper trading)
-    if (settings.apiKey && settings.secretKey && !settings.paperTrading) {
+    const isPaperTrading = settings.spotPaperTrading || settings.leveragePaperTrading;
+    if (settings.apiKey && settings.secretKey && !isPaperTrading) {
       this.bybitService.setCredentials(
         settings.apiKey,
         settings.secretKey
       );
       await this.log('INFO', 'Bybit API credentials configured for real trading', {});
-    } else if (settings.paperTrading) {
+    } else if (isPaperTrading) {
       await this.log('INFO', 'Paper trading mode - no API credentials needed for analysis', {});
     } else {
       await this.log('INFO', 'No API credentials provided - running in analysis-only mode', {});
@@ -89,7 +90,7 @@ export class TradingBot extends EventEmitter {
     }
 
     // Start WebSocket connection for real-time prices (only for real trading)
-    if (settings.apiKey && settings.secretKey && !settings.paperTrading) {
+    if (settings.apiKey && settings.secretKey && !isPaperTrading) {
       try {
         // Convert CCXT format to Bybit format for WebSocket
         const bybitSymbols = this.watchedSymbols.map(s => s.replace('/', ''));
@@ -270,17 +271,17 @@ export class TradingBot extends EventEmitter {
   private async runAnalysis(): Promise<void> {
     if (!this.isRunning) return;
 
-    await this.log('SCAN', `Market scan started - analyzing ${this.watchedSymbols.length} symbols`, {
-      watchedSymbols: this.watchedSymbols,
-      timestamp: new Date().toISOString(),
-      tradingMode: settings.paperTrading ? 'paper' : 'real'
-    });
-
     const settings = await this.storage.getTradingSettings(this.userId);
     if (!settings) {
       await this.logError('Configuration Error', 'Trading settings not found for user', 'TradingBot.runAnalysis');
       return;
     }
+
+    await this.log('SCAN', `Market scan started - analyzing ${this.watchedSymbols.length} symbols`, {
+      watchedSymbols: this.watchedSymbols,
+      timestamp: new Date().toISOString(),
+      tradingMode: (settings.spotPaperTrading || settings.leveragePaperTrading) ? 'paper' : 'real'
+    });
 
     // Log current settings being used
     await this.log('CONFIG', 'Current bot configuration', {
