@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,13 +20,27 @@ interface BotLog {
 
 export default function BotLogsPolling() {
   const [autoRefresh, setAutoRefresh] = useState(true);
+  const [refreshKey, setRefreshKey] = useState(0);
 
-  // Fetch bot logs with fast polling for real-time updates
+  // Force refresh to bypass browser caching
+  useEffect(() => {
+    if (autoRefresh) {
+      const interval = setInterval(() => {
+        setRefreshKey(prev => prev + 1);
+      }, 4000); // Update cache key every 4 seconds
+      return () => clearInterval(interval);
+    }
+  }, [autoRefresh]);
+
+  // Fetch bot logs with cache busting for real-time updates
   const { data: logs = [], refetch, isLoading, error } = useQuery<BotLog[]>({
-    queryKey: ['/api/bot-logs'],
+    queryKey: ['/api/bot-logs', refreshKey], // Cache busting with refresh counter
     refetchInterval: autoRefresh ? 2000 : false, // Poll every 2 seconds
     staleTime: 0, // Always fetch fresh data
+    gcTime: 0, // Don't cache at all
     retry: 3,
+    refetchOnMount: 'always',
+    refetchOnWindowFocus: false
   });
 
   const getLogIcon = (level: string) => {

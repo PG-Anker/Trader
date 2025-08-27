@@ -40,8 +40,19 @@ export const getQueryFn: <T>(options: {
       ...(sessionId ? { "X-Session-ID": sessionId } : {}),
     };
     
-    const res = await fetch(queryKey[0] as string, {
-      headers,
+    // Add cache busting for production server compatibility
+    const url = queryKey[0] as string;
+    const cacheBustUrl = url.includes('?') 
+      ? `${url}&_t=${Date.now()}` 
+      : `${url}?_t=${Date.now()}`;
+      
+    const res = await fetch(cacheBustUrl, {
+      headers: {
+        ...headers,
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+      },
       credentials: "include",
     });
 
