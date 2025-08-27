@@ -53,15 +53,17 @@ export class DeepSeekAIService extends EventEmitter {
   }
 
   isReady(): boolean {
-    return this.isInitialized;
+    return this.isInitialized && this.browser !== null && this.page !== null;
   }
 
   async initialize(): Promise<void> {
     try {
       console.log('Initializing DeepSeek AI service...');
       
-      this.browser = await puppeteer.launch({
+      // Configure browser launch options for production Ubuntu server
+      const browserOptions = {
         headless: true,
+        executablePath: process.env.CHROME_BIN || '/usr/bin/chromium-browser',
         args: [
           '--no-sandbox',
           '--disable-setuid-sandbox',
@@ -70,9 +72,18 @@ export class DeepSeekAIService extends EventEmitter {
           '--no-first-run',
           '--no-zygote',
           '--single-process',
-          '--disable-gpu'
+          '--disable-gpu',
+          '--disable-extensions',
+          '--disable-background-timer-throttling',
+          '--disable-backgrounding-occluded-windows',
+          '--disable-renderer-backgrounding',
+          '--disable-features=TranslateUI',
+          '--disable-web-security',
+          '--disable-features=VizDisplayCompositor'
         ]
-      });
+      };
+
+      this.browser = await puppeteer.launch(browserOptions);
 
       this.page = await this.browser.newPage();
       
@@ -199,87 +210,89 @@ Analyze now and provide your recommendation:
   }
 
   private async getLatestResponse(): Promise<string> {
-    if (!this.page) return '';
+    if (!this.page) {
+      throw new Error('Page not initialized');
+    }
 
     try {
-      // Wait for new message to appear
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      // Wait for the response to appear
+      await this.page.waitForSelector('[data-testid="chat-message"]', { timeout: 15000 });
       
-      // Get all messages and find the latest AI response
-      const messages = await this.page.$$eval(
-        '[data-testid="chat-message"], .chat-message, .message', 
-        (elements) => {
-          return elements.map(el => el.textContent || '').filter(text => text.trim());
-        }
+      // Get all chat messages
+      const messages = await this.page.$$eval('[data-testid="chat-message"]', elements => 
+        elements.map(el => el.textContent?.trim() || '')
       );
       
-      // Return the last message (should be AI response)
-      return messages[messages.length - 1] || '';
+      // Return the last message (AI response)
+      const lastMessage = messages[messages.length - 1];
+      
+      if (!lastMessage) {
+        throw new Error('No response received from DeepSeek');
+      }
+      
+      return lastMessage;
       
     } catch (error) {
-      console.error('Error getting AI response:', error);
-      return '';
+      console.error('Error getting response from DeepSeek:', error);
+      
+      // Try alternative selector if the first one fails
+      try {
+        const fallbackMessages = await this.page.$$eval('.message', elements => 
+          elements.map(el => el.textContent?.trim() || '')
+        );
+        
+        if (fallbackMessages.length > 0) {
+          return fallbackMessages[fallbackMessages.length - 1];
+        }
+      } catch (fallbackError) {
+        console.error('Fallback selector also failed:', fallbackError);
+      }
+      
+      throw new Error('Failed to retrieve AI response');
     }
   }
 
   private parseAIResponse(response: string, currentPrice: number): AITradingSignal {
     try {
-      const lines = response.split('\n').map(line => line.trim());
-      
-      let action: 'BUY' | 'SELL' | 'HOLD' = 'HOLD';
-      let confidence = 0;
-      let riskLevel: 'LOW' | 'MEDIUM' | 'HIGH' = 'HIGH';
+      // Extract structured data from the AI response
+      const actionMatch = response.match(/ACTION:\s*(BUY|SELL|HOLD)/i);
+      const confidenceMatch = response.match(/CONFIDENCE:\s*(\d+)/);
+      const riskMatch = response.match(/RISK:\s*(LOW|MEDIUM|HIGH)/i);
+      const entryMatch = response.match(/ENTRY:\s*(\d+\.?\d*|N\/A)/i);
+      const stopLossMatch = response.match(/STOP_LOSS:\s*(\d+\.?\d*|N\/A)/i);
+      const takeProfitMatch = response.match(/TAKE_PROFIT:\s*(\d+\.?\d*|N\/A)/i);
+      const reasoningMatch = response.match(/REASONING:\s*(.+)/i);
+
+      const action = (actionMatch?.[1]?.toUpperCase() as 'BUY' | 'SELL' | 'HOLD') || 'HOLD';
+      const confidence = parseInt(confidenceMatch?.[1] || '0');
+      const riskLevel = (riskMatch?.[1]?.toUpperCase() as 'LOW' | 'MEDIUM' | 'HIGH') || 'HIGH';
+      const reasoning = reasoningMatch?.[1]?.trim() || 'AI analysis completed';
+
       let entryPrice: number | undefined;
       let stopLoss: number | undefined;
       let takeProfit: number | undefined;
-      let reasoning = 'Unable to parse AI response';
 
-      for (const line of lines) {
-        if (line.startsWith('ACTION:')) {
-          const actionMatch = line.match(/ACTION:\s*(BUY|SELL|HOLD)/i);
-          if (actionMatch) {
-            action = actionMatch[1].toUpperCase() as 'BUY' | 'SELL' | 'HOLD';
-          }
-        } else if (line.startsWith('CONFIDENCE:')) {
-          const confMatch = line.match(/CONFIDENCE:\s*(\d+)/);
-          if (confMatch) {
-            confidence = parseInt(confMatch[1]);
-          }
-        } else if (line.startsWith('RISK:')) {
-          const riskMatch = line.match(/RISK:\s*(LOW|MEDIUM|HIGH)/i);
-          if (riskMatch) {
-            riskLevel = riskMatch[1].toUpperCase() as 'LOW' | 'MEDIUM' | 'HIGH';
-          }
-        } else if (line.startsWith('ENTRY:')) {
-          const entryMatch = line.match(/ENTRY:\s*\$?(\d+\.?\d*)/);
-          if (entryMatch) {
-            entryPrice = parseFloat(entryMatch[1]);
-          }
-        } else if (line.startsWith('STOP_LOSS:')) {
-          const stopMatch = line.match(/STOP_LOSS:\s*\$?(\d+\.?\d*)/);
-          if (stopMatch) {
-            stopLoss = parseFloat(stopMatch[1]);
-          }
-        } else if (line.startsWith('TAKE_PROFIT:')) {
-          const tpMatch = line.match(/TAKE_PROFIT:\s*\$?(\d+\.?\d*)/);
-          if (tpMatch) {
-            takeProfit = parseFloat(tpMatch[1]);
-          }
-        } else if (line.startsWith('REASONING:')) {
-          reasoning = line.replace('REASONING:', '').trim();
-        }
+      // Parse prices
+      const entryStr = entryMatch?.[1];
+      if (entryStr && entryStr !== 'N/A') {
+        entryPrice = parseFloat(entryStr);
       }
 
-      // Use current price as entry if not specified
-      if (!entryPrice && action !== 'HOLD') {
-        entryPrice = currentPrice;
+      const stopLossStr = stopLossMatch?.[1];
+      if (stopLossStr && stopLossStr !== 'N/A') {
+        stopLoss = parseFloat(stopLossStr);
+      }
+
+      const takeProfitStr = takeProfitMatch?.[1];
+      if (takeProfitStr && takeProfitStr !== 'N/A') {
+        takeProfit = parseFloat(takeProfitStr);
       }
 
       return {
         action,
         confidence,
         reasoning,
-        entryPrice,
+        entryPrice: entryPrice || currentPrice,
         stopLoss,
         takeProfit,
         riskLevel
@@ -287,16 +300,18 @@ Analyze now and provide your recommendation:
 
     } catch (error) {
       console.error('Error parsing AI response:', error);
+      
+      // Return conservative signal if parsing fails
       return {
         action: 'HOLD',
         confidence: 0,
-        reasoning: `Failed to parse AI response: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        reasoning: `Failed to parse AI response: ${response.substring(0, 100)}...`,
         riskLevel: 'HIGH'
       };
     }
   }
 
-  async cleanup(): Promise<void> {
+  async destroy(): Promise<void> {
     try {
       if (this.page) {
         await this.page.close();
@@ -309,14 +324,10 @@ Analyze now and provide your recommendation:
       }
       
       this.isInitialized = false;
-      console.log('DeepSeek AI service cleaned up');
+      console.log('DeepSeek AI service destroyed');
       
     } catch (error) {
-      console.error('Error cleaning up DeepSeek AI service:', error);
+      console.error('Error destroying DeepSeek AI service:', error);
     }
-  }
-
-  isReady(): boolean {
-    return this.isInitialized && this.browser !== null && this.page !== null;
   }
 }

@@ -117,6 +117,10 @@ Key entities include:
 
 ```
 Changelog:
+- August 27, 2025. PRODUCTION: Updated AI trading system to use real DeepSeek browser automation
+- August 27, 2025. Added production-ready DeepSeek integration with Chromium browser support
+- August 27, 2025. Enhanced AI service with proper Ubuntu server configuration and cleanup methods
+- August 27, 2025. Implemented comprehensive AI trading workflow for production deployment
 - August 27, 2025. FIXED: Production frontend caching issue - bot logs now update in real-time
 - August 27, 2025. Added comprehensive cache busting headers to prevent 304 responses
 - August 27, 2025. Enhanced frontend query client with no-cache headers and timestamps  

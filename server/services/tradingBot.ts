@@ -83,18 +83,14 @@ export class TradingBot extends EventEmitter {
         await this.log('AI', '🤖 Initializing DeepSeek AI service for market analysis...', {});
         this.deepSeekAI = new DeepSeekAIService();
         
-        // Skip browser automation in Replit environment - use simulation mode
-        await this.log('AI', 'ℹ️ Using simulated AI service for development testing', {
-          note: 'DeepSeek browser automation disabled in Replit environment'
-        });
+        // Initialize real DeepSeek browser automation for production
+        await this.deepSeekAI.initialize();
         
-        // Mark as initialized for testing without calling the browser init
-        this.deepSeekAI['isInitialized'] = true;
-        
-        await this.log('AI', '✅ AI service ready - AI trading cycle enabled', {
+        await this.log('AI', '✅ DeepSeek AI service initialized successfully - AI trading enabled', {
           aiEnabled: true,
-          service: 'DeepSeek (Simulated)',
-          mode: 'Full cycle analysis'
+          service: 'DeepSeek Production',
+          mode: 'Real browser automation',
+          chatUrl: 'https://chat.deepseek.com/'
         });
       } catch (error) {
         await this.logError('AI Initialization Error', `Failed to initialize DeepSeek AI: ${error instanceof Error ? error.message : 'Unknown error'}`, 'TradingBot.start');
@@ -165,6 +161,12 @@ export class TradingBot extends EventEmitter {
     }
 
     this.bybitService.disconnectWebSocket();
+
+    // Clean up AI service
+    if (this.deepSeekAI) {
+      await this.deepSeekAI.destroy();
+      this.deepSeekAI = null;
+    }
 
     await this.log('INFO', 'Trading bot stopped', {});
   }
@@ -558,51 +560,88 @@ export class TradingBot extends EventEmitter {
       }
     });
 
-    // Simulate AI processing time
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // Use real DeepSeek AI analysis for each top performer
+    const aiRecommendations = [];
+    
+    for (const item of marketData.slice(0, 3)) {
+      try {
+        await this.log('AI', `🔍 Analyzing ${item.symbol} with DeepSeek AI...`, {
+          symbol: item.symbol,
+          rsi: item.indicators.rsi?.toFixed(2),
+          price: item.data.close
+        });
 
-    await this.log('AI', '🧠 DeepSeek AI processing market patterns and generating recommendations', {
-      processingTime: '2 seconds',
-      analysisType: 'Comprehensive market cycle analysis'
-    });
+        // Prepare market and technical data for DeepSeek
+        const marketDataForAI: MarketDataForAI = {
+          symbol: item.symbol,
+          currentPrice: parseFloat(item.data.close),
+          priceChange24h: parseFloat(item.data.change) || 0,
+          volume24h: parseFloat(item.data.volume) || 0,
+          highPrice24h: parseFloat(item.data.high),
+          lowPrice24h: parseFloat(item.data.low),
+          timestamp: new Date()
+        };
 
-    // Enhanced AI simulation with realistic recommendations
-    const aiRecommendations = marketData.slice(0, 3).map(item => {
-      const rsi = item.indicators.rsi || 50;
-      const isOverbought = rsi > 70;
-      const isOversold = rsi < 30;
-      
-      let action: 'BUY' | 'SELL' | 'HOLD' = 'HOLD';
-      let confidence = 60;
-      let reasoning = '';
+        const technicalDataForAI: TechnicalDataForAI = {
+          rsi: item.indicators.rsi || 50,
+          macd: {
+            macd: item.indicators.macd?.macd || 0,
+            signal: item.indicators.macd?.signal || 0,
+            histogram: item.indicators.macd?.histogram || 0
+          },
+          ema: {
+            fast: item.indicators.ema12 || item.data.close,
+            slow: item.indicators.ema26 || item.data.close
+          },
+          bollinger: {
+            upper: item.indicators.bollinger?.upper || item.data.close * 1.02,
+            middle: item.indicators.bollinger?.middle || item.data.close,
+            lower: item.indicators.bollinger?.lower || item.data.close * 0.98
+          },
+          adx: item.indicators.adx || 25,
+          support: item.indicators.support || item.data.low,
+          resistance: item.indicators.resistance || item.data.high
+        };
 
-      if (isOversold && rsi < 25) {
-        action = 'BUY';
-        confidence = 85;
-        reasoning = `Strong oversold condition (RSI: ${rsi.toFixed(1)}) with potential reversal signal. Market sentiment supports entry.`;
-      } else if (isOverbought && rsi > 75) {
-        action = 'SELL';
-        confidence = 80;
-        reasoning = `Overbought condition (RSI: ${rsi.toFixed(1)}) with distribution signs. Risk management suggests exit.`;
-      } else if (rsi > 45 && rsi < 55) {
-        action = Math.random() > 0.6 ? 'BUY' : 'HOLD';
-        confidence = 72;
-        reasoning = `Neutral RSI (${rsi.toFixed(1)}) with breakout potential. Technical confluence supports moderate position.`;
-      } else {
-        reasoning = `RSI at ${rsi.toFixed(1)} suggests consolidation. Waiting for clearer directional signals.`;
+        // Get real AI analysis from DeepSeek
+        const tradingMode = settings.leveragePaperTrading || !settings.spotPaperTrading ? 'leverage' : 'spot';
+        const aiSignal = await this.deepSeekAI.analyzeMarketData(marketDataForAI, technicalDataForAI, tradingMode);
+
+        await this.log('AI', `✅ DeepSeek analysis complete for ${item.symbol}`, {
+          symbol: item.symbol,
+          action: aiSignal.action,
+          confidence: aiSignal.confidence,
+          riskLevel: aiSignal.riskLevel,
+          reasoning: aiSignal.reasoning.substring(0, 100) + '...'
+        });
+
+        aiRecommendations.push({
+          symbol: item.symbol,
+          action: aiSignal.action,
+          confidence: aiSignal.confidence,
+          reasoning: aiSignal.reasoning,
+          entryPrice: aiSignal.entryPrice || parseFloat(item.data.close),
+          stopLoss: aiSignal.stopLoss,
+          takeProfit: aiSignal.takeProfit,
+          riskLevel: aiSignal.riskLevel,
+          marketContext: marketOverview.marketSentiment
+        });
+
+        // Add delay between AI requests to avoid rate limiting
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
+      } catch (error) {
+        await this.logError('AI Analysis Error', `Failed to analyze ${item.symbol} with DeepSeek: ${error instanceof Error ? error.message : 'Unknown error'}`, 'TradingBot.performComprehensiveAIAnalysis');
+        
+        // Continue with next symbol if one fails
+        continue;
       }
+    }
 
-      return {
-        symbol: item.symbol,
-        action,
-        confidence,
-        reasoning,
-        entryPrice: parseFloat(item.data.close),
-        stopLoss: parseFloat(item.data.close) * (action === 'BUY' ? 0.97 : 1.03),
-        takeProfit: parseFloat(item.data.close) * (action === 'BUY' ? 1.05 : 0.95),
-        riskLevel: confidence > 80 ? 'MEDIUM' : 'LOW',
-        marketContext: marketOverview.marketSentiment
-      };
+    await this.log('AI', '🧠 DeepSeek AI analysis cycle complete', {
+      totalAnalyzed: aiRecommendations.length,
+      recommendations: aiRecommendations.filter(r => r.action !== 'HOLD').length,
+      analysisType: 'Real DeepSeek AI analysis'
     });
 
     return {
