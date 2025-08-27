@@ -237,7 +237,7 @@ export class DatabaseStorage implements IStorage {
       .select()
       .from(botLogs)
       .where(eq(botLogs.userId, userId))
-      .orderBy(desc(botLogs.createdAt))
+      .orderBy(desc(botLogs.id)) // Order by ID desc to show newest logs first
       .limit(limit);
   }
 
