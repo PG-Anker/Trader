@@ -158,6 +158,16 @@ export const insertUserSchema = createInsertSchema(users).pick({
 export const insertTradingSettingsSchema = createInsertSchema(tradingSettings).omit({
   id: true,
   updatedAt: true,
+}).extend({
+  strategies: z.union([
+    z.string(),
+    z.object({
+      trendFollowing: z.boolean(),
+      meanReversion: z.boolean(),
+      breakoutTrading: z.boolean(),
+      pullbackTrading: z.boolean()
+    }).transform((obj) => JSON.stringify(obj))
+  ])
 });
 
 export const insertPositionSchema = createInsertSchema(positions).omit({

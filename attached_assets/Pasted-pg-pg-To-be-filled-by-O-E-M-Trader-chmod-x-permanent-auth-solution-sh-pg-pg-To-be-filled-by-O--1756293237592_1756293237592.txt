@@ -1,0 +1,231 @@
+pg@pg-To-be-filled-by-O-E-M:~/Trader$ chmod +x ./permanent-auth-solution.sh
+pg@pg-To-be-filled-by-O-E-M:~/Trader$ ./permanent-auth-solution.sh
+Creating permanent authentication solution...
+
+up to date, audited 823 packages in 3s
+
+88 packages are looking for funding
+  run `npm fund` for details
+
+12 vulnerabilities (4 low, 8 moderate)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues possible (including breaking changes), run:
+  npm audit fix --force
+
+Some issues need review, and may require choosing
+a different dependency.
+
+Run `npm audit` for details.
+✅ Created admin user with password: admin123
+✅ Database and user created successfully
+Username: admin
+Password: admin123
+
+Building application with proper authentication...
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+vite v5.4.19 building for production...
+transforming (3) src/main.tsxBrowserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 1729 modules transformed.
+../dist/public/index.html                   0.63 kB │ gzip:   0.38 kB
+../dist/public/assets/index-EfmFdLi9.css   64.58 kB │ gzip:  11.38 kB
+../dist/public/assets/index-49NrqI4z.js   460.57 kB │ gzip: 139.33 kB
+✓ built in 3.94s
+
+  dist/index.js  75.7kb
+
+⚡ Done in 7ms
+rebuilt dependencies successfully
+
+🚀 Starting production server with authentication...
+Open browser to: http://your-server-ip:5000
+Login with: admin / admin123
+
+1:08:35 PM [express] serving on port 5000
+Login successful for user: admin Session ID: shwbp7x0osmmetvgs8h
+1:08:53 PM [express] POST /api/auth/login 200 in 60ms :: {"success":true,"user":{"id":3,"username":"…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:08:53 PM [express] GET /api/dashboard 200 in 11ms :: {"positions":[],"stats":{"openPositions":0,"t…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:08:53 PM [express] GET /api/portfolio 200 in 9ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:08:53 PM [express] GET /api/settings 200 in 12ms :: {"id":2,"userId":3,"usdtPerTrade":"100","maxPo…
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+WebSocket client disconnected
+WebSocket client connected from: 127.0.0.1
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:09:00 PM [express] GET /api/summary 304 in 14ms :: {"summary":{"wonTrades":0,"lostTrades":0,"openT…
+1:09:01 PM [express] GET /api/bot-logs 304 in 4ms :: []
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:09:02 PM [express] GET /api/system-errors 304 in 7ms :: []
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:09:03 PM [express] GET /api/portfolio 304 in 4ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:09:13 PM [express] GET /api/portfolio 304 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:09:23 PM [express] GET /api/dashboard 304 in 23ms :: {"positions":[],"stats":{"openPositions":0,"t…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:09:23 PM [express] GET /api/settings 304 in 8ms :: {"id":2,"userId":3,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:09:23 PM [express] GET /api/portfolio 304 in 7ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:09:33 PM [express] GET /api/portfolio 304 in 3ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:09:43 PM [express] GET /api/portfolio 304 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:09:53 PM [express] GET /api/dashboard 304 in 8ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:09:53 PM [express] GET /api/settings 304 in 3ms :: {"id":2,"userId":3,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:09:53 PM [express] GET /api/portfolio 304 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:09:59 PM [express] POST /api/test-connection 400 in 5ms :: {"message":"API credentials not configu…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:10:03 PM [express] GET /api/portfolio 304 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:10:13 PM [express] GET /api/portfolio 304 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:10:23 PM [express] GET /api/dashboard 304 in 6ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:10:23 PM [express] GET /api/settings 304 in 2ms :: {"id":2,"userId":3,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:10:23 PM [express] GET /api/portfolio 304 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:10:33 PM [express] GET /api/portfolio 304 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:10:43 PM [express] GET /api/portfolio 304 in 9ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:12:14 PM [express] GET /api/portfolio 304 in 5ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:12:23 PM [express] GET /api/dashboard 304 in 3ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:12:23 PM [express] GET /api/settings 304 in 2ms :: {"id":2,"userId":3,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:12:24 PM [express] GET /api/portfolio 304 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:12:34 PM [express] GET /api/portfolio 304 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:12:44 PM [express] GET /api/portfolio 304 in 3ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:12:50 PM [express] POST /api/test-connection 400 in 1ms :: {"message":"API credentials not configu…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:12:53 PM [express] GET /api/dashboard 304 in 5ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:12:53 PM [express] GET /api/settings 304 in 1ms :: {"id":2,"userId":3,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:12:54 PM [express] GET /api/portfolio 304 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:13:04 PM [express] GET /api/portfolio 304 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:13:14 PM [express] GET /api/portfolio 304 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+Update settings error: ZodError: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "object",
+    "path": [
+      "strategies"
+    ],
+    "message": "Expected string, received object"
+  }
+]
+    at get error (file:///home/pg/Trader/dist/node_modules/zod/lib/index.mjs:587:31)
+    at ZodObject.parse (file:///home/pg/Trader/dist/node_modules/zod/lib/index.mjs:663:22)
+    at file:///home/pg/Trader/dist/index.js:1864:57
+    at Layer.handle [as handle_request] (/home/pg/Trader/dist/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/pg/Trader/dist/node_modules/express/lib/router/route.js:149:13)
+    at requireAuth (file:///home/pg/Trader/dist/index.js:1669:3)
+    at Layer.handle [as handle_request] (/home/pg/Trader/dist/node_modules/express/lib/router/layer.js:95:5)
+    at next (/home/pg/Trader/dist/node_modules/express/lib/router/route.js:149:13)
+    at Route.dispatch (/home/pg/Trader/dist/node_modules/express/lib/router/route.js:119:3)
+    at Layer.handle [as handle_request] (/home/pg/Trader/dist/node_modules/express/lib/router/layer.js:95:5) {
+  issues: [
+    {
+      code: 'invalid_type',
+      expected: 'string',
+      received: 'object',
+      path: [Array],
+      message: 'Expected string, received object'
+    }
+  ],
+  addIssue: [Function (anonymous)],
+  addIssues: [Function (anonymous)],
+  errors: [
+    {
+      code: 'invalid_type',
+      expected: 'string',
+      received: 'object',
+      path: [Array],
+      message: 'Expected string, received object'
+    }
+  ]
+}
+1:13:15 PM [express] POST /api/settings 500 in 9ms :: {"message":"Failed to update settings"}
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:13:23 PM [express] GET /api/dashboard 304 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:13:23 PM [express] GET /api/settings 304 in 1ms :: {"id":2,"userId":3,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: shwbp7x0... Sessions available: 1
+Auth success for user: admin
+1:13:24 PM [express] GET /api/portfolio 304 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+^C

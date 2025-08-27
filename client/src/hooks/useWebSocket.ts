@@ -20,8 +20,8 @@ export const useWebSocket = (options: UseWebSocketOptions = {}) => {
     onOpen,
     onClose,
     onError,
-    reconnectInterval = 10000,
-    maxReconnectAttempts = 3
+    reconnectInterval = 30000,
+    maxReconnectAttempts = 1
   } = options;
 
   const wsRef = useRef<WebSocket | null>(null);
