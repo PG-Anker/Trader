@@ -22,7 +22,8 @@ export default function BotLogs() {
   // Fetch bot logs
   const { data: logs = [], refetch, isLoading } = useQuery({
     queryKey: ['/api/bot-logs'],
-    refetchInterval: autoRefresh ? 5000 : false,
+    refetchInterval: autoRefresh ? 3000 : false, // Poll every 3 seconds for real-time updates
+    staleTime: 0, // Always refetch to get fresh data
   });
 
   const getLogIcon = (level: string) => {
