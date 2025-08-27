@@ -153,11 +153,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(settings);
     } catch (error) {
       console.error('Update settings error:', error);
-      if (error.name === 'ZodError') {
-        console.error('Validation errors:', error.issues);
+      if (error instanceof Error && 'name' in error && error.name === 'ZodError') {
+        console.error('Validation errors:', (error as any).issues);
         res.status(400).json({ 
           message: "Validation failed", 
-          errors: error.issues 
+          errors: (error as any).issues 
         });
       } else {
         res.status(500).json({ message: "Failed to update settings" });
@@ -273,6 +273,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       data: log
     });
   });
+
+  // Auto-start trading bot for all authenticated users
+  setTimeout(async () => {
+    try {
+      console.log('🤖 Auto-starting trading bot...');
+      await tradingBot.start(1); // User ID 1 (admin user)
+      console.log('✅ Trading bot started automatically');
+    } catch (error) {
+      console.error('❌ Failed to auto-start trading bot:', error);
+    }
+  }, 5000); // Start after 5 seconds to allow server initialization
 
   tradingBot.on('error', (error) => {
     broadcast({

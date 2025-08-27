@@ -58,7 +58,7 @@ export class TradingBot extends EventEmitter {
         await this.deepSeekAI.initialize();
         await this.log('INFO', 'DeepSeek AI service initialized for AI trading', {});
       } catch (error) {
-        await this.logError('AI Initialization Error', `Failed to initialize DeepSeek AI: ${error.message}`, 'TradingBot.start');
+        await this.logError('AI Initialization Error', `Failed to initialize DeepSeek AI: ${error instanceof Error ? error.message : 'Unknown error'}`, 'TradingBot.start');
         this.deepSeekAI = null;
       }
     }
@@ -73,6 +73,14 @@ export class TradingBot extends EventEmitter {
         this.logError('Analysis Error', error.message, 'TradingBot.runAnalysis');
       });
     }, 30000); // Run every 30 seconds
+
+    // Run initial analysis immediately
+    setTimeout(() => {
+      this.runAnalysis().catch(error => {
+        console.error('Initial analysis error:', error);
+        this.logError('Initial Analysis Error', error.message, 'TradingBot.start');
+      });
+    }, 2000);
 
     // Start position monitoring
     this.monitoringInterval = setInterval(() => {
@@ -226,10 +234,36 @@ export class TradingBot extends EventEmitter {
   private async runAnalysis(): Promise<void> {
     if (!this.isRunning) return;
 
-    await this.log('SCAN', `Market scan started - analyzing ${this.watchedSymbols.length} symbols`, {});
+    await this.log('SCAN', `Market scan started - analyzing ${this.watchedSymbols.length} symbols`, {
+      watchedSymbols: this.watchedSymbols,
+      timestamp: new Date().toISOString()
+    });
 
     const settings = await this.storage.getTradingSettings(this.userId);
-    if (!settings) return;
+    if (!settings) {
+      await this.logError('Configuration Error', 'Trading settings not found for user', 'TradingBot.runAnalysis');
+      return;
+    }
+
+    // Log current settings being used
+    await this.log('CONFIG', 'Current bot configuration', {
+      aiTradingEnabled: settings.aiTradingEnabled,
+      paperTrading: {
+        spot: settings.spotPaperTrading,
+        leverage: settings.leveragePaperTrading
+      },
+      riskManagement: {
+        usdtPerTrade: settings.usdtPerTrade,
+        maxPositions: settings.maxPositions,
+        stopLoss: settings.stopLoss,
+        takeProfit: settings.takeProfit
+      },
+      indicators: {
+        timeframe: settings.timeframe,
+        minConfidence: settings.minConfidence,
+        rsiPeriod: settings.rsiPeriod
+      }
+    });
 
     let opportunitiesFound = 0;
 
@@ -417,9 +451,9 @@ export class TradingBot extends EventEmitter {
         slow: indicators.ema26
       },
       bollinger: {
-        upper: indicators.bollingerUpper,
-        middle: indicators.bollingerMiddle,
-        lower: indicators.bollingerLower
+        upper: indicators.bollinger?.upper || 0,
+        middle: indicators.bollinger?.middle || 0,
+        lower: indicators.bollinger?.lower || 0
       },
       adx: indicators.adx,
       support,
@@ -473,8 +507,8 @@ export class TradingBot extends EventEmitter {
           direction: signal.direction,
           entryPrice: signal.entryPrice.toString(),
           currentPrice: signal.entryPrice.toString(),
-          stopLoss: signal.stopLoss.toString(),
-          takeProfit: signal.takeProfit.toString(),
+          stopLoss: signal.stopLoss?.toString() || null,
+          takeProfit: signal.takeProfit?.toString() || null,
           quantity,
           tradingMode: category,
           strategy: signal.strategy,
@@ -488,7 +522,7 @@ export class TradingBot extends EventEmitter {
           quantity,
           price: signal.entryPrice,
           orderId: result.orderId,
-          positionId: createdPosition.id
+          positionId: createdPosition?.id || 0
         });
 
         // Emit position update
@@ -604,11 +638,18 @@ export class TradingBot extends EventEmitter {
       level,
       message,
       symbol: data.symbol || null,
-      data
+      data: JSON.stringify(data)
     };
 
-    await this.storage.createBotLog(logEntry);
-    this.emit('log', logEntry);
+    try {
+      await this.storage.createBotLog(logEntry);
+      this.emit('log', logEntry);
+      
+      // Also console log for debugging
+      console.log(`[${level}] ${message}`, data);
+    } catch (error) {
+      console.error('Failed to save bot log:', error);
+    }
   }
 
   private async logError(title: string, message: string, source: string): Promise<void> {
@@ -617,10 +658,19 @@ export class TradingBot extends EventEmitter {
       level: 'ERROR',
       title,
       message,
-      source
+      source,
+      errorCode: null,
+      resolved: false
     };
 
-    await this.storage.createSystemError(errorEntry);
-    this.emit('error', errorEntry);
+    try {
+      await this.storage.createSystemError(errorEntry);
+      this.emit('system_error', errorEntry);
+      
+      // Also console log for debugging
+      console.error(`[ERROR] ${title}: ${message} (Source: ${source})`);
+    } catch (error) {
+      console.error('Failed to save system error:', error);
+    }
   }
 }
