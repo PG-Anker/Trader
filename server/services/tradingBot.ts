@@ -63,8 +63,16 @@ export class TradingBot extends EventEmitter {
       }
     }
 
-    // Start WebSocket connection for real-time prices
-    this.bybitService.connectWebSocket(this.watchedSymbols);
+    // Start WebSocket connection for real-time prices (skip if no credentials)
+    if (settings.apiKey && settings.secretKey) {
+      try {
+        this.bybitService.connectWebSocket(this.watchedSymbols);
+      } catch (error) {
+        await this.logError('WebSocket Connection Error', `Failed to connect WebSocket: ${error instanceof Error ? error.message : 'Unknown error'}`, 'TradingBot.start');
+      }
+    } else {
+      await this.log('INFO', 'Skipping WebSocket connection - no API credentials provided', {});
+    }
 
     // Start analysis loop
     this.analysisInterval = setInterval(() => {

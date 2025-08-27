@@ -1,5 +1,6 @@
 import { EventEmitter } from 'events';
 import crypto from 'crypto';
+import { WebSocket } from 'ws';
 
 export interface BybitOrderResult {
   orderId: string;
@@ -205,23 +206,25 @@ export class BybitService extends EventEmitter {
     }
   }
 
-  connectWebSocket(symbols: string[]) {
+  connectWebSocket(symbols: string[]): void {
     if (this.ws) {
       this.ws.close();
     }
 
+    console.log('Connecting to Bybit WebSocket for symbols:', symbols);
     this.ws = new WebSocket(this.wsUrl);
 
     this.ws.onopen = () => {
-      console.log('Bybit WebSocket connected');
+      console.log('✅ Bybit WebSocket connected successfully');
       
-      // Subscribe to ticker data for symbols
-      const subscriptions = symbols.map(symbol => `tickers.${symbol}`);
-      
-      this.ws?.send(JSON.stringify({
+      // Subscribe to ticker updates
+      const subscribeMessage = {
         op: 'subscribe',
-        args: subscriptions
-      }));
+        args: symbols.map(symbol => `tickers.${symbol}`)
+      };
+      
+      this.ws?.send(JSON.stringify(subscribeMessage));
+      console.log('📡 Subscribed to tickers for symbols:', symbols);
     };
 
     this.ws.onmessage = (event) => {
