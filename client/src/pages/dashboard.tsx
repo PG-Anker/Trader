@@ -6,11 +6,11 @@ import { PositionsTable } from "@/components/PositionsTable";
 import { TradingOpportunities } from "@/components/TradingOpportunities";
 import { StrategyPerformance } from "@/components/StrategyPerformance";
 import { SummaryTab } from "@/components/SummaryTab";
-import BotLogs from "@/components/BotLogs";
+import BotLogsPolling from "@/components/BotLogsPolling";
 import SystemErrors from "@/components/SystemErrors";
 import { SettingsTab } from "@/components/SettingsTab";
 import { BotControl } from "@/components/BotControl";
-import { useWebSocket } from "@/hooks/useWebSocket";
+// import { useWebSocket } from "@/hooks/useWebSocket";
 import { useToast } from "@/hooks/use-toast";
 import type { Position, BotLog, SystemError, PortfolioData } from "@/lib/types";
 
@@ -85,8 +85,8 @@ export default function Dashboard() {
     }
   }, [dashboardData]);
 
-  // WebSocket for real-time updates - reduced toast spam
-  useWebSocket({
+  // WebSocket temporarily disabled due to connection issues - using API polling
+  /*useWebSocket({
     onMessage: (message) => {
       switch (message.type) {
         case 'position_update':
@@ -145,7 +145,7 @@ export default function Dashboard() {
       // Silent error handling - WebSocket will attempt reconnection automatically
       console.log('WebSocket connection error - will retry');
     }
-  });
+  });*/
 
   const handleModeChange = (mode: 'spot' | 'leverage') => {
     setTradingMode(mode);
@@ -266,7 +266,7 @@ export default function Dashboard() {
           )}
 
           {activeTab === 'summary' && <SummaryTab />}
-          {activeTab === 'bot-log' && <BotLogs />}
+          {activeTab === 'bot-log' && <BotLogsPolling />}
           {activeTab === 'system-error' && <SystemErrors />}
           {activeTab === 'settings' && <SettingsTab />}
         </main>
