@@ -104,7 +104,7 @@ Type=forking
 User=$USER
 WorkingDirectory=$APP_DIR
 Environment=NODE_ENV=production
-Environment=PORT=3000
+Environment=PORT=5001
 ExecStart=/usr/bin/pm2 start ecosystem.config.js --no-daemon
 ExecReload=/usr/bin/pm2 reload cryptobot-pro
 ExecStop=/usr/bin/pm2 stop cryptobot-pro
@@ -136,7 +136,7 @@ fi
 # Configure firewall
 echo "🔒 Configuring firewall..."
 sudo ufw allow 22/tcp
-sudo ufw allow 3000/tcp
+sudo ufw allow 5001/tcp
 if [ "$configure_nginx" = "y" ]; then
     sudo ufw allow 80/tcp
     sudo ufw allow 443/tcp
@@ -156,7 +156,7 @@ echo "📊 Service Status:"
 sudo systemctl status cryptobot-pro --no-pager -l
 echo ""
 echo "🌐 Application URLs:"
-echo "  - Direct: http://$(hostname -I | awk '{print $1}'):3000"
+echo "  - Direct: http://$(hostname -I | awk '{print $1}'):5001"
 if [ "$configure_nginx" = "y" ]; then
     echo "  - Nginx: http://$(hostname -I | awk '{print $1}')/"
 fi
