@@ -1,15 +1,12 @@
 import { Bot, ChartLine, PieChart, List, AlertTriangle, Settings } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 
 interface SidebarProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
-  tradingMode: 'spot' | 'leverage';
-  onModeChange: (mode: 'spot' | 'leverage') => void;
 }
 
-export function Sidebar({ activeTab, onTabChange, tradingMode, onModeChange }: SidebarProps) {
+export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: ChartLine },
     { id: 'summary', label: 'Summary', icon: PieChart },
@@ -33,19 +30,7 @@ export function Sidebar({ activeTab, onTabChange, tradingMode, onModeChange }: S
         </div>
       </div>
 
-      {/* Trading Mode Selection */}
-      <div className="p-4 border-b border-crypto-dark-600">
-        <label className="block text-sm font-medium text-gray-300 mb-2">Trading Mode</label>
-        <Select value={tradingMode} onValueChange={onModeChange}>
-          <SelectTrigger className="w-full bg-crypto-dark-700 border-crypto-dark-600 text-white">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="spot">Spot Trading</SelectItem>
-            <SelectItem value="leverage">Leverage Trading</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
+
 
       {/* Navigation */}
       <nav className="flex-1 p-4 space-y-2">

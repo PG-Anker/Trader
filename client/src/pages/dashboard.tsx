@@ -16,7 +16,7 @@ import type { Position, BotLog, SystemError, PortfolioData } from "@/lib/types";
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [tradingMode, setTradingMode] = useState<'spot' | 'leverage'>('spot');
+
   const [positions, setPositions] = useState<Position[]>([]);
   const [portfolioData, setPortfolioData] = useState<PortfolioData>({ totalValue: '0', availableBalance: '0' });
   const [botStatus, setBotStatus] = useState({ 
@@ -30,13 +30,7 @@ export default function Dashboard() {
   });
   const { toast } = useToast();
 
-  // Get initial trading mode from localStorage
-  useEffect(() => {
-    const savedMode = localStorage.getItem('tradingMode') as 'spot' | 'leverage';
-    if (savedMode) {
-      setTradingMode(savedMode);
-    }
-  }, []);
+
 
   // Fetch trading settings for paper trading status
   const { data: settings } = useQuery<any>({
@@ -169,10 +163,7 @@ export default function Dashboard() {
     }
   });*/
 
-  const handleModeChange = (mode: 'spot' | 'leverage') => {
-    setTradingMode(mode);
-    localStorage.setItem('tradingMode', mode);
-  };
+
 
   const getTabTitle = () => {
     const titles = {
@@ -185,11 +176,7 @@ export default function Dashboard() {
     return titles[activeTab as keyof typeof titles];
   };
 
-  const getModeDescription = () => {
-    return tradingMode === 'spot' 
-      ? 'Spot Trading - Buy low, sell high with USDT pairs'
-      : 'Leverage Trading - Long and short positions with margin';
-  };
+
 
   // Show loading spinner while settings are loading
   if (!settings) {
@@ -209,8 +196,6 @@ export default function Dashboard() {
       <Sidebar 
         activeTab={activeTab}
         onTabChange={setActiveTab}
-        tradingMode={tradingMode}
-        onModeChange={handleModeChange}
       />
 
       {/* Main Content */}
@@ -220,7 +205,7 @@ export default function Dashboard() {
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-2xl font-bold">{getTabTitle()}</h2>
-              <p className="text-gray-400">{getModeDescription()}</p>
+              <p className="text-gray-400">Dual bot trading system with independent spot and leverage controls</p>
               
               {/* Trading Mode Indicators */}
               {activeTab === 'dashboard' && settings && (
@@ -290,7 +275,6 @@ export default function Dashboard() {
               
               <PositionsTable 
                 positions={positions} 
-                tradingMode={tradingMode}
                 onPositionClose={refetchDashboard}
               />
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

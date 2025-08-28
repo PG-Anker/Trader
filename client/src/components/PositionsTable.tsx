@@ -9,11 +9,10 @@ import type { Position } from "@/lib/types";
 
 interface PositionsTableProps {
   positions: Position[];
-  tradingMode: 'spot' | 'leverage';
   onPositionClose?: () => void;
 }
 
-export function PositionsTable({ positions, tradingMode, onPositionClose }: PositionsTableProps) {
+export function PositionsTable({ positions, onPositionClose }: PositionsTableProps) {
   const [closingPositions, setClosingPositions] = useState<Set<number>>(new Set());
   const { toast } = useToast();
   const queryClient = useQueryClient();
