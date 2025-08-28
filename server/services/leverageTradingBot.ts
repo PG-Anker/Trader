@@ -460,7 +460,8 @@ export class LeverageTradingBot extends EventEmitter {
     const logEntry: InsertBotLog = {
       userId: this.userId,
       level,
-      message,
+      message: `[LEVERAGE] ${message}`,
+      symbol: data?.symbol || null,
       data: JSON.stringify(data),
       createdAt: new Date().toISOString()
     };

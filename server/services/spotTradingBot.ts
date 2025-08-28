@@ -460,7 +460,8 @@ export class SpotTradingBot extends EventEmitter {
     const logEntry: InsertBotLog = {
       userId: this.userId,
       level,
-      message,
+      message: `[SPOT] ${message}`,
+      symbol: data?.symbol || null,
       data: JSON.stringify(data),
       createdAt: new Date().toISOString()
     };

@@ -161,7 +161,7 @@ export default function DualBotSettings() {
                     id="timeframe"
                     value={currentSettings.timeframe}
                     onChange={(e) => handleInputChange('timeframe', e.target.value)}
-                    className="w-full mt-1 p-2 border border-gray-300 rounded-md"
+                    className="w-full mt-1 p-2 border border-gray-300 rounded-md bg-white dark:bg-gray-800 text-black dark:text-white"
                   >
                     <option value="1m">1 minute</option>
                     <option value="5m">5 minutes</option>
@@ -176,7 +176,7 @@ export default function DualBotSettings() {
                     id="environment"
                     value={currentSettings.environment}
                     onChange={(e) => handleInputChange('environment', e.target.value)}
-                    className="w-full mt-1 p-2 border border-gray-300 rounded-md"
+                    className="w-full mt-1 p-2 border border-gray-300 rounded-md bg-white dark:bg-gray-800 text-black dark:text-white"
                   >
                     <option value="mainnet">Mainnet (Live Trading)</option>
                   </select>
