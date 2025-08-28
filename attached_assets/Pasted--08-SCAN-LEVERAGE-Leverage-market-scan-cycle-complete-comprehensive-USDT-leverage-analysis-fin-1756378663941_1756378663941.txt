@@ -1,0 +1,400 @@
+:08
+SCAN
+[LEVERAGE] ✅ Leverage market scan cycle complete - comprehensive USDT leverage analysis finished
+{"symbolsAnalyzed":100,"opportunitiesFound":0,"nextScan":"30 minutes","tradingMode":"LEVERAGE PAPER TRADING","analysisCompleted":"Leverage technical indicators for all symbols"}
+12:51:08
+INFO
+[LEVERAGE] ✅ Market data collection complete - analyzing 0 symbols for leverage opportunities
+{"totalCollected":0,"skipped":100}
+12:51:08
+WARN
+[LEVERAGE] Insufficient market data for FLUX/USDT - skipping leverage analysis[FLUX/USDT]
+{"symbol":"FLUX/USDT","dataPoints":0,"required":50}
+12:51:07
+WARN
+[LEVERAGE] Insufficient market data for BICO/USDT - skipping leverage analysis[BICO/USDT]
+{"symbol":"BICO/USDT","dataPoints":0,"required":50}
+12:51:06
+WARN
+[LEVERAGE] Insufficient market data for API3/USDT - skipping leverage analysis[API3/USDT]
+{"symbol":"API3/USDT","dataPoints":0,"required":50}
+12:51:05
+WARN
+[LEVERAGE] Insufficient market data for LOKA/USDT - skipping leverage analysis[LOKA/USDT]
+{"symbol":"LOKA/USDT","dataPoints":0,"required":50}
+12:51:04
+WARN
+[LEVERAGE] Insufficient market data for GLMR/USDT - skipping leverage analysis[GLMR/USDT]
+{"symbol":"GLMR/USDT","dataPoints":0,"required":50}
+12:51:03
+WARN
+[LEVERAGE] Insufficient market data for IMX/USDT - skipping leverage analysis[IMX/USDT]
+{"symbol":"IMX/USDT","dataPoints":0,"required":50}
+12:51:02
+WARN
+[LEVERAGE] Insufficient market data for ACH/USDT - skipping leverage analysis[ACH/USDT]
+{"symbol":"ACH/USDT","dataPoints":0,"required":50}
+12:51:01
+WARN
+[LEVERAGE] Insufficient market data for JOE/USDT - skipping leverage analysis[JOE/USDT]
+{"symbol":"JOE/USDT","dataPoints":0,"required":50}
+12:51:00
+WARN
+[LEVERAGE] Insufficient market data for AVA/USDT - skipping leverage analysis[AVA/USDT]
+{"symbol":"AVA/USDT","dataPoints":0,"required":50}
+12:50:58
+WARN
+[LEVERAGE] Insufficient market data for FIRO/USDT - skipping leverage analysis[FIRO/USDT]
+{"symbol":"FIRO/USDT","dataPoints":0,"required":50}
+12:50:57
+WARN
+[LEVERAGE] Insufficient market data for NEAR/USDT - skipping leverage analysis[NEAR/USDT]
+{"symbol":"NEAR/USDT","dataPoints":0,"required":50}
+12:50:56
+WARN
+[LEVERAGE] Insufficient market data for ALPHA/USDT - skipping leverage analysis[ALPHA/USDT]
+{"symbol":"ALPHA/USDT","dataPoints":0,"required":50}
+12:50:55
+WARN
+[LEVERAGE] Insufficient market data for XVS/USDT - skipping leverage analysis[XVS/USDT]
+{"symbol":"XVS/USDT","dataPoints":0,"required":50}
+12:50:54
+WARN
+[LEVERAGE] Insufficient market data for UTK/USDT - skipping leverage analysis[UTK/USDT]
+{"symbol":"UTK/USDT","dataPoints":0,"required":50}
+12:50:53
+WARN
+[LEVERAGE] Insufficient market data for ORN/USDT - skipping leverage analysis[ORN/USDT]
+{"symbol":"ORN/USDT","dataPoints":0,"required":50}
+12:50:52
+WARN
+[LEVERAGE] Insufficient market data for UNISWAP/USDT - skipping leverage analysis[UNISWAP/USDT]
+{"symbol":"UNISWAP/USDT","dataPoints":0,"required":50}
+12:50:52
+SCAN
+[SPOT] ✅ Spot market scan cycle complete - comprehensive USDT spot analysis finished
+{"symbolsAnalyzed":100,"opportunitiesFound":0,"nextScan":"30 minutes","tradingMode":"SPOT PAPER TRADING","analysisCompleted":"Spot technical indicators for all symbols"}
+12:50:52
+INFO
+[SPOT] ✅ Market data collection complete - analyzing 0 symbols for spot opportunities
+{"totalCollected":0,"skipped":100}
+12:50:52
+WARN
+[SPOT] Insufficient market data for FLUX/USDT - skipping spot analysis[FLUX/USDT]
+{"symbol":"FLUX/USDT","dataPoints":0,"required":50}
+12:50:51
+WARN
+[LEVERAGE] Insufficient market data for SPARTA/USDT - skipping leverage analysis[SPARTA/USDT]
+{"symbol":"SPARTA/USDT","dataPoints":0,"required":50}
+12:50:51
+WARN
+[SPOT] Insufficient market data for BICO/USDT - skipping spot analysis[BICO/USDT]
+{"symbol":"BICO/USDT","dataPoints":0,"required":50}
+12:50:50
+WARN
+[LEVERAGE] Insufficient market data for CAKE/USDT - skipping leverage analysis[CAKE/USDT]
+{"symbol":"CAKE/USDT","dataPoints":0,"required":50}
+12:50:50
+WARN
+[SPOT] Insufficient market data for API3/USDT - skipping spot analysis[API3/USDT]
+{"symbol":"API3/USDT","dataPoints":0,"required":50}
+12:50:49
+WARN
+[LEVERAGE] Insufficient market data for LINEAR/USDT - skipping leverage analysis[LINEAR/USDT]
+{"symbol":"LINEAR/USDT","dataPoints":0,"required":50}
+12:50:49
+WARN
+[SPOT] Insufficient market data for LOKA/USDT - skipping spot analysis[LOKA/USDT]
+{"symbol":"LOKA/USDT","dataPoints":0,"required":50}
+12:50:48
+WARN
+[LEVERAGE] Insufficient market data for SFP/USDT - skipping leverage analysis[SFP/USDT]
+{"symbol":"SFP/USDT","dataPoints":0,"required":50}
+12:50:48
+WARN
+[SPOT] Insufficient market data for GLMR/USDT - skipping spot analysis[GLMR/USDT]
+{"symbol":"GLMR/USDT","dataPoints":0,"required":50}
+12:50:47
+WARN
+[LEVERAGE] Insufficient market data for BURGER/USDT - skipping leverage analysis[BURGER/USDT]
+{"symbol":"BURGER/USDT","dataPoints":0,"required":50}
+12:50:47
+WARN
+[SPOT] Insufficient market data for IMX/USDT - skipping spot analysis[IMX/USDT]
+{"symbol":"IMX/USDT","dataPoints":0,"required":50}
+12:50:46
+WARN
+[LEVERAGE] Insufficient market data for TWT/USDT - skipping leverage analysis[TWT/USDT]
+{"symbol":"TWT/USDT","dataPoints":0,"required":50}
+12:50:46
+WARN
+[SPOT] Insufficient market data for ACH/USDT - skipping spot analysis[ACH/USDT]
+{"symbol":"ACH/USDT","dataPoints":0,"required":50}
+12:50:45
+WARN
+[LEVERAGE] Insufficient market data for BAKE/USDT - skipping leverage analysis[BAKE/USDT]
+{"symbol":"BAKE/USDT","dataPoints":0,"required":50}
+12:50:45
+WARN
+[SPOT] Insufficient market data for JOE/USDT - skipping spot analysis[JOE/USDT]
+{"symbol":"JOE/USDT","dataPoints":0,"required":50}
+12:50:44
+WARN
+[LEVERAGE] Insufficient market data for CREAM/USDT - skipping leverage analysis[CREAM/USDT]
+{"symbol":"CREAM/USDT","dataPoints":0,"required":50}
+12:50:44
+WARN
+[SPOT] Insufficient market data for AVA/USDT - skipping spot analysis[AVA/USDT]
+{"symbol":"AVA/USDT","dataPoints":0,"required":50}
+12:50:43
+WARN
+[LEVERAGE] Insufficient market data for SXP/USDT - skipping leverage analysis[SXP/USDT]
+{"symbol":"SXP/USDT","dataPoints":0,"required":50}
+12:50:43
+WARN
+[SPOT] Insufficient market data for FIRO/USDT - skipping spot analysis[FIRO/USDT]
+{"symbol":"FIRO/USDT","dataPoints":0,"required":50}
+12:50:42
+WARN
+[LEVERAGE] Insufficient market data for XVS/USDT - skipping leverage analysis[XVS/USDT]
+{"symbol":"XVS/USDT","dataPoints":0,"required":50}
+12:50:42
+WARN
+[SPOT] Insufficient market data for NEAR/USDT - skipping spot analysis[NEAR/USDT]
+{"symbol":"NEAR/USDT","dataPoints":0,"required":50}
+12:50:41
+WARN
+[LEVERAGE] Insufficient market data for AVA/USDT - skipping leverage analysis[AVA/USDT]
+{"symbol":"AVA/USDT","dataPoints":0,"required":50}
+12:50:41
+WARN
+[SPOT] Insufficient market data for ALPHA/USDT - skipping spot analysis[ALPHA/USDT]
+{"symbol":"ALPHA/USDT","dataPoints":0,"required":50}
+12:50:40
+WARN
+[LEVERAGE] Insufficient market data for ROSE/USDT - skipping leverage analysis[ROSE/USDT]
+{"symbol":"ROSE/USDT","dataPoints":0,"required":50}
+12:50:40
+WARN
+[SPOT] Insufficient market data for XVS/USDT - skipping spot analysis[XVS/USDT]
+{"symbol":"XVS/USDT","dataPoints":0,"required":50}
+12:50:39
+WARN
+[LEVERAGE] Insufficient market data for UNFI/USDT - skipping leverage analysis[UNFI/USDT]
+{"symbol":"UNFI/USDT","dataPoints":0,"required":50}
+12:50:39
+WARN
+[SPOT] Insufficient market data for UTK/USDT - skipping spot analysis[UTK/USDT]
+{"symbol":"UTK/USDT","dataPoints":0,"required":50}
+12:50:38
+WARN
+[LEVERAGE] Insufficient market data for STRAX/USDT - skipping leverage analysis[STRAX/USDT]
+{"symbol":"STRAX/USDT","dataPoints":0,"required":50}
+12:50:38
+WARN
+[SPOT] Insufficient market data for ORN/USDT - skipping spot analysis[ORN/USDT]
+{"symbol":"ORN/USDT","dataPoints":0,"required":50}
+12:50:37
+WARN
+[LEVERAGE] Insufficient market data for HARD/USDT - skipping leverage analysis[HARD/USDT]
+{"symbol":"HARD/USDT","dataPoints":0,"required":50}
+12:50:37
+WARN
+[SPOT] Insufficient market data for UNISWAP/USDT - skipping spot analysis[UNISWAP/USDT]
+{"symbol":"UNISWAP/USDT","dataPoints":0,"required":50}
+12:50:36
+WARN
+[LEVERAGE] Insufficient market data for AXS/USDT - skipping leverage analysis[AXS/USDT]
+{"symbol":"AXS/USDT","dataPoints":0,"required":50}
+12:50:36
+WARN
+[SPOT] Insufficient market data for SPARTA/USDT - skipping spot analysis[SPARTA/USDT]
+{"symbol":"SPARTA/USDT","dataPoints":0,"required":50}
+12:50:35
+WARN
+[LEVERAGE] Insufficient market data for AKRO/USDT - skipping leverage analysis[AKRO/USDT]
+{"symbol":"AKRO/USDT","dataPoints":0,"required":50}
+12:50:35
+WARN
+[SPOT] Insufficient market data for CAKE/USDT - skipping spot analysis[CAKE/USDT]
+{"symbol":"CAKE/USDT","dataPoints":0,"required":50}
+12:50:34
+WARN
+[LEVERAGE] Insufficient market data for CTK/USDT - skipping leverage analysis[CTK/USDT]
+{"symbol":"CTK/USDT","dataPoints":0,"required":50}
+12:50:34
+WARN
+[SPOT] Insufficient market data for LINEAR/USDT - skipping spot analysis[LINEAR/USDT]
+{"symbol":"LINEAR/USDT","dataPoints":0,"required":50}
+12:50:33
+WARN
+[LEVERAGE] Insufficient market data for OCEAN/USDT - skipping leverage analysis[OCEAN/USDT]
+{"symbol":"OCEAN/USDT","dataPoints":0,"required":50}
+12:50:32
+WARN
+[SPOT] Insufficient market data for SFP/USDT - skipping spot analysis[SFP/USDT]
+{"symbol":"SFP/USDT","dataPoints":0,"required":50}
+12:50:31
+WARN
+[LEVERAGE] Insufficient market data for ALPHA/USDT - skipping leverage analysis[ALPHA/USDT]
+{"symbol":"ALPHA/USDT","dataPoints":0,"required":50}
+12:50:31
+WARN
+[SPOT] Insufficient market data for BURGER/USDT - skipping spot analysis[BURGER/USDT]
+{"symbol":"BURGER/USDT","dataPoints":0,"required":50}
+12:50:30
+WARN
+[LEVERAGE] Insufficient market data for RLC/USDT - skipping leverage analysis[RLC/USDT]
+{"symbol":"RLC/USDT","dataPoints":0,"required":50}
+12:50:30
+WARN
+[SPOT] Insufficient market data for TWT/USDT - skipping spot analysis[TWT/USDT]
+{"symbol":"TWT/USDT","dataPoints":0,"required":50}
+12:50:29
+WARN
+[LEVERAGE] Insufficient market data for BAND/USDT - skipping leverage analysis[BAND/USDT]
+{"symbol":"BAND/USDT","dataPoints":0,"required":50}
+12:50:29
+WARN
+[SPOT] Insufficient market data for BAKE/USDT - skipping spot analysis[BAKE/USDT]
+{"symbol":"BAKE/USDT","dataPoints":0,"required":50}
+12:50:28
+WARN
+[LEVERAGE] Insufficient market data for TRB/USDT - skipping leverage analysis[TRB/USDT]
+{"symbol":"TRB/USDT","dataPoints":0,"required":50}
+12:50:28
+WARN
+[SPOT] Insufficient market data for CREAM/USDT - skipping spot analysis[CREAM/USDT]
+{"symbol":"CREAM/USDT","dataPoints":0,"required":50}
+12:50:27
+WARN
+[LEVERAGE] Insufficient market data for XLM/USDT - skipping leverage analysis[XLM/USDT]
+{"symbol":"XLM/USDT","dataPoints":0,"required":50}
+12:50:27
+WARN
+[SPOT] Insufficient market data for SXP/USDT - skipping spot analysis[SXP/USDT]
+{"symbol":"SXP/USDT","dataPoints":0,"required":50}
+12:50:26
+WARN
+[LEVERAGE] Insufficient market data for EOS/USDT - skipping leverage analysis[EOS/USDT]
+{"symbol":"EOS/USDT","dataPoints":0,"required":50}
+12:50:26
+WARN
+[SPOT] Insufficient market data for XVS/USDT - skipping spot analysis[XVS/USDT]
+{"symbol":"XVS/USDT","dataPoints":0,"required":50}
+12:50:25
+WARN
+[LEVERAGE] Insufficient market data for IOTA/USDT - skipping leverage analysis[IOTA/USDT]
+{"symbol":"IOTA/USDT","dataPoints":0,"required":50}
+12:50:25
+WARN
+[SPOT] Insufficient market data for AVA/USDT - skipping spot analysis[AVA/USDT]
+{"symbol":"AVA/USDT","dataPoints":0,"required":50}
+12:50:24
+WARN
+[LEVERAGE] Insufficient market data for XMR/USDT - skipping leverage analysis[XMR/USDT]
+{"symbol":"XMR/USDT","dataPoints":0,"required":50}
+12:50:24
+WARN
+[SPOT] Insufficient market data for ROSE/USDT - skipping spot analysis[ROSE/USDT]
+{"symbol":"ROSE/USDT","dataPoints":0,"required":50}
+12:50:23
+WARN
+[LEVERAGE] Insufficient market data for ZEC/USDT - skipping leverage analysis[ZEC/USDT]
+{"symbol":"ZEC/USDT","dataPoints":0,"required":50}
+12:50:23
+WARN
+[SPOT] Insufficient market data for UNFI/USDT - skipping spot analysis[UNFI/USDT]
+{"symbol":"UNFI/USDT","dataPoints":0,"required":50}
+12:50:22
+WARN
+[LEVERAGE] Insufficient market data for ONT/USDT - skipping leverage analysis[ONT/USDT]
+{"symbol":"ONT/USDT","dataPoints":0,"required":50}
+12:50:22
+WARN
+[SPOT] Insufficient market data for STRAX/USDT - skipping spot analysis[STRAX/USDT]
+{"symbol":"STRAX/USDT","dataPoints":0,"required":50}
+12:50:21
+WARN
+[LEVERAGE] Insufficient market data for GAS/USDT - skipping leverage analysis[GAS/USDT]
+{"symbol":"GAS/USDT","dataPoints":0,"required":50}
+12:50:21
+WARN
+[SPOT] Insufficient market data for HARD/USDT - skipping spot analysis[HARD/USDT]
+{"symbol":"HARD/USDT","dataPoints":0,"required":50}
+12:50:20
+WARN
+[LEVERAGE] Insufficient market data for NEO/USDT - skipping leverage analysis[NEO/USDT]
+{"symbol":"NEO/USDT","dataPoints":0,"required":50}
+12:50:20
+WARN
+[SPOT] Insufficient market data for AXS/USDT - skipping spot analysis[AXS/USDT]
+{"symbol":"AXS/USDT","dataPoints":0,"required":50}
+12:50:19
+WARN
+[LEVERAGE] Insufficient market data for DASH/USDT - skipping leverage analysis[DASH/USDT]
+{"symbol":"DASH/USDT","dataPoints":0,"required":50}
+12:50:19
+WARN
+[SPOT] Insufficient market data for AKRO/USDT - skipping spot analysis[AKRO/USDT]
+{"symbol":"AKRO/USDT","dataPoints":0,"required":50}
+12:50:18
+WARN
+[LEVERAGE] Insufficient market data for WAVES/USDT - skipping leverage analysis[WAVES/USDT]
+{"symbol":"WAVES/USDT","dataPoints":0,"required":50}
+12:50:18
+WARN
+[SPOT] Insufficient market data for CTK/USDT - skipping spot analysis[CTK/USDT]
+{"symbol":"CTK/USDT","dataPoints":0,"required":50}
+12:50:17
+WARN
+[LEVERAGE] Insufficient market data for XTZ/USDT - skipping leverage analysis[XTZ/USDT]
+{"symbol":"XTZ/USDT","dataPoints":0,"required":50}
+12:50:17
+WARN
+[SPOT] Insufficient market data for OCEAN/USDT - skipping spot analysis[OCEAN/USDT]
+{"symbol":"OCEAN/USDT","dataPoints":0,"required":50}
+12:50:16
+WARN
+[LEVERAGE] Insufficient market data for NANO/USDT - skipping leverage analysis[NANO/USDT]
+{"symbol":"NANO/USDT","dataPoints":0,"required":50}
+12:50:16
+WARN
+[SPOT] Insufficient market data for ALPHA/USDT - skipping spot analysis[ALPHA/USDT]
+{"symbol":"ALPHA/USDT","dataPoints":0,"required":50}
+12:50:15
+WARN
+[LEVERAGE] Insufficient market data for OMG/USDT - skipping leverage analysis[OMG/USDT]
+{"symbol":"OMG/USDT","dataPoints":0,"required":50}
+12:50:15
+WARN
+[SPOT] Insufficient market data for RLC/USDT - skipping spot analysis[RLC/USDT]
+{"symbol":"RLC/USDT","dataPoints":0,"required":50}
+12:50:14
+WARN
+[LEVERAGE] Insufficient market data for ICX/USDT - skipping leverage analysis[ICX/USDT]
+{"symbol":"ICX/USDT","dataPoints":0,"required":50}
+12:50:14
+WARN
+[SPOT] Insufficient market data for BAND/USDT - skipping spot analysis[BAND/USDT]
+{"symbol":"BAND/USDT","dataPoints":0,"required":50}
+12:50:13
+WARN
+[LEVERAGE] Insufficient market data for QTUM/USDT - skipping leverage analysis[QTUM/USDT]
+{"symbol":"QTUM/USDT","dataPoints":0,"required":50}
+12:50:13
+WARN
+[SPOT] Insufficient market data for TRB/USDT - skipping spot analysis[TRB/USDT]
+{"symbol":"TRB/USDT","dataPoints":0,"required":50}
+12:50:12
+WARN
+[LEVERAGE] Insufficient market data for IOST/USDT - skipping leverage analysis[IOST/USDT]
+{"symbol":"IOST/USDT","dataPoints":0,"required":50}
+12:50:12
+WARN
+[SPOT] Insufficient market data for XLM/USDT - skipping spot analysis[XLM/USDT]
+{"symbol":"XLM/USDT","dataPoints":0,"required":50}
+12:50:11
+WARN
+[LEVERAGE] Insufficient market data for ZIL/USDT - skipping leverage analysis[ZIL/USDT]
+{"symbol":"ZIL/USDT","dataPoints":0,"required":50}
