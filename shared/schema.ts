@@ -171,8 +171,26 @@ export const insertTradingSettingsSchema = createInsertSchema(tradingSettings).o
       breakoutTrading: z.boolean(),
       pullbackTrading: z.boolean()
     }).transform((obj) => JSON.stringify(obj))
-  ])
-});
+  ]).optional(),
+  spotStrategies: z.union([
+    z.string(),
+    z.object({
+      trendFollowing: z.boolean(),
+      meanReversion: z.boolean(),
+      breakoutTrading: z.boolean(),
+      pullbackTrading: z.boolean()
+    }).transform((obj) => JSON.stringify(obj))
+  ]).optional(),
+  leverageStrategies: z.union([
+    z.string(),
+    z.object({
+      trendFollowing: z.boolean(),
+      meanReversion: z.boolean(),
+      breakoutTrading: z.boolean(),
+      pullbackTrading: z.boolean()
+    }).transform((obj) => JSON.stringify(obj))
+  ]).optional()
+}).partial();
 
 export const insertPositionSchema = createInsertSchema(positions).omit({
   id: true,

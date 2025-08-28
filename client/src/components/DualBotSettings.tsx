@@ -56,7 +56,10 @@ export default function DualBotSettings() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updates),
       });
-      if (!response.ok) throw new Error('Failed to update settings');
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || 'Failed to update settings');
+      }
       return response.json();
     },
     onSuccess: () => {

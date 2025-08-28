@@ -158,7 +158,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update trading settings
-  app.post("/api/settings", requireAuth, async (req, res) => {
+  app.put("/api/settings", requireAuth, async (req, res) => {
     try {
       const userId = (req as any).user.id;
       console.log('Received settings update request:', req.body);
