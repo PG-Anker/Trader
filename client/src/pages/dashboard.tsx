@@ -19,7 +19,15 @@ export default function Dashboard() {
   const [tradingMode, setTradingMode] = useState<'spot' | 'leverage'>('spot');
   const [positions, setPositions] = useState<Position[]>([]);
   const [portfolioData, setPortfolioData] = useState<PortfolioData>({ totalValue: '0', availableBalance: '0' });
-  const [botStatus, setBotStatus] = useState({ isRunning: false, startedAt: null, lastActivity: null, userId: null });
+  const [botStatus, setBotStatus] = useState({ 
+    spot: { isRunning: false, startedAt: null, lastActivity: null, userId: null, type: 'spot' },
+    leverage: { isRunning: false, startedAt: null, lastActivity: null, userId: null, type: 'leverage' },
+    // Legacy compatibility
+    isRunning: false, 
+    startedAt: null, 
+    lastActivity: null, 
+    userId: null 
+  });
   const { toast } = useToast();
 
   // Get initial trading mode from localStorage
@@ -53,7 +61,7 @@ export default function Dashboard() {
     enabled: !!settings, // Wait for settings to load
   });
 
-  // Fetch bot status
+  // Fetch dual bot status
   const { data: botStatusData } = useQuery<any>({
     queryKey: ['/api/bot/status'],
     refetchInterval: 5000, // Refetch every 5 seconds
@@ -61,12 +69,26 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (botStatusData) {
-      setBotStatus({
-        isRunning: botStatusData.isRunning || false,
-        startedAt: botStatusData.startedAt || null,
-        lastActivity: botStatusData.lastActivity || null,
-        userId: botStatusData.userId || null
-      });
+      // Handle new dual bot format
+      if (botStatusData.spot && botStatusData.leverage) {
+        setBotStatus({
+          spot: botStatusData.spot,
+          leverage: botStatusData.leverage,
+          // Legacy compatibility
+          isRunning: botStatusData.spot.isRunning || botStatusData.leverage.isRunning,
+          startedAt: botStatusData.spot.startedAt || botStatusData.leverage.startedAt,
+          lastActivity: botStatusData.spot.lastActivity || botStatusData.leverage.lastActivity,
+          userId: botStatusData.spot.userId || botStatusData.leverage.userId
+        });
+      } else {
+        // Handle legacy format
+        setBotStatus({
+          isRunning: botStatusData.isRunning || false,
+          startedAt: botStatusData.startedAt || null,
+          lastActivity: botStatusData.lastActivity || null,
+          userId: botStatusData.userId || null
+        });
+      }
     }
   }, [botStatusData]);
 
@@ -250,8 +272,21 @@ export default function Dashboard() {
             <div className="space-y-6">
               <StatsCards data={dashboardData?.stats || {}} />
               
-              {/* Bot Control Component */}
-              <BotControl status={botStatus} />
+              {/* Dual Bot Control Components */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <BotControl 
+                  status={botStatus.spot || { isRunning: false, startedAt: null, lastActivity: null, userId: null, type: 'spot' }} 
+                  botType="spot"
+                  title="Spot Trading Bot"
+                  description="Buy low, sell high strategy"
+                />
+                <BotControl 
+                  status={botStatus.leverage || { isRunning: false, startedAt: null, lastActivity: null, userId: null, type: 'leverage' }} 
+                  botType="leverage"
+                  title="Leverage Trading Bot"
+                  description="Long and short positions"
+                />
+              </div>
               
               <PositionsTable 
                 positions={positions} 

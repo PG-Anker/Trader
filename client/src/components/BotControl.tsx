@@ -12,26 +12,38 @@ interface BotStatus {
   startedAt: string | null;
   lastActivity: string | null;
   userId: number | null;
+  type?: 'spot' | 'leverage';
 }
 
 interface BotControlProps {
   status: BotStatus;
+  botType?: 'spot' | 'leverage';
+  title?: string;
+  description?: string;
 }
 
-export function BotControl({ status }: BotControlProps) {
+export function BotControl({ status, botType, title, description }: BotControlProps) {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
   const botActionMutation = useMutation({
     mutationFn: async (action: 'start' | 'stop') => {
-      const response = await apiRequest('POST', `/api/bot/${action}`);
-      return response.json();
+      if (botType) {
+        // Use dual bot API for independent control
+        const response = await apiRequest('POST', `/api/bot/${botType}/${action}`);
+        return response.json();
+      } else {
+        // Legacy API for backward compatibility
+        const response = await apiRequest('POST', `/api/bot/${action}`);
+        return response.json();
+      }
     },
     onSuccess: (data, action) => {
       queryClient.invalidateQueries({ queryKey: ['/api/bot/status'] });
+      const botName = botType ? `${botType.charAt(0).toUpperCase() + botType.slice(1)} bot` : 'Bot';
       toast({
-        title: action === 'start' ? "Bot Started" : "Bot Stopped",
+        title: action === 'start' ? `${botName} Started` : `${botName} Stopped`,
         description: data.message,
       });
     },
@@ -77,7 +89,7 @@ export function BotControl({ status }: BotControlProps) {
         <CardTitle className="flex items-center justify-between">
           <span className="flex items-center gap-2">
             <Activity className="h-5 w-5" />
-            Trading Bot Control
+            {title || 'Trading Bot Control'}
           </span>
           <Badge 
             variant={status.isRunning ? "default" : "secondary"}
@@ -97,7 +109,10 @@ export function BotControl({ status }: BotControlProps) {
                 : "bg-gray-400"
             }`}></div>
             <span className="font-medium">
-              {status.isRunning ? "Bot is actively trading" : "Bot is offline"}
+              {status.isRunning ? 
+                (description ? `${description} - Active` : "Bot is actively trading") : 
+                (description ? `${description} - Offline` : "Bot is offline")
+              }
             </span>
           </div>
         </div>
