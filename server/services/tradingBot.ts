@@ -357,6 +357,11 @@ export class TradingBot extends EventEmitter {
         const klineData = await this.ccxtMarketData.getOHLCV(symbol, settings.timeframe, 200);
         
         if (klineData.length < 50) {
+          await this.log('WARN', `Insufficient market data for ${symbol} - skipping analysis`, { 
+            symbol,
+            dataPoints: klineData.length,
+            required: 50
+          });
           continue;
         }
 
@@ -466,7 +471,15 @@ export class TradingBot extends EventEmitter {
     for (const symbol of this.watchedSymbols.slice(0, 20)) { // Limit to top 20 for AI analysis
       try {
         const klineData = await this.ccxtMarketData.getOHLCV(symbol, settings.timeframe, 200);
-        if (klineData.length < 50) continue;
+        if (klineData.length < 50) {
+          await this.log('WARN', `Insufficient market data for ${symbol} - skipping AI analysis`, { 
+            symbol,
+            dataPoints: klineData.length,
+            required: 50,
+            phase: 'AI Data Collection'
+          });
+          continue;
+        }
 
         const { indicators } = TechnicalAnalysis.analyzeSymbol(klineData, settings);
         

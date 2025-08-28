@@ -205,31 +205,9 @@ export class CCXTMarketDataService {
     } catch (error) {
       console.error(`Error fetching OHLCV for ${symbol}:`, error);
       
-      // Generate mock OHLCV data for testing when API is blocked
-      const now = Date.now();
-      const mockData: OHLCV[] = [];
-      const basePrice = 50000; // Base price for generation
-      
-      for (let i = limit - 1; i >= 0; i--) {
-        const timestamp = now - (i * 15 * 60 * 1000); // 15min intervals
-        const randomChange = (Math.random() - 0.5) * 0.02; // 2% max change
-        const price = basePrice * (1 + randomChange);
-        const high = price * (1 + Math.random() * 0.01);
-        const low = price * (1 - Math.random() * 0.01);
-        const volume = Math.random() * 1000000;
-        
-        mockData.push({
-          timestamp,
-          open: price,
-          high,
-          low,
-          close: price,
-          volume
-        });
-      }
-      
-      console.log(`📊 Generated mock OHLCV data for ${symbol} (${mockData.length} candles)`);
-      return mockData;
+      // Return empty array when real data is not available
+      // Bot will skip analysis for this symbol
+      return [];
     }
   }
 

@@ -117,6 +117,7 @@ Key entities include:
 
 ```
 Changelog:
+- August 28, 2025. REMOVED: Mock data fallback - bot now only uses authentic market data from Bybit APIs
 - August 27, 2025. FIXED: CCXT URL encoding issues causing "Invalid URL" errors on production Ubuntu server
 - August 27, 2025. Enhanced DeepSeek AI service with intelligent fallback analysis when browser automation fails
 - August 27, 2025. Added robust error handling and retry logic for CCXT market data initialization
