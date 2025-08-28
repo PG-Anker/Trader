@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
+import { apiRequest } from '@/lib/queryClient';
 import { Bot, TrendingUp, TrendingDown, Brain, Settings } from 'lucide-react';
 
 interface TradingSettings {
@@ -51,15 +52,7 @@ export default function DualBotSettings() {
 
   const updateMutation = useMutation({
     mutationFn: async (updates: Partial<TradingSettings>) => {
-      const response = await fetch('/api/settings', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updates),
-      });
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || 'Failed to update settings');
-      }
+      const response = await apiRequest('PUT', '/api/settings', updates);
       return response.json();
     },
     onSuccess: () => {
