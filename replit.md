@@ -123,6 +123,8 @@ Changelog:
 - August 28, 2025. ENHANCED: Market-specific routing - spot bot uses spot market, leverage bot uses linear market for proper API access
 - August 28, 2025. VERIFIED: CCXT dual market system confirmed working on production Ubuntu server with successful Bybit API access
 - August 28, 2025. TESTED: Production server successfully fetches BTC/USDT data (10 and 100 candles) proving geographic blocking resolved
+- August 28, 2025. CONFIRMED: Dual market system working - spot market (5 candles) and linear market (5 candles) both successful
+- August 28, 2025. VALIDATED: Intelligent batching system operational - BTC/USDT, ETH/USDT, BNB/USDT all processed successfully with rate limiting
 - August 28, 2025. RESOLVED: All LSP diagnostics and type errors in CCXT integration for production stability
 - August 28, 2025. REMOVED: Mock data fallback system for production deployment - CCXT now returns empty arrays when API blocked for cleaner production environment
 - August 28, 2025. ENHANCED: build.sh script with comprehensive database preservation, user data backup/restore, and dual bot schema updates
