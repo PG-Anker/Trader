@@ -1,0 +1,988 @@
+(trader-env) pg@pg-To-be-filled-by-O-E-M:~/Trader$ NODE_ENV=production node dist/index.js
+10:28:28 AM [express] serving on port 5000
+Auth check - Session ID: espf8ddq... Sessions available: 0
+Invalid session: espf8ddq9bmmev54k3x
+10:28:30 AM [express] GET /api/bot/status 401 in 8ms :: {"message":"Invalid session"}
+Auth check - Session ID: espf8ddq... Sessions available: 0
+Invalid session: espf8ddq9bmmev54k3x
+10:28:30 AM [express] GET /api/auth/me 401 in 1ms :: {"message":"Invalid session"}
+Login attempt for username: admin
+Found user: admin ID: 1
+✅ Login successful for user: admin Session ID: ajuggerj...
+10:28:35 AM [express] POST /api/auth/login 200 in 56ms :: {"success":true,"user":{"id":1,"username":"…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:28:35 AM [express] GET /api/settings 200 in 5ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:28:35 AM [express] GET /api/bot/status 200 in 2ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:28:35 AM [express] GET /api/dashboard 200 in 5ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:28:35 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+[INFO] Trading bot started {}
+🔄 Initializing CCXT market data service...
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:28:40 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:28:45 AM [express] GET /api/bot/status 200 in 2ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:28:46 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:28:51 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:28:56 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:28:56 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:01 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:05 AM [express] GET /api/settings 200 in 3ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:06 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:06 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:06 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:11 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:16 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:16 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:21 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:26 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:26 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:31 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:35 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:36 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:36 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:36 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:41 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:46 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:46 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:51 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:56 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:29:56 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+✅ Loaded 510 USDT trading pairs
+Sample pairs: [
+  'BTC/USDT',  'ETH/USDT',
+  'XRP/USDT',  'DOT/USDT',
+  'XLM/USDT',  'LTC/USDT',
+  'DOGE/USDT', 'CHZ/USDT',
+  'AXS/USDT',  'MANA/USDT'
+]
+🔄 Fetching top trading pairs...
+📝 Using comprehensive USDT pairs list due to API limitations
+[INFO] Loaded 100 USDT trading pairs from CCXT {
+  totalPairs: 100,
+  samplePairs: [
+    'BTC/USDT',   'ETH/USDT',
+    'BNB/USDT',   'XRP/USDT',
+    'ADA/USDT',   'DOGE/USDT',
+    'MATIC/USDT', 'SOL/USDT',
+    'DOT/USDT',   'AVAX/USDT'
+  ]
+}
+[INFO] Paper trading mode - no API credentials needed for analysis {}
+[AI] 🤖 Initializing DeepSeek AI service for market analysis... {}
+Initializing DeepSeek AI service...
+Navigating to DeepSeek Chat...
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:30:01 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Page loaded, title: DeepSeek - Into the Unknown
+Page URL: https://chat.deepseek.com/sign_in
+Looking for chat input...
+Chat input found!
+DeepSeek AI service initialized successfully
+[AI] ✅ DeepSeek AI service initialized successfully - AI trading enabled {
+  aiEnabled: true,
+  service: 'DeepSeek Production',
+  mode: 'Real browser automation',
+  chatUrl: 'https://chat.deepseek.com/'
+}
+[INFO] Skipping WebSocket connection - using CCXT for market data {}
+[INFO] Trading bot initialization complete { watchedSymbols: 100, environment: 'mainnet' }
+10:30:04 AM [express] POST /api/bot/start 200 in 86009ms :: {"success":true,"message":"Trading bot st…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:30:04 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:30:05 AM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:30:06 AM [express] GET /api/dashboard 200 in 1ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: ajuggerj... Sessions available: 1
+Auth success for user: admin
+10:30:06 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+[SCAN] 🔄 Starting AI-Powered Analysis with DeepSeek - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'AI-Powered Analysis with DeepSeek',
+  aiEnabled: true,
+  timestamp: '2025-08-28T08:30:06.296Z'
+}
+[AI] 🤖 AI Trading Active - Collecting full market cycle data for DeepSeek analysis {
+  aiService: 'DeepSeek',
+  dataCollection: 'Full market cycle',
+  analysisType: 'Comprehensive AI analysis'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: true,
+  aiServiceReady: true,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+[AI] 📊 Starting full market cycle data collection for AI analysis { totalSymbols: 100, phase: 'Data Collection' }
+^C(trader-env) pg@pg-To-be-filled-by-O-E-M:~/Trader$ NODE_ENV=production node dist/index.js
+10:30:55 AM [express] serving on port 5000
+Auth check - Session ID: ajuggerj... Sessions available: 0
+Invalid session: ajuggerjc09mev56i95
+10:30:56 AM [express] GET /api/portfolio 401 in 7ms :: {"message":"Invalid session"}
+Auth check - Session ID: ajuggerj... Sessions available: 0
+Invalid session: ajuggerjc09mev56i95
+10:30:57 AM [express] GET /api/auth/me 401 in 1ms :: {"message":"Invalid session"}
+Login attempt for username: admin
+Found user: admin ID: 1
+✅ Login successful for user: admin Session ID: 7itmn7s2...
+10:31:04 AM [express] POST /api/auth/login 200 in 59ms :: {"success":true,"user":{"id":1,"username":"…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:04 AM [express] GET /api/settings 200 in 4ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:04 AM [express] GET /api/bot/status 200 in 3ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:04 AM [express] GET /api/dashboard 200 in 7ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:04 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:09 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:14 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:14 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+Received settings update request: {
+  usdtPerTrade: '100.00',
+  maxPositions: 10,
+  riskPerTrade: '2.50',
+  stopLoss: '3.00',
+  takeProfit: '6.00',
+  apiKey: '',
+  secretKey: '',
+  environment: 'mainnet',
+  spotPaperTrading: true,
+  leveragePaperTrading: true,
+  aiTradingEnabled: false,
+  rsiPeriod: 14,
+  rsiLow: 30,
+  rsiHigh: 70,
+  emaFast: 12,
+  emaSlow: 26,
+  macdSignal: 9,
+  adxPeriod: 14,
+  timeframe: '15m',
+  minConfidence: 75,
+  strategies: {
+    trendFollowing: true,
+    meanReversion: true,
+    breakoutTrading: true,
+    pullbackTrading: true
+  }
+}
+Validated settings data: {
+  userId: 1,
+  usdtPerTrade: '100.00',
+  maxPositions: 10,
+  riskPerTrade: '2.50',
+  stopLoss: '3.00',
+  takeProfit: '6.00',
+  apiKey: '',
+  secretKey: '',
+  environment: 'mainnet',
+  spotPaperTrading: true,
+  leveragePaperTrading: true,
+  rsiPeriod: 14,
+  rsiLow: 30,
+  rsiHigh: 70,
+  emaFast: 12,
+  emaSlow: 26,
+  macdSignal: 9,
+  adxPeriod: 14,
+  strategies: '{"trendFollowing":true,"meanReversion":true,"breakoutTrading":true,"pullbackTrading":true}',
+  aiTradingEnabled: false,
+  timeframe: '15m',
+  minConfidence: 75
+}
+10:31:18 AM [express] POST /api/settings 200 in 12ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","m…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:18 AM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:19 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:23 AM [express] GET /api/auth/me 304 in 1ms :: {"user":{"id":1,"username":"admin"}}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:23 AM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:23 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:23 AM [express] GET /api/dashboard 200 in 3ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:23 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:28 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+[INFO] Trading bot started {}
+🔄 Initializing CCXT market data service...
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:33 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:33 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:38 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:43 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:43 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:48 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:53 AM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:53 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:53 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:53 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:31:58 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:03 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:03 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:08 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:13 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:13 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:18 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:23 AM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:23 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:23 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:23 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:28 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:33 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:33 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:38 AM [express] GET /api/bot/status 200 in 2ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:43 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:43 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:48 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:53 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:53 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:53 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:53 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+✅ Loaded 510 USDT trading pairs
+Sample pairs: [
+  'BTC/USDT',  'ETH/USDT',
+  'XRP/USDT',  'DOT/USDT',
+  'XLM/USDT',  'LTC/USDT',
+  'DOGE/USDT', 'CHZ/USDT',
+  'AXS/USDT',  'MANA/USDT'
+]
+🔄 Fetching top trading pairs...
+📝 Using comprehensive USDT pairs list due to API limitations
+[INFO] Loaded 100 USDT trading pairs from CCXT {
+  totalPairs: 100,
+  samplePairs: [
+    'BTC/USDT',   'ETH/USDT',
+    'BNB/USDT',   'XRP/USDT',
+    'ADA/USDT',   'DOGE/USDT',
+    'MATIC/USDT', 'SOL/USDT',
+    'DOT/USDT',   'AVAX/USDT'
+  ]
+}
+[INFO] Paper trading mode - no API credentials needed for analysis {}
+[INFO] AI trading disabled - using technical analysis only {}
+[INFO] Skipping WebSocket connection - using CCXT for market data {}
+[INFO] Trading bot initialization complete { watchedSymbols: 100, environment: 'mainnet' }
+10:32:53 AM [express] POST /api/bot/start 200 in 81293ms :: {"success":true,"message":"Trading bot st…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:53 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T08:32:55.900Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:32:58 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:03 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:03 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[ANALYSIS] 📈 Analyzing BTC/USDT with technical indicators {
+  symbol: 'BTC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BTC/USDT technical analysis complete {
+  symbol: 'BTC/USDT',
+  rsi: '58.64',
+  macdCross: 'Bearish',
+  adx: '14.66',
+  signalsFound: 0
+}
+[INFO] BTC/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'BTC/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '58.64',
+  ema: undefined,
+  macd: '323.102325'
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:08 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:13 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:13 AM [express] GET /api/bot/status 200 in 2ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:18 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[ANALYSIS] 📈 Analyzing ETH/USDT with technical indicators {
+  symbol: 'ETH/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] ETH/USDT technical analysis complete {
+  symbol: 'ETH/USDT',
+  rsi: '52.90',
+  macdCross: 'Bullish',
+  adx: '41.38',
+  signalsFound: 0
+}
+[INFO] ETH/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'ETH/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '52.90',
+  ema: undefined,
+  macd: '16.718973'
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:23 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:23 AM [express] GET /api/dashboard 200 in 4ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:23 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T08:33:23.899Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:23 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:28 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[ANALYSIS] 📈 Analyzing BNB/USDT with technical indicators {
+  symbol: 'BNB/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BNB/USDT technical analysis complete {
+  symbol: 'BNB/USDT',
+  rsi: '62.50',
+  macdCross: 'Bearish',
+  adx: '30.28',
+  signalsFound: 0
+}
+[INFO] BNB/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BNB/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '62.50',
+  ema: undefined,
+  macd: '2.643094'
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:33 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:33 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:38 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[ANALYSIS] 📈 Analyzing BTC/USDT with technical indicators {
+  symbol: 'BTC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BTC/USDT technical analysis complete {
+  symbol: 'BTC/USDT',
+  rsi: '58.64',
+  macdCross: 'Bearish',
+  adx: '14.66',
+  signalsFound: 0
+}
+[INFO] BTC/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'BTC/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '58.64',
+  ema: undefined,
+  macd: '325.144490'
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:43 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:43 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:49 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[ANALYSIS] 📈 Analyzing XRP/USDT with technical indicators {
+  symbol: 'XRP/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] XRP/USDT technical analysis complete {
+  symbol: 'XRP/USDT',
+  rsi: '44.08',
+  macdCross: 'Bullish',
+  adx: '4.98',
+  signalsFound: 0
+}
+[INFO] XRP/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'XRP/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '44.08',
+  ema: undefined,
+  macd: '0.003983'
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:53 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:53 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:53 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T08:33:53.899Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:54 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:33:59 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[ANALYSIS] 📈 Analyzing ETH/USDT with technical indicators {
+  symbol: 'ETH/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] ETH/USDT technical analysis complete {
+  symbol: 'ETH/USDT',
+  rsi: '52.90',
+  macdCross: 'Bullish',
+  adx: '41.38',
+  signalsFound: 0
+}
+[INFO] ETH/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'ETH/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '52.90',
+  ema: undefined,
+  macd: '16.695839'
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:03 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:04 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:09 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[ANALYSIS] 📈 Analyzing ADA/USDT with technical indicators {
+  symbol: 'ADA/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] ADA/USDT technical analysis complete {
+  symbol: 'ADA/USDT',
+  rsi: '56.18',
+  macdCross: 'Bullish',
+  adx: '8.76',
+  signalsFound: 0
+}
+[INFO] ADA/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'ADA/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '56.18',
+  ema: undefined,
+  macd: '0.003200'
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:13 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:14 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:19 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[ANALYSIS] 📈 Analyzing BTC/USDT with technical indicators {
+  symbol: 'BTC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BTC/USDT technical analysis complete {
+  symbol: 'BTC/USDT',
+  rsi: '58.64',
+  macdCross: 'Bearish',
+  adx: '14.66',
+  signalsFound: 0
+}
+[INFO] BTC/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'BTC/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '58.64',
+  ema: undefined,
+  macd: '327.497767'
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:23 AM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:23 AM [express] GET /api/dashboard 200 in 1ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:23 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T08:34:23.899Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:24 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:29 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[ANALYSIS] 📈 Analyzing BNB/USDT with technical indicators {
+  symbol: 'BNB/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BNB/USDT technical analysis complete {
+  symbol: 'BNB/USDT',
+  rsi: '62.50',
+  macdCross: 'Bearish',
+  adx: '30.28',
+  signalsFound: 0
+}
+[INFO] BNB/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BNB/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '62.50',
+  ema: undefined,
+  macd: '2.595231'
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:33 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:34 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:39 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[ANALYSIS] 📈 Analyzing DOGE/USDT with technical indicators {
+  symbol: 'DOGE/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] DOGE/USDT technical analysis complete {
+  symbol: 'DOGE/USDT',
+  rsi: '59.36',
+  macdCross: 'Bullish',
+  adx: '19.03',
+  signalsFound: 0
+}
+[INFO] DOGE/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'DOGE/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '59.36',
+  ema: undefined,
+  macd: '0.000850'
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:43 AM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:44 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Error fetching OHLCV for MATIC/USDT: BadSymbol: bybit does not have market symbol MATIC/USDT
+    at bybit.market (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/base/Exchange.js:5701:15)
+    at bybit.fetchOHLCV (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/bybit.js:2584:29)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processTimers (node:internal/timers:520:9)
+    at async CCXTMarketDataService.getOHLCV (file:///home/pg/Trader/dist/index.js:1502:21)
+    at async TradingBot.runAnalysis (file:///home/pg/Trader/dist/index.js:1850:27)
+📊 Generated mock OHLCV data for MATIC/USDT (200 candles)
+[ANALYSIS] 📈 Analyzing MATIC/USDT with technical indicators {
+  symbol: 'MATIC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] MATIC/USDT technical analysis complete {
+  symbol: 'MATIC/USDT',
+  rsi: '48.67',
+  macdCross: 'Bullish',
+  adx: '3.32',
+  signalsFound: 0
+}
+[INFO] MATIC/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'MATIC/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '48.67',
+  ema: undefined,
+  macd: '56.233079'
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:49 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[ANALYSIS] 📈 Analyzing ETH/USDT with technical indicators {
+  symbol: 'ETH/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] ETH/USDT technical analysis complete {
+  symbol: 'ETH/USDT',
+  rsi: '52.90',
+  macdCross: 'Bullish',
+  adx: '41.38',
+  signalsFound: 0
+}
+[INFO] ETH/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'ETH/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '52.90',
+  ema: undefined,
+  macd: '16.664728'
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:53 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:53 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:53 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T08:34:53.899Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:54 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:34:59 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[ANALYSIS] 📈 Analyzing BTC/USDT with technical indicators {
+  symbol: 'BTC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BTC/USDT technical analysis complete {
+  symbol: 'BTC/USDT',
+  rsi: '58.64',
+  macdCross: 'Bearish',
+  adx: '14.66',
+  signalsFound: 0
+}
+[INFO] BTC/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'BTC/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '58.64',
+  ema: undefined,
+  macd: '328.965573'
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:35:03 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:35:04 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:35:09 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[ANALYSIS] 📈 Analyzing XRP/USDT with technical indicators {
+  symbol: 'XRP/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] XRP/USDT technical analysis complete {
+  symbol: 'XRP/USDT',
+  rsi: '44.08',
+  macdCross: 'Bullish',
+  adx: '4.98',
+  signalsFound: 0
+}
+[INFO] XRP/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'XRP/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '44.08',
+  ema: undefined,
+  macd: '0.003959'
+}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:35:13 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:35:14 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: 7itmn7s2... Sessions available: 1
+Auth success for user: admin
+10:35:19 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
