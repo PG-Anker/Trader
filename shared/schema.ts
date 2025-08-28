@@ -11,91 +11,93 @@ export const users = sqliteTable("users", {
 
 export const tradingSettings = sqliteTable("trading_settings", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  userId: integer("user_id").notNull(),
-  usdtPerTrade: text("usdt_per_trade").notNull().default("100"),
-  maxPositions: integer("max_positions").notNull().default(10),
-  riskPerTrade: text("risk_per_trade").notNull().default("2.5"),
-  stopLoss: text("stop_loss").notNull().default("3.0"),
-  takeProfit: text("take_profit").notNull().default("6.0"),
-  apiKey: text("api_key"),
-  secretKey: text("secret_key"),
+  userId: integer("userId").notNull(),
+  usdtPerTrade: text("usdtPerTrade").notNull().default("100"),
+  maxPositions: integer("maxPositions").notNull().default(10),
+  riskPerTrade: text("riskPerTrade").notNull().default("2.5"),
+  stopLoss: text("stopLoss").notNull().default("3.0"),
+  takeProfit: text("takeProfit").notNull().default("6.0"),
+  apiKey: text("apiKey"),
+  secretKey: text("secretKey"),
   environment: text("environment").notNull().default("mainnet"),
-  spotPaperTrading: integer("spot_paper_trading", { mode: "boolean" }).notNull().default(true),
-  leveragePaperTrading: integer("leverage_paper_trading", { mode: "boolean" }).notNull().default(true),
-  rsiPeriod: integer("rsi_period").notNull().default(14),
-  rsiLow: integer("rsi_low").notNull().default(30),
-  rsiHigh: integer("rsi_high").notNull().default(70),
-  emaFast: integer("ema_fast").notNull().default(12),
-  emaSlow: integer("ema_slow").notNull().default(26),
-  macdSignal: integer("macd_signal").notNull().default(9),
-  adxPeriod: integer("adx_period").notNull().default(14),
-  spotStrategies: text("spot_strategies").notNull().default('{"trendFollowing": true, "meanReversion": true, "breakoutTrading": false, "pullbackTrading": true}'),
-  leverageStrategies: text("leverage_strategies").notNull().default('{"trendFollowing": true, "meanReversion": false, "breakoutTrading": true, "pullbackTrading": false}'),
-  spotAiTradingEnabled: integer("spot_ai_trading_enabled", { mode: "boolean" }).notNull().default(false),
-  leverageAiTradingEnabled: integer("leverage_ai_trading_enabled", { mode: "boolean" }).notNull().default(false),
+  spotPaperTrading: integer("spotPaperTrading", { mode: "boolean" }).notNull().default(true),
+  leveragePaperTrading: integer("leveragePaperTrading", { mode: "boolean" }).notNull().default(true),
+  rsiPeriod: integer("rsiPeriod").notNull().default(14),
+  rsiLow: integer("rsiLow").notNull().default(30),
+  rsiHigh: integer("rsiHigh").notNull().default(70),
+  emaFast: integer("emaFast").notNull().default(12),
+  emaSlow: integer("emaSlow").notNull().default(26),
+  macdSignal: integer("macdSignal").notNull().default(9),
+  adxPeriod: integer("adxPeriod").notNull().default(14),
+  strategies: text("strategies").notNull().default('{"trendFollowing": true, "meanReversion": true, "breakoutTrading": false, "pullbackTrading": true}'),
+  spotStrategies: text("spotStrategies").notNull().default('{"trendFollowing": true, "meanReversion": true, "breakoutTrading": false, "pullbackTrading": true}'),
+  leverageStrategies: text("leverageStrategies").notNull().default('{"trendFollowing": true, "meanReversion": false, "breakoutTrading": true, "pullbackTrading": false}'),
+  aiTradingEnabled: integer("aiTradingEnabled", { mode: "boolean" }).notNull().default(false),
+  spotAiTradingEnabled: integer("spotAiTradingEnabled", { mode: "boolean" }).notNull().default(false),
+  leverageAiTradingEnabled: integer("leverageAiTradingEnabled", { mode: "boolean" }).notNull().default(false),
   timeframe: text("timeframe").notNull().default("15m"),
-  minConfidence: integer("min_confidence").notNull().default(75),
-  updatedAt: text("updated_at").default("CURRENT_TIMESTAMP"),
+  minConfidence: integer("minConfidence").notNull().default(75),
+  updatedAt: text("updatedAt").default("CURRENT_TIMESTAMP"),
 });
 
 export const positions = sqliteTable("positions", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  userId: integer("user_id").notNull(),
+  userId: integer("userId").notNull(),
   symbol: text("symbol").notNull(),
   direction: text("direction").notNull(), // "UP", "LONG", "SHORT"
-  entryPrice: text("entry_price").notNull(),
-  currentPrice: text("current_price").notNull(),
-  stopLoss: text("stop_loss"),
-  takeProfit: text("take_profit"),
+  entryPrice: text("entryPrice").notNull(),
+  currentPrice: text("currentPrice").notNull(),
+  stopLoss: text("stopLoss"),
+  takeProfit: text("takeProfit"),
   quantity: text("quantity").notNull(),
   pnl: text("pnl").notNull().default("0"),
   status: text("status").notNull().default("open"), // "open", "closed"
-  tradingMode: text("trading_mode").notNull(), // "spot", "leverage"
+  tradingMode: text("tradingMode").notNull(), // "spot", "leverage"
   strategy: text("strategy"),
-  isPaperTrade: integer("is_paper_trade", { mode: "boolean" }).notNull().default(true),
-  bybitOrderId: text("bybit_order_id"),
-  createdAt: text("created_at").default("CURRENT_TIMESTAMP"),
-  closedAt: text("closed_at"),
+  isPaperTrade: integer("isPaperTrade", { mode: "boolean" }).notNull().default(true),
+  bybitOrderId: text("bybitOrderId"),
+  createdAt: text("createdAt").default("CURRENT_TIMESTAMP"),
+  closedAt: text("closedAt"),
 });
 
 export const trades = sqliteTable("trades", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  userId: integer("user_id").notNull(),
+  userId: integer("userId").notNull(),
   symbol: text("symbol").notNull(),
   direction: text("direction").notNull(),
-  entryPrice: text("entry_price").notNull(),
-  exitPrice: text("exit_price").notNull(),
+  entryPrice: text("entryPrice").notNull(),
+  exitPrice: text("exitPrice").notNull(),
   quantity: text("quantity").notNull(),
   pnl: text("pnl").notNull(),
   duration: integer("duration"), // in minutes
   strategy: text("strategy"),
-  tradingMode: text("trading_mode").notNull(),
-  isPaperTrade: integer("is_paper_trade", { mode: "boolean" }).notNull().default(true),
-  entryTime: text("entry_time").notNull(),
-  exitTime: text("exit_time").notNull(),
-  createdAt: text("created_at").default("CURRENT_TIMESTAMP"),
+  tradingMode: text("tradingMode").notNull(),
+  isPaperTrade: integer("isPaperTrade", { mode: "boolean" }).notNull().default(true),
+  entryTime: text("entryTime").notNull(),
+  exitTime: text("exitTime").notNull(),
+  createdAt: text("createdAt").default("CURRENT_TIMESTAMP"),
 });
 
 export const botLogs = sqliteTable("bot_logs", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  userId: integer("user_id").notNull(),
+  userId: integer("userId").notNull(),
   level: text("level").notNull(), // "INFO", "ANALYSIS", "SIGNAL", "TRADE", "ORDER", "MONITOR", "SCAN", "STRATEGY"
   message: text("message").notNull(),
   symbol: text("symbol"),
   data: text("data"), // JSON string
-  createdAt: text("created_at").default("CURRENT_TIMESTAMP"),
+  createdAt: text("createdAt").default("CURRENT_TIMESTAMP"),
 });
 
 export const systemErrors = sqliteTable("system_errors", {
   id: integer("id").primaryKey({ autoIncrement: true }),
-  userId: integer("user_id").notNull(),
+  userId: integer("userId").notNull(),
   level: text("level").notNull(), // "INFO", "WARNING", "ERROR"
   title: text("title").notNull(),
   message: text("message").notNull(),
   source: text("source"),
-  errorCode: text("error_code"),
+  errorCode: text("errorCode"),
   resolved: integer("resolved", { mode: "boolean" }).notNull().default(false),
-  createdAt: text("created_at").default("CURRENT_TIMESTAMP"),
+  createdAt: text("createdAt").default("CURRENT_TIMESTAMP"),
 });
 
 export const marketData = sqliteTable("market_data", {
@@ -103,7 +105,7 @@ export const marketData = sqliteTable("market_data", {
   symbol: text("symbol").notNull(),
   price: text("price").notNull(),
   volume: text("volume").notNull(),
-  change24h: text("change_24h"),
+  change24h: text("change24h"),
   timestamp: text("timestamp").default("CURRENT_TIMESTAMP"),
 });
 
