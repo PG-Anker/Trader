@@ -1,6 +1,27 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+// Only import Vite in development
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+let setupVite: any, serveStatic: any, log: any;
+
+if (isDevelopment) {
+  const viteModule = await import("./vite.js");
+  setupVite = viteModule.setupVite;
+  serveStatic = viteModule.serveStatic;
+  log = viteModule.log;
+} else {
+  // Production log function
+  log = (message: string, source = "express") => {
+    const formattedTime = new Date().toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit", 
+      second: "2-digit",
+      hour12: true,
+    });
+    console.log(`${formattedTime} [${source}] ${message}`);
+  };
+}
 
 const app = express();
 app.use(express.json());
@@ -61,13 +82,22 @@ app.use((req, res, next) => {
     throw err;
   });
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
-  if (app.get("env") === "development") {
+  // Setup Vite in development or serve static files in production
+  if (isDevelopment) {
     await setupVite(app, server);
   } else {
-    serveStatic(app);
+    // Production static file serving
+    import('path').then(path => {
+      import('express').then(express => {
+        // Serve static files from dist/public
+        app.use(express.static(path.join(process.cwd(), 'dist', 'public')));
+        
+        // Catch-all handler for SPA routing
+        app.get('*', (req, res) => {
+          res.sendFile(path.join(process.cwd(), 'dist', 'public', 'index.html'));
+        });
+      });
+    });
   }
 
   // Use PORT environment variable or default to 5000 for development

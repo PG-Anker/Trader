@@ -1,0 +1,52 @@
+(trader-env) pg@pg-To-be-filled-by-O-E-M:~/Trader$ NODE_ENV=production node dist/index.js
+node:internal/modules/package_json_reader:256
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'vite' imported from /home/pg/Trader/dist/index.js
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:256:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:854:18)
+    at defaultResolve (node:internal/modules/esm/resolve:984:11)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:780:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:704:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:687:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:305:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:137:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.16.0
+(trader-env) pg@pg-To-be-filled-by-O-E-M:~/Trader$ npm run build
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+sh: 1: vite: not found
+(trader-env) pg@pg-To-be-filled-by-O-E-M:~/Trader$ ./build.sh
+🚀 Building CryptoBot Pro for production...
+📦 Backing up existing database...
+💾 Exporting existing user data...
+📦 Installing dependencies...
+npm warn config only Use `--omit=dev` to omit dev dependencies from the install.
+
+added 576 packages, and audited 577 packages in 8s
+
+68 packages are looking for funding
+  run `npm fund` for details
+
+4 low severity vulnerabilities
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+Some issues need review, and may require choosing
+a different dependency.
+
+Run `npm audit` for details.
+🔨 Building project...
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+sh: 1: vite: not found

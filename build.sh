@@ -19,9 +19,9 @@ if [ -f "database.sqlite" ]; then
     sqlite3 database.sqlite.backup ".dump bot_logs" > logs_backup.sql 2>/dev/null || true
 fi
 
-# Install dependencies
-echo "📦 Installing dependencies..."
-npm ci --only=production
+# Install all dependencies (including dev dependencies for build)
+echo "📦 Installing all dependencies for build..."
+npm ci
 
 # Build the project
 echo "🔨 Building project..."
@@ -31,6 +31,16 @@ npm run build
 echo "📁 Copying static files..."
 mkdir -p dist/public
 cp -r client/dist/* dist/public/
+
+# Build server bundle for production
+echo "🔧 Building server bundle..."
+npx esbuild server/index.ts --bundle --platform=node --target=node20 --outfile=dist/server.js --external:better-sqlite3 --external:bcrypt --external:puppeteer --external:ws --format=esm
+
+# Copy package files and install production dependencies
+echo "📦 Setting up production node_modules..."
+cp package.json dist/
+cp package-lock.json dist/
+cd dist && npm ci --only=production && cd ..
 
 # Set up database with schema updates
 echo "🗄️ Setting up database with latest schema..."
@@ -87,4 +97,6 @@ db.close();
 
 echo "✅ Build complete! Ready for deployment."
 echo "💡 Database preserved with all user data and settings"
-echo "🚀 To start: npm start"
+echo "🚀 To start production: NODE_ENV=production node dist/server.js"
+echo "📁 Production files are in dist/ directory"
+echo "🔧 If admin login fails: node reset-admin.js"
