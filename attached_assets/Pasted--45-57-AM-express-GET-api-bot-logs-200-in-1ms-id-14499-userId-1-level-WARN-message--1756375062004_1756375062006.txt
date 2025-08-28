@@ -1,0 +1,2268 @@
+:45:57 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14499,"userId":1,"level":"WARN","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:45:59 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14499,"userId":1,"level":"WARN","message…
+[ANALYSIS] 📈 Analyzing XRP/USDT with technical indicators {
+  symbol: 'XRP/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] XRP/USDT technical analysis complete {
+  symbol: 'XRP/USDT',
+  rsi: '31.65',
+  macdCross: 'Bearish',
+  adx: '20.16',
+  signalsFound: 0
+}
+[INFO] XRP/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'XRP/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '31.65',
+  ema: undefined,
+  macd: '0.002432'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:00 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14502,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:01 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T09:46:01.294Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:02 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14504,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:03 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14504,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:04 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:05 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14504,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:06 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14504,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:06 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:07 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:08 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:08 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14504,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:09 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14504,"userId":1,"level":"CONFIG","messa…
+[ANALYSIS] 📈 Analyzing ETH/USDT with technical indicators {
+  symbol: 'ETH/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] ETH/USDT technical analysis complete {
+  symbol: 'ETH/USDT',
+  rsi: '44.48',
+  macdCross: 'Bearish',
+  adx: '44.95',
+  signalsFound: 0
+}
+[INFO] ETH/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'ETH/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '44.48',
+  ema: undefined,
+  macd: '12.618509'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:11 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14507,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:11 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:12 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14507,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:14 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14507,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:46:14 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14507,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:14 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:15 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14507,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:16 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:17 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14507,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:18 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14507,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing BTC/USDT with technical indicators {
+  symbol: 'BTC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BTC/USDT technical analysis complete {
+  symbol: 'BTC/USDT',
+  rsi: '33.90',
+  macdCross: 'Bearish',
+  adx: '17.49',
+  signalsFound: 0
+}
+[INFO] BTC/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BTC/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '33.90',
+  ema: undefined,
+  macd: '202.208872'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:20 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14510,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:21 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14510,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:21 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:23 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14510,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:24 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14510,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:24 AM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:26 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14510,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:26 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:27 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14510,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:29 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14510,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing BNB/USDT with technical indicators {
+  symbol: 'BNB/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BNB/USDT technical analysis complete {
+  symbol: 'BNB/USDT',
+  rsi: '38.85',
+  macdCross: 'Bearish',
+  adx: '13.04',
+  signalsFound: 0
+}
+[INFO] BNB/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BNB/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '38.85',
+  ema: undefined,
+  macd: '1.151120'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:30 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14513,"userId":1,"level":"INFO","message…
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T09:46:31.294Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:31 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:32 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14515,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:33 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14515,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:34 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:35 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14515,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:36 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14515,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:36 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:38 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:38 AM [express] GET /api/dashboard 200 in 1ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:38 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14515,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:39 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14515,"userId":1,"level":"CONFIG","messa…
+[ANALYSIS] 📈 Analyzing MANA/USDT with technical indicators {
+  symbol: 'MANA/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] MANA/USDT technical analysis complete {
+  symbol: 'MANA/USDT',
+  rsi: '44.09',
+  macdCross: 'Bearish',
+  adx: '10.26',
+  signalsFound: 0
+}
+[INFO] MANA/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'MANA/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '44.09',
+  ema: undefined,
+  macd: '0.000181'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:41 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14518,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:41 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:42 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14518,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:44 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14518,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:44 AM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:45 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14518,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:46 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:47 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14518,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:48 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14518,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing BTC/USDT with technical indicators {
+  symbol: 'BTC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BTC/USDT technical analysis complete {
+  symbol: 'BTC/USDT',
+  rsi: '33.90',
+  macdCross: 'Bearish',
+  adx: '17.26',
+  signalsFound: 0
+}
+[INFO] BTC/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BTC/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '33.90',
+  ema: undefined,
+  macd: '201.546764'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:50 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14521,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:51 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14521,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:51 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:53 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14521,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:54 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14521,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:54 AM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:56 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14521,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:56 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:57 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14521,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:46:59 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14521,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing SOL/USDT with technical indicators {
+  symbol: 'SOL/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] SOL/USDT technical analysis complete {
+  symbol: 'SOL/USDT',
+  rsi: '31.83',
+  macdCross: 'Bearish',
+  adx: '40.88',
+  signalsFound: 0
+}
+[INFO] SOL/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'SOL/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '31.83',
+  ema: undefined,
+  macd: '1.265003'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:00 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14524,"userId":1,"level":"INFO","message…
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T09:47:01.294Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:01 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:02 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14526,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:03 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14526,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:04 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:05 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14526,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:05 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:05 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:05 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14526,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:05 AM [express] GET /api/dashboard 200 in 1ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:05 AM [express] GET /api/settings 200 in 0ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:05 AM [express] GET /api/bot-logs 200 in 0ms :: [{"id":14526,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:06 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14526,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:06 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:07 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14526,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:08 AM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:08 AM [express] GET /api/dashboard 200 in 1ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:08 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14526,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:08 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14526,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:09 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14526,"userId":1,"level":"CONFIG","messa…
+[ANALYSIS] 📈 Analyzing ETH/USDT with technical indicators {
+  symbol: 'ETH/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] ETH/USDT technical analysis complete {
+  symbol: 'ETH/USDT',
+  rsi: '44.48',
+  macdCross: 'Bearish',
+  adx: '44.95',
+  signalsFound: 0
+}
+[INFO] ETH/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'ETH/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '44.48',
+  ema: undefined,
+  macd: '12.367227'
+}
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:10 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:10 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14529,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:11 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14529,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:11 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14529,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:11 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:12 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14529,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:13 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14529,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:14 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14529,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:14 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14529,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:14 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:15 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14529,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:15 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:15 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:16 AM [express] GET /api/bot-logs 200 in 0ms :: [{"id":14529,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:16 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:17 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14529,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:17 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14529,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:18 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14529,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:19 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14529,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing ADA/USDT with technical indicators {
+  symbol: 'ADA/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] ADA/USDT technical analysis complete {
+  symbol: 'ADA/USDT',
+  rsi: '44.31',
+  macdCross: 'Bearish',
+  adx: '12.45',
+  signalsFound: 0
+}
+[INFO] ADA/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'ADA/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '44.31',
+  ema: undefined,
+  macd: '0.001432'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:20 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14532,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:20 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:20 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14532,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:21 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14532,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:21 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:22 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14532,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:23 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14532,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:23 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14532,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:24 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14532,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:24 AM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:25 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:25 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:25 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14532,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:26 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14532,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:26 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14532,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:26 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:27 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14532,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:28 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14532,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:29 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14532,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:29 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14532,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing BNB/USDT with technical indicators {
+  symbol: 'BNB/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BNB/USDT technical analysis complete {
+  symbol: 'BNB/USDT',
+  rsi: '38.85',
+  macdCross: 'Bearish',
+  adx: '13.04',
+  signalsFound: 0
+}
+[INFO] BNB/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BNB/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '38.85',
+  ema: undefined,
+  macd: '1.127188'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:30 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14535,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:30 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T09:47:31.293Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:31 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14537,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:31 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:32 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14537,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:32 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14537,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:33 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14537,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:34 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14537,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:34 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:35 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14537,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:35 AM [express] GET /api/settings 200 in 0ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:35 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:35 AM [express] GET /api/dashboard 200 in 1ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:35 AM [express] GET /api/bot-logs 200 in 0ms :: [{"id":14537,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:35 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:36 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14537,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:36 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:38 AM [express] GET /api/settings 200 in 0ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:38 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:38 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14537,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:38 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14537,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:39 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14537,"userId":1,"level":"CONFIG","messa…
+[ANALYSIS] 📈 Analyzing BTC/USDT with technical indicators {
+  symbol: 'BTC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BTC/USDT technical analysis complete {
+  symbol: 'BTC/USDT',
+  rsi: '33.90',
+  macdCross: 'Bearish',
+  adx: '16.93',
+  signalsFound: 0
+}
+[INFO] BTC/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BTC/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '33.90',
+  ema: undefined,
+  macd: '201.315425'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:41 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14540,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:41 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14540,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:41 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:42 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14540,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:44 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14540,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:44 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14540,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:44 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:45 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14540,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:46 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:47 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14540,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:47 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14540,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:48 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14540,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing XRP/USDT with technical indicators {
+  symbol: 'XRP/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] XRP/USDT technical analysis complete {
+  symbol: 'XRP/USDT',
+  rsi: '31.65',
+  macdCross: 'Bearish',
+  adx: '20.65',
+  signalsFound: 0
+}
+[INFO] XRP/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'XRP/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '31.65',
+  ema: undefined,
+  macd: '0.002232'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:50 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14543,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:50 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14543,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:51 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14543,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:51 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:53 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14543,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:53 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14543,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:54 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14543,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:54 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:56 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14543,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:56 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14543,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:56 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:57 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14543,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:47:59 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14543,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:47:59 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14543,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing ETH/USDT with technical indicators {
+  symbol: 'ETH/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] ETH/USDT technical analysis complete {
+  symbol: 'ETH/USDT',
+  rsi: '44.48',
+  macdCross: 'Bearish',
+  adx: '44.73',
+  signalsFound: 0
+}
+[INFO] ETH/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'ETH/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '44.48',
+  ema: undefined,
+  macd: '12.257142'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:00 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14546,"userId":1,"level":"INFO","message…
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T09:48:01.294Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:01 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:02 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14548,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:48:02 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14548,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:03 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14548,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:04 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:05 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14548,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:48:05 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14548,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:06 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14548,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:06 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:08 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:08 AM [express] GET /api/dashboard 200 in 1ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:08 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14548,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:48:08 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14548,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:09 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14548,"userId":1,"level":"CONFIG","messa…
+[ANALYSIS] 📈 Analyzing DOT/USDT with technical indicators {
+  symbol: 'DOT/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] DOT/USDT technical analysis complete {
+  symbol: 'DOT/USDT',
+  rsi: '44.20',
+  macdCross: 'Bearish',
+  adx: '31.09',
+  signalsFound: 0
+}
+[INFO] DOT/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'DOT/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '44.20',
+  ema: undefined,
+  macd: '0.016974'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:11 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14551,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:48:11 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14551,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:11 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:12 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14551,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:14 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14551,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:48:14 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14551,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:14 AM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:15 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14551,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:16 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:17 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14551,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:48:17 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14551,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:18 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14551,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing BTC/USDT with technical indicators {
+  symbol: 'BTC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BTC/USDT technical analysis complete {
+  symbol: 'BTC/USDT',
+  rsi: '33.90',
+  macdCross: 'Bearish',
+  adx: '15.05',
+  signalsFound: 0
+}
+[INFO] BTC/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BTC/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '33.90',
+  ema: undefined,
+  macd: '199.999185'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:20 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14554,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:48:20 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14554,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:21 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14554,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:21 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:23 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14554,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:48:23 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14554,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:24 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14554,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:24 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:26 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14554,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:48:26 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14554,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:26 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:27 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14554,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:29 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14554,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing DOGE/USDT with technical indicators {
+  symbol: 'DOGE/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] DOGE/USDT technical analysis complete {
+  symbol: 'DOGE/USDT',
+  rsi: '41.73',
+  macdCross: 'Bearish',
+  adx: '13.65',
+  signalsFound: 0
+}
+[INFO] DOGE/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'DOGE/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '41.73',
+  ema: undefined,
+  macd: '0.000377'
+}
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:48:29 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14557,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:30 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14557,"userId":1,"level":"INFO","message…
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T09:48:31.294Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:31 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Error fetching OHLCV for MATIC/USDT: BadSymbol: bybit does not have market symbol MATIC/USDT
+    at bybit.market (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/base/Exchange.js:5701:15)
+    at bybit.fetchOHLCV (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/bybit.js:2584:29)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processTimers (node:internal/timers:520:9)
+    at async CCXTMarketDataService.getOHLCV (file:///home/pg/Trader/dist/index.js:1502:21)
+    at async TradingBot.runAnalysis (file:///home/pg/Trader/dist/index.js:1830:27)
+[WARN] Insufficient market data for MATIC/USDT - skipping analysis { symbol: 'MATIC/USDT', dataPoints: 0, required: 50 }
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:32 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14560,"userId":1,"level":"WARN","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:48:32 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14560,"userId":1,"level":"WARN","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:33 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14560,"userId":1,"level":"WARN","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:34 AM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:35 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14560,"userId":1,"level":"WARN","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:48:35 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14560,"userId":1,"level":"WARN","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:36 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14560,"userId":1,"level":"WARN","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:36 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:38 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:38 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:38 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14560,"userId":1,"level":"WARN","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:39 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14560,"userId":1,"level":"WARN","message…
+[ANALYSIS] 📈 Analyzing BNB/USDT with technical indicators {
+  symbol: 'BNB/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BNB/USDT technical analysis complete {
+  symbol: 'BNB/USDT',
+  rsi: '38.85',
+  macdCross: 'Bearish',
+  adx: '15.25',
+  signalsFound: 0
+}
+[INFO] BNB/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BNB/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '38.85',
+  ema: undefined,
+  macd: '1.103256'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:41 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14563,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:41 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:42 AM [express] GET /api/bot-logs 200 in 3ms :: [{"id":14563,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:44 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14563,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:44 AM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:45 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14563,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:46 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:47 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14563,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:48 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14563,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing ETH/USDT with technical indicators {
+  symbol: 'ETH/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] ETH/USDT technical analysis complete {
+  symbol: 'ETH/USDT',
+  rsi: '44.48',
+  macdCross: 'Bearish',
+  adx: '41.09',
+  signalsFound: 0
+}
+[INFO] ETH/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'ETH/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '44.48',
+  ema: undefined,
+  macd: '12.067284'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:50 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14566,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:51 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14566,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:51 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:53 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14566,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:54 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14566,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:54 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:56 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14566,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:56 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:57 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14566,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:48:59 AM [express] GET /api/bot-logs 200 in 3ms :: [{"id":14566,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing BTC/USDT with technical indicators {
+  symbol: 'BTC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BTC/USDT technical analysis complete {
+  symbol: 'BTC/USDT',
+  rsi: '33.90',
+  macdCross: 'Bearish',
+  adx: '15.05',
+  signalsFound: 0
+}
+[INFO] BTC/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BTC/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '33.90',
+  ema: undefined,
+  macd: '199.999185'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:00 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14569,"userId":1,"level":"INFO","message…
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T09:49:01.294Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:01 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:02 AM [express] GET /api/bot-logs 200 in 3ms :: [{"id":14571,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:03 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14571,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:04 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:05 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14571,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:06 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14571,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:06 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:08 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:08 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:08 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14571,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:09 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14571,"userId":1,"level":"CONFIG","messa…
+[ANALYSIS] 📈 Analyzing AVAX/USDT with technical indicators {
+  symbol: 'AVAX/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] AVAX/USDT technical analysis complete {
+  symbol: 'AVAX/USDT',
+  rsi: '53.59',
+  macdCross: 'Bearish',
+  adx: '6.11',
+  signalsFound: 0
+}
+[INFO] AVAX/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'AVAX/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '53.59',
+  ema: undefined,
+  macd: '-0.014064'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:11 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14574,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:11 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:12 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14574,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:14 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14574,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:49:14 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14574,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:14 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:15 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14574,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:16 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:17 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14574,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:18 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14574,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing XRP/USDT with technical indicators {
+  symbol: 'XRP/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] XRP/USDT technical analysis complete {
+  symbol: 'XRP/USDT',
+  rsi: '31.65',
+  macdCross: 'Bearish',
+  adx: '20.65',
+  signalsFound: 0
+}
+[INFO] XRP/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'XRP/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '31.65',
+  ema: undefined,
+  macd: '0.002120'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:20 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14577,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:21 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14577,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:21 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:23 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14577,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:24 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14577,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:24 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:26 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14577,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:26 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:27 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14577,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:29 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14577,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing ADA/USDT with technical indicators {
+  symbol: 'ADA/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] ADA/USDT technical analysis complete {
+  symbol: 'ADA/USDT',
+  rsi: '44.31',
+  macdCross: 'Bearish',
+  adx: '11.19',
+  signalsFound: 0
+}
+[INFO] ADA/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'ADA/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '44.31',
+  ema: undefined,
+  macd: '0.001384'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:30 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14580,"userId":1,"level":"INFO","message…
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T09:49:31.294Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:31 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:32 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14582,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:33 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14582,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:34 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:35 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14582,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:36 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14582,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:36 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:38 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:38 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:38 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14582,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:39 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14582,"userId":1,"level":"CONFIG","messa…
+[ANALYSIS] 📈 Analyzing BTC/USDT with technical indicators {
+  symbol: 'BTC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BTC/USDT technical analysis complete {
+  symbol: 'BTC/USDT',
+  rsi: '33.90',
+  macdCross: 'Bearish',
+  adx: '13.13',
+  signalsFound: 0
+}
+[INFO] BTC/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BTC/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '33.90',
+  ema: undefined,
+  macd: '198.619128'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:41 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14585,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:41 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:42 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14585,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:44 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14585,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:44 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:45 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14585,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:46 AM [express] GET /api/bot/status 200 in 3ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:47 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14585,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:48 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14585,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing ETH/USDT with technical indicators {
+  symbol: 'ETH/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] ETH/USDT technical analysis complete {
+  symbol: 'ETH/USDT',
+  rsi: '44.48',
+  macdCross: 'Bearish',
+  adx: '40.42',
+  signalsFound: 0
+}
+[INFO] ETH/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'ETH/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '44.48',
+  ema: undefined,
+  macd: '12.013039'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:50 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14588,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:51 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14588,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:51 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:53 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14588,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:54 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14588,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:54 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:56 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14588,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:56 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:57 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14588,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:49:59 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14588,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing BNB/USDT with technical indicators {
+  symbol: 'BNB/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BNB/USDT technical analysis complete {
+  symbol: 'BNB/USDT',
+  rsi: '38.85',
+  macdCross: 'Bearish',
+  adx: '20.00',
+  signalsFound: 0
+}
+[INFO] BNB/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BNB/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '38.85',
+  ema: undefined,
+  macd: '1.055393'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:00 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14591,"userId":1,"level":"INFO","message…
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T09:50:01.294Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:01 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:02 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14593,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:03 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14593,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:04 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:05 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14593,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:06 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14593,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:06 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:08 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:08 AM [express] GET /api/dashboard 200 in 1ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:08 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14593,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:09 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14593,"userId":1,"level":"CONFIG","messa…
+[ANALYSIS] 📈 Analyzing UNI/USDT with technical indicators {
+  symbol: 'UNI/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] UNI/USDT technical analysis complete {
+  symbol: 'UNI/USDT',
+  rsi: '41.91',
+  macdCross: 'Bearish',
+  adx: '19.23',
+  signalsFound: 0
+}
+[INFO] UNI/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'UNI/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '41.91',
+  ema: undefined,
+  macd: '0.011379'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:11 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14596,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:11 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:12 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14596,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:14 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14596,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:50:14 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14596,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:14 AM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:15 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14596,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:16 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:17 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14596,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:18 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14596,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing BTC/USDT with technical indicators {
+  symbol: 'BTC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BTC/USDT technical analysis complete {
+  symbol: 'BTC/USDT',
+  rsi: '33.90',
+  macdCross: 'Bearish',
+  adx: '12.28',
+  signalsFound: 0
+}
+[INFO] BTC/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BTC/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '33.90',
+  ema: undefined,
+  macd: '199.943345'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:20 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14599,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:21 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14599,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:21 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:23 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14599,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:24 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14599,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:24 AM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:26 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14599,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:26 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:27 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14599,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:29 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14599,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing SOL/USDT with technical indicators {
+  symbol: 'SOL/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] SOL/USDT technical analysis complete {
+  symbol: 'SOL/USDT',
+  rsi: '31.83',
+  macdCross: 'Bearish',
+  adx: '29.67',
+  signalsFound: 0
+}
+[INFO] SOL/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'SOL/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '31.83',
+  ema: undefined,
+  macd: '1.241072'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:30 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14602,"userId":1,"level":"INFO","message…
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T09:50:31.294Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:31 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:32 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14604,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:33 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14604,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:34 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:35 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14604,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:36 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14604,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:36 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:38 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:38 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:38 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14604,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:39 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14604,"userId":1,"level":"CONFIG","messa…
+[ANALYSIS] 📈 Analyzing ETH/USDT with technical indicators {
+  symbol: 'ETH/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] ETH/USDT technical analysis complete {
+  symbol: 'ETH/USDT',
+  rsi: '44.48',
+  macdCross: 'Bearish',
+  adx: '40.42',
+  signalsFound: 0
+}
+[INFO] ETH/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'ETH/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '44.48',
+  ema: undefined,
+  macd: '12.204492'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:41 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14607,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:41 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:42 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14607,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:44 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14607,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:44 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:45 AM [express] GET /api/bot-logs 200 in 3ms :: [{"id":14607,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:46 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:47 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14607,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:48 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14607,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing XRP/USDT with technical indicators {
+  symbol: 'XRP/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] XRP/USDT technical analysis complete {
+  symbol: 'XRP/USDT',
+  rsi: '31.65',
+  macdCross: 'Bearish',
+  adx: '20.65',
+  signalsFound: 0
+}
+[INFO] XRP/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'XRP/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '31.65',
+  ema: undefined,
+  macd: '0.002272'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:50 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14610,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:51 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14610,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:51 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:53 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14610,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:54 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14610,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:54 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:56 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14610,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:56 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:57 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14610,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:50:59 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14610,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing BTC/USDT with technical indicators {
+  symbol: 'BTC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BTC/USDT technical analysis complete {
+  symbol: 'BTC/USDT',
+  rsi: '33.90',
+  macdCross: 'Bearish',
+  adx: '12.28',
+  signalsFound: 0
+}
+[INFO] BTC/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BTC/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '33.90',
+  ema: undefined,
+  macd: '200.924541'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:00 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14613,"userId":1,"level":"INFO","message…
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T09:51:01.294Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:01 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:02 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14615,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:03 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14615,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:04 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:05 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14615,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:06 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14615,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:06 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:08 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:08 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:08 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14615,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:09 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14615,"userId":1,"level":"CONFIG","messa…
+[ANALYSIS] 📈 Analyzing BNB/USDT with technical indicators {
+  symbol: 'BNB/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BNB/USDT technical analysis complete {
+  symbol: 'BNB/USDT',
+  rsi: '38.85',
+  macdCross: 'Bearish',
+  adx: '20.00',
+  signalsFound: 0
+}
+[INFO] BNB/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BNB/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '38.85',
+  ema: undefined,
+  macd: '1.071347'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:11 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14618,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:11 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:12 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14618,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:14 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14618,"userId":1,"level":"INFO","message…
+Auth check - Session ID: izai7oxc... Sessions available: 2
+Auth success for user: admin
+11:51:14 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14618,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:14 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:15 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14618,"userId":1,"level":"INFO","message…
+^AAuth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:16 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:17 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14618,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:18 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14618,"userId":1,"level":"INFO","message…
+[ANALYSIS] 📈 Analyzing DOGE/USDT with technical indicators {
+  symbol: 'DOGE/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] DOGE/USDT technical analysis complete {
+  symbol: 'DOGE/USDT',
+  rsi: '41.73',
+  macdCross: 'Bearish',
+  adx: '10.39',
+  signalsFound: 0
+}
+[INFO] DOGE/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'DOGE/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '41.73',
+  ema: undefined,
+  macd: '0.000398'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:20 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14621,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:21 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14621,"userId":1,"level":"INFO","message…
+Error fetching OHLCV for MATIC/USDT: BadSymbol: bybit does not have market symbol MATIC/USDT
+    at bybit.market (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/base/Exchange.js:5701:15)
+    at bybit.fetchOHLCV (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/bybit.js:2584:29)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processTimers (node:internal/timers:520:9)
+    at async CCXTMarketDataService.getOHLCV (file:///home/pg/Trader/dist/index.js:1502:21)
+    at async TradingBot.runAnalysis (file:///home/pg/Trader/dist/index.js:1830:27)
+[WARN] Insufficient market data for MATIC/USDT - skipping analysis { symbol: 'MATIC/USDT', dataPoints: 0, required: 50 }
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:21 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:23 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14622,"userId":1,"level":"WARN","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:24 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14622,"userId":1,"level":"WARN","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:24 AM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+^AAuth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:26 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14622,"userId":1,"level":"WARN","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:26 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:27 AM [express] GET /api/bot-logs 200 in 3ms :: [{"id":14622,"userId":1,"level":"WARN","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:29 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14622,"userId":1,"level":"WARN","message…
+[ANALYSIS] 📈 Analyzing ETH/USDT with technical indicators {
+  symbol: 'ETH/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] ETH/USDT technical analysis complete {
+  symbol: 'ETH/USDT',
+  rsi: '44.48',
+  macdCross: 'Bearish',
+  adx: '40.42',
+  signalsFound: 0
+}
+[INFO] ETH/USDT: ❌ No signal | Score: 1.0 (avoid) {
+  symbol: 'ETH/USDT',
+  score: 1,
+  category: 'avoid',
+  signals: 0,
+  rsi: '44.48',
+  ema: undefined,
+  macd: '12.307398'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:30 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14625,"userId":1,"level":"INFO","message…
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: false,
+  timestamp: '2025-08-28T09:51:31.295Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: false,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:31 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:32 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14627,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:33 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14627,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:34 AM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:35 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14627,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:36 AM [express] GET /api/bot-logs 200 in 4ms :: [{"id":14627,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:36 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:38 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:38 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:38 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14627,"userId":1,"level":"CONFIG","messa…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:39 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14627,"userId":1,"level":"CONFIG","messa…
+[ANALYSIS] 📈 Analyzing BTC/USDT with technical indicators {
+  symbol: 'BTC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BTC/USDT technical analysis complete {
+  symbol: 'BTC/USDT',
+  rsi: '33.90',
+  macdCross: 'Bearish',
+  adx: '12.28',
+  signalsFound: 0
+}
+[INFO] BTC/USDT: ❌ No signal | Score: 1.5 (avoid) {
+  symbol: 'BTC/USDT',
+  score: 1.5,
+  category: 'avoid',
+  signals: 0,
+  rsi: '33.90',
+  ema: undefined,
+  macd: '200.916564'
+}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:41 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14630,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:41 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:42 AM [express] GET /api/bot-logs 200 in 2ms :: [{"id":14630,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:44 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14630,"userId":1,"level":"INFO","message…
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:44 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: a0q9mf6f... Sessions available: 2
+Auth success for user: admin
+11:51:45 AM [express] GET /api/bot-logs 200 in 1ms :: [{"id":14630,"userId":1,"level":"INFO","message…
+^C
+(trader-env) pg@pg-To-be-filled-by-O-E-M:~/Trader$ 

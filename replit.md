@@ -117,6 +117,8 @@ Key entities include:
 
 ```
 Changelog:
+- August 28, 2025. FIXED: Bot analysis speed - now processes all 100 symbols in each cycle instead of 4-6 symbols every 30 seconds
+- August 28, 2025. OPTIMIZED: Analysis timing - reduced delays and switched to self-scheduling cycles for better efficiency
 - August 28, 2025. REMOVED: Mock data fallback - bot now only uses authentic market data from Bybit APIs
 - August 27, 2025. FIXED: CCXT URL encoding issues causing "Invalid URL" errors on production Ubuntu server
 - August 27, 2025. Enhanced DeepSeek AI service with intelligent fallback analysis when browser automation fails

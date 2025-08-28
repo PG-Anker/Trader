@@ -124,20 +124,13 @@ export class TradingBot extends EventEmitter {
     }
 
     // Start analysis loop
-    this.analysisInterval = setInterval(() => {
-      this.runAnalysis().catch(error => {
-        console.error('Analysis error:', error);
-        this.logError('Analysis Error', error.message, 'TradingBot.runAnalysis');
-      });
-    }, 30000); // Run every 30 seconds
+    // Start continuous analysis - will self-schedule after completion
+    this.runAnalysis().catch(error => {
+      console.error('Analysis error:', error);
+      this.logError('Analysis Error', error.message, 'TradingBot.runAnalysis');
+    });
 
-    // Run initial analysis immediately
-    setTimeout(() => {
-      this.runAnalysis().catch(error => {
-        console.error('Initial analysis error:', error);
-        this.logError('Initial Analysis Error', error.message, 'TradingBot.start');
-      });
-    }, 2000);
+
 
     // Start position monitoring
     this.monitoringInterval = setInterval(() => {
@@ -158,10 +151,7 @@ export class TradingBot extends EventEmitter {
 
     this.isRunning = false;
 
-    if (this.analysisInterval) {
-      clearInterval(this.analysisInterval);
-      this.analysisInterval = null;
-    }
+    // Analysis now self-schedules, no interval to clear
 
     if (this.monitoringInterval) {
       clearInterval(this.monitoringInterval);
@@ -436,16 +426,16 @@ export class TradingBot extends EventEmitter {
           });
         }
 
-        // Small delay between symbol analysis
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        // Small delay between symbol analysis (reduced for faster processing)
+        await new Promise(resolve => setTimeout(resolve, 200));
 
       } catch (error) {
         console.error(`Analysis error for ${symbol}:`, error);
         await this.logError('Analysis Error', `Failed to analyze ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`, 'TradingBot.runAnalysis');
       }
       
-      // Add delay between analyses to avoid rate limits
-      await new Promise(resolve => setTimeout(resolve, 100));
+      // Add delay between analyses to avoid rate limits (reduced)
+      await new Promise(resolve => setTimeout(resolve, 50));
     }
 
     await this.log('SCAN', `✅ Market scan cycle complete - comprehensive USDT analysis finished`, {
@@ -457,6 +447,16 @@ export class TradingBot extends EventEmitter {
     });
     
     console.log(`[SCAN] Market scan complete - ${opportunitiesFound} opportunities found`, { symbolsAnalyzed: this.watchedSymbols.length, opportunitiesFound });
+    
+    // Schedule next analysis cycle after completing all symbols
+    if (this.isRunning) {
+      setTimeout(() => {
+        this.runAnalysis().catch(error => {
+          console.error('Analysis error:', error);
+          this.logError('Analysis Error', error.message, 'TradingBot.runAnalysis');
+        });
+      }, 30 * 60 * 1000); // Wait 30 minutes before next full cycle
+    }
   }
 
   private async runAICycleAnalysis(settings: any): Promise<void> {
