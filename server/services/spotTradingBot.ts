@@ -37,6 +37,7 @@ export class SpotTradingBot extends EventEmitter {
     this.isRunning = true;
 
     await this.log('INFO', 'Spot trading bot started', {});
+    console.log(`🔍 DEBUG: Attempting to log for userId ${userId}`);
 
     // Initialize CCXT market data and fetch all USDT pairs
     try {
@@ -479,10 +480,13 @@ export class SpotTradingBot extends EventEmitter {
         data: JSON.stringify(data)
       };
 
-      await this.storage.createBotLog(logEntry);
+      console.log(`🔍 DEBUG: Creating bot log for userId ${this.userId}:`, logEntry.message);
+      const savedLog = await this.storage.createBotLog(logEntry);
+      console.log(`✅ DEBUG: Bot log saved with ID ${savedLog.id}`);
       this.emit('spot_log', logEntry);
     } catch (error) {
-      console.error('Failed to save spot bot log:', error);
+      console.error('❌ Failed to save spot bot log:', error);
+      console.error('Log entry details:', { userId: this.userId, level, message });
     }
   }
 

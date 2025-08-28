@@ -479,10 +479,13 @@ export class LeverageTradingBot extends EventEmitter {
         data: JSON.stringify(data)
       };
 
-      await this.storage.createBotLog(logEntry);
+      console.log(`🔍 DEBUG: Creating leverage bot log for userId ${this.userId}:`, logEntry.message);
+      const savedLog = await this.storage.createBotLog(logEntry);
+      console.log(`✅ DEBUG: Leverage bot log saved with ID ${savedLog.id}`);
       this.emit('leverage_log', logEntry);
     } catch (error) {
-      console.error('Failed to save leverage bot log:', error);
+      console.error('❌ Failed to save leverage bot log:', error);
+      console.error('Log entry details:', { userId: this.userId, level, message });
     }
   }
 
