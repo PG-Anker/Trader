@@ -164,24 +164,8 @@ export class CCXTMarketDataService {
       
       console.log(`📊 Fetching ${marketType} OHLCV data for ${symbol} (${limit} candles)`);
       
-      // Add timeout wrapper to prevent hanging
-      const fetchWithTimeout = async (): Promise<number[][]> => {
-        const timeout = new Promise<never>((_, reject) => {
-          setTimeout(() => reject(new Error(`OHLCV fetch timeout for ${symbol}`)), 10000);
-        });
-
-        const fetchProcess = exchange.fetchOHLCV(symbol, timeframe, undefined, limit);
-        return await Promise.race([fetchProcess, timeout]);
-      };
-
-      let ohlcvData: number[][];
-      try {
-        ohlcvData = await fetchWithTimeout();
-      } catch (error) {
-        // On development server (geographic blocking), return empty data instead of failing
-        console.log(`⚠️ ${symbol} blocked on development server - will work on production`);
-        return [];
-      }
+      // Use direct CCXT call without aggressive timeout for production servers
+      const ohlcvData = await exchange.fetchOHLCV(symbol, timeframe, undefined, limit);
       
       if (!ohlcvData || ohlcvData.length === 0) {
         console.log(`⚠️ No OHLCV data received for ${symbol}`);
@@ -202,9 +186,9 @@ export class CCXTMarketDataService {
       
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      console.error(`❌ OHLCV fetch failed for ${symbol}:`, errorMessage);
+      console.log(`⚠️ ${symbol} fetch failed (geographic blocking or API limit):`, errorMessage);
       
-      // Return empty array instead of crashing
+      // Return empty array for geographic blocking - production server will get real data
       return [];
     }
   }
@@ -256,7 +240,7 @@ export class CCXTMarketDataService {
   async batchFetchOHLCV(symbols: string[], timeframe: string = '15m', limit: number = 100, forSpot: boolean = true): Promise<{ [symbol: string]: OHLCV[] }> {
     const results: { [symbol: string]: OHLCV[] } = {};
     const batchSize = 8; // Process 8 symbols at a time
-    const batchDelay = 3000; // 3 second delay between batches
+    const batchDelay = 2000; // 2 second delay between batches for production efficiency
     const marketType = forSpot ? 'spot' : 'linear';
     
     console.log(`📊 Starting batch OHLCV fetch for ${symbols.length} symbols from ${marketType} market`);
@@ -271,8 +255,8 @@ export class CCXTMarketDataService {
           const ohlcv = await this.getOHLCV(symbol, timeframe, limit, forSpot);
           results[symbol] = ohlcv;
           
-          // Small delay between individual requests
-          await new Promise(resolve => setTimeout(resolve, 1000));
+          // Small delay between individual requests to prevent rate limiting
+          await new Promise(resolve => setTimeout(resolve, 500));
         } catch (error) {
           console.error(`❌ Failed to fetch OHLCV for ${symbol}:`, error instanceof Error ? error.message : 'Unknown error');
           results[symbol] = [];

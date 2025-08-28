@@ -1,0 +1,324 @@
+✅ Login successful for user: admin Session ID: bzenkxy8...
+2:31:59 PM [express] POST /api/auth/login 200 in 56ms :: {"success":true,"user":{"id":1,"username":"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:31:59 PM [express] GET /api/settings 200 in 3ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:31:59 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:31:59 PM [express] GET /api/dashboard 200 in 5ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:31:59 PM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+🔄 Initializing CCXT market data service with dual clients...
+✅ Using 122 comprehensive USDT pairs covering all major cryptocurrencies
+✅ CCXT service initialized with verified production symbols
+📊 Starting batch OHLCV fetch for 120 symbols from spot market
+🔄 Processing batch 1/15: BTC/USDT, ETH/USDT, BNB/USDT, XRP/USDT, ADA/USDT, SOL/USDT, DOGE/USDT, DOT/USDT
+📊 Fetching spot OHLCV data for BTC/USDT (200 candles)
+2:32:01 PM [express] POST /api/bot/spot/start 200 in 67ms :: {"success":true,"message":"Spot trading…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:01 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+🔄 Initializing CCXT market data service with dual clients...
+✅ Using 122 comprehensive USDT pairs covering all major cryptocurrencies
+✅ CCXT service initialized with verified production symbols
+📊 Starting batch OHLCV fetch for 120 symbols from linear market
+🔄 Processing batch 1/15: BTC/USDT, ETH/USDT, BNB/USDT, XRP/USDT, ADA/USDT, SOL/USDT, DOGE/USDT, DOT/USDT
+📊 Fetching linear OHLCV data for BTC/USDT (200 candles)
+2:32:02 PM [express] POST /api/bot/leverage/start 200 in 66ms :: {"success":true,"message":"Leverage…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:02 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:03 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:05 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:06 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:07 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:08 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:09 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:09 PM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:11 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+❌ OHLCV fetch failed for BTC/USDT: OHLCV fetch timeout for BTC/USDT
+❌ OHLCV fetch failed for BTC/USDT: OHLCV fetch timeout for BTC/USDT
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:12 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:12 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+📊 Fetching spot OHLCV data for ETH/USDT (200 candles)
+📊 Fetching linear OHLCV data for ETH/USDT (200 candles)
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:14 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:15 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:17 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:17 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:18 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:19 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:20 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:21 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:22 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+❌ OHLCV fetch failed for ETH/USDT: OHLCV fetch timeout for ETH/USDT
+❌ OHLCV fetch failed for ETH/USDT: OHLCV fetch timeout for ETH/USDT
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:23 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+📊 Fetching spot OHLCV data for BNB/USDT (200 candles)
+📊 Fetching linear OHLCV data for BNB/USDT (200 candles)
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:24 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:26 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:27 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:27 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:29 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:29 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:29 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:29 PM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:30 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:32 PM [express] GET /api/bot/status 200 in 3ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:32 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:33 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+❌ OHLCV fetch failed for BNB/USDT: OHLCV fetch timeout for BNB/USDT
+❌ OHLCV fetch failed for BNB/USDT: OHLCV fetch timeout for BNB/USDT
+📊 Fetching spot OHLCV data for XRP/USDT (200 candles)
+📊 Fetching linear OHLCV data for XRP/USDT (200 candles)
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:35 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:36 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:37 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:38 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:39 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:39 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:41 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:42 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:42 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:44 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+❌ OHLCV fetch failed for XRP/USDT: OHLCV fetch timeout for XRP/USDT
+❌ OHLCV fetch failed for XRP/USDT: OHLCV fetch timeout for XRP/USDT
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:45 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+📊 Fetching spot OHLCV data for ADA/USDT (200 candles)
+📊 Fetching linear OHLCV data for ADA/USDT (200 candles)
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:47 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:47 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:48 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:49 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:50 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:51 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:52 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:53 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:54 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+❌ OHLCV fetch failed for ADA/USDT: OHLCV fetch timeout for ADA/USDT
+❌ OHLCV fetch failed for ADA/USDT: OHLCV fetch timeout for ADA/USDT
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:56 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+📊 Fetching spot OHLCV data for SOL/USDT (200 candles)
+📊 Fetching linear OHLCV data for SOL/USDT (200 candles)
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:57 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:57 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:59 PM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:59 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:59 PM [express] GET /api/dashboard 200 in 3ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:32:59 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:00 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:02 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:02 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:03 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:05 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:06 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+❌ OHLCV fetch failed for SOL/USDT: OHLCV fetch timeout for SOL/USDT
+❌ OHLCV fetch failed for SOL/USDT: OHLCV fetch timeout for SOL/USDT
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:07 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+📊 Fetching spot OHLCV data for DOGE/USDT (200 candles)
+📊 Fetching linear OHLCV data for DOGE/USDT (200 candles)
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:08 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:09 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:09 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:11 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:12 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:12 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:14 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:15 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:17 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:17 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+❌ OHLCV fetch failed for DOGE/USDT: OHLCV fetch timeout for DOGE/USDT
+❌ OHLCV fetch failed for DOGE/USDT: OHLCV fetch timeout for DOGE/USDT
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:18 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+📊 Fetching spot OHLCV data for DOT/USDT (200 candles)
+📊 Fetching linear OHLCV data for DOT/USDT (200 candles)
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:19 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:20 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:21 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:22 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:23 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:24 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:26 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:27 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: bzenkxy8... Sessions available: 1
+Auth success for user: admin
+2:33:27 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1094,"userId":1,"level":"INFO","message"…
