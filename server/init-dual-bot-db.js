@@ -85,9 +85,12 @@ try {
       exitPrice TEXT NOT NULL,
       quantity TEXT NOT NULL,
       pnl TEXT NOT NULL,
+      duration INTEGER,
       strategy TEXT,
       tradingMode TEXT NOT NULL,
       isPaperTrade INTEGER NOT NULL DEFAULT 1,
+      entryTime TEXT NOT NULL DEFAULT "CURRENT_TIMESTAMP",
+      exitTime TEXT NOT NULL DEFAULT "CURRENT_TIMESTAMP",
       createdAt TEXT DEFAULT "CURRENT_TIMESTAMP"
     )
   `);
@@ -99,6 +102,7 @@ try {
       userId INTEGER NOT NULL,
       level TEXT NOT NULL,
       message TEXT NOT NULL,
+      symbol TEXT,
       data TEXT,
       createdAt TEXT DEFAULT "CURRENT_TIMESTAMP"
     )
@@ -113,6 +117,7 @@ try {
       title TEXT NOT NULL,
       message TEXT NOT NULL,
       source TEXT,
+      errorCode TEXT,
       resolved INTEGER NOT NULL DEFAULT 0,
       createdAt TEXT DEFAULT "CURRENT_TIMESTAMP"
     )
@@ -124,8 +129,8 @@ try {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       symbol TEXT NOT NULL UNIQUE,
       price TEXT NOT NULL,
+      volume TEXT NOT NULL,
       change24h TEXT,
-      volume24h TEXT,
       timestamp TEXT DEFAULT "CURRENT_TIMESTAMP"
     )
   `);
