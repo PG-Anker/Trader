@@ -470,16 +470,20 @@ export class SpotTradingBot extends EventEmitter {
   }
 
   private async log(level: string, message: string, data: any): Promise<void> {
-    const logEntry: InsertBotLog = {
-      userId: this.userId,
-      level,
-      message: `[SPOT] ${message}`,
-      symbol: data?.symbol || null,
-      data: JSON.stringify(data)
-    };
+    try {
+      const logEntry: InsertBotLog = {
+        userId: this.userId,
+        level,
+        message: `[SPOT] ${message}`,
+        symbol: data?.symbol || null,
+        data: JSON.stringify(data)
+      };
 
-    await this.storage.createBotLog(logEntry);
-    this.emit('log', logEntry);
+      await this.storage.createBotLog(logEntry);
+      this.emit('spot_log', logEntry);
+    } catch (error) {
+      console.error('Failed to save spot bot log:', error);
+    }
   }
 
   private async logError(title: string, message: string, source: string): Promise<void> {
