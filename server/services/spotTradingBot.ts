@@ -41,7 +41,7 @@ export class SpotTradingBot extends EventEmitter {
     // Initialize CCXT market data and fetch all USDT pairs
     try {
       await this.ccxtMarketData.initialize();
-      this.watchedSymbols = await this.ccxtMarketData.getTopTradingPairs(100); // Get top 100 pairs by volume
+      this.watchedSymbols = await this.ccxtMarketData.getAllUSDTPairs(); // Get all available USDT pairs
       
       await this.log('INFO', `Loaded ${this.watchedSymbols.length} USDT trading pairs for spot trading`, {
         totalPairs: this.watchedSymbols.length,
@@ -51,7 +51,7 @@ export class SpotTradingBot extends EventEmitter {
       await this.logError('CCXT Initialization Error', `Failed to load market pairs: ${error instanceof Error ? error.message : 'Unknown error'}`, 'SpotTradingBot.start');
       
       // Fallback to comprehensive hardcoded symbols if CCXT fails
-      this.watchedSymbols = await this.ccxtMarketData.getTopTradingPairs(100);
+      this.watchedSymbols = await this.ccxtMarketData.getAllUSDTPairs();
       
       await this.log('INFO', 'Using fallback symbol list for spot trading', { symbolCount: this.watchedSymbols.length });
     }

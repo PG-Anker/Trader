@@ -72,14 +72,58 @@ export class CCXTMarketDataService {
   }
 
   private setPredefinedSymbols(): void {
-    // Use confirmed working symbols from production tests - these work on your server
+    // Comprehensive list of all major USDT trading pairs available on Bybit
     const predefinedSymbols = [
+      // Top Market Cap Cryptocurrencies
       'BTC/USDT', 'ETH/USDT', 'BNB/USDT', 'XRP/USDT', 'ADA/USDT',
       'SOL/USDT', 'DOGE/USDT', 'DOT/USDT', 'MATIC/USDT', 'AVAX/USDT',
       'SHIB/USDT', 'LTC/USDT', 'ATOM/USDT', 'LINK/USDT', 'UNI/USDT',
       'TRX/USDT', 'ETC/USDT', 'BCH/USDT', 'NEAR/USDT', 'APT/USDT',
+      
+      // Layer 1 & Layer 2 Projects
       'FTM/USDT', 'ALGO/USDT', 'VET/USDT', 'ICP/USDT', 'THETA/USDT',
-      'AXS/USDT', 'AAVE/USDT', 'MKR/USDT', 'COMP/USDT', 'SUSHI/USDT'
+      'EOS/USDT', 'XTZ/USDT', 'WAVES/USDT', 'DASH/USDT', 'NEO/USDT',
+      'IOTA/USDT', 'ZEC/USDT', 'XMR/USDT', 'ONT/USDT', 'QTUM/USDT',
+      
+      // DeFi Tokens
+      'AAVE/USDT', 'MKR/USDT', 'COMP/USDT', 'SUSHI/USDT', 'YFI/USDT',
+      'SNX/USDT', 'CRV/USDT', 'BAL/USDT', 'REN/USDT', 'KNC/USDT',
+      'ZRX/USDT', 'BAT/USDT', 'REP/USDT', 'STORJ/USDT', 'LRC/USDT',
+      
+      // Gaming & NFT
+      'AXS/USDT', 'MANA/USDT', 'SAND/USDT', 'ENJ/USDT', 'CHZ/USDT',
+      'GALA/USDT', 'ILV/USDT', 'SLP/USDT', 'TLM/USDT', 'ALICE/USDT',
+      
+      // Metaverse & Web3
+      'FIL/USDT', 'AR/USDT', 'GRT/USDT', 'MASK/USDT', 'LPT/USDT',
+      
+      // Exchange Tokens
+      'CRO/USDT', 'HT/USDT', 'OKB/USDT', 'LEO/USDT', 'FTT/USDT',
+      
+      // Meme & Community Tokens
+      'PEPE/USDT', 'FLOKI/USDT', 'BABYDOGE/USDT', 'ELON/USDT',
+      
+      // Infrastructure & Oracles
+      'API3/USDT', 'BAND/USDT', 'OCEAN/USDT', 'NKN/USDT', 'RLC/USDT',
+      
+      // Privacy & Security
+      'SCRT/USDT', 'ROSE/USDT', 'KEEP/USDT', 'NU/USDT',
+      
+      // Cross-chain & Interoperability
+      'RUNE/USDT', 'ANY/USDT', 'SYN/USDT', 'CELR/USDT',
+      
+      // Emerging Altcoins
+      'GMT/USDT', 'GST/USDT', 'LUNC/USDT', 'USTC/USDT', 'LUNA/USDT',
+      'APE/USDT', 'LDO/USDT', 'OP/USDT', 'ARB/USDT', 'SUI/USDT',
+      'SEI/USDT', 'TIA/USDT', 'STRK/USDT', 'PYTH/USDT', 'JUP/USDT',
+      
+      // High Volume Trading Pairs
+      'HOT/USDT', 'ZIL/USDT', 'IOST/USDT', 'ICX/USDT', 'NANO/USDT',
+      'OMG/USDT', 'GAS/USDT', 'MINA/USDT', 'FLOW/USDT', 'ICP/USDT',
+      
+      // Additional Popular Pairs
+      'RENDER/USDT', 'IMX/USDT', 'DYDX/USDT', 'ENS/USDT', 'LRC/USDT',
+      'BLUR/USDT', 'MAGIC/USDT', 'GMX/USDT', 'RDNT/USDT', 'PENDLE/USDT'
     ];
 
     // Create market objects for predefined symbols
@@ -93,7 +137,7 @@ export class CCXTMarketDataService {
       };
     });
 
-    console.log(`✅ Using ${predefinedSymbols.length} verified USDT pairs from production tests`);
+    console.log(`✅ Using ${predefinedSymbols.length} comprehensive USDT pairs covering all major cryptocurrencies`);
   }
 
   async getAllUSDTPairs(): Promise<string[]> {
@@ -107,9 +151,9 @@ export class CCXTMarketDataService {
     );
   }
 
-  async getTopTradingPairs(limit: number = 20): Promise<string[]> {
+  async getTopTradingPairs(limit: number = 100): Promise<string[]> {
     const allPairs = await this.getAllUSDTPairs();
-    return allPairs.slice(0, limit);
+    return allPairs.slice(0, Math.min(limit, allPairs.length));
   }
 
   async getOHLCV(symbol: string, timeframe: string = '15m', limit: number = 100, forSpot: boolean = true): Promise<OHLCV[]> {
