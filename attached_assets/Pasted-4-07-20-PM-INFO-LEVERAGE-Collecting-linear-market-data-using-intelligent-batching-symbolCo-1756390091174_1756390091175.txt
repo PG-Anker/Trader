@@ -1,0 +1,79 @@
+4:07:20 PM
+INFO
+[LEVERAGE] 📊 Collecting linear market data using intelligent batching...
+{"symbolCount":120,"phase":"Linear Data Collection","marketType":"linear"}
+4:07:20 PM
+CONFIG
+[LEVERAGE] Leverage trading strategies configuration
+{"strategies":{"trendFollowing":true,"meanReversion":true,"breakoutTrading":true,"pullbackTrading":true},"timeframe":"15m","minConfidence":75,"enabledStrategies":["trendFollowing","meanReversion","breakoutTrading","pullbackTrading"]}
+4:07:20 PM
+CONFIG
+[LEVERAGE] Current leverage bot configuration
+{"leverageAiTradingEnabled":false,"aiServiceReady":false,"paperTrading":true,"riskManagement":{"usdtPerTrade":"100","maxPositions":10,"stopLoss":"3.0","takeProfit":"6.0"}}
+4:07:20 PM
+SCAN
+[LEVERAGE] 🔄 Starting Technical Leverage Analysis Only - analyzing 120 symbols
+{"symbolCount":120,"tradingMode":"LEVERAGE PAPER TRADING","analysisMode":"Technical Leverage Analysis Only","aiEnabled":false,"timestamp":"2025-08-28T14:04:38.651Z"}
+4:07:20 PM
+INFO
+[LEVERAGE] Leverage trading bot initialization complete
+{"watchedSymbols":120,"environment":"mainnet"}
+4:07:20 PM
+INFO
+[LEVERAGE] Skipping WebSocket connection - using CCXT for leverage market data
+{}
+4:07:20 PM
+INFO
+[LEVERAGE] AI leverage trading disabled - using technical analysis only
+{}
+4:07:20 PM
+INFO
+[LEVERAGE] Leverage paper trading mode - no API credentials needed for analysis
+{}
+4:07:20 PM
+INFO
+[LEVERAGE] Loaded 120 USDT trading pairs for leverage trading
+{"totalPairs":120,"samplePairs":["BTC/USDT","ETH/USDT","BNB/USDT","XRP/USDT","ADA/USDT","SOL/USDT","DOGE/USDT","DOT/USDT","MATIC/USDT","AVAX/USDT"]}
+4:07:20 PM
+INFO
+[LEVERAGE] Leverage trading bot started
+{}
+4:07:20 PM
+INFO
+[SPOT] 📊 Collecting spot market data using intelligent batching...
+{"symbolCount":120,"phase":"Spot Data Collection","marketType":"spot"}
+4:07:20 PM
+CONFIG
+[SPOT] Spot trading strategies configuration
+{"strategies":{"trendFollowing":true,"meanReversion":true,"breakoutTrading":true,"pullbackTrading":true},"timeframe":"15m","minConfidence":75,"enabledStrategies":["trendFollowing","meanReversion","breakoutTrading","pullbackTrading"]}
+4:07:20 PM
+CONFIG
+[SPOT] Current spot bot configuration
+{"spotAiTradingEnabled":false,"aiServiceReady":false,"paperTrading":true,"riskManagement":{"usdtPerTrade":"100","maxPositions":10,"stopLoss":"3.0","takeProfit":"6.0"}}
+4:07:20 PM
+SCAN
+[SPOT] 🔄 Starting Technical Spot Analysis Only - analyzing 120 symbols
+{"symbolCount":120,"tradingMode":"SPOT PAPER TRADING","analysisMode":"Technical Spot Analysis Only","aiEnabled":false,"timestamp":"2025-08-28T14:04:37.052Z"}
+4:07:20 PM
+INFO
+[SPOT] Spot trading bot initialization complete
+{"watchedSymbols":120,"environment":"mainnet"}
+4:07:20 PM
+INFO
+[SPOT] Skipping WebSocket connection - using CCXT for spot market data
+{}
+4:07:20 PM
+INFO
+[SPOT] AI spot trading disabled - using technical analysis only
+{}
+4:07:20 PM
+INFO
+[SPOT] Paper trading mode - no API credentials needed for analysis
+{}
+4:07:20 PM
+INFO
+[SPOT] Loaded 120 USDT trading pairs for spot trading
+{"totalPairs":120,"samplePairs":["BTC/USDT","ETH/USDT","BNB/USDT","XRP/USDT","ADA/USDT","SOL/USDT","DOGE/USDT","DOT/USDT","MATIC/USDT","AVAX/USDT"]}
+4:07:20 PM
+INFO
+[SPOT] Spot trading bot started
