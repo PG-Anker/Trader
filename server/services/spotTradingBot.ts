@@ -220,25 +220,20 @@ export class SpotTradingBot extends EventEmitter {
       marketType: 'spot'
     });
 
-    const batchResults = await this.ccxtMarketData.getBatchOHLCV(
+    const batchResults = await this.ccxtMarketData.batchFetchOHLCV(
       this.watchedSymbols, 
       settings.timeframe, 
       200, 
-      'spot' // Critical: use spot market for buy/sell trading
+      true // Critical: use spot market for buy/sell trading
     );
 
     const marketDataCollection = [];
-    for (const { symbol, data: klineDataRaw } of batchResults) {
+    for (const [symbol, klineDataRaw] of Object.entries(batchResults)) {
       try {
         // Convert OHLCV objects to number arrays
-        let klineData: number[][];
-        if (klineDataRaw.length > 0 && typeof klineDataRaw[0] === 'object') {
-          klineData = klineDataRaw.map((candle: any) => [
-            candle.timestamp, candle.open, candle.high, candle.low, candle.close, candle.volume
-          ]);
-        } else {
-          klineData = klineDataRaw as unknown as number[][];
-        }
+        const klineData: number[][] = (klineDataRaw as any[]).map((candle: any) => [
+          candle.timestamp, candle.open, candle.high, candle.low, candle.close, candle.volume
+        ]);
         
         if (klineData.length >= 50) {
           marketDataCollection.push({ symbol, klineData });
