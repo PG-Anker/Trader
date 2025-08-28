@@ -1,0 +1,1 @@
+import Database from "better-sqlite3"; const db = new Database("database.sqlite"); const recentLogs = db.prepare("SELECT level, message, createdAt FROM bot_logs WHERE userId = 1 ORDER BY id DESC LIMIT 3").all(); console.log("Latest 3 logs:"); recentLogs.forEach((log, i) => console.log(`${i+1}. [${log.level}] ${log.message} (${log.createdAt})`)); db.close();

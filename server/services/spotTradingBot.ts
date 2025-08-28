@@ -114,8 +114,9 @@ export class SpotTradingBot extends EventEmitter {
     }
 
     // Start continuous analysis - will self-schedule after completion
+    console.log('🚀 DEBUG: Starting initial spot analysis...');
     this.runAnalysis().catch(error => {
-      console.error('Spot analysis error:', error);
+      console.error('❌ Spot analysis error:', error);
       this.logError('Spot Analysis Error', error.message, 'SpotTradingBot.runAnalysis');
     });
 
@@ -159,13 +160,20 @@ export class SpotTradingBot extends EventEmitter {
   }
 
   private async runAnalysis(): Promise<void> {
-    if (!this.isRunning) return;
+    console.log('🔄 DEBUG: runAnalysis called for spot bot');
+    if (!this.isRunning) {
+      console.log('❌ DEBUG: Spot bot not running, skipping analysis');
+      return;
+    }
 
+    console.log('⚙️ DEBUG: Loading trading settings...');
     const settings = await this.storage.getTradingSettings(this.userId);
     if (!settings) {
+      console.log('❌ DEBUG: No trading settings found');
       await this.logError('Configuration Error', 'Trading settings not found for user', 'SpotTradingBot.runAnalysis');
       return;
     }
+    console.log('✅ DEBUG: Trading settings loaded successfully');
 
     const isPaperMode = settings.spotPaperTrading;
     
