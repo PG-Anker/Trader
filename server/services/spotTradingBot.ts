@@ -214,6 +214,13 @@ export class SpotTradingBot extends EventEmitter {
       ? JSON.parse(settings.spotStrategies) 
       : settings.spotStrategies || JSON.parse(settings.strategies || '{}');
 
+    await this.log('CONFIG', 'Spot trading strategies configuration', {
+      strategies: spotStrategies,
+      timeframe: settings.timeframe,
+      minConfidence: settings.minConfidence,
+      enabledStrategies: Object.keys(spotStrategies).filter(key => spotStrategies[key])
+    });
+
     // Collect all market data using intelligent batching for spot market
     await this.log('INFO', '📊 Collecting spot market data using intelligent batching...', {
       symbolCount: this.watchedSymbols.length,
@@ -267,39 +274,68 @@ export class SpotTradingBot extends EventEmitter {
         });
 
         // Traditional technical analysis for spot trading (buy low, sell high)
-        const { indicators, signals } = TechnicalAnalysis.analyzeSymbol(klineData, { ...settings, strategies: spotStrategies });
+        try {
+          const { indicators, signals } = TechnicalAnalysis.analyzeSymbol(klineData, { ...settings, strategies: spotStrategies });
+          
+          await this.log('ANALYSIS', `📊 ${symbol} indicators calculated`, {
+            symbol,
+            rsi: indicators.rsi?.toFixed(2),
+            adx: indicators.adx?.toFixed(2),
+            ema12: indicators.ema12?.toFixed(6),
+            ema26: indicators.ema26?.toFixed(6),
+            macdSignal: typeof indicators.macd === 'object' ? (indicators.macd.histogram > 0 ? 'Bullish' : 'Bearish') : 'Neutral',
+            rawSignals: signals.length
+          });
         
-        // Filter signals for spot trading (only LONG positions - buy and sell)
-        const spotSignals = signals.filter(signal => signal.direction === 'LONG');
+          // Filter signals for spot trading (only LONG positions - buy and sell)
+          const spotSignals = signals.filter(signal => signal.direction === 'LONG');
+          
+          if (signals.length > 0) {
+            await this.log('SIGNAL', `${symbol} generated ${signals.length} signals (${spotSignals.length} spot applicable)`, {
+              symbol,
+              totalSignals: signals.length,
+              spotSignals: spotSignals.length,
+              signalTypes: signals.map(s => `${s.direction} ${s.confidence.toFixed(2)}`).join(', ')
+            });
+          }
         
-        await this.processSpotSignals(spotSignals, symbol, settings, indicators);
-        
-        // Log analysis result in spot bot format
-        const score = this.calculateTradeScore(indicators);
-        const scoreCategory = this.getScoreCategory(score);
-        const signalEmoji = spotSignals.length > 0 ? '✅' : '❌';
-        const signalText = spotSignals.length > 0 ? 'Spot signal found' : 'No spot signal';
-        
-        await this.log('ANALYSIS', `${symbol} spot analysis complete`, {
-          symbol,
-          rsi: indicators.rsi?.toFixed(2),
-          macdCross: typeof indicators.macd === 'object' ? (indicators.macd.histogram > 0 ? 'Bullish' : 'Bearish') : 'Neutral',
-          adx: indicators.adx?.toFixed(2),
-          signalsFound: spotSignals.length
-        });
-        
-        await this.log('INFO', `${symbol}: ${signalEmoji} ${signalText} | Score: ${score.toFixed(1)} (${scoreCategory})`, {
-          symbol,
-          score,
-          category: scoreCategory,
-          signals: spotSignals.length,
-          rsi: indicators.rsi?.toFixed(2),
-          ema: indicators.ema12?.toFixed(6),
-          macd: typeof indicators.macd === 'object' ? indicators.macd?.macd?.toFixed(6) : (indicators.macd as any)?.toFixed(6)
-        });
+          await this.processSpotSignals(spotSignals, symbol, settings, indicators);
+          
+          // Score calculation and final logging
+          const score = this.calculateTradeScore(indicators);
+          const scoreCategory = this.getScoreCategory(score);
+          const signalEmoji = spotSignals.length > 0 ? '✅' : '❌';
+          const signalText = spotSignals.length > 0 ? 'Spot signal found' : 'No spot signal';
+          
+          await this.log('ANALYSIS', `${symbol} spot analysis complete`, {
+            symbol,
+            rsi: indicators.rsi?.toFixed(2),
+            macdCross: typeof indicators.macd === 'object' ? (indicators.macd.histogram > 0 ? 'Bullish' : 'Bearish') : 'Neutral',
+            adx: indicators.adx?.toFixed(2),
+            signalsFound: spotSignals.length
+          });
+          
+          await this.log('INFO', `${symbol}: ${signalEmoji} ${signalText} | Score: ${score.toFixed(1)} (${scoreCategory})`, {
+            symbol,
+            score,
+            category: scoreCategory,
+            signals: spotSignals.length,
+            rsi: indicators.rsi?.toFixed(2),
+            ema: indicators.ema12?.toFixed(6),
+            macd: typeof indicators.macd === 'object' ? indicators.macd?.macd?.toFixed(6) : (indicators.macd as any)?.toFixed(6)
+          });
 
-        if (spotSignals.length > 0) {
-          opportunitiesFound++;
+          if (spotSignals.length > 0) {
+            opportunitiesFound++;
+          }
+        } catch (analysisError) {
+          await this.log('ERROR', `Technical analysis failed for ${symbol}`, {
+            symbol,
+            error: analysisError instanceof Error ? analysisError.message : 'Unknown analysis error',
+            dataPoints: klineData.length
+          });
+          console.error(`Technical analysis error for ${symbol}:`, analysisError);
+          continue; // Skip to next symbol
         }
 
         // Small delay between symbol analysis (reduced for faster processing)

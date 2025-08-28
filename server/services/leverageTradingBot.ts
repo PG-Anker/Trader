@@ -213,6 +213,14 @@ export class LeverageTradingBot extends EventEmitter {
       ? JSON.parse(settings.leverageStrategies) 
       : settings.leverageStrategies || JSON.parse(settings.strategies || '{}');
 
+    await this.log('CONFIG', 'Leverage trading strategies configuration', {
+      strategies: leverageStrategies,
+      timeframe: settings.timeframe,
+      leverageEnabled: settings.leverageEnabled,
+      minConfidence: settings.minConfidence,
+      enabledStrategies: Object.keys(leverageStrategies).filter(key => leverageStrategies[key])
+    });
+
     // Collect all market data using intelligent batching for linear market
     await this.log('INFO', '📊 Collecting linear market data using intelligent batching...', {
       symbolCount: this.watchedSymbols.length,
@@ -266,12 +274,71 @@ export class LeverageTradingBot extends EventEmitter {
         });
 
         // Traditional technical analysis for leverage trading (long and short)
-        const { indicators, signals } = TechnicalAnalysis.analyzeSymbol(klineData, { ...settings, strategies: leverageStrategies });
+        try {
+          const { indicators, signals } = TechnicalAnalysis.analyzeSymbol(klineData, { ...settings, strategies: leverageStrategies });
+          
+          await this.log('ANALYSIS', `📊 ${symbol} leverage indicators calculated`, {
+            symbol,
+            rsi: indicators.rsi?.toFixed(2),
+            adx: indicators.adx?.toFixed(2),
+            ema12: indicators.ema12?.toFixed(6),
+            ema26: indicators.ema26?.toFixed(6),
+            macdSignal: typeof indicators.macd === 'object' ? (indicators.macd.histogram > 0 ? 'Bullish' : 'Bearish') : 'Neutral',
+            rawSignals: signals.length
+          });
         
-        // Process both LONG and SHORT signals for leverage trading
-        await this.processLeverageSignals(signals, symbol, settings, indicators);
+          if (signals.length > 0) {
+            await this.log('SIGNAL', `${symbol} generated ${signals.length} leverage signals`, {
+              symbol,
+              longSignals: signals.filter(s => s.direction === 'LONG').length,
+              shortSignals: signals.filter(s => s.direction === 'SHORT').length,
+              signalTypes: signals.map(s => `${s.direction} ${s.confidence.toFixed(2)}`).join(', ')
+            });
+          }
+
+          // Process both LONG and SHORT signals for leverage trading
+          await this.processLeverageSignals(signals, symbol, settings, indicators);
+          
+          // Score calculation and final logging
+          const score = this.calculateTradeScore(indicators);
+          const scoreCategory = this.getScoreCategory(score);
+          const signalEmoji = signals.length > 0 ? '✅' : '❌';
+          const signalText = signals.length > 0 ? 'Leverage signal found' : 'No leverage signal';
+          
+          await this.log('ANALYSIS', `${symbol} leverage analysis complete`, {
+            symbol,
+            rsi: indicators.rsi?.toFixed(2),
+            macdCross: typeof indicators.macd === 'object' ? (indicators.macd.histogram > 0 ? 'Bullish' : 'Bearish') : 'Neutral',
+            adx: indicators.adx?.toFixed(2),
+            signalsFound: signals.length
+          });
+          
+          await this.log('INFO', `${symbol}: ${signalEmoji} ${signalText} | Score: ${score.toFixed(1)} (${scoreCategory})`, {
+            symbol,
+            score,
+            category: scoreCategory,
+            signals: signals.length,
+            longSignals: signals.filter(s => s.direction === 'LONG').length,
+            shortSignals: signals.filter(s => s.direction === 'SHORT').length,
+            rsi: indicators.rsi?.toFixed(2),
+            ema: indicators.ema12?.toFixed(6),
+            macd: typeof indicators.macd === 'object' ? indicators.macd?.macd?.toFixed(6) : (indicators.macd as any)?.toFixed(6)
+          });
+
+          if (signals.length > 0) {
+            opportunitiesFound++;
+          }
+        } catch (analysisError) {
+          await this.log('ERROR', `Leverage technical analysis failed for ${symbol}`, {
+            symbol,
+            error: analysisError instanceof Error ? analysisError.message : 'Unknown analysis error',
+            dataPoints: klineData.length
+          });
+          console.error(`Leverage analysis error for ${symbol}:`, analysisError);
+          continue; // Skip to next symbol
+        }
         
-        // Log analysis result in leverage bot format
+        // Move score calculation inside try block  
         const score = this.calculateTradeScore(indicators);
         const scoreCategory = this.getScoreCategory(score);
         const signalEmoji = signals.length > 0 ? '✅' : '❌';
