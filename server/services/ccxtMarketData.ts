@@ -20,68 +20,75 @@ export interface OHLCV {
 }
 
 export class CCXTMarketDataService {
-  private exchange: ccxt.Exchange;
+  private spotExchange: ccxt.Exchange;
+  private linearExchange: ccxt.Exchange;
   private markets: { [key: string]: any } = {};
   private lastUpdate: number = 0;
   private updateInterval: number = 30000; // 30 seconds
 
   constructor() {
-    // Initialize Bybit exchange for market data only (no API keys needed for public data)
-    this.exchange = new (ccxt as any).bybit({
-      sandbox: false, // Use mainnet for market data
+    // Separate clients for spot and linear markets to avoid wrong defaultType issues
+    const baseConfig = {
+      sandbox: false,
       enableRateLimit: true,
       timeout: 30000,
-      rateLimit: 2000,
+      rateLimit: 3000, // Increased to 3 seconds for better rate limiting
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        'User-Agent': 'CryptoBot-Pro/1.0 (Trading Bot)',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       },
-      // Fix URL encoding issues
-      urlencode: false,
-      // Disable automatic URL encoding to prevent double-encoding
       options: {
-        'adjustForTimeDifference': true,
-        'recvWindow': 5000,
+        adjustForTimeDifference: true,
+        recvWindow: 5000,
+      }
+    };
+
+    // Spot market client for buy/sell trading
+    this.spotExchange = new (ccxt as any).bybit({
+      ...baseConfig,
+      options: {
+        ...baseConfig.options,
+        defaultType: 'spot' // Critical: spot market access
+      }
+    });
+
+    // Linear market client for long/short leverage trading  
+    this.linearExchange = new (ccxt as any).bybit({
+      ...baseConfig,
+      options: {
+        ...baseConfig.options,
+        defaultType: 'linear' // Critical: USDT perpetual futures access
       }
     });
   }
 
   async initialize(): Promise<void> {
     try {
-      console.log('🔄 Initializing CCXT market data service...');
+      console.log('🔄 Initializing CCXT market data service with dual clients...');
       
-      // Try with cleaner configuration to avoid URL encoding issues
-      this.exchange = new (ccxt as any).bybit({
-        sandbox: false,
-        enableRateLimit: true,
-        timeout: 30000,
-        rateLimit: 2000,
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36'
-        },
-        options: {
-          adjustForTimeDifference: true,
-          recvWindow: 5000,
-        },
-        // Ensure URLs are not double-encoded
-        urls: {
-          api: {
-            public: 'https://api.bybit.com',
-            private: 'https://api.bybit.com'
-          }
-        }
-      });
-      
-      // Load markets with retry logic
+      // Load markets for both exchanges with retry logic
       let retries = 3;
       while (retries > 0) {
         try {
-          this.markets = await this.exchange.loadMarkets();
+          console.log(`📡 Loading spot markets (attempt ${4 - retries}/3)...`);
+          const spotMarkets = await this.spotExchange.loadMarkets();
+          console.log(`✅ Loaded ${Object.keys(spotMarkets).length} spot markets`);
+          
+          console.log(`📡 Loading linear markets (attempt ${4 - retries}/3)...`);
+          const linearMarkets = await this.linearExchange.loadMarkets();
+          console.log(`✅ Loaded ${Object.keys(linearMarkets).length} linear markets`);
+          
+          // Combine markets for symbol lookup
+          this.markets = { ...spotMarkets, ...linearMarkets };
+          console.log(`✅ Total markets available: ${Object.keys(this.markets).length}`);
           break;
         } catch (error) {
-          console.log(`Market loading attempt failed, ${retries - 1} retries left:`, error.message);
           retries--;
-          if (retries === 0) throw error;
-          await new Promise(resolve => setTimeout(resolve, 2000));
+          console.error(`❌ Market loading failed (${retries} retries left):`, error instanceof Error ? error.message : 'Unknown error');
+          if (retries > 0) {
+            await new Promise(resolve => setTimeout(resolve, 5000));
+          }
         }
       }
       
@@ -187,30 +194,100 @@ export class CCXTMarketDataService {
     }
   }
 
-  async getOHLCV(symbol: string, timeframe: string = '15m', limit: number = 100): Promise<OHLCV[]> {
-    try {
-      // Try with rate limiting to avoid geo-blocking
-      await new Promise(resolve => setTimeout(resolve, 500));
-      const ohlcv = await this.exchange.fetchOHLCV(symbol, timeframe, undefined, limit);
+  // Market-specific OHLCV fetching with proper client routing
+  async getOHLCV(symbol: string, timeframe: string = '15m', limit: number = 100, marketType: 'spot' | 'linear' = 'spot'): Promise<OHLCV[]> {
+    return await this.fetchWithRetry(symbol, timeframe, limit, marketType);
+  }
+
+  // Intelligent batching to avoid CloudFront rate limits
+  async getBatchOHLCV(symbols: string[], timeframe: string = '15m', limit: number = 100, marketType: 'spot' | 'linear' = 'spot'): Promise<{ symbol: string; data: OHLCV[] }[]> {
+    const results: { symbol: string; data: OHLCV[] }[] = [];
+    const batchSize = 8; // Process 8 symbols per batch to stay under rate limits
+    const batchDelay = 3000; // 3 second delay between batches
+    
+    console.log(`🔄 Processing ${symbols.length} symbols in batches of ${batchSize} for ${marketType} market`);
+    
+    // Split symbols into chunks
+    for (let i = 0; i < symbols.length; i += batchSize) {
+      const batch = symbols.slice(i, i + batchSize);
+      console.log(`📦 Processing batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(symbols.length / batchSize)}: ${batch.join(', ')}`);
       
-      if (!ohlcv || ohlcv.length === 0) {
-        console.log(`No OHLCV data returned for ${symbol}`);
-        return [];
+      // Process batch concurrently
+      const batchPromises = batch.map(async (symbol) => {
+        const data = await this.getOHLCV(symbol, timeframe, limit, marketType);
+        return { symbol, data };
+      });
+      
+      const batchResults = await Promise.all(batchPromises);
+      results.push(...batchResults);
+      
+      // Delay between batches to avoid rate limiting
+      if (i + batchSize < symbols.length) {
+        console.log(`⏳ Waiting ${batchDelay}ms before next batch to avoid rate limits...`);
+        await new Promise(resolve => setTimeout(resolve, batchDelay));
       }
-      
-      return ohlcv.map(([timestamp, open, high, low, close, volume]) => ({
-        timestamp: Number(timestamp),
-        open: Number(open),
-        high: Number(high),
-        low: Number(low),
-        close: Number(close),
-        volume: Number(volume)
-      }));
-      
-    } catch (error) {
-      console.error(`Error fetching OHLCV for ${symbol}:`, error instanceof Error ? error.message : 'Unknown error');
-      return [];
     }
+    
+    const successCount = results.filter(r => r.data.length > 0).length;
+    console.log(`✅ Batch processing complete: ${successCount}/${symbols.length} symbols retrieved successfully`);
+    
+    return results;
+  }
+
+  // Retry wrapper for transient 403s and network errors
+  private async fetchWithRetry(symbol: string, timeframe: string, limit: number, marketType: 'spot' | 'linear', retries = 3): Promise<OHLCV[]> {
+    for (let i = 0; i < retries; i++) {
+      try {
+        // Rate limiting to avoid CloudFront bans
+        await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000)); // 1-2 second random delay
+        
+        // Use correct exchange client based on market type
+        const exchange = marketType === 'spot' ? this.spotExchange : this.linearExchange;
+        console.log(`📊 Fetching ${marketType} OHLCV for ${symbol} (attempt ${i + 1}/${retries})`);
+        
+        const ohlcv = await exchange.fetchOHLCV(symbol, timeframe, undefined, limit);
+        
+        if (!ohlcv || ohlcv.length === 0) {
+          console.log(`No OHLCV data returned for ${symbol} on ${marketType} market`);
+          return [];
+        }
+        
+        console.log(`✅ Successfully fetched ${ohlcv.length} candles for ${symbol} (${marketType})`);
+        
+        return ohlcv.map(([timestamp, open, high, low, close, volume]) => ({
+          timestamp: Number(timestamp),
+          open: Number(open),
+          high: Number(high),
+          low: Number(low),
+          close: Number(close),
+          volume: Number(volume)
+        }));
+        
+      } catch (error) {
+        const isNetworkError = error instanceof Error && (
+          error.message.includes('403') || 
+          error.message.includes('CloudFront') ||
+          error.message.includes('Network') ||
+          error.message.includes('timeout')
+        );
+        
+        console.error(`❌ Error fetching OHLCV for ${symbol} (${marketType}) attempt ${i + 1}:`, error instanceof Error ? error.message : 'Unknown error');
+        
+        if (isNetworkError && i < retries - 1) {
+          const backoffTime = Math.pow(2, i) * 2000; // Exponential backoff: 2s, 4s, 8s
+          console.log(`⏳ Retrying ${symbol} in ${backoffTime}ms...`);
+          await new Promise(resolve => setTimeout(resolve, backoffTime));
+          continue;
+        }
+        
+        // Final attempt failed or non-network error
+        if (i === retries - 1) {
+          console.error(`💥 Final attempt failed for ${symbol} (${marketType})`);
+          return [];
+        }
+      }
+    }
+    return [];
   }
 
   async getTicker(symbol: string): Promise<MarketData | null> {

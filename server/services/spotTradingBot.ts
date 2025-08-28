@@ -213,17 +213,23 @@ export class SpotTradingBot extends EventEmitter {
       ? JSON.parse(settings.spotStrategies) 
       : settings.spotStrategies || JSON.parse(settings.strategies || '{}');
 
-    // Collect all market data first
-    await this.log('INFO', '📊 Collecting market data for all symbols before analysis...', {
+    // Collect all market data using intelligent batching for spot market
+    await this.log('INFO', '📊 Collecting spot market data using intelligent batching...', {
       symbolCount: this.watchedSymbols.length,
-      phase: 'Data Collection'
+      phase: 'Spot Data Collection',
+      marketType: 'spot'
     });
 
+    const batchResults = await this.ccxtMarketData.getBatchOHLCV(
+      this.watchedSymbols, 
+      settings.timeframe, 
+      200, 
+      'spot' // Critical: use spot market for buy/sell trading
+    );
+
     const marketDataCollection = [];
-    for (const symbol of this.watchedSymbols) {
+    for (const { symbol, data: klineDataRaw } of batchResults) {
       try {
-        const klineDataRaw = await this.ccxtMarketData.getOHLCV(symbol, settings.timeframe, 200);
-        
         // Convert OHLCV objects to number arrays
         let klineData: number[][];
         if (klineDataRaw.length > 0 && typeof klineDataRaw[0] === 'object') {
@@ -237,14 +243,15 @@ export class SpotTradingBot extends EventEmitter {
         if (klineData.length >= 50) {
           marketDataCollection.push({ symbol, klineData });
         } else {
-          await this.log('WARN', `Insufficient market data for ${symbol} - skipping spot analysis`, { 
+          await this.log('WARN', `Insufficient spot market data for ${symbol} - skipping analysis`, { 
             symbol,
             dataPoints: klineData.length,
-            required: 50
+            required: 50,
+            marketType: 'spot'
           });
         }
       } catch (error) {
-        await this.log('WARN', `Failed to collect data for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`, { symbol });
+        await this.log('WARN', `Failed to process spot data for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`, { symbol });
       }
     }
 

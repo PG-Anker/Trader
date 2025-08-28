@@ -213,17 +213,23 @@ export class LeverageTradingBot extends EventEmitter {
       ? JSON.parse(settings.leverageStrategies) 
       : settings.leverageStrategies || JSON.parse(settings.strategies || '{}');
 
-    // Collect all market data first
-    await this.log('INFO', '📊 Collecting market data for all symbols before leverage analysis...', {
+    // Collect all market data using intelligent batching for linear market
+    await this.log('INFO', '📊 Collecting linear market data using intelligent batching...', {
       symbolCount: this.watchedSymbols.length,
-      phase: 'Data Collection'
+      phase: 'Linear Data Collection',
+      marketType: 'linear'
     });
 
+    const batchResults = await this.ccxtMarketData.getBatchOHLCV(
+      this.watchedSymbols, 
+      settings.timeframe, 
+      200, 
+      'linear' // Critical: use linear market for long/short leverage trading
+    );
+
     const marketDataCollection = [];
-    for (const symbol of this.watchedSymbols) {
+    for (const { symbol, data: klineDataRaw } of batchResults) {
       try {
-        const klineDataRaw = await this.ccxtMarketData.getOHLCV(symbol, settings.timeframe, 200);
-        
         // Convert OHLCV objects to number arrays
         let klineData: number[][];
         if (klineDataRaw.length > 0 && typeof klineDataRaw[0] === 'object') {
@@ -237,14 +243,15 @@ export class LeverageTradingBot extends EventEmitter {
         if (klineData.length >= 50) {
           marketDataCollection.push({ symbol, klineData });
         } else {
-          await this.log('WARN', `Insufficient market data for ${symbol} - skipping leverage analysis`, { 
+          await this.log('WARN', `Insufficient linear market data for ${symbol} - skipping analysis`, { 
             symbol,
             dataPoints: klineData.length,
-            required: 50
+            required: 50,
+            marketType: 'linear'
           });
         }
       } catch (error) {
-        await this.log('WARN', `Failed to collect data for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`, { symbol });
+        await this.log('WARN', `Failed to process linear data for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`, { symbol });
       }
     }
 
