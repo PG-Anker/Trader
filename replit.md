@@ -117,6 +117,11 @@ Key entities include:
 
 ```
 Changelog:
+- August 28, 2025. FIXED: CCXT dual market system implemented with separate clients (spotExchange/linearExchange) and proper defaultType configuration
+- August 28, 2025. ADDED: Intelligent batching system (8 symbols per batch, 3-second delays) to prevent CloudFront rate limiting and 403 errors
+- August 28, 2025. IMPLEMENTED: Retry logic with exponential backoff (2s, 4s, 8s) for transient network errors and geographic blocking
+- August 28, 2025. ENHANCED: Market-specific routing - spot bot uses spot market, leverage bot uses linear market for proper API access
+- August 28, 2025. RESOLVED: All LSP diagnostics and type errors in CCXT integration for production stability
 - August 28, 2025. REMOVED: Mock data fallback system for production deployment - CCXT now returns empty arrays when API blocked for cleaner production environment
 - August 28, 2025. ENHANCED: build.sh script with comprehensive database preservation, user data backup/restore, and dual bot schema updates
 - August 28, 2025. FIXED: Data type conversion in trading bots to handle OHLCV object to number array transformation properly

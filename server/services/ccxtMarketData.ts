@@ -167,20 +167,21 @@ export class CCXTMarketDataService {
   async getMarketData(symbols?: string[]): Promise<MarketData[]> {
     try {
       const targetSymbols = symbols || await this.getTopTradingPairs(100);
-      const tickers = await this.exchange.fetchTickers(targetSymbols);
+      const tickers = await this.spotExchange.fetchTickers(targetSymbols);
       
       const marketData: MarketData[] = [];
       
       for (const [symbol, ticker] of Object.entries(tickers)) {
-        if (ticker.last && ticker.quoteVolume) {
+        const tickerData = ticker as any; // Type assertion for CCXT ticker
+        if (tickerData.last && tickerData.quoteVolume) {
           marketData.push({
             symbol,
-            price: ticker.last,
-            volume: ticker.quoteVolume,
-            change24h: ticker.percentage || 0,
-            high24h: ticker.high || ticker.last,
-            low24h: ticker.low || ticker.last,
-            timestamp: ticker.timestamp || Date.now()
+            price: tickerData.last,
+            volume: tickerData.quoteVolume,
+            change24h: tickerData.percentage || 0,
+            high24h: tickerData.high || tickerData.last,
+            low24h: tickerData.low || tickerData.last,
+            timestamp: tickerData.timestamp || Date.now()
           });
         }
       }
@@ -292,7 +293,7 @@ export class CCXTMarketDataService {
 
   async getTicker(symbol: string): Promise<MarketData | null> {
     try {
-      const ticker = await this.exchange.fetchTicker(symbol);
+      const ticker = await this.spotExchange.fetchTicker(symbol);
       
       if (!ticker.last) {
         return null;

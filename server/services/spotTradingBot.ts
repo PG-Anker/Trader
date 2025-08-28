@@ -237,7 +237,7 @@ export class SpotTradingBot extends EventEmitter {
             candle.timestamp, candle.open, candle.high, candle.low, candle.close, candle.volume
           ]);
         } else {
-          klineData = klineDataRaw as number[][];
+          klineData = klineDataRaw as unknown as number[][];
         }
         
         if (klineData.length >= 50) {
@@ -298,8 +298,8 @@ export class SpotTradingBot extends EventEmitter {
           category: scoreCategory,
           signals: spotSignals.length,
           rsi: indicators.rsi?.toFixed(2),
-          ema: indicators.ema20?.toFixed(6),
-          macd: typeof indicators.macd === 'object' ? indicators.macd?.macd?.toFixed(6) : indicators.macd?.toFixed(6)
+          ema: indicators.ema12?.toFixed(6),
+          macd: typeof indicators.macd === 'object' ? indicators.macd?.macd?.toFixed(6) : (indicators.macd as any)?.toFixed(6)
         });
 
         if (spotSignals.length > 0) {
@@ -382,7 +382,7 @@ export class SpotTradingBot extends EventEmitter {
           tradingMode: 'spot',
           strategy: signal.strategy,
           isPaperTrade: true,
-          createdAt: new Date().toISOString()
+
         };
 
         await this.storage.createPosition(position);
@@ -480,8 +480,7 @@ export class SpotTradingBot extends EventEmitter {
       level,
       message: `[SPOT] ${message}`,
       symbol: data?.symbol || null,
-      data: JSON.stringify(data),
-      createdAt: new Date().toISOString()
+      data: JSON.stringify(data)
     };
 
     await this.storage.createBotLog(logEntry);
@@ -495,8 +494,7 @@ export class SpotTradingBot extends EventEmitter {
       title,
       message,
       source,
-      resolved: false,
-      createdAt: new Date().toISOString()
+      resolved: false
     };
 
     await this.storage.createSystemError(errorEntry);
