@@ -117,6 +117,9 @@ Key entities include:
 
 ```
 Changelog:
+- August 27, 2025. FIXED: build.sh script now preserves existing database and user data during updates
+- August 27, 2025. Added reset-admin.js script to fix admin login issues without data loss
+- August 27, 2025. Enhanced build process to prevent breaking admin authentication during patches
 - August 27, 2025. PRODUCTION: Updated AI trading system to use real DeepSeek browser automation
 - August 27, 2025. Added production-ready DeepSeek integration with Chromium browser support
 - August 27, 2025. Enhanced AI service with proper Ubuntu server configuration and cleanup methods

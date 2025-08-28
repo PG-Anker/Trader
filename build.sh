@@ -23,10 +23,22 @@ npm ci --production
 npm rebuild bcrypt better-sqlite3
 cd ..
 
-echo "🗄️ Initializing production database..."
-tsx server/initDb.ts
+echo "🗄️ Checking production database..."
+# Only initialize database if it doesn't exist or is empty
+if [ ! -f "./database.sqlite" ] || [ ! -s "./database.sqlite" ]; then
+  echo "Database not found or empty - initializing..."
+  tsx server/initDb.ts
+else
+  echo "Database exists - preserving existing data and users"
+  echo "To reset the database, delete 'database.sqlite' and run build again"
+fi
 
 echo "✅ Build completed successfully!"
+echo ""
+echo "📋 Important Notes:"
+echo "  - Database preserved to maintain users and settings"
+echo "  - If admin login fails, run: node reset-admin.js"
+echo "  - To completely reset: delete database.sqlite and rebuild"
 echo ""
 echo "🐳 To run with Docker:"
 echo "  docker build -t cryptobot-pro ."
@@ -37,3 +49,6 @@ echo "  pm2 start ecosystem.config.js"
 echo ""
 echo "🖥️ To run directly:"
 echo "  NODE_ENV=production node dist/index.js"
+echo ""
+echo "🔧 If you can't login:"
+echo "  node reset-admin.js"
