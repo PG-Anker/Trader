@@ -117,6 +117,9 @@ Key entities include:
 
 ```
 Changelog:
+- August 28, 2025. IMPLEMENTED: Dual bot architecture - separate spot and leverage trading bots with independent control and different strategies
+- August 28, 2025. ADDED: Individual bot management - can start/stop spot and leverage bots independently via API endpoints
+- August 28, 2025. UPDATED: Database schema to support separate spot and leverage strategies and AI settings
 - August 28, 2025. FIXED: Bot analysis speed - now processes all 100 symbols in each cycle instead of 4-6 symbols every 30 seconds
 - August 28, 2025. OPTIMIZED: Analysis timing - reduced delays and switched to self-scheduling cycles for better efficiency
 - August 28, 2025. REMOVED: Mock data fallback - bot now only uses authentic market data from Bybit APIs

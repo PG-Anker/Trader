@@ -5,7 +5,7 @@ import { storage } from "./storage";
 import { z } from "zod";
 import { insertTradingSettingsSchema, insertPositionSchema, insertBotLogSchema, insertSystemErrorSchema } from "@shared/schema";
 import { BybitService } from "./services/bybit";
-import { TradingBot } from "./services/tradingBot";
+import { BotManager } from "./services/botManager";
 import { setupAuthRoutes, requireAuth } from "./auth";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -16,7 +16,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   
   // Initialize services
   const bybitService = new BybitService();
-  const tradingBot = new TradingBot(bybitService, storage);
+  const botManager = new BotManager(bybitService, storage);
   
   // Store WebSocket connections
   const wsConnections = new Set<WebSocket>();
@@ -233,7 +233,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const positionId = parseInt(req.params.id);
       const userId = (req as any).user.id;
       
-      const result = await tradingBot.closePosition(positionId, userId);
+      const result = await botManager.closePosition(positionId, userId);
       
       // Broadcast update
       broadcast({
@@ -248,24 +248,89 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Start/stop trading bot
+  // Start/stop individual trading bots
+  app.post("/api/bot/:botType/:action", requireAuth, async (req, res) => {
+    try {
+      const botType = req.params.botType; // 'spot' or 'leverage'
+      const action = req.params.action; // 'start' or 'stop'
+      const userId = (req as any).user.id;
+      
+      if (!['spot', 'leverage'].includes(botType)) {
+        return res.status(400).json({ message: "Invalid bot type. Use 'spot' or 'leverage'" });
+      }
+      
+      if (action === 'start') {
+        if (botType === 'spot') {
+          if (botManager.getSpotStatus().isRunning) {
+            return res.status(400).json({ message: "Spot trading bot is already running" });
+          }
+          await botManager.startSpotBot(userId);
+        } else {
+          if (botManager.getLeverageStatus().isRunning) {
+            return res.status(400).json({ message: "Leverage trading bot is already running" });
+          }
+          await botManager.startLeverageBot(userId);
+        }
+        
+        // Broadcast bot status update
+        broadcast({
+          type: 'bot_status_update',
+          data: botManager.getBothStatuses()
+        });
+        
+        res.json({ 
+          success: true, 
+          message: `${botType.charAt(0).toUpperCase() + botType.slice(1)} trading bot started successfully`,
+          status: botManager.getBothStatuses()
+        });
+      } else if (action === 'stop') {
+        if (botType === 'spot') {
+          if (!botManager.getSpotStatus().isRunning) {
+            return res.status(400).json({ message: "Spot trading bot is not running" });
+          }
+          await botManager.stopSpotBot();
+        } else {
+          if (!botManager.getLeverageStatus().isRunning) {
+            return res.status(400).json({ message: "Leverage trading bot is not running" });
+          }
+          await botManager.stopLeverageBot();
+        }
+        
+        // Broadcast bot status update
+        broadcast({
+          type: 'bot_status_update',
+          data: botManager.getBothStatuses()
+        });
+        
+        res.json({ 
+          success: true, 
+          message: `${botType.charAt(0).toUpperCase() + botType.slice(1)} trading bot stopped successfully`,
+          status: botManager.getBothStatuses()
+        });
+      } else {
+        res.status(400).json({ message: "Invalid action. Use 'start' or 'stop'" });
+      }
+    } catch (error) {
+      console.error('Bot action error:', error);
+      res.status(500).json({ 
+        message: `Failed to ${req.params.action} ${req.params.botType} trading bot: ${error instanceof Error ? error.message : 'Unknown error'}` 
+      });
+    }
+  });
+
+  // Legacy route for backward compatibility - start/stop both bots
   app.post("/api/bot/:action", requireAuth, async (req, res) => {
     try {
       const action = req.params.action;
       const userId = (req as any).user.id;
       
       if (action === 'start') {
-        if (botStatus.isRunning) {
-          return res.status(400).json({ message: "Trading bot is already running" });
+        if (botManager.isAnyBotRunning()) {
+          return res.status(400).json({ message: "Trading bots are already running" });
         }
         
-        await tradingBot.start(userId);
-        botStatus = {
-          isRunning: true,
-          userId,
-          startedAt: new Date().toISOString(),
-          lastActivity: new Date().toISOString()
-        };
+        await botManager.start(userId);
+        const botStatus = botManager.getBothStatuses();
         
         // Broadcast bot status update
         broadcast({
@@ -275,21 +340,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         
         res.json({ 
           success: true,
-          message: "Trading bot started",
+          message: "Both trading bots started successfully",
           status: botStatus
         });
       } else if (action === 'stop') {
-        if (!botStatus.isRunning) {
-          return res.status(400).json({ message: "Trading bot is not running" });
+        if (!botManager.isAnyBotRunning()) {
+          return res.status(400).json({ message: "No trading bots are running" });
         }
         
-        await tradingBot.stop();
-        botStatus = {
-          isRunning: false,
-          userId: null,
-          startedAt: null,
-          lastActivity: new Date().toISOString()
-        };
+        await botManager.stop();
+        const botStatus = botManager.getBothStatuses();
         
         // Broadcast bot status update
         broadcast({
@@ -299,7 +359,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         
         res.json({ 
           success: true,
-          message: "Trading bot stopped",
+          message: "Both trading bots stopped successfully",
           status: botStatus
         });
       } else {
@@ -340,46 +400,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Set up real-time data broadcasting
-  tradingBot.on('log', (log) => {
-    // Update last activity timestamp
-    if (botStatus.isRunning) {
-      botStatus.lastActivity = new Date().toISOString();
-    }
-    
+  botManager.on('spot_log', (log) => {
     broadcast({
       type: 'bot_log',
-      data: log
+      data: { ...log, botType: 'spot' }
     });
   });
 
-  // Get bot status endpoint
-  app.get("/api/bot/status", requireAuth, async (req, res) => {
-    res.json({
-      isRunning: botStatus.isRunning,
-      startedAt: botStatus.startedAt,
-      lastActivity: botStatus.lastActivity,
-      userId: botStatus.userId
+  botManager.on('leverage_log', (log) => {
+    broadcast({
+      type: 'bot_log',
+      data: { ...log, botType: 'leverage' }
     });
   });
 
-  tradingBot.on('error', (error) => {
+  botManager.on('spot_error', (error) => {
     broadcast({
       type: 'system_error',
-      data: error
+      data: { ...error, botType: 'spot' }
     });
   });
 
-  tradingBot.on('position_update', (position) => {
+  botManager.on('leverage_error', (error) => {
     broadcast({
-      type: 'position_update',
-      data: position
+      type: 'system_error',
+      data: { ...error, botType: 'leverage' }
     });
   });
 
-  tradingBot.on('price_update', (priceData) => {
-    broadcast({
-      type: 'price_update',
-      data: priceData
+  // Get bot status endpoint (dual bot support)
+  app.get("/api/bot/status", requireAuth, async (req, res) => {
+    const bothStatuses = botManager.getBothStatuses();
+    res.json({
+      spot: bothStatuses.spot,
+      leverage: bothStatuses.leverage,
+      isAnyRunning: botManager.isAnyBotRunning(),
+      runningBotsCount: botManager.getRunningBotsCount()
     });
   });
 

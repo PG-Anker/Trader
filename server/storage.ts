@@ -36,7 +36,7 @@ export interface IStorage {
 
   // Position operations
   getPosition(id: number): Promise<Position | undefined>;
-  getOpenPositions(userId: number, isPaperTrade?: boolean): Promise<Position[]>;
+  getOpenPositions(userId: number, tradingMode?: string): Promise<Position[]>;
   createPosition(position: InsertPosition): Promise<Position>;
   updatePosition(id: number, updates: Partial<Position>): Promise<Position>;
   closePosition(id: number, exitPrice: string, pnl: string): Promise<Position>;
