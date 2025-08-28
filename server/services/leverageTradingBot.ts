@@ -216,7 +216,6 @@ export class LeverageTradingBot extends EventEmitter {
     await this.log('CONFIG', 'Leverage trading strategies configuration', {
       strategies: leverageStrategies,
       timeframe: settings.timeframe,
-      leverageEnabled: settings.leverageEnabled,
       minConfidence: settings.minConfidence,
       enabledStrategies: Object.keys(leverageStrategies).filter(key => leverageStrategies[key])
     });
@@ -336,36 +335,6 @@ export class LeverageTradingBot extends EventEmitter {
           });
           console.error(`Leverage analysis error for ${symbol}:`, analysisError);
           continue; // Skip to next symbol
-        }
-        
-        // Move score calculation inside try block  
-        const score = this.calculateTradeScore(indicators);
-        const scoreCategory = this.getScoreCategory(score);
-        const signalEmoji = signals.length > 0 ? '✅' : '❌';
-        const signalText = signals.length > 0 ? 'Leverage signal found' : 'No leverage signal';
-        
-        await this.log('ANALYSIS', `${symbol} leverage analysis complete`, {
-          symbol,
-          rsi: indicators.rsi?.toFixed(2),
-          macdCross: typeof indicators.macd === 'object' ? (indicators.macd.histogram > 0 ? 'Bullish' : 'Bearish') : 'Neutral',
-          adx: indicators.adx?.toFixed(2),
-          signalsFound: signals.length
-        });
-        
-        await this.log('INFO', `${symbol}: ${signalEmoji} ${signalText} | Score: ${score.toFixed(1)} (${scoreCategory})`, {
-          symbol,
-          score,
-          category: scoreCategory,
-          signals: signals.length,
-          longSignals: signals.filter(s => s.direction === 'LONG').length,
-          shortSignals: signals.filter(s => s.direction === 'SHORT').length,
-          rsi: indicators.rsi?.toFixed(2),
-          ema: indicators.ema12?.toFixed(6),
-          macd: typeof indicators.macd === 'object' ? indicators.macd?.macd?.toFixed(6) : (indicators.macd as any)?.toFixed(6)
-        });
-
-        if (signals.length > 0) {
-          opportunitiesFound++;
         }
 
         // Small delay between symbol analysis (reduced for faster processing)
