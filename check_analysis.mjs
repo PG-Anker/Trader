@@ -1,0 +1,1 @@
+import Database from "better-sqlite3"; const db = new Database("database.sqlite"); const newest = db.prepare("SELECT level, message, createdAt FROM bot_logs WHERE userId = 1 AND id > 508 ORDER BY id DESC LIMIT 10").all(); console.log(`NEW ANALYSIS LOGS:`); newest.forEach(log => console.log(`[${log.level}] ${log.message}`)); db.close();
