@@ -1,0 +1,73 @@
+Wrong defaultType in CCXT:
+Bybit splits spot and linear (USDT perpetual) markets.
+
+If you use a spot symbol (MATIC/USDT) but CCXT client is initialized for linear, Bybit will reject the request.
+
+And vice versa.
+
+// Spot client
+const bybitSpot = new ccxt.bybit({ options: { defaultType: 'spot' } });
+// Futures client
+const bybitLinear = new ccxt.bybit({ options: { defaultType: 'linear' } });
+
+
+Cloudflare/CDN protection:
+Bybit sometimes rate-limits via CloudFront/Cloudflare.
+
+Hitting too many requests in parallel triggers it.
+
+On Replit, all users share IP ranges, which makes it worse.
+
+Missing user agent / headers:
+Some exchanges reject “bare” requests. CCXT lets you add headers:
+
+const bybit = new ccxt.bybit({
+  options: { defaultType: 'spot' },
+  headers: { 'User-Agent': 'MyTradingBot/1.0' }
+});
+
+✅ Fixes you can apply
+
+Separate clients for spot and leverage:
+
+this.spot = new ccxt.bybit({ options: { defaultType: 'spot' } });
+this.linear = new ccxt.bybit({ options: { defaultType: 'linear' } });
+
+
+Throttle your requests (500ms may still be too fast for 100 symbols):
+
+Bybit OHLCV limit = ~20 requests/sec max.
+
+With 100 pairs × 2 markets = 200 calls, you’ll hit CloudFront bans.
+
+Fix: batch them, e.g. process 5–10 symbols per second.
+
+Example:
+
+for (const chunk of _.chunk(symbols, 10)) {
+  await Promise.all(chunk.map(s => this.getOHLCV(s, '15m')));
+  await new Promise(res => setTimeout(res, 2000)); // pause between chunks
+}
+
+
+Test one pair manually first:
+
+const candles = await bybit.fetchOHLCV('BTC/USDT', '15m', undefined, 50);
+console.log(candles.length); // should print >0
+
+
+Retry wrapper for transient 403s:
+
+async fetchWithRetry(symbol: string, timeframe: string, limit: number, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await this.exchange.fetchOHLCV(symbol, timeframe, undefined, limit);
+    } catch (err) {
+      if (err instanceof ccxt.NetworkError && i < retries - 1) {
+        await new Promise(r => setTimeout(r, 2000));
+        continue;
+      }
+      throw err;
+    }
+  }
+}
