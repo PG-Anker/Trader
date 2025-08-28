@@ -1,0 +1,2106 @@
+(trader-env) pg@pg-To-be-filled-by-O-E-M:~/Trader$ git pull origin main
+remote: Enumerating objects: 13, done.
+remote: Counting objects: 100% (13/13), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 10 (delta 8), reused 8 (delta 6), pack-reused 0 (from 0)
+Unpacking objects: 100% (10/10), 3.08 KiB | 631.00 KiB/s, done.
+From github.com:PG-Anker/Trader
+ * branch            main       -> FETCH_HEAD
+   7090f15..db098c5  main       -> origin/main
+Updating 7090f15..db098c5
+Fast-forward
+ ...s-FTM-USDT-symb-1756381424748_1756381424749.txt | 291 +++++++++++++++++++++
+ replit.md                                          |   4 +
+ 2 files changed, 295 insertions(+)
+ create mode 100644 attached_assets/Pasted-13-43-03-WARN-SPOT-Insufficient-market-data-for-FTM-USDT-skipping-spot-analysis-FTM-USDT-symb-1756381424748_1756381424749.txt
+(trader-env) pg@pg-To-be-filled-by-O-E-M:~/Trader$ ./build.sh
+bash: ./build.sh: Permission denied
+(trader-env) pg@pg-To-be-filled-by-O-E-M:~/Trader$ chmod +x ./build.sh
+(trader-env) pg@pg-To-be-filled-by-O-E-M:~/Trader$ ./build.sh
+🚀 Building CryptoBot Pro for production...
+📦 Backing up existing database...
+💾 Exporting existing user data...
+📦 Installing all dependencies for build...
+npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+
+added 823 packages, and audited 824 packages in 9s
+
+88 packages are looking for funding
+  run `npm fund` for details
+
+12 vulnerabilities (4 low, 8 moderate)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues possible (including breaking changes), run:
+  npm audit fix --force
+
+Some issues need review, and may require choosing
+a different dependency.
+
+Run `npm audit` for details.
+🔨 Building project...
+
+> rest-express@1.0.0 build
+> vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+
+vite v5.4.19 building for production...
+transforming (3) src/main.tsxBrowserslist: browsers data (caniuse-lite) is 10 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+✓ 1992 modules transformed.
+../dist/public/index.html                   0.63 kB │ gzip:   0.38 kB
+../dist/public/assets/index-Bui3qAnY.css   69.36 kB │ gzip:  12.04 kB
+../dist/public/assets/index-Bw0lZKbY.js   372.55 kB │ gzip: 113.53 kB
+✓ built in 3.92s
+
+  dist/index.js  119.6kb
+
+⚡ Done in 12ms
+📁 Copying static files...
+cp: cannot stat 'client/dist/*': No such file or directory
+(trader-env) pg@pg-To-be-filled-by-O-E-M:~/Trader$ NODE_ENV=production node dist/index.js
+1:58:59 PM [express] serving on port 5000
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:58:59 PM [express] GET /api/bot-logs 401 in 5ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:00 PM [express] GET /api/bot-logs 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:01 PM [express] GET /api/bot-logs 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:02 PM [express] GET /api/bot-logs 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:02 PM [express] GET /api/bot/status 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:04 PM [express] GET /api/bot-logs 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:05 PM [express] GET /api/bot-logs 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:07 PM [express] GET /api/bot-logs 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:07 PM [express] GET /api/portfolio 401 in 2ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:07 PM [express] GET /api/bot/status 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:08 PM [express] GET /api/bot-logs 401 in 0ms :: {"message":"Invalid session"}
+Auth check - Session ID: s6t6fc4u... Sessions available: 0
+Invalid session: s6t6fc4u8qmevbxgls
+1:59:09 PM [express] GET /api/bot-logs 401 in 2ms :: {"message":"Invalid session"}
+Auth check - Session ID: s6t6fc4u... Sessions available: 0
+Invalid session: s6t6fc4u8qmevbxgls
+1:59:09 PM [express] GET /api/bot/status 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: s6t6fc4u... Sessions available: 0
+Invalid session: s6t6fc4u8qmevbxgls
+1:59:09 PM [express] GET /api/settings 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: s6t6fc4u... Sessions available: 0
+Invalid session: s6t6fc4u8qmevbxgls
+1:59:09 PM [express] GET /api/dashboard 401 in 2ms :: {"message":"Invalid session"}
+Auth check - Session ID: s6t6fc4u... Sessions available: 0
+Invalid session: s6t6fc4u8qmevbxgls
+1:59:09 PM [express] GET /api/portfolio 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: s6t6fc4u... Sessions available: 0
+Invalid session: s6t6fc4u8qmevbxgls
+1:59:09 PM [express] GET /api/bot-logs 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: s6t6fc4u... Sessions available: 0
+Invalid session: s6t6fc4u8qmevbxgls
+1:59:10 PM [express] GET /api/bot-logs 401 in 0ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:10 PM [express] GET /api/bot-logs 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: s6t6fc4u... Sessions available: 0
+Invalid session: s6t6fc4u8qmevbxgls
+1:59:10 PM [express] GET /api/auth/me 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:11 PM [express] GET /api/bot-logs 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:12 PM [express] GET /api/bot/status 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:13 PM [express] GET /api/bot-logs 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:14 PM [express] GET /api/bot-logs 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:16 PM [express] GET /api/bot-logs 401 in 0ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:17 PM [express] GET /api/bot-logs 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:17 PM [express] GET /api/portfolio 401 in 0ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 0
+Invalid session: 845y4xw3t0smevbxq07
+1:59:17 PM [express] GET /api/bot/status 401 in 1ms :: {"message":"Invalid session"}
+Login attempt for username: admin
+Found user: admin ID: 1
+✅ Login successful for user: admin Session ID: mxm90gwr...
+1:59:17 PM [express] POST /api/auth/login 200 in 57ms :: {"success":true,"user":{"id":1,"username":"…
+Auth check - Session ID: mxm90gwr... Sessions available: 1
+Auth success for user: admin
+1:59:17 PM [express] GET /api/settings 200 in 3ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: mxm90gwr... Sessions available: 1
+Auth success for user: admin
+1:59:17 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: mxm90gwr... Sessions available: 1
+Auth success for user: admin
+1:59:17 PM [express] GET /api/dashboard 200 in 6ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: mxm90gwr... Sessions available: 1
+Auth success for user: admin
+1:59:17 PM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: 845y4xw3... Sessions available: 1
+Invalid session: 845y4xw3t0smevbxq07
+1:59:18 PM [express] GET /api/settings 401 in 0ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 1
+Invalid session: 845y4xw3t0smevbxq07
+1:59:18 PM [express] GET /api/dashboard 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 1
+Invalid session: 845y4xw3t0smevbxq07
+1:59:19 PM [express] GET /api/bot-logs 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 1
+Invalid session: 845y4xw3t0smevbxq07
+1:59:20 PM [express] GET /api/bot-logs 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: mxm90gwr... Sessions available: 1
+Auth success for user: admin
+🔄 Initializing CCXT market data service with dual clients...
+📡 Loading spot markets (attempt 1/3)...
+Auth check - Session ID: mxm90gwr... Sessions available: 1
+Auth success for user: admin
+🔄 Initializing CCXT market data service with dual clients...
+📡 Loading spot markets (attempt 1/3)...
+Auth check - Session ID: 845y4xw3... Sessions available: 1
+Invalid session: 845y4xw3t0smevbxq07
+1:59:22 PM [express] GET /api/bot-logs 401 in 0ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 1
+Invalid session: 845y4xw3t0smevbxq07
+1:59:22 PM [express] GET /api/bot/status 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: mxm90gwr... Sessions available: 1
+Auth success for user: admin
+1:59:22 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: 845y4xw3... Sessions available: 1
+Invalid session: 845y4xw3t0smevbxq07
+1:59:23 PM [express] GET /api/bot-logs 401 in 0ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 1
+Invalid session: 845y4xw3t0smevbxq07
+1:59:25 PM [express] GET /api/bot-logs 401 in 0ms :: {"message":"Invalid session"}
+Auth check - Session ID: 845y4xw3... Sessions available: 1
+Invalid session: 845y4xw3t0smevbxq07
+1:59:26 PM [express] GET /api/auth/me 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: mxm90gwr... Sessions available: 1
+Auth success for user: admin
+1:59:27 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: mxm90gwr... Sessions available: 1
+Auth success for user: admin
+1:59:27 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Login attempt for username: admin
+Found user: admin ID: 1
+✅ Login successful for user: admin Session ID: r0pk2cx0...
+1:59:29 PM [express] POST /api/auth/login 200 in 64ms :: {"success":true,"user":{"id":1,"username":"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:29 PM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:29 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:29 PM [express] GET /api/dashboard 200 in 3ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:29 PM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+1:59:32 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:34 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+1:59:37 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+1:59:37 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:39 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:39 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:42 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+1:59:42 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:44 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:44 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:45 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+1:59:47 PM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+1:59:47 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+1:59:47 PM [express] GET /api/dashboard 200 in 4ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:47 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+1:59:47 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:48 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:49 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:49 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:50 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:51 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+1:59:52 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:53 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:54 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:54 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:56 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:57 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+1:59:57 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+1:59:57 PM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:59 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:59 PM [express] GET /api/dashboard 200 in 3ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:59 PM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:59 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+1:59:59 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:00 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:02 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:02 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:03 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:04 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:05 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:06 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:07 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:07 PM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:08 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:09 PM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:09 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:09 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:11 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:12 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:12 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:14 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:14 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:15 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:17 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:17 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:17 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:17 PM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:17 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:18 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:19 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:19 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:20 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:21 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:22 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:23 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:24 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:24 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:26 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:27 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:27 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:27 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:29 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:29 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:29 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:29 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:29 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:30 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:32 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:32 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:33 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:34 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:35 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:36 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:37 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:37 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:38 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:39 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:39 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:39 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:41 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:42 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:42 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:44 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:44 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:45 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:47 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:47 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:47 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:47 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:47 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:48 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:49 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:49 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:50 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:51 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:52 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:53 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:54 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:54 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:56 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:57 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:57 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:00:57 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:59 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:59 PM [express] GET /api/dashboard 200 in 1ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:59 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:59 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:00:59 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:00 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:02 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:02 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:03 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:04 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:05 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:06 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:07 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:07 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:08 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:09 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:09 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:09 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:11 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:12 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:12 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:14 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:14 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:15 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:17 PM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:17 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:17 PM [express] GET /api/dashboard 200 in 3ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:17 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:17 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:18 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:19 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:19 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:20 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+✅ Loaded 2767 spot markets
+📡 Loading linear markets (attempt 1/3)...
+✅ Loaded 2767 spot markets
+📡 Loading linear markets (attempt 1/3)...
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:21 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:22 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:23 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:24 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:24 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:26 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:27 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:27 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:27 PM [express] GET /api/bot/status 200 in 2ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:29 PM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:29 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:29 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:29 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:29 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:30 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:32 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:32 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:33 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:34 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:35 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:36 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:37 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:37 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:39 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:39 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:39 PM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:39 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:41 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:42 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:42 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:44 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:44 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:45 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:47 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:47 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:47 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:47 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:47 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:48 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:49 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:49 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:50 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:51 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:52 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:53 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:54 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:54 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:56 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:57 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:57 PM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:01:57 PM [express] GET /api/bot/status 200 in 2ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:59 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:59 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:59 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:01:59 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:00 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:00 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:02 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:02 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:03 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:05 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:05 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:06 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:07 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:07 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:08 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:09 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:09 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:10 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:11 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:12 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:12 PM [express] GET /api/bot/status 200 in 2ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:14 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:15 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:15 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:17 PM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:17 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:17 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:17 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:17 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:18 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:19 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:20 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:20 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:21 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:22 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:23 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:24 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:25 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:26 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:27 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:27 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:27 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:29 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:29 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:29 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:29 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:30 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:30 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:32 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:32 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:33 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:35 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:35 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:36 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:37 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:37 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:38 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:39 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:39 PM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:40 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:41 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:42 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:42 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:44 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:45 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:45 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:47 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:47 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:47 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:47 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:47 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:48 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:49 PM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:50 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:50 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:51 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:52 PM [express] GET /api/bot/status 200 in 2ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:53 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:54 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:55 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:56 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:57 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:57 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:02:57 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:59 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:59 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:59 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:02:59 PM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:00 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:00 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:02 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:02 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:03 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:05 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:05 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:06 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:07 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:07 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:08 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:09 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:09 PM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:10 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:11 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:12 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:12 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:14 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:15 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:15 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:17 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:17 PM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:17 PM [express] GET /api/dashboard 200 in 1ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:17 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:17 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:18 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:19 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:20 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:20 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:21 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1006,"userId":1,"level":"INFO","message"…
+✅ Loaded 2767 linear markets
+✅ Total markets available: 2767
+✅ Loaded 510 USDT trading pairs
+Sample pairs: [
+  'BTC/USDT',  'ETH/USDT',
+  'XRP/USDT',  'DOT/USDT',
+  'XLM/USDT',  'LTC/USDT',
+  'DOGE/USDT', 'CHZ/USDT',
+  'AXS/USDT',  'MANA/USDT'
+]
+🔄 Fetching top trading pairs...
+📝 Using comprehensive USDT pairs list due to API limitations
+🔄 Processing 100 symbols in batches of 8 for spot market
+📦 Processing batch 1/13: BTC/USDT, ETH/USDT, BNB/USDT, XRP/USDT, ADA/USDT, DOGE/USDT, MATIC/USDT, SOL/USDT
+2:03:21 PM [express] POST /api/bot/spot/start 200 in 241648ms :: {"success":true,"message":"Spot tra…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:21 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+✅ Loaded 2767 linear markets
+✅ Total markets available: 2767
+✅ Loaded 510 USDT trading pairs
+Sample pairs: [
+  'BTC/USDT',  'ETH/USDT',
+  'XRP/USDT',  'DOT/USDT',
+  'XLM/USDT',  'LTC/USDT',
+  'DOGE/USDT', 'CHZ/USDT',
+  'AXS/USDT',  'MANA/USDT'
+]
+🔄 Fetching top trading pairs...
+📝 Using comprehensive USDT pairs list due to API limitations
+🔄 Processing 100 symbols in batches of 8 for linear market
+📦 Processing batch 1/13: BTC/USDT, ETH/USDT, BNB/USDT, XRP/USDT, ADA/USDT, DOGE/USDT, MATIC/USDT, SOL/USDT
+2:03:22 PM [express] POST /api/bot/leverage/start 200 in 241335ms :: {"success":true,"message":"Leve…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:22 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+📊 Fetching spot OHLCV for SOL/USDT (attempt 1/3)
+📊 Fetching spot OHLCV for BNB/USDT (attempt 1/3)
+📊 Fetching spot OHLCV for BTC/USDT (attempt 1/3)
+📊 Fetching spot OHLCV for XRP/USDT (attempt 1/3)
+📊 Fetching spot OHLCV for ADA/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for MATIC/USDT (attempt 1/3)
+❌ Error fetching OHLCV for MATIC/USDT (linear) attempt 1: bybit does not have market symbol MATIC/USDT
+📊 Fetching spot OHLCV for MATIC/USDT (attempt 1/3)
+❌ Error fetching OHLCV for MATIC/USDT (spot) attempt 1: bybit does not have market symbol MATIC/USDT
+📊 Fetching spot OHLCV for DOGE/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for BTC/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for ETH/USDT (attempt 1/3)
+📊 Fetching spot OHLCV for ETH/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for BNB/USDT (attempt 1/3)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:23 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+📊 Fetching linear OHLCV for XRP/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for ADA/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for SOL/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for DOGE/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for MATIC/USDT (attempt 2/3)
+❌ Error fetching OHLCV for MATIC/USDT (linear) attempt 2: bybit does not have market symbol MATIC/USDT
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:24 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+📊 Fetching spot OHLCV for MATIC/USDT (attempt 2/3)
+❌ Error fetching OHLCV for MATIC/USDT (spot) attempt 2: bybit does not have market symbol MATIC/USDT
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:25 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+📊 Fetching linear OHLCV for MATIC/USDT (attempt 3/3)
+❌ Error fetching OHLCV for MATIC/USDT (linear) attempt 3: bybit does not have market symbol MATIC/USDT
+💥 Final attempt failed for MATIC/USDT (linear)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:26 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+📊 Fetching spot OHLCV for MATIC/USDT (attempt 3/3)
+❌ Error fetching OHLCV for MATIC/USDT (spot) attempt 3: bybit does not have market symbol MATIC/USDT
+💥 Final attempt failed for MATIC/USDT (spot)
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:27 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:27 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:27 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:29 PM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:29 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:29 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:30 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:30 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:30 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:32 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:32 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:33 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:35 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:35 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:36 PM [express] GET /api/bot-logs 200 in 3ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:37 PM [express] GET /api/bot/status 200 in 2ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:37 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+✅ Successfully fetched 200 candles for SOL/USDT (spot)
+✅ Successfully fetched 200 candles for BTC/USDT (linear)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:38 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:39 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:40 PM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:40 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:41 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:42 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:42 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:44 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:45 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:45 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:47 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:47 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:47 PM [express] GET /api/settings 200 in 2ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:47 PM [express] GET /api/dashboard 200 in 3ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:47 PM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:48 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:50 PM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:50 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:50 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:51 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:52 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+✅ Successfully fetched 200 candles for BNB/USDT (spot)
+✅ Successfully fetched 200 candles for ETH/USDT (linear)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:53 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:54 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:55 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:56 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:57 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:57 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:03:57 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:59 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:59 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:03:59 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:00 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:00 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:00 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:02 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:02 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:03 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:05 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:05 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:06 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:07 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:07 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+✅ Successfully fetched 200 candles for BTC/USDT (spot)
+✅ Successfully fetched 200 candles for BNB/USDT (linear)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:08 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:09 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:10 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:10 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:11 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:12 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:12 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:14 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:15 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:15 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:17 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:17 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:17 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:17 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:17 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:18 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:20 PM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:20 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:20 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:21 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:22 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+✅ Successfully fetched 200 candles for XRP/USDT (spot)
+✅ Successfully fetched 200 candles for XRP/USDT (linear)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:23 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:24 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:25 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:26 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:27 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:27 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:27 PM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:29 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:29 PM [express] GET /api/dashboard 200 in 1ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:29 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:30 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:30 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:30 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:32 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:32 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:33 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:35 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:35 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:36 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:37 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:37 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+✅ Successfully fetched 200 candles for ADA/USDT (spot)
+✅ Successfully fetched 200 candles for ADA/USDT (linear)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:38 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:39 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:40 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:40 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:41 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:42 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:42 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:44 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:45 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:45 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:47 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:47 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:47 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:47 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:47 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:48 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:50 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:50 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:50 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:51 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:52 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+✅ Successfully fetched 200 candles for DOGE/USDT (spot)
+✅ Successfully fetched 200 candles for SOL/USDT (linear)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:53 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:54 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:55 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:56 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:57 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:57 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:04:57 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:59 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:59 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:04:59 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:00 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:00 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:00 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:02 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:02 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:03 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:05 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:05 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:06 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:07 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:07 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+✅ Successfully fetched 200 candles for ETH/USDT (spot)
+⏳ Waiting 3000ms before next batch to avoid rate limits...
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:08 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+✅ Successfully fetched 200 candles for DOGE/USDT (linear)
+⏳ Waiting 3000ms before next batch to avoid rate limits...
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:09 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:10 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:10 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+📦 Processing batch 2/13: DOT/USDT, AVAX/USDT, LINK/USDT, UNI/USDT, LTC/USDT, BCH/USDT, ATOM/USDT, FIL/USDT
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:11 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+📦 Processing batch 2/13: DOT/USDT, AVAX/USDT, LINK/USDT, UNI/USDT, LTC/USDT, BCH/USDT, ATOM/USDT, FIL/USDT
+📊 Fetching spot OHLCV for AVAX/USDT (attempt 1/3)
+📊 Fetching spot OHLCV for DOT/USDT (attempt 1/3)
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:12 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:12 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+📊 Fetching spot OHLCV for LTC/USDT (attempt 1/3)
+📊 Fetching spot OHLCV for FIL/USDT (attempt 1/3)
+📊 Fetching spot OHLCV for BCH/USDT (attempt 1/3)
+📊 Fetching spot OHLCV for LINK/USDT (attempt 1/3)
+📊 Fetching spot OHLCV for UNI/USDT (attempt 1/3)
+📊 Fetching spot OHLCV for ATOM/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for FIL/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for ATOM/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for LTC/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for LINK/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for DOT/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for AVAX/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for UNI/USDT (attempt 1/3)
+📊 Fetching linear OHLCV for BCH/USDT (attempt 1/3)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:14 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:15 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:15 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:17 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:17 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:17 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:17 PM [express] GET /api/dashboard 200 in 1ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:17 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:18 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:20 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:20 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:20 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:21 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:22 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:23 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:24 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:25 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:26 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:27 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+✅ Successfully fetched 200 candles for AVAX/USDT (spot)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:27 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:27 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+✅ Successfully fetched 200 candles for FIL/USDT (linear)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:29 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:29 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:29 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:30 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:30 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:30 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:32 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:32 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:33 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:35 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:35 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:36 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:37 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:37 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:38 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:39 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:40 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:40 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:41 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:42 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+✅ Successfully fetched 200 candles for DOT/USDT (spot)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:42 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+✅ Successfully fetched 200 candles for ATOM/USDT (linear)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:44 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:45 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:45 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:47 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:47 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:47 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:47 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:47 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:48 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:50 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:50 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:50 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:51 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:52 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:53 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:54 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:55 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:56 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+✅ Successfully fetched 200 candles for LTC/USDT (spot)
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:57 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:57 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:05:57 PM [express] GET /api/portfolio 200 in 0ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+✅ Successfully fetched 200 candles for LTC/USDT (linear)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:59 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:59 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:05:59 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:00 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:00 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:00 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:06:02 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:02 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:03 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:05 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:05 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:06 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:06:07 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:06:07 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:08 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:09 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:10 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:11 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:11 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+✅ Successfully fetched 200 candles for FIL/USDT (spot)
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:06:12 PM [express] GET /api/bot/status 200 in 2ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:12 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+✅ Successfully fetched 200 candles for LINK/USDT (linear)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:14 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:15 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:16 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:06:17 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:17 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:06:17 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:06:17 PM [express] GET /api/dashboard 200 in 3ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:06:17 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:18 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:20 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:20 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:21 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:21 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:06:22 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:23 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:24 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:26 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:26 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+✅ Successfully fetched 200 candles for BCH/USDT (spot)
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:06:27 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:27 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:06:27 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+✅ Successfully fetched 200 candles for DOT/USDT (linear)
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:29 PM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:29 PM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:29 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:30 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:30 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:31 PM [express] GET /api/bot/status 200 in 0ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:06:32 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:32 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:33 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:35 PM [express] GET /api/bot-logs 200 in 1ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:36 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:36 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:06:37 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: mxm90gwr... Sessions available: 2
+Auth success for user: admin
+2:06:37 PM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: r0pk2cx0... Sessions available: 2
+Auth success for user: admin
+2:06:38 PM [express] GET /api/bot-logs 200 in 2ms :: [{"id":1022,"userId":1,"level":"INFO","message"…
+^C
+(trader-env) pg@pg-To-be-filled-by-O-E-M:~/Trader$ 
