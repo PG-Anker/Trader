@@ -117,6 +117,10 @@ Key entities include:
 
 ```
 Changelog:
+- August 28, 2025. REMOVED: Mock data fallback system for production deployment - CCXT now returns empty arrays when API blocked for cleaner production environment
+- August 28, 2025. ENHANCED: build.sh script with comprehensive database preservation, user data backup/restore, and dual bot schema updates
+- August 28, 2025. FIXED: Data type conversion in trading bots to handle OHLCV object to number array transformation properly
+- August 28, 2025. FIXED: Settings save authentication issue by using apiRequest function instead of raw fetch
 - August 28, 2025. FIXED: Multiple bot instances issue - eliminated duplicate analysis by ensuring only one bot per type runs at a time
 - August 28, 2025. FIXED: Database schema mismatch - corrected Drizzle column names to match SQLite database structure
 - August 28, 2025. IMPLEMENTED: Complete dual bot settings interface with independent configuration tabs

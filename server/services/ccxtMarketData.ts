@@ -194,8 +194,8 @@ export class CCXTMarketDataService {
       const ohlcv = await this.exchange.fetchOHLCV(symbol, timeframe, undefined, limit);
       
       if (!ohlcv || ohlcv.length === 0) {
-        console.log(`No OHLCV data returned for ${symbol}, generating mock data for analysis`);
-        return this.generateMockOHLCV(symbol, limit);
+        console.log(`No OHLCV data returned for ${symbol}`);
+        return [];
       }
       
       return ohlcv.map(([timestamp, open, high, low, close, volume]) => ({
@@ -208,72 +208,8 @@ export class CCXTMarketDataService {
       }));
       
     } catch (error) {
-      console.error(`API blocked/failed for ${symbol}, using mock data:`, error instanceof Error ? error.message : 'Unknown error');
-      
-      // Generate realistic mock data when API is blocked
-      return this.generateMockOHLCV(symbol, limit);
-    }
-  }
-
-  private generateMockOHLCV(symbol: string, limit: number): OHLCV[] {
-    const now = Date.now();
-    const interval = 15 * 60 * 1000; // 15 minutes in milliseconds
-    const basePrice = this.getBasePriceForSymbol(symbol);
-    const mockData: OHLCV[] = [];
-    
-    for (let i = limit - 1; i >= 0; i--) {
-      const timestamp = now - (i * interval);
-      const volatility = 0.02; // 2% volatility
-      const trend = Math.sin(i * 0.1) * 0.005; // Slight trending pattern
-      
-      const priceChange = (Math.random() - 0.5) * volatility + trend;
-      const open = basePrice * (1 + priceChange);
-      const close = open * (1 + (Math.random() - 0.5) * volatility * 0.5);
-      const high = Math.max(open, close) * (1 + Math.random() * volatility * 0.3);
-      const low = Math.min(open, close) * (1 - Math.random() * volatility * 0.3);
-      const volume = 100000 + Math.random() * 500000;
-      
-      mockData.push({
-        timestamp,
-        open: Number(open.toFixed(8)),
-        high: Number(high.toFixed(8)),
-        low: Number(low.toFixed(8)),
-        close: Number(close.toFixed(8)),
-        volume: Number(volume.toFixed(2))
-      });
-    }
-    
-    return mockData;
-  }
-
-  private getBasePriceForSymbol(symbol: string): number {
-    // Realistic base prices for common USDT pairs
-    const basePrices: { [key: string]: number } = {
-      'BTC/USDT': 42000,
-      'ETH/USDT': 2500,
-      'BNB/USDT': 320,
-      'ADA/USDT': 0.45,
-      'SOL/USDT': 98,
-      'DOGE/USDT': 0.08,
-      'MATIC/USDT': 0.85,
-      'DOT/USDT': 6.2,
-      'AVAX/USDT': 38,
-      'LINK/USDT': 14.5
-    };
-    
-    // Use known price or generate realistic price based on symbol pattern
-    if (basePrices[symbol]) {
-      return basePrices[symbol];
-    }
-    
-    // Generate price based on symbol characteristics
-    const symbolBase = symbol.split('/')[0];
-    if (symbolBase.length <= 3) {
-      return 10 + Math.random() * 90; // Major coins: $10-100
-    } else if (symbolBase.includes('USD') || symbolBase.includes('BTC')) {
-      return 0.1 + Math.random() * 10; // Stable/derivative coins: $0.1-10
-    } else {
-      return 0.01 + Math.random() * 5; // Alt coins: $0.01-5
+      console.error(`Error fetching OHLCV for ${symbol}:`, error instanceof Error ? error.message : 'Unknown error');
+      return [];
     }
   }
 

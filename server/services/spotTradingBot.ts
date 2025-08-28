@@ -222,7 +222,18 @@ export class SpotTradingBot extends EventEmitter {
     const marketDataCollection = [];
     for (const symbol of this.watchedSymbols) {
       try {
-        const klineData = await this.ccxtMarketData.getOHLCV(symbol, settings.timeframe, 200);
+        const klineDataRaw = await this.ccxtMarketData.getOHLCV(symbol, settings.timeframe, 200);
+        
+        // Convert OHLCV objects to number arrays
+        let klineData: number[][];
+        if (klineDataRaw.length > 0 && typeof klineDataRaw[0] === 'object') {
+          klineData = klineDataRaw.map((candle: any) => [
+            candle.timestamp, candle.open, candle.high, candle.low, candle.close, candle.volume
+          ]);
+        } else {
+          klineData = klineDataRaw as number[][];
+        }
+        
         if (klineData.length >= 50) {
           marketDataCollection.push({ symbol, klineData });
         } else {
