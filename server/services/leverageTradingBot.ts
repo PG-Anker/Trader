@@ -220,15 +220,15 @@ export class LeverageTradingBot extends EventEmitter {
       marketType: 'linear'
     });
 
-    const batchResults = await this.ccxtMarketData.batchFetchOHLCV(
+    const batchResults = await this.ccxtMarketData.getBatchOHLCV(
       this.watchedSymbols, 
       settings.timeframe, 
       200, 
-      false // Critical: use linear market for long/short leverage trading
+      'linear' // Critical: use linear market for long/short leverage trading
     );
 
     const marketDataCollection = [];
-    for (const [symbol, klineDataRaw] of Object.entries(batchResults)) {
+    for (const { symbol, data: klineDataRaw } of batchResults) {
       try {
         // Convert OHLCV objects to number arrays
         const klineData: number[][] = (klineDataRaw as any[]).map((candle: any) => [

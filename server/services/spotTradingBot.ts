@@ -220,15 +220,15 @@ export class SpotTradingBot extends EventEmitter {
       marketType: 'spot'
     });
 
-    const batchResults = await this.ccxtMarketData.batchFetchOHLCV(
+    const batchResults = await this.ccxtMarketData.getBatchOHLCV(
       this.watchedSymbols, 
       settings.timeframe, 
       200, 
-      true // Critical: use spot market for buy/sell trading
+      'spot' // Critical: use spot market for buy/sell trading
     );
 
     const marketDataCollection = [];
-    for (const [symbol, klineDataRaw] of Object.entries(batchResults)) {
+    for (const { symbol, data: klineDataRaw } of batchResults) {
       try {
         // Convert OHLCV objects to number arrays
         const klineData: number[][] = (klineDataRaw as any[]).map((candle: any) => [

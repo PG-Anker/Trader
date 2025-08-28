@@ -194,6 +194,14 @@ export class CCXTMarketDataService {
     }
   }
 
+  async getBatchOHLCV(symbols: string[], timeframe: string = '15m', limit: number = 100, marketType: string = 'spot'): Promise<Array<{ symbol: string; data: OHLCV[] }>> {
+    const forSpot = marketType === 'spot';
+    const results = await this.batchFetchOHLCV(symbols, timeframe, limit, forSpot);
+    
+    // Convert to expected format
+    return Object.entries(results).map(([symbol, data]) => ({ symbol, data }));
+  }
+
   async batchFetchOHLCV(symbols: string[], timeframe: string = '15m', limit: number = 100, forSpot: boolean = true): Promise<{ [symbol: string]: OHLCV[] }> {
     const results: { [symbol: string]: OHLCV[] } = {};
     const batchSize = 8; // Process 8 symbols at a time
