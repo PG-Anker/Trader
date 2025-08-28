@@ -1,0 +1,35 @@
+✅ Login successful for user: admin Session ID: fskwnslm...
+2:25:16 PM [express] POST /api/auth/login 200 in 55ms :: {"success":true,"user":{"id":1,"username":"…
+Auth check - Session ID: fskwnslm... Sessions available: 1
+Auth success for user: admin
+2:25:16 PM [express] GET /api/settings 200 in 3ms :: {"id":1,"userId":1,"usdtPerTrade":"100","maxPos…
+Auth check - Session ID: fskwnslm... Sessions available: 1
+Auth success for user: admin
+2:25:16 PM [express] GET /api/bot/status 200 in 1ms :: {"spot":{"isRunning":false,"type":"spot"},"le…
+Auth check - Session ID: fskwnslm... Sessions available: 1
+Auth success for user: admin
+2:25:16 PM [express] GET /api/dashboard 200 in 5ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: fskwnslm... Sessions available: 1
+Auth success for user: admin
+2:25:16 PM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: fskwnslm... Sessions available: 1
+Auth success for user: admin
+🔄 Initializing CCXT market data service with dual clients...
+✅ Using 30 verified USDT pairs from production tests
+✅ CCXT service initialized with verified production symbols
+Spot analysis error: TypeError: this.ccxtMarketData.getBatchOHLCV is not a function
+    at SpotTradingBot.runAnalysis (file:///home/pg/Trader/dist/index.js:1775:52)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2:25:18 PM [express] POST /api/bot/spot/start 200 in 61ms :: {"success":true,"message":"Spot trading…
+Auth check - Session ID: fskwnslm... Sessions available: 1
+Auth success for user: admin
+2:25:18 PM [express] GET /api/bot/status 200 in 2ms :: {"spot":{"isRunning":true,"userId":1,"started…
+Auth check - Session ID: fskwnslm... Sessions available: 1
+Auth success for user: admin
+🔄 Initializing CCXT market data service with dual clients...
+✅ Using 30 verified USDT pairs from production tests
+✅ CCXT service initialized with verified production symbols
+Leverage analysis error: TypeError: this.ccxtMarketData.getBatchOHLCV is not a function
+    at LeverageTradingBot.runAnalysis (file:///home/pg/Trader/dist/index.js:2164:52)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+2:25:19 PM [express] POST /api/bot/leverage/start 200 in 57ms :: {"success":true,"message":"Leverage
