@@ -117,6 +117,9 @@ Key entities include:
 
 ```
 Changelog:
+- August 28, 2025. FIXED: Multiple bot instances issue - eliminated duplicate analysis by ensuring only one bot per type runs at a time
+- August 28, 2025. OPTIMIZED: Data collection strategy - collect all market data first, then analyze sequentially to prevent redundant API calls
+- August 28, 2025. IMPROVED: Analysis efficiency - streamlined logging and reduced delays for faster processing
 - August 28, 2025. IMPLEMENTED: Dual bot architecture - separate spot and leverage trading bots with independent control and different strategies
 - August 28, 2025. ADDED: Individual bot management - can start/stop spot and leverage bots independently via API endpoints
 - August 28, 2025. UPDATED: Database schema to support separate spot and leverage strategies and AI settings

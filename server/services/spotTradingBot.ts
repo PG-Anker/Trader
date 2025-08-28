@@ -211,25 +211,40 @@ export class SpotTradingBot extends EventEmitter {
     // Parse spot strategies
     const spotStrategies = typeof settings.spotStrategies === 'string' 
       ? JSON.parse(settings.spotStrategies) 
-      : settings.spotStrategies;
+      : settings.spotStrategies || JSON.parse(settings.strategies || '{}');
 
+    // Collect all market data first
+    await this.log('INFO', '📊 Collecting market data for all symbols before analysis...', {
+      symbolCount: this.watchedSymbols.length,
+      phase: 'Data Collection'
+    });
+
+    const marketDataCollection = [];
     for (const symbol of this.watchedSymbols) {
       try {
-        // Convert CCXT format (BTC/USDT) to Bybit format (BTCUSDT)
-        const bybitSymbol = symbol.replace('/', '');
-        
-        // Get kline data for analysis using CCXT (public data, no API keys needed)
         const klineData = await this.ccxtMarketData.getOHLCV(symbol, settings.timeframe, 200);
-        
-        if (klineData.length < 50) {
+        if (klineData.length >= 50) {
+          marketDataCollection.push({ symbol, klineData });
+        } else {
           await this.log('WARN', `Insufficient market data for ${symbol} - skipping spot analysis`, { 
             symbol,
             dataPoints: klineData.length,
             required: 50
           });
-          continue;
         }
+      } catch (error) {
+        await this.log('WARN', `Failed to collect data for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`, { symbol });
+      }
+    }
 
+    await this.log('INFO', `✅ Market data collection complete - analyzing ${marketDataCollection.length} symbols for spot opportunities`, {
+      totalCollected: marketDataCollection.length,
+      skipped: this.watchedSymbols.length - marketDataCollection.length
+    });
+
+    // Now analyze all collected data
+    for (const { symbol, klineData } of marketDataCollection) {
+      try {
         await this.log('ANALYSIS', `📈 Analyzing ${symbol} with spot technical indicators`, { 
           symbol,
           timeframe: settings.timeframe,
@@ -251,6 +266,14 @@ export class SpotTradingBot extends EventEmitter {
         const signalEmoji = spotSignals.length > 0 ? '✅' : '❌';
         const signalText = spotSignals.length > 0 ? 'Spot signal found' : 'No spot signal';
         
+        await this.log('ANALYSIS', `${symbol} spot analysis complete`, {
+          symbol,
+          rsi: indicators.rsi?.toFixed(2),
+          macdCross: typeof indicators.macd === 'object' ? (indicators.macd.histogram > 0 ? 'Bullish' : 'Bearish') : 'Neutral',
+          adx: indicators.adx?.toFixed(2),
+          signalsFound: spotSignals.length
+        });
+        
         await this.log('INFO', `${symbol}: ${signalEmoji} ${signalText} | Score: ${score.toFixed(1)} (${scoreCategory})`, {
           symbol,
           score,
@@ -261,16 +284,17 @@ export class SpotTradingBot extends EventEmitter {
           macd: typeof indicators.macd === 'object' ? indicators.macd?.macd?.toFixed(6) : indicators.macd?.toFixed(6)
         });
 
+        if (spotSignals.length > 0) {
+          opportunitiesFound++;
+        }
+
         // Small delay between symbol analysis (reduced for faster processing)
-        await new Promise(resolve => setTimeout(resolve, 200));
+        await new Promise(resolve => setTimeout(resolve, 100));
 
       } catch (error) {
         console.error(`Spot analysis error for ${symbol}:`, error);
         await this.logError('Spot Analysis Error', `Failed to analyze ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`, 'SpotTradingBot.runAnalysis');
       }
-      
-      // Add delay between analyses to avoid rate limits (reduced)
-      await new Promise(resolve => setTimeout(resolve, 50));
     }
 
     await this.log('SCAN', `✅ Spot market scan cycle complete - comprehensive USDT spot analysis finished`, {

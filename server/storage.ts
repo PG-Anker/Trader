@@ -153,14 +153,14 @@ export class DatabaseStorage implements IStorage {
     return position || undefined;
   }
 
-  async getOpenPositions(userId: number, isPaperTrade?: boolean): Promise<Position[]> {
+  async getOpenPositions(userId: number, tradingMode?: string): Promise<Position[]> {
     const conditions = [
       eq(positions.userId, userId),
       eq(positions.status, 'open')
     ];
     
-    if (isPaperTrade !== undefined) {
-      conditions.push(eq(positions.isPaperTrade, isPaperTrade));
+    if (tradingMode) {
+      conditions.push(eq(positions.tradingMode, tradingMode));
     }
     
     return await db

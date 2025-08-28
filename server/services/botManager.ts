@@ -137,11 +137,9 @@ export class BotManager extends EventEmitter {
 
   // Legacy compatibility methods
   async start(userId: number): Promise<void> {
-    // For backward compatibility, start both bots
-    await Promise.all([
-      this.startSpotBot(userId),
-      this.startLeverageBot(userId)
-    ]);
+    // For backward compatibility, start only one bot to avoid conflicts
+    // Start spot bot by default for legacy support
+    await this.startSpotBot(userId);
   }
 
   async stop(): Promise<void> {

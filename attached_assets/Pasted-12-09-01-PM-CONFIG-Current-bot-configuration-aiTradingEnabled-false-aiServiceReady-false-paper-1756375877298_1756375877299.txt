@@ -1,0 +1,199 @@
+12:09:01 PM
+CONFIG
+Current bot configuration
+{"aiTradingEnabled":false,"aiServiceReady":false,"paperTrading":{"spot":true,"leverage":true},"riskManagement":{"usdtPerTrade":"100.00","maxPositions":10,"stopLoss":"3.00","takeProfit":"6.00"}}
+12:09:01 PM
+SCAN
+🔄 Starting Technical Analysis Only - analyzing 100 symbols
+{"symbolCount":100,"tradingMode":"PAPER TRADING","analysisMode":"Technical Analysis Only","aiEnabled":false,"timestamp":"2025-08-28T10:08:54.198Z"}
+12:09:01 PM
+INFO
+ETH/USDT: ❌ No signal | Score: 1.0 (avoid)[ETH/USDT]
+{"symbol":"ETH/USDT","score":1,"category":"avoid","signals":0,"rsi":"55.16","macd":"11.259514"}
+12:09:01 PM
+ANALYSIS
+ETH/USDT technical analysis complete[ETH/USDT]
+{"symbol":"ETH/USDT","rsi":"55.16","macdCross":"Bearish","adx":"36.95","signalsFound":0}
+12:09:01 PM
+ANALYSIS
+📈 Analyzing ETH/USDT with technical indicators[ETH/USDT]
+{"symbol":"ETH/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+12:09:01 PM
+WARN
+Insufficient market data for MATIC/USDT - skipping analysis[MATIC/USDT]
+{"symbol":"MATIC/USDT","dataPoints":0,"required":50}
+12:09:01 PM
+INFO
+DOGE/USDT: ❌ No signal | Score: 1.0 (avoid)[DOGE/USDT]
+{"symbol":"DOGE/USDT","score":1,"category":"avoid","signals":0,"rsi":"50.50","macd":"0.000316"}
+12:09:01 PM
+ANALYSIS
+DOGE/USDT technical analysis complete[DOGE/USDT]
+{"symbol":"DOGE/USDT","rsi":"50.50","macdCross":"Bearish","adx":"4.58","signalsFound":0}
+12:09:01 PM
+ANALYSIS
+📈 Analyzing DOGE/USDT with technical indicators[DOGE/USDT]
+{"symbol":"DOGE/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+12:09:01 PM
+INFO
+BNB/USDT: ❌ No signal | Score: 1.0 (avoid)[BNB/USDT]
+{"symbol":"BNB/USDT","score":1,"category":"avoid","signals":0,"rsi":"48.20","macd":"0.822189"}
+12:09:01 PM
+ANALYSIS
+BNB/USDT technical analysis complete[BNB/USDT]
+{"symbol":"BNB/USDT","rsi":"48.20","macdCross":"Bearish","adx":"27.56","signalsFound":0}
+12:09:01 PM
+ANALYSIS
+📈 Analyzing BNB/USDT with technical indicators[BNB/USDT]
+{"symbol":"BNB/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+12:09:01 PM
+CONFIG
+Current bot configuration
+{"aiTradingEnabled":false,"aiServiceReady":false,"paperTrading":{"spot":true,"leverage":true},"riskManagement":{"usdtPerTrade":"100.00","maxPositions":10,"stopLoss":"3.00","takeProfit":"6.00"}}
+12:09:01 PM
+SCAN
+🔄 Starting Technical Analysis Only - analyzing 100 symbols
+{"symbolCount":100,"tradingMode":"PAPER TRADING","analysisMode":"Technical Analysis Only","aiEnabled":false,"timestamp":"2025-08-28T10:08:24.198Z"}
+12:09:01 PM
+INFO
+BTC/USDT: ❌ No signal | Score: 1.0 (avoid)[BTC/USDT]
+{"symbol":"BTC/USDT","score":1,"category":"avoid","signals":0,"rsi":"44.95","macd":"180.462203"}
+12:09:01 PM
+ANALYSIS
+BTC/USDT technical analysis complete[BTC/USDT]
+{"symbol":"BTC/USDT","rsi":"44.95","macdCross":"Bearish","adx":"10.34","signalsFound":0}
+12:09:01 PM
+ANALYSIS
+📈 Analyzing BTC/USDT with technical indicators[BTC/USDT]
+{"symbol":"BTC/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+12:09:01 PM
+INFO
+ADA/USDT: ❌ No signal | Score: 1.0 (avoid)[ADA/USDT]
+{"symbol":"ADA/USDT","score":1,"category":"avoid","signals":0,"rsi":"52.65","macd":"0.001059"}
+12:09:01 PM
+ANALYSIS
+ADA/USDT technical analysis complete[ADA/USDT]
+{"symbol":"ADA/USDT","rsi":"52.65","macdCross":"Bearish","adx":"6.57","signalsFound":0}
+12:09:01 PM
+ANALYSIS
+📈 Analyzing ADA/USDT with technical indicators[ADA/USDT]
+{"symbol":"ADA/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+12:09:01 PM
+INFO
+ETH/USDT: ❌ No signal | Score: 1.0 (avoid)[ETH/USDT]
+{"symbol":"ETH/USDT","score":1,"category":"avoid","signals":0,"rsi":"55.16","macd":"11.609713"}
+12:09:01 PM
+ANALYSIS
+ETH/USDT technical analysis complete[ETH/USDT]
+{"symbol":"ETH/USDT","rsi":"55.16","macdCross":"Bearish","adx":"36.95","signalsFound":0}
+12:09:01 PM
+ANALYSIS
+📈 Analyzing ETH/USDT with technical indicators[ETH/USDT]
+{"symbol":"ETH/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+12:09:01 PM
+CONFIG
+Current bot configuration
+{"aiTradingEnabled":false,"aiServiceReady":false,"paperTrading":{"spot":true,"leverage":true},"riskManagement":{"usdtPerTrade":"100.00","maxPositions":10,"stopLoss":"3.00","takeProfit":"6.00"}}
+12:09:01 PM
+SCAN
+🔄 Starting Technical Analysis Only - analyzing 100 symbols
+{"symbolCount":100,"tradingMode":"PAPER TRADING","analysisMode":"Technical Analysis Only","aiEnabled":false,"timestamp":"2025-08-28T10:07:54.197Z"}
+12:09:01 PM
+INFO
+XRP/USDT: ❌ No signal | Score: 1.5 (avoid)[XRP/USDT]
+{"symbol":"XRP/USDT","score":1.5,"category":"avoid","signals":0,"rsi":"33.98","macd":"0.002227"}
+12:09:01 PM
+ANALYSIS
+XRP/USDT technical analysis complete[XRP/USDT]
+{"symbol":"XRP/USDT","rsi":"33.98","macdCross":"Bearish","adx":"13.13","signalsFound":0}
+12:09:01 PM
+ANALYSIS
+📈 Analyzing XRP/USDT with technical indicators[XRP/USDT]
+{"symbol":"XRP/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+12:09:01 PM
+INFO
+BTC/USDT: ❌ No signal | Score: 1.0 (avoid)[BTC/USDT]
+{"symbol":"BTC/USDT","score":1,"category":"avoid","signals":0,"rsi":"44.95","macd":"185.073030"}
+12:09:01 PM
+ANALYSIS
+BTC/USDT technical analysis complete[BTC/USDT]
+{"symbol":"BTC/USDT","rsi":"44.95","macdCross":"Bearish","adx":"10.34","signalsFound":0}
+12:09:01 PM
+ANALYSIS
+📈 Analyzing BTC/USDT with technical indicators[BTC/USDT]
+{"symbol":"BTC/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+12:09:01 PM
+INFO
+BNB/USDT: ❌ No signal | Score: 1.0 (avoid)[BNB/USDT]
+{"symbol":"BNB/USDT","score":1,"category":"avoid","signals":0,"rsi":"48.20","macd":"0.854097"}
+12:09:01 PM
+ANALYSIS
+BNB/USDT technical analysis complete[BNB/USDT]
+{"symbol":"BNB/USDT","rsi":"48.20","macdCross":"Bearish","adx":"27.56","signalsFound":0}
+12:09:01 PM
+ANALYSIS
+📈 Analyzing BNB/USDT with technical indicators[BNB/USDT]
+{"symbol":"BNB/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+12:09:01 PM
+CONFIG
+Current bot configuration
+{"aiTradingEnabled":false,"aiServiceReady":false,"paperTrading":{"spot":true,"leverage":true},"riskManagement":{"usdtPerTrade":"100.00","maxPositions":10,"stopLoss":"3.00","takeProfit":"6.00"}}
+12:09:01 PM
+SCAN
+🔄 Starting Technical Analysis Only - analyzing 100 symbols
+{"symbolCount":100,"tradingMode":"PAPER TRADING","analysisMode":"Technical Analysis Only","aiEnabled":false,"timestamp":"2025-08-28T10:07:24.197Z"}
+12:09:01 PM
+INFO
+ETH/USDT: ❌ No signal | Score: 1.0 (avoid)[ETH/USDT]
+{"symbol":"ETH/USDT","score":1,"category":"avoid","signals":0,"rsi":"55.16","macd":"11.766067"}
+12:09:01 PM
+ANALYSIS
+ETH/USDT technical analysis complete[ETH/USDT]
+{"symbol":"ETH/USDT","rsi":"55.16","macdCross":"Bearish","adx":"36.53","signalsFound":0}
+12:09:01 PM
+ANALYSIS
+📈 Analyzing ETH/USDT with technical indicators[ETH/USDT]
+{"symbol":"ETH/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+12:09:01 PM
+INFO
+BTC/USDT: ❌ No signal | Score: 1.0 (avoid)[BTC/USDT]
+{"symbol":"BTC/USDT","score":1,"category":"avoid","signals":0,"rsi":"44.95","macd":"183.716904"}
+12:09:01 PM
+ANALYSIS
+BTC/USDT technical analysis complete[BTC/USDT]
+{"symbol":"BTC/USDT","rsi":"44.95","macdCross":"Bearish","adx":"10.33","signalsFound":0}
+12:09:01 PM
+ANALYSIS
+📈 Analyzing BTC/USDT with technical indicators[BTC/USDT]
+{"symbol":"BTC/USDT","timeframe":"15m","indicators":"RSI, MACD, ADX, EMA","analysisType":"Technical analysis based on settings"}
+12:09:01 PM
+CONFIG
+Current bot configuration
+{"aiTradingEnabled":false,"aiServiceReady":false,"paperTrading":{"spot":true,"leverage":true},"riskManagement":{"usdtPerTrade":"100.00","maxPositions":10,"stopLoss":"3.00","takeProfit":"6.00"}}
+12:09:01 PM
+SCAN
+🔄 Starting Technical Analysis Only - analyzing 100 symbols
+{"symbolCount":100,"tradingMode":"PAPER TRADING","analysisMode":"Technical Analysis Only","aiEnabled":false,"timestamp":"2025-08-28T10:06:56.199Z"}
+12:09:01 PM
+INFO
+Trading bot initialization complete
+{"watchedSymbols":100,"environment":"mainnet"}
+12:09:01 PM
+INFO
+Skipping WebSocket connection - using CCXT for market data
+{}
+12:09:01 PM
+INFO
+AI trading disabled - using technical analysis only
+{}
+12:09:01 PM
+INFO
+Paper trading mode - no API credentials needed for analysis
+{}
+12:09:01 PM
+INFO
+Loaded 100 USDT trading pairs from CCXT
+{"totalPairs":100,"samplePairs":["BTC/USDT","ETH/USDT","BNB/USDT","XRP/USDT","ADA/USDT","DOGE/USDT","MATIC/USDT","SOL/USDT","DOT/USDT","AVAX/USDT"]}
+12:09:01 PM
+INFO
+Trading bot started

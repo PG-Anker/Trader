@@ -211,25 +211,40 @@ export class LeverageTradingBot extends EventEmitter {
     // Parse leverage strategies
     const leverageStrategies = typeof settings.leverageStrategies === 'string' 
       ? JSON.parse(settings.leverageStrategies) 
-      : settings.leverageStrategies;
+      : settings.leverageStrategies || JSON.parse(settings.strategies || '{}');
 
+    // Collect all market data first
+    await this.log('INFO', '📊 Collecting market data for all symbols before leverage analysis...', {
+      symbolCount: this.watchedSymbols.length,
+      phase: 'Data Collection'
+    });
+
+    const marketDataCollection = [];
     for (const symbol of this.watchedSymbols) {
       try {
-        // Convert CCXT format (BTC/USDT) to Bybit format (BTCUSDT)
-        const bybitSymbol = symbol.replace('/', '');
-        
-        // Get kline data for analysis using CCXT (public data, no API keys needed)
         const klineData = await this.ccxtMarketData.getOHLCV(symbol, settings.timeframe, 200);
-        
-        if (klineData.length < 50) {
+        if (klineData.length >= 50) {
+          marketDataCollection.push({ symbol, klineData });
+        } else {
           await this.log('WARN', `Insufficient market data for ${symbol} - skipping leverage analysis`, { 
             symbol,
             dataPoints: klineData.length,
             required: 50
           });
-          continue;
         }
+      } catch (error) {
+        await this.log('WARN', `Failed to collect data for ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`, { symbol });
+      }
+    }
 
+    await this.log('INFO', `✅ Market data collection complete - analyzing ${marketDataCollection.length} symbols for leverage opportunities`, {
+      totalCollected: marketDataCollection.length,
+      skipped: this.watchedSymbols.length - marketDataCollection.length
+    });
+
+    // Now analyze all collected data
+    for (const { symbol, klineData } of marketDataCollection) {
+      try {
         await this.log('ANALYSIS', `📈 Analyzing ${symbol} with leverage technical indicators`, { 
           symbol,
           timeframe: settings.timeframe,
@@ -249,6 +264,14 @@ export class LeverageTradingBot extends EventEmitter {
         const signalEmoji = signals.length > 0 ? '✅' : '❌';
         const signalText = signals.length > 0 ? 'Leverage signal found' : 'No leverage signal';
         
+        await this.log('ANALYSIS', `${symbol} leverage analysis complete`, {
+          symbol,
+          rsi: indicators.rsi?.toFixed(2),
+          macdCross: typeof indicators.macd === 'object' ? (indicators.macd.histogram > 0 ? 'Bullish' : 'Bearish') : 'Neutral',
+          adx: indicators.adx?.toFixed(2),
+          signalsFound: signals.length
+        });
+        
         await this.log('INFO', `${symbol}: ${signalEmoji} ${signalText} | Score: ${score.toFixed(1)} (${scoreCategory})`, {
           symbol,
           score,
@@ -261,16 +284,17 @@ export class LeverageTradingBot extends EventEmitter {
           macd: typeof indicators.macd === 'object' ? indicators.macd?.macd?.toFixed(6) : indicators.macd?.toFixed(6)
         });
 
+        if (signals.length > 0) {
+          opportunitiesFound++;
+        }
+
         // Small delay between symbol analysis (reduced for faster processing)
-        await new Promise(resolve => setTimeout(resolve, 200));
+        await new Promise(resolve => setTimeout(resolve, 100));
 
       } catch (error) {
         console.error(`Leverage analysis error for ${symbol}:`, error);
         await this.logError('Leverage Analysis Error', `Failed to analyze ${symbol}: ${error instanceof Error ? error.message : 'Unknown error'}`, 'LeverageTradingBot.runAnalysis');
       }
-      
-      // Add delay between analyses to avoid rate limits (reduced)
-      await new Promise(resolve => setTimeout(resolve, 50));
     }
 
     await this.log('SCAN', `✅ Leverage market scan cycle complete - comprehensive USDT leverage analysis finished`, {

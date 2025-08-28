@@ -54,13 +54,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Setup authentication routes
   setupAuthRoutes(app);
 
-  // Bot status tracking
-  let botStatus = {
-    isRunning: false,
-    userId: null as number | null,
-    startedAt: null as string | null,
-    lastActivity: null as string | null
-  };
+  // Removed legacy bot status tracking - now handled by BotManager
 
   // API Routes
 
@@ -81,7 +75,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const isPaperTrade = req.query.paperTrade === 'true';
       
       const [positions, stats, opportunities, performance] = await Promise.all([
-        storage.getOpenPositions(userId, isPaperTrade),
+        storage.getOpenPositions(userId),
         storage.getTradingStats(userId, isPaperTrade),
         storage.getTradingOpportunities(),
         storage.getStrategyPerformance(userId, isPaperTrade)
