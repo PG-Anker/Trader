@@ -225,20 +225,30 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createBotLog(log: InsertBotLog): Promise<BotLog> {
-    const [newLog] = await db
-      .insert(botLogs)
-      .values(log)
-      .returning();
-    return newLog;
+    console.log(`🔍 STORAGE: Creating bot log in database:`, JSON.stringify(log, null, 2));
+    try {
+      const [newLog] = await db
+        .insert(botLogs)
+        .values(log)
+        .returning();
+      console.log(`✅ STORAGE: Bot log created successfully with ID:`, newLog.id);
+      return newLog;
+    } catch (error) {
+      console.error(`❌ STORAGE: Failed to create bot log:`, error);
+      throw error;
+    }
   }
 
   async getBotLogs(userId: number, limit: number = 100): Promise<BotLog[]> {
-    return await db
+    console.log(`🔍 STORAGE: Fetching bot logs for userId ${userId}, limit ${limit}`);
+    const logs = await db
       .select()
       .from(botLogs)
       .where(eq(botLogs.userId, userId))
       .orderBy(desc(botLogs.id)) // Order by ID desc to show newest logs first
       .limit(limit);
+    console.log(`📋 STORAGE: Retrieved ${logs.length} bot logs from database`);
+    return logs;
   }
 
   async clearBotLogs(userId: number): Promise<void> {

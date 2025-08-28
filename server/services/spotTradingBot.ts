@@ -517,12 +517,15 @@ export class SpotTradingBot extends EventEmitter {
       };
 
       console.log(`🔍 DEBUG: Creating bot log for userId ${this.userId}:`, logEntry.message);
+      console.log(`🔍 DEBUG: Log entry details:`, JSON.stringify(logEntry, null, 2));
+      
       const savedLog = await this.storage.createBotLog(logEntry);
       console.log(`✅ DEBUG: Bot log saved with ID ${savedLog.id}`);
       this.emit('spot_log', logEntry);
     } catch (error) {
       console.error('❌ Failed to save spot bot log:', error);
-      console.error('Log entry details:', { userId: this.userId, level, message });
+      console.error('❌ Log entry details:', { userId: this.userId, level, message });
+      console.error('❌ Storage error details:', error);
     }
   }
 
