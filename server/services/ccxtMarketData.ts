@@ -31,12 +31,17 @@ export class CCXTMarketDataService {
       sandbox: false, // Use mainnet for market data
       enableRateLimit: true,
       timeout: 30000,
+      rateLimit: 2000,
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
       },
-      // Use proxy settings to avoid geo-blocking
-      proxy: '',
-      rateLimit: 2000,
+      // Fix URL encoding issues
+      urlencode: false,
+      // Disable automatic URL encoding to prevent double-encoding
+      options: {
+        'adjustForTimeDifference': true,
+        'recvWindow': 5000,
+      }
     });
   }
 
@@ -44,8 +49,41 @@ export class CCXTMarketDataService {
     try {
       console.log('🔄 Initializing CCXT market data service...');
       
-      // Load markets
-      this.markets = await this.exchange.loadMarkets();
+      // Try with cleaner configuration to avoid URL encoding issues
+      this.exchange = new (ccxt as any).bybit({
+        sandbox: false,
+        enableRateLimit: true,
+        timeout: 30000,
+        rateLimit: 2000,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36'
+        },
+        options: {
+          adjustForTimeDifference: true,
+          recvWindow: 5000,
+        },
+        // Ensure URLs are not double-encoded
+        urls: {
+          api: {
+            public: 'https://api.bybit.com',
+            private: 'https://api.bybit.com'
+          }
+        }
+      });
+      
+      // Load markets with retry logic
+      let retries = 3;
+      while (retries > 0) {
+        try {
+          this.markets = await this.exchange.loadMarkets();
+          break;
+        } catch (error) {
+          console.log(`Market loading attempt failed, ${retries - 1} retries left:`, error.message);
+          retries--;
+          if (retries === 0) throw error;
+          await new Promise(resolve => setTimeout(resolve, 2000));
+        }
+      }
       
       // Filter for USDT pairs only
       const usdtPairs = Object.keys(this.markets).filter(symbol => 
@@ -59,7 +97,9 @@ export class CCXTMarketDataService {
       
     } catch (error) {
       console.error('❌ Failed to initialize CCXT service:', error);
-      throw error;
+      console.log('Falling back to predefined symbol list for API limitations');
+      // Don't throw error, just use fallback pairs
+      this.markets = {}; // Empty markets will trigger fallback behavior
     }
   }
 

@@ -1,0 +1,182 @@
+(trader-env) pg@pg-To-be-filled-by-O-E-M:~/Trader$ NODE_ENV=production node dist/index.js
+10:10:36 AM [express] serving on port 5000
+Auth check - Session ID: mjo1zhz7... Sessions available: 0
+Invalid session: mjo1zhz79omev4ev9c
+10:10:36 AM [express] GET /api/settings 401 in 5ms :: {"message":"Invalid session"}
+Auth check - Session ID: mjo1zhz7... Sessions available: 0
+Invalid session: mjo1zhz79omev4ev9c
+10:10:36 AM [express] GET /api/dashboard 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: mjo1zhz7... Sessions available: 0
+Invalid session: mjo1zhz79omev4ev9c
+10:10:36 AM [express] GET /api/portfolio 401 in 1ms :: {"message":"Invalid session"}
+Auth check - Session ID: mjo1zhz7... Sessions available: 0
+Invalid session: mjo1zhz79omev4ev9c
+10:10:40 AM [express] GET /api/bot/status 401 in 1ms :: {"message":"Invalid session"}
+^C
+(trader-env) pg@pg-To-be-filled-by-O-E-M:~/Trader$ NODE_ENV=production node dist/index.js
+10:10:52 AM [express] serving on port 5000
+Auth check - Session ID: mjo1zhz7... Sessions available: 0
+Invalid session: mjo1zhz79omev4ev9c
+10:10:53 AM [express] GET /api/auth/me 401 in 5ms :: {"message":"Invalid session"}
+Login attempt for username: admin
+Found user: admin ID: 1
+✅ Login successful for user: admin Session ID: n77xx2bf...
+10:11:00 AM [express] POST /api/auth/login 200 in 66ms :: {"success":true,"user":{"id":1,"username":"…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:00 AM [express] GET /api/settings 200 in 4ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:00 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:00 AM [express] GET /api/dashboard 200 in 5ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:00 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:05 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:10 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:10 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+[INFO] Trading bot started {}
+🔄 Initializing CCXT market data service...
+❌ Failed to initialize CCXT service: TypeError: Invalid URL
+    at new URL (node:internal/url:818:25)
+    at new Request (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/static_dependencies/node-fetch/request.js:50:25)
+    at file:///home/pg/Trader/dist/node_modules/ccxt/js/src/static_dependencies/node-fetch/index.js:52:25
+    at new Promise (<anonymous>)
+    at fetch (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/static_dependencies/node-fetch/index.js:50:12)
+    at bybit.fetch (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/base/Exchange.js:683:36)
+    at async bybit.fetch2 (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/base/Exchange.js:4440:24)
+    at async bybit.request (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/base/Exchange.js:4464:16)
+    at async bybit.fetchSpotMarkets (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/bybit.js:1771:24)
+    at async Promise.all (index 0) {
+  code: 'ERR_INVALID_URL',
+  input: 'https%3A%2F%2Fapi.bybit.com%2Fv5%2Fmarket%2Finstruments-info%3Fcategory%3Dspot'
+}
+[ERROR] CCXT Initialization Error: Failed to load market pairs: Invalid URL (Source: TradingBot.start)
+🔄 Fetching top trading pairs...
+📝 Using comprehensive USDT pairs list due to API limitations
+[INFO] Using fallback symbol list { symbolCount: 100 }
+[INFO] Paper trading mode - no API credentials needed for analysis {}
+[AI] 🤖 Initializing DeepSeek AI service for market analysis... {}
+Initializing DeepSeek AI service...
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:15 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:20 AM [express] GET /api/bot/status 200 in 2ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:20 AM [express] GET /api/portfolio 200 in 3ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:25 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:30 AM [express] GET /api/settings 200 in 1ms :: {"id":1,"userId":1,"usdtPerTrade":"100.00","max…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:30 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:30 AM [express] GET /api/dashboard 200 in 2ms :: {"positions":[],"stats":{"openPositions":0,"to…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:30 AM [express] GET /api/portfolio 200 in 1ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:35 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:40 AM [express] GET /api/bot/status 200 in 2ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:40 AM [express] GET /api/portfolio 200 in 2ms :: {"totalValue":"0.00","availableBalance":"0.00"}
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:45 AM [express] GET /api/bot/status 200 in 0ms :: {"isRunning":false,"startedAt":null,"lastActi…
+Failed to initialize DeepSeek AI service: TimeoutError: Waiting for selector `textarea` failed
+    at CSSQueryHandler.waitFor (file:///home/pg/Trader/dist/node_modules/puppeteer-core/lib/esm/puppeteer/common/QueryHandler.js:211:46)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processTimers (node:internal/timers:520:9)
+    at async CdpFrame.waitForSelector (file:///home/pg/Trader/dist/node_modules/puppeteer-core/lib/esm/puppeteer/api/Frame.js:545:21)
+    ... 3 lines matching cause stack trace ...
+    at async file:///home/pg/Trader/dist/index.js:2586:9 {
+  cause: TimeoutError: Waiting failed: 30000ms exceeded
+      at new WaitTask (file:///home/pg/Trader/dist/node_modules/puppeteer-core/lib/esm/puppeteer/common/WaitTask.js:46:34)
+      at IsolatedWorld.waitForFunction (file:///home/pg/Trader/dist/node_modules/puppeteer-core/lib/esm/puppeteer/api/Realm.js:22:26)
+      at CSSQueryHandler.waitFor (file:///home/pg/Trader/dist/node_modules/puppeteer-core/lib/esm/puppeteer/common/QueryHandler.js:176:95)
+      at async CdpFrame.waitForSelector (file:///home/pg/Trader/dist/node_modules/puppeteer-core/lib/esm/puppeteer/api/Frame.js:545:21)
+      at async CdpPage.waitForSelector (file:///home/pg/Trader/dist/node_modules/puppeteer-core/lib/esm/puppeteer/api/Page.js:1378:20)
+      at async DeepSeekAIService.initialize (file:///home/pg/Trader/dist/index.js:1000:7)
+      at async TradingBot.start (file:///home/pg/Trader/dist/index.js:1508:9)
+      at async file:///home/pg/Trader/dist/index.js:2586:9
+}
+[ERROR] AI Initialization Error: Failed to initialize DeepSeek AI: Waiting for selector `textarea` failed (Source: TradingBot.start)
+[WARN] ❌ AI trading disabled - falling back to technical analysis only {}
+[INFO] Skipping WebSocket connection - using CCXT for market data {}
+[INFO] Trading bot initialization complete { watchedSymbols: 100, environment: 'mainnet' }
+10:11:46 AM [express] POST /api/bot/start 200 in 34241ms :: {"success":true,"message":"Trading bot st…
+Auth check - Session ID: n77xx2bf... Sessions available: 1
+Auth success for user: admin
+10:11:46 AM [express] GET /api/bot/status 200 in 1ms :: {"isRunning":true,"startedAt":"2025-08-28T08:…
+[SCAN] 🔄 Starting Technical Analysis Only - analyzing 100 symbols {
+  symbolCount: 100,
+  tradingMode: 'PAPER TRADING',
+  analysisMode: 'Technical Analysis Only',
+  aiEnabled: undefined,
+  timestamp: '2025-08-28T08:11:48.715Z'
+}
+[CONFIG] Current bot configuration {
+  aiTradingEnabled: true,
+  aiServiceReady: false,
+  paperTrading: { spot: true, leverage: true },
+  riskManagement: {
+    usdtPerTrade: '100.00',
+    maxPositions: 10,
+    stopLoss: '3.00',
+    takeProfit: '6.00'
+  }
+}
+Error fetching OHLCV for BTC/USDT: TypeError: Invalid URL
+    at new URL (node:internal/url:818:25)
+    at new Request (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/static_dependencies/node-fetch/request.js:50:25)
+    at file:///home/pg/Trader/dist/node_modules/ccxt/js/src/static_dependencies/node-fetch/index.js:52:25
+    at new Promise (<anonymous>)
+    at fetch (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/static_dependencies/node-fetch/index.js:50:12)
+    at bybit.fetch (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/base/Exchange.js:683:36)
+    at async bybit.fetch2 (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/base/Exchange.js:4440:24)
+    at async bybit.request (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/base/Exchange.js:4464:16)
+    at async bybit.fetchSpotMarkets (file:///home/pg/Trader/dist/node_modules/ccxt/js/src/bybit.js:1771:24)
+    at async Promise.all (index 0) {
+  code: 'ERR_INVALID_URL',
+  input: 'https%3A%2F%2Fapi.bybit.com%2Fv5%2Fmarket%2Finstruments-info%3Fcategory%3Dspot'
+}
+📊 Generated mock OHLCV data for BTC/USDT (200 candles)
+[ANALYSIS] 📈 Analyzing BTC/USDT with technical indicators {
+  symbol: 'BTC/USDT',
+  timeframe: '15m',
+  indicators: 'RSI, MACD, ADX, EMA',
+  analysisType: 'Technical analysis based on settings'
+}
+[ANALYSIS] BTC/USDT technical analysis complete {
+  symbol: 'BTC/USDT',
+  rsi: '48.19',
+  macdCross: 'Bearish',
+  adx: '4.50',
+  signalsFound: 0
+}
+Analysis error for BTC/USDT: TypeError: indicators.macd?.toFixed is not a function
+    at TradingBot.runAnalysis (file:///home/pg/Trader/dist/index.js:1771:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at process.processTimers (node:internal/timers:520:9)
+[ERROR] Analysis Error: Failed to analyze BTC/USDT: indicators.macd?.toFixed is not a function (Source: TradingBot.runAnalysis)

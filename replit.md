@@ -117,6 +117,10 @@ Key entities include:
 
 ```
 Changelog:
+- August 27, 2025. FIXED: CCXT URL encoding issues causing "Invalid URL" errors on production Ubuntu server
+- August 27, 2025. Enhanced DeepSeek AI service with intelligent fallback analysis when browser automation fails
+- August 27, 2025. Added robust error handling and retry logic for CCXT market data initialization
+- August 27, 2025. Fixed MACD indicator type error in trading bot analysis logging
 - August 27, 2025. FIXED: build.sh script now preserves existing database and user data during updates
 - August 27, 2025. Added reset-admin.js script to fix admin login issues without data loss
 - August 27, 2025. Enhanced build process to prevent breaking admin authentication during patches

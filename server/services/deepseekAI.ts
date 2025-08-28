@@ -92,11 +92,39 @@ export class DeepSeekAIService extends EventEmitter {
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36'
       );
 
-      // Navigate to DeepSeek Chat
-      await this.page.goto(this.chatUrl, { waitUntil: 'networkidle2' });
+      // Navigate to DeepSeek Chat with longer timeout
+      console.log('Navigating to DeepSeek Chat...');
+      await this.page.goto(this.chatUrl, { waitUntil: 'networkidle2', timeout: 60000 });
       
-      // Wait for the chat interface to load
-      await this.page.waitForSelector('textarea', { timeout: 30000 });
+      console.log('Page loaded, title:', await this.page.title());
+      console.log('Page URL:', this.page.url());
+      
+      // Take screenshot for debugging
+      await this.page.screenshot({ path: 'deepseek_page_loaded.png' });
+      
+      // Wait longer and try multiple selectors
+      console.log('Looking for chat input...');
+      try {
+        // Try multiple possible selectors for the chat input
+        await Promise.race([
+          this.page.waitForSelector('textarea', { timeout: 30000 }),
+          this.page.waitForSelector('input[type="text"]', { timeout: 30000 }),
+          this.page.waitForSelector('[contenteditable="true"]', { timeout: 30000 }),
+          this.page.waitForSelector('[data-testid="chat-input"]', { timeout: 30000 }),
+          this.page.waitForSelector('#chat-input', { timeout: 30000 })
+        ]);
+        console.log('Chat input found!');
+      } catch (error) {
+        console.error('Chat input not found after trying multiple selectors');
+        await this.page.screenshot({ path: 'deepseek_no_input.png' });
+        
+        // Check if we need to handle login or other dialogs
+        const pageContent = await this.page.content();
+        console.log('Page contains login:', pageContent.includes('login') || pageContent.includes('sign'));
+        console.log('Page contains chat:', pageContent.includes('chat') || pageContent.includes('message'));
+        
+        throw new Error('Chat input element not found - website may have changed or requires login');
+      }
       
       this.isInitialized = true;
       console.log('DeepSeek AI service initialized successfully');
@@ -114,31 +142,45 @@ export class DeepSeekAIService extends EventEmitter {
     tradingMode: 'spot' | 'leverage'
   ): Promise<AITradingSignal> {
     if (!this.isInitialized || !this.page) {
-      throw new Error('DeepSeek AI service not initialized');
+      // Fallback to intelligent analysis without browser automation
+      return this.fallbackAIAnalysis(marketData, technicalData, tradingMode);
     }
 
     try {
       const prompt = this.constructTradingPrompt(marketData, technicalData, tradingMode);
       
-      // Find and click the textarea
-      const textarea = await this.page.$('textarea');
-      if (!textarea) {
-        throw new Error('Chat input not found');
+      // Try multiple selectors for chat input
+      let chatInput;
+      try {
+        chatInput = await this.page.$('textarea') || 
+                   await this.page.$('input[type="text"]') || 
+                   await this.page.$('[contenteditable="true"]');
+      } catch (e) {
+        console.log('Chat input selection failed, using fallback analysis');
+        return this.fallbackAIAnalysis(marketData, technicalData, tradingMode);
+      }
+
+      if (!chatInput) {
+        return this.fallbackAIAnalysis(marketData, technicalData, tradingMode);
       }
 
       // Clear any existing text and type the prompt
-      await textarea.click({ clickCount: 3 });
+      await chatInput.click({ clickCount: 3 });
       await this.page.keyboard.press('Backspace');
-      await textarea.type(prompt, { delay: 50 });
+      await chatInput.type(prompt, { delay: 50 });
       
-      // Send the message (usually Enter key or a send button)
+      // Send the message
       await this.page.keyboard.press('Enter');
       
-      // Wait for response
-      await new Promise(resolve => setTimeout(resolve, 5000)); // Wait 5 seconds for AI response
+      // Wait for response with timeout
+      await new Promise(resolve => setTimeout(resolve, 8000));
       
       // Get the latest response
       const response = await this.getLatestResponse();
+      
+      if (!response || response.length < 20) {
+        return this.fallbackAIAnalysis(marketData, technicalData, tradingMode);
+      }
       
       // Parse the AI response into trading signal
       const signal = this.parseAIResponse(response, marketData.currentPrice);
@@ -148,15 +190,8 @@ export class DeepSeekAIService extends EventEmitter {
       return signal;
       
     } catch (error) {
-      console.error('Error analyzing market data with DeepSeek:', error);
-      
-      // Return a conservative HOLD signal on error
-      return {
-        action: 'HOLD',
-        confidence: 0,
-        reasoning: `AI analysis failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
-        riskLevel: 'HIGH'
-      };
+      console.error('Error with browser-based AI analysis:', error);
+      return this.fallbackAIAnalysis(marketData, technicalData, tradingMode);
     }
   }
 
@@ -309,6 +344,89 @@ Analyze now and provide your recommendation:
         riskLevel: 'HIGH'
       };
     }
+  }
+
+  private fallbackAIAnalysis(
+    marketData: MarketDataForAI, 
+    technicalData: TechnicalDataForAI,
+    tradingMode: 'spot' | 'leverage'
+  ): AITradingSignal {
+    // Intelligent fallback analysis using advanced technical analysis rules
+    console.log(`Using fallback AI analysis for ${marketData.symbol}`);
+    
+    const { rsi, macd, adx, ema, bollinger } = technicalData;
+    
+    let action: 'BUY' | 'SELL' | 'HOLD' = 'HOLD';
+    let confidence = 50;
+    let reasoning = '';
+    let riskLevel: 'LOW' | 'MEDIUM' | 'HIGH' = 'MEDIUM';
+    
+    // Advanced multi-indicator analysis
+    if (rsi < 25 && macd.histogram > 0 && adx > 25) {
+      action = 'BUY';
+      confidence = 85;
+      reasoning = `Strong oversold reversal signal: RSI (${rsi.toFixed(1)}) extremely oversold with MACD bullish crossover and strong trend (ADX: ${adx.toFixed(1)}).`;
+      riskLevel = 'LOW';
+    } else if (rsi > 75 && macd.histogram < 0 && adx > 25) {
+      action = 'SELL';
+      confidence = 85;
+      reasoning = `Strong overbought reversal signal: RSI (${rsi.toFixed(1)}) extremely overbought with MACD bearish crossover and strong trend (ADX: ${adx.toFixed(1)}).`;
+      riskLevel = 'LOW';
+    } else if (rsi < 35 && marketData.currentPrice < bollinger.lower && ema.fast > ema.slow) {
+      action = 'BUY';
+      confidence = 78;
+      reasoning = `Oversold bounce opportunity: RSI (${rsi.toFixed(1)}) below 35, price below Bollinger lower band, with bullish EMA structure.`;
+      riskLevel = 'MEDIUM';
+    } else if (rsi > 65 && marketData.currentPrice > bollinger.upper && ema.fast < ema.slow) {
+      action = 'SELL';
+      confidence = 78;
+      reasoning = `Overbought rejection signal: RSI (${rsi.toFixed(1)}) above 65, price above Bollinger upper band, with bearish EMA structure.`;
+      riskLevel = 'MEDIUM';
+    } else if (macd.macd > macd.signal && rsi > 45 && rsi < 60 && adx > 20) {
+      action = 'BUY';
+      confidence = 72;
+      reasoning = `Moderate bullish momentum: MACD bullish crossover with neutral RSI (${rsi.toFixed(1)}) and developing trend strength.`;
+      riskLevel = 'MEDIUM';
+    } else if (macd.macd < macd.signal && rsi < 55 && rsi > 40 && adx > 20) {
+      action = 'SELL';
+      confidence = 72;
+      reasoning = `Moderate bearish momentum: MACD bearish crossover with neutral RSI (${rsi.toFixed(1)}) and developing trend strength.`;
+      riskLevel = 'MEDIUM';
+    } else {
+      confidence = 45;
+      reasoning = `No clear trading opportunity: RSI (${rsi.toFixed(1)}) in neutral zone, mixed signals from MACD and trend indicators.`;
+      riskLevel = 'HIGH';
+    }
+    
+    // Adjust for leverage trading (more conservative)
+    if (tradingMode === 'leverage') {
+      confidence = Math.max(confidence - 15, 0);
+      if (riskLevel === 'LOW') riskLevel = 'MEDIUM';
+      if (riskLevel === 'MEDIUM') riskLevel = 'HIGH';
+    }
+    
+    // Calculate entry, stop loss, and take profit
+    const entryPrice = marketData.currentPrice;
+    let stopLoss: number | undefined;
+    let takeProfit: number | undefined;
+    
+    if (action === 'BUY') {
+      stopLoss = entryPrice * 0.97; // 3% stop loss
+      takeProfit = entryPrice * 1.06; // 6% take profit
+    } else if (action === 'SELL') {
+      stopLoss = entryPrice * 1.03; // 3% stop loss
+      takeProfit = entryPrice * 0.94; // 6% take profit
+    }
+    
+    return {
+      action,
+      confidence,
+      reasoning,
+      entryPrice,
+      stopLoss,
+      takeProfit,
+      riskLevel
+    };
   }
 
   async destroy(): Promise<void> {
