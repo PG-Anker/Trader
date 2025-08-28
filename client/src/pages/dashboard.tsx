@@ -8,7 +8,7 @@ import { StrategyPerformance } from "@/components/StrategyPerformance";
 import { SummaryTab } from "@/components/SummaryTab";
 import BotLogsPolling from "@/components/BotLogsPolling";
 import SystemErrors from "@/components/SystemErrors";
-import { SettingsTab } from "@/components/SettingsTab";
+import DualBotSettings from "@/components/DualBotSettings";
 import { BotControl } from "@/components/BotControl";
 // import { useWebSocket } from "@/hooks/useWebSocket";
 import { useToast } from "@/hooks/use-toast";
@@ -268,7 +268,7 @@ export default function Dashboard() {
           {activeTab === 'summary' && <SummaryTab />}
           {activeTab === 'bot-log' && <BotLogsPolling />}
           {activeTab === 'system-error' && <SystemErrors />}
-          {activeTab === 'settings' && <SettingsTab />}
+          {activeTab === 'settings' && <DualBotSettings />}
         </main>
       </div>
     </div>

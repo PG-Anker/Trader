@@ -2,7 +2,7 @@
 
 # CryptoBot Pro Production Build Script
 
-echo "🚀 Building CryptoBot Pro for production..."
+echo "🚀 Building CryptoBot Pro with Dual Bot Architecture for production..."
 
 # Clean previous builds
 rm -rf dist
@@ -26,17 +26,21 @@ cd ..
 echo "🗄️ Checking production database..."
 # Only initialize database if it doesn't exist or is empty
 if [ ! -f "./database.sqlite" ] || [ ! -s "./database.sqlite" ]; then
-  echo "Database not found or empty - initializing..."
-  tsx server/initDb.ts
+  echo "Database not found or empty - initializing with dual bot support..."
+  node server/init-dual-bot-db.js
 else
   echo "Database exists - preserving existing data and users"
-  echo "To reset the database, delete 'database.sqlite' and run build again"
+  echo "Adding dual bot columns if missing..."
+  node server/fix-database-schema.js 2>/dev/null || echo "Schema already up to date"
 fi
 
 echo "✅ Build completed successfully!"
 echo ""
 echo "📋 Important Notes:"
+echo "  - Dual bot architecture: Spot Bot (buy/sell) + Leverage Bot (long/short)"
 echo "  - Database preserved to maintain users and settings"
+echo "  - Independent bot control: /api/bot/spot/start and /api/bot/leverage/start"
+echo "  - AI integration: DeepSeek support for both spot and leverage bots"
 echo "  - If admin login fails, run: node reset-admin.js"
 echo "  - To completely reset: delete database.sqlite and rebuild"
 echo ""
