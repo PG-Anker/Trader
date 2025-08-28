@@ -1,0 +1,291 @@
+13:43:03
+WARN
+[SPOT] Insufficient market data for FTM/USDT - skipping spot analysis[FTM/USDT]
+{"symbol":"FTM/USDT","dataPoints":0,"required":50}
+13:43:03
+WARN
+[LEVERAGE] Insufficient market data for FTM/USDT - skipping leverage analysis[FTM/USDT]
+{"symbol":"FTM/USDT","dataPoints":0,"required":50}
+13:40:00
+WARN
+[LEVERAGE] Insufficient market data for MATIC/USDT - skipping leverage analysis[MATIC/USDT]
+{"symbol":"MATIC/USDT","dataPoints":0,"required":50}
+13:39:58
+WARN
+[SPOT] Insufficient market data for MATIC/USDT - skipping spot analysis[MATIC/USDT]
+{"symbol":"MATIC/USDT","dataPoints":0,"required":50}
+13:38:55
+INFO
+[LEVERAGE] 📊 Collecting market data for all symbols before leverage analysis...
+{"symbolCount":100,"phase":"Data Collection"}
+13:38:55
+CONFIG
+[LEVERAGE] Current leverage bot configuration
+{"leverageAiTradingEnabled":false,"aiServiceReady":false,"paperTrading":true,"riskManagement":{"usdtPerTrade":"100","maxPositions":10,"stopLoss":"3.0","takeProfit":"6.0"}}
+13:38:55
+SCAN
+[LEVERAGE] 🔄 Starting Technical Leverage Analysis Only - analyzing 100 symbols
+{"symbolCount":100,"tradingMode":"LEVERAGE PAPER TRADING","analysisMode":"Technical Leverage Analysis Only","aiEnabled":false,"timestamp":"2025-08-28T11:38:55.326Z"}
+13:38:55
+INFO
+[LEVERAGE] Leverage trading bot initialization complete
+{"watchedSymbols":100,"environment":"mainnet"}
+13:38:55
+INFO
+[LEVERAGE] Skipping WebSocket connection - using CCXT for leverage market data
+{}
+13:38:55
+INFO
+[LEVERAGE] AI leverage trading disabled - using technical analysis only
+{}
+13:38:55
+INFO
+[LEVERAGE] Leverage paper trading mode - no API credentials needed for analysis
+{}
+13:38:55
+INFO
+[LEVERAGE] Loaded 100 USDT trading pairs for leverage trading
+{"totalPairs":100,"samplePairs":["BTC/USDT","ETH/USDT","BNB/USDT","XRP/USDT","ADA/USDT","DOGE/USDT","MATIC/USDT","SOL/USDT","DOT/USDT","AVAX/USDT"]}
+13:38:53
+INFO
+[SPOT] 📊 Collecting market data for all symbols before analysis...
+{"symbolCount":100,"phase":"Data Collection"}
+13:38:53
+CONFIG
+[SPOT] Current spot bot configuration
+{"spotAiTradingEnabled":false,"aiServiceReady":false,"paperTrading":true,"riskManagement":{"usdtPerTrade":"100","maxPositions":10,"stopLoss":"3.0","takeProfit":"6.0"}}
+13:38:53
+SCAN
+[SPOT] 🔄 Starting Technical Spot Analysis Only - analyzing 100 symbols
+{"symbolCount":100,"tradingMode":"SPOT PAPER TRADING","analysisMode":"Technical Spot Analysis Only","aiEnabled":false,"timestamp":"2025-08-28T11:38:53.843Z"}
+13:38:53
+INFO
+[SPOT] Spot trading bot initialization complete
+{"watchedSymbols":100,"environment":"mainnet"}
+13:38:53
+INFO
+[SPOT] Skipping WebSocket connection - using CCXT for spot market data
+{}
+13:38:53
+INFO
+[SPOT] AI spot trading disabled - using technical analysis only
+{}
+13:38:53
+INFO
+[SPOT] Paper trading mode - no API credentials needed for analysis
+{}
+13:38:53
+INFO
+[SPOT] Loaded 100 USDT trading pairs for spot trading
+{"totalPairs":100,"samplePairs":["BTC/USDT","ETH/USDT","BNB/USDT","XRP/USDT","ADA/USDT","DOGE/USDT","MATIC/USDT","SOL/USDT","DOT/USDT","AVAX/USDT"]}
+13:37:34
+INFO
+[LEVERAGE] Leverage trading bot started
+{}
+13:37:33
+INFO
+[SPOT] Spot trading bot started
+{}
+13:37:02
+WARN
+[SPOT] Insufficient market data for BAKE/USDT - skipping spot analysis[BAKE/USDT]
+{"symbol":"BAKE/USDT","dataPoints":0,"required":50}
+13:37:01
+WARN
+[SPOT] Insufficient market data for CREAM/USDT - skipping spot analysis[CREAM/USDT]
+{"symbol":"CREAM/USDT","dataPoints":0,"required":50}
+13:37:01
+WARN
+[SPOT] Insufficient market data for SXP/USDT - skipping spot analysis[SXP/USDT]
+{"symbol":"SXP/USDT","dataPoints":0,"required":50}
+13:37:00
+WARN
+[SPOT] Insufficient market data for XVS/USDT - skipping spot analysis[XVS/USDT]
+{"symbol":"XVS/USDT","dataPoints":0,"required":50}
+13:36:38
+WARN
+[SPOT] Insufficient market data for UNFI/USDT - skipping spot analysis[UNFI/USDT]
+{"symbol":"UNFI/USDT","dataPoints":0,"required":50}
+13:36:38
+WARN
+[LEVERAGE] Insufficient market data for IOST/USDT - skipping leverage analysis[IOST/USDT]
+{"symbol":"IOST/USDT","dataPoints":0,"required":50}
+13:36:38
+WARN
+[SPOT] Insufficient market data for STRAX/USDT - skipping spot analysis[STRAX/USDT]
+{"symbol":"STRAX/USDT","dataPoints":0,"required":50}
+13:36:37
+WARN
+[SPOT] Insufficient market data for HARD/USDT - skipping spot analysis[HARD/USDT]
+{"symbol":"HARD/USDT","dataPoints":0,"required":50}
+13:36:27
+WARN
+[LEVERAGE] Insufficient market data for HOT/USDT - skipping leverage analysis[HOT/USDT]
+{"symbol":"HOT/USDT","dataPoints":0,"required":50}
+13:36:26
+WARN
+[SPOT] Insufficient market data for AKRO/USDT - skipping spot analysis[AKRO/USDT]
+{"symbol":"AKRO/USDT","dataPoints":0,"required":50}
+13:36:25
+WARN
+[SPOT] Insufficient market data for CTK/USDT - skipping spot analysis[CTK/USDT]
+{"symbol":"CTK/USDT","dataPoints":0,"required":50}
+13:36:25
+WARN
+[SPOT] Insufficient market data for OCEAN/USDT - skipping spot analysis[OCEAN/USDT]
+{"symbol":"OCEAN/USDT","dataPoints":0,"required":50}
+13:36:24
+WARN
+[SPOT] Insufficient market data for ALPHA/USDT - skipping spot analysis[ALPHA/USDT]
+{"symbol":"ALPHA/USDT","dataPoints":0,"required":50}
+13:36:24
+WARN
+[SPOT] Insufficient market data for RLC/USDT - skipping spot analysis[RLC/USDT]
+{"symbol":"RLC/USDT","dataPoints":0,"required":50}
+13:36:23
+WARN
+[SPOT] Insufficient market data for BAND/USDT - skipping spot analysis[BAND/USDT]
+{"symbol":"BAND/USDT","dataPoints":0,"required":50}
+13:36:23
+WARN
+[SPOT] Insufficient market data for TRB/USDT - skipping spot analysis[TRB/USDT]
+{"symbol":"TRB/USDT","dataPoints":0,"required":50}
+13:36:12
+WARN
+[SPOT] Insufficient market data for EOS/USDT - skipping spot analysis[EOS/USDT]
+{"symbol":"EOS/USDT","dataPoints":0,"required":50}
+13:36:11
+WARN
+[SPOT] Insufficient market data for IOTA/USDT - skipping spot analysis[IOTA/USDT]
+{"symbol":"IOTA/USDT","dataPoints":0,"required":50}
+13:36:11
+WARN
+[SPOT] Insufficient market data for XMR/USDT - skipping spot analysis[XMR/USDT]
+{"symbol":"XMR/USDT","dataPoints":0,"required":50}
+13:36:10
+WARN
+[SPOT] Insufficient market data for ZEC/USDT - skipping spot analysis[ZEC/USDT]
+{"symbol":"ZEC/USDT","dataPoints":0,"required":50}
+13:36:10
+WARN
+[SPOT] Insufficient market data for ONT/USDT - skipping spot analysis[ONT/USDT]
+{"symbol":"ONT/USDT","dataPoints":0,"required":50}
+13:36:09
+WARN
+[SPOT] Insufficient market data for GAS/USDT - skipping spot analysis[GAS/USDT]
+{"symbol":"GAS/USDT","dataPoints":0,"required":50}
+13:36:09
+WARN
+[SPOT] Insufficient market data for NEO/USDT - skipping spot analysis[NEO/USDT]
+{"symbol":"NEO/USDT","dataPoints":0,"required":50}
+13:36:08
+WARN
+[SPOT] Insufficient market data for DASH/USDT - skipping spot analysis[DASH/USDT]
+{"symbol":"DASH/USDT","dataPoints":0,"required":50}
+13:35:54
+WARN
+[LEVERAGE] Insufficient market data for STORJ/USDT - skipping leverage analysis[STORJ/USDT]
+{"symbol":"STORJ/USDT","dataPoints":0,"required":50}
+13:35:54
+WARN
+[LEVERAGE] Insufficient market data for REP/USDT - skipping leverage analysis[REP/USDT]
+{"symbol":"REP/USDT","dataPoints":0,"required":50}
+13:35:46
+WARN
+[SPOT] Insufficient market data for NANO/USDT - skipping spot analysis[NANO/USDT]
+{"symbol":"NANO/USDT","dataPoints":0,"required":50}
+13:35:32
+WARN
+[LEVERAGE] Insufficient market data for KNC/USDT - skipping leverage analysis[KNC/USDT]
+{"symbol":"KNC/USDT","dataPoints":0,"required":50}
+13:35:31
+WARN
+[LEVERAGE] Insufficient market data for REN/USDT - skipping leverage analysis[REN/USDT]
+{"symbol":"REN/USDT","dataPoints":0,"required":50}
+13:35:31
+WARN
+[LEVERAGE] Insufficient market data for BAL/USDT - skipping leverage analysis[BAL/USDT]
+{"symbol":"BAL/USDT","dataPoints":0,"required":50}
+13:35:14
+WARN
+[SPOT] Insufficient market data for IOST/USDT - skipping spot analysis[IOST/USDT]
+{"symbol":"IOST/USDT","dataPoints":0,"required":50}
+13:35:02
+WARN
+[SPOT] Insufficient market data for HOT/USDT - skipping spot analysis[HOT/USDT]
+{"symbol":"HOT/USDT","dataPoints":0,"required":50}
+13:34:30
+WARN
+[SPOT] Insufficient market data for STORJ/USDT - skipping spot analysis[STORJ/USDT]
+{"symbol":"STORJ/USDT","dataPoints":0,"required":50}
+13:34:29
+WARN
+[SPOT] Insufficient market data for REP/USDT - skipping spot analysis[REP/USDT]
+{"symbol":"REP/USDT","dataPoints":0,"required":50}
+13:34:07
+WARN
+[SPOT] Insufficient market data for KNC/USDT - skipping spot analysis[KNC/USDT]
+{"symbol":"KNC/USDT","dataPoints":0,"required":50}
+13:34:07
+WARN
+[SPOT] Insufficient market data for REN/USDT - skipping spot analysis[REN/USDT]
+{"symbol":"REN/USDT","dataPoints":0,"required":50}
+13:34:06
+WARN
+[SPOT] Insufficient market data for BAL/USDT - skipping spot analysis[BAL/USDT]
+{"symbol":"BAL/USDT","dataPoints":0,"required":50}
+13:34:04
+WARN
+[LEVERAGE] Insufficient market data for FTM/USDT - skipping leverage analysis[FTM/USDT]
+{"symbol":"FTM/USDT","dataPoints":0,"required":50}
+13:32:39
+WARN
+[SPOT] Insufficient market data for FTM/USDT - skipping spot analysis[FTM/USDT]
+{"symbol":"FTM/USDT","dataPoints":0,"required":50}
+13:31:01
+WARN
+[LEVERAGE] Insufficient market data for MATIC/USDT - skipping leverage analysis[MATIC/USDT]
+{"symbol":"MATIC/USDT","dataPoints":0,"required":50}
+13:29:56
+INFO
+[LEVERAGE] 📊 Collecting market data for all symbols before leverage analysis...
+{"symbolCount":100,"phase":"Data Collection"}
+13:29:56
+CONFIG
+[LEVERAGE] Current leverage bot configuration
+{"leverageAiTradingEnabled":false,"aiServiceReady":false,"paperTrading":true,"riskManagement":{"usdtPerTrade":"100","maxPositions":10,"stopLoss":"3.0","takeProfit":"6.0"}}
+13:29:56
+SCAN
+[LEVERAGE] 🔄 Starting Technical Leverage Analysis Only - analyzing 100 symbols
+{"symbolCount":100,"tradingMode":"LEVERAGE PAPER TRADING","analysisMode":"Technical Leverage Analysis Only","aiEnabled":false,"timestamp":"2025-08-28T11:29:56.381Z"}
+13:29:56
+INFO
+[LEVERAGE] Leverage trading bot initialization complete
+{"watchedSymbols":100,"environment":"mainnet"}
+13:29:56
+INFO
+[LEVERAGE] Skipping WebSocket connection - using CCXT for leverage market data
+{}
+13:29:56
+INFO
+[LEVERAGE] AI leverage trading disabled - using technical analysis only
+{}
+13:29:56
+INFO
+[LEVERAGE] Leverage paper trading mode - no API credentials needed for analysis
+{}
+13:29:56
+INFO
+[LEVERAGE] Loaded 100 USDT trading pairs for leverage trading
+{"totalPairs":100,"samplePairs":["BTC/USDT","ETH/USDT","BNB/USDT","XRP/USDT","ADA/USDT","DOGE/USDT","MATIC/USDT","SOL/USDT","DOT/USDT","AVAX/USDT"]}
+13:29:36
+WARN
+[SPOT] Insufficient market data for MATIC/USDT - skipping spot analysis[MATIC/USDT]
+{"symbol":"MATIC/USDT","dataPoints":0,"required":50}
+13:28:35
+INFO
+[LEVERAGE] Leverage trading bot started
+{}
+13:28:32
+INFO
+[SPOT] 📊 Collecting market data for all symbols befor
