@@ -22,7 +22,7 @@ export default function BotLogs() {
   // Fetch bot logs
   const { data: logs = [], refetch, isLoading } = useQuery<BotLog[]>({
     queryKey: ['/api/bot-logs'],
-    refetchInterval: autoRefresh ? 1000 : false, // Poll every 1 seconds for real-time updates
+    refetchInterval: autoRefresh ? 3000 : false, // Poll every 3 seconds for real-time updates
     staleTime: 0, // Always refetch to get fresh data
   });
 
