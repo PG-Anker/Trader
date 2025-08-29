@@ -24,14 +24,14 @@ export default function BotLogsPolling() {
   const [refreshKey, setRefreshKey] = useState(0);
   const [terminalLogs, setTerminalLogs] = useState<BotLog[]>([]);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const maxLogs = 100; // Keep last 100 logs
+  const maxLogs = 300; // Keep last 300 logs
 
   // Force refresh to bypass browser caching
   useEffect(() => {
     if (autoRefresh && !isPaused) {
       const interval = setInterval(() => {
         setRefreshKey(prev => prev + 1);
-      }, 3000); // Update cache key every 3 seconds
+      }, 1000); // Update cache key every 1 seconds
       return () => clearInterval(interval);
     }
   }, [autoRefresh, isPaused]);

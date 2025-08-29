@@ -35,7 +35,7 @@ export function BotLogTab() {
   useWebSocket({
     onMessage: (message) => {
       if (message.type === 'bot_log') {
-        setLogs(prev => [message.data, ...prev].slice(0, 100)); // Keep last 100 logs
+        setLogs(prev => [message.data, ...prev].slice(0, 300)); // Keep last 300 logs
       }
     }
   });
