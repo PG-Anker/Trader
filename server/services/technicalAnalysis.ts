@@ -43,14 +43,32 @@ export class TechnicalAnalysis {
       throw new Error('Insufficient data for analysis');
     }
 
-    // Convert OHLCV objects to number arrays (ensure numbers, not strings)
-    const closes = klineData.map(k => Number(k.close));
-    const highs = klineData.map(k => Number(k.high));
-    const lows = klineData.map(k => Number(k.low));
+    // Convert OHLCV objects to number arrays with robust validation
+    const closes: number[] = [];
+    const highs: number[] = [];
+    const lows: number[] = [];
+    
+    for (const candle of klineData) {
+      const close = Number(candle.close);
+      const high = Number(candle.high);
+      const low = Number(candle.low);
+      
+      // Skip invalid candles but continue processing
+      if (isNaN(close) || isNaN(high) || isNaN(low) || 
+          close <= 0 || high <= 0 || low <= 0 ||
+          high < low || close < low || close > high) {
+        console.warn(`⚠️ Skipping invalid candle:`, { close, high, low });
+        continue;
+      }
+      
+      closes.push(close);
+      highs.push(high);
+      lows.push(low);
+    }
 
-    // Verify we have valid numerical data
-    if (closes.some(c => isNaN(c)) || highs.some(h => isNaN(h)) || lows.some(l => isNaN(l))) {
-      throw new Error('Invalid market data: contains non-numerical values');
+    // Check if we have enough valid data after cleaning
+    if (closes.length < 50) {
+      throw new Error(`Insufficient valid data after cleaning: ${closes.length} candles (need 50+)`);
     }
 
     // Use proven technicalindicators library (same as your working external test)

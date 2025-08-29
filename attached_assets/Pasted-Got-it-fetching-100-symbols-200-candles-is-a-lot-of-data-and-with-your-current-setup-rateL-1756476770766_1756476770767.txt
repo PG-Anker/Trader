@@ -1,0 +1,86 @@
+Got it 👍 — fetching 100+ symbols × 200 candles is a lot of data, and with your current setup (rateLimit 3000 + artificial sleeps + sequential requests), it’s guaranteed to crawl.
+
+Let’s break it down:
+
+🔢 What you’re asking the exchange for
+
+100 symbols × 200 candles = 20,000 candles total.
+
+Each REST call returns 200 candles for 1 symbol.
+
+So you need 100 requests.
+
+With rateLimit: 3000 (3s/request sequentially) → 300 seconds (5 minutes).
+
+With Bybit’s real limit (~20 requests/sec) → ~5 seconds if parallelized.
+
+✅ Fix strategy
+
+Lower the CCXT rateLimit
+
+new ccxt.bybit({
+  enableRateLimit: true,
+  rateLimit: 200,   // 5 requests per second per client is safe
+})
+
+
+You can even push rateLimit: 100 (~10 req/s) without issues if only using one bot.
+
+Batch in parallel
+Instead of waiting 500ms per symbol, fetch each batch of symbols using Promise.all.
+Example: fetch 10 symbols in parallel, then pause 200–300ms, then next 10.
+
+async batchFetchOHLCV(symbols: string[], timeframe: string, limit: number, forSpot = true): Promise<Record<string, OHLCV[]>> {
+  const results: Record<string, OHLCV[]> = {};
+  const batchSize = 10;  // 10 parallel requests
+  const batchDelay = 300; // ms pause between batches
+
+  for (let i = 0; i < symbols.length; i += batchSize) {
+    const batch = symbols.slice(i, i + batchSize);
+
+    const batchResults = await Promise.all(batch.map(async (symbol) => {
+      try {
+        const ohlcv = await this.getOHLCV(symbol, timeframe, limit, forSpot);
+        return [symbol, ohlcv];
+      } catch (err) {
+        console.error(`❌ Failed to fetch ${symbol}:`, err);
+        return [symbol, []];
+      }
+    }));
+
+    for (const [symbol, data] of batchResults) {
+      results[symbol as string] = data as OHLCV[];
+    }
+
+    if (i + batchSize < symbols.length) {
+      await new Promise(res => setTimeout(res, batchDelay));
+    }
+  }
+
+  return results;
+}
+
+
+This way:
+
+100 symbols / 10 per batch = 10 batches.
+
+Each batch takes ~200–500ms (parallel).
+
+Total time ~3–5 seconds instead of minutes.
+
+WebSockets for live trading
+REST = snapshot data (slow, repetitive).
+WebSocket = streaming (cheap, real-time, efficient).
+
+Bybit supports OHLCV subscription (kline).
+
+You’d just subscribe once for 100+ symbols, and the server pushes every update.
+
+🚀 Expected improvement
+
+Current: 100 symbols × 3s/request ≈ 5 minutes.
+
+After batching: 100 symbols in 10 batches ≈ 3–5 seconds.
+
+With WebSockets: near instant updates without refetching.

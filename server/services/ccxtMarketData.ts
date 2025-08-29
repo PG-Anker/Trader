@@ -32,7 +32,7 @@ export class CCXTMarketDataService {
       sandbox: false,
       enableRateLimit: true,
       timeout: 15000, // Reduced timeout to prevent hanging
-      rateLimit: 3000, // Increased to 3 seconds for better rate limiting
+      rateLimit: 200, // 5 requests per second for faster data collection
       headers: {
         'User-Agent': 'CryptoBot-Pro/1.0 (Trading Bot)',
         'Accept': 'application/json',
@@ -156,6 +156,49 @@ export class CCXTMarketDataService {
     return allPairs.slice(0, Math.min(limit, allPairs.length));
   }
 
+  // Fast parallel batch fetching for production speed
+  async batchFetchOHLCV(symbols: string[], timeframe: string, limit: number, forSpot: boolean = true): Promise<Record<string, OHLCV[]>> {
+    const results: Record<string, OHLCV[]> = {};
+    const batchSize = 10; // 10 parallel requests per batch
+    const batchDelay = 300; // 300ms pause between batches
+    
+    console.log(`🚀 Batch fetching ${symbols.length} symbols in ${Math.ceil(symbols.length / batchSize)} batches (${batchSize} parallel each)`);
+    
+    for (let i = 0; i < symbols.length; i += batchSize) {
+      const batch = symbols.slice(i, i + batchSize);
+      const batchNumber = Math.floor(i / batchSize) + 1;
+      const totalBatches = Math.ceil(symbols.length / batchSize);
+      
+      console.log(`📦 Processing batch ${batchNumber}/${totalBatches}: ${batch.join(', ')}`);
+      
+      const batchResults = await Promise.all(batch.map(async (symbol) => {
+        try {
+          const ohlcv = await this.getOHLCV(symbol, timeframe, limit, forSpot);
+          return [symbol, ohlcv] as [string, OHLCV[]];
+        } catch (err) {
+          console.error(`❌ Batch fetch failed for ${symbol}:`, err);
+          return [symbol, []] as [string, OHLCV[]];
+        }
+      }));
+      
+      // Store results
+      for (const [symbol, data] of batchResults) {
+        results[symbol] = data;
+      }
+      
+      // Pause between batches (except for the last one)
+      if (i + batchSize < symbols.length) {
+        console.log(`⏳ Pausing ${batchDelay}ms before next batch...`);
+        await new Promise(resolve => setTimeout(resolve, batchDelay));
+      }
+    }
+    
+    const successfulFetches = Object.values(results).filter(data => data.length > 0).length;
+    console.log(`✅ Batch fetch complete: ${successfulFetches}/${symbols.length} symbols retrieved successfully`);
+    
+    return results;
+  }
+
   async getOHLCV(symbol: string, timeframe: string = '15m', limit: number = 100, forSpot: boolean = true): Promise<OHLCV[]> {
     try {
       // Choose the correct exchange based on trading type
@@ -172,14 +215,22 @@ export class CCXTMarketDataService {
         return [];
       }
 
-      const result = ohlcvData.map((candle: any) => ({
-        timestamp: Number(candle[0]),
-        open: Number(candle[1]),
-        high: Number(candle[2]),
-        low: Number(candle[3]),
-        close: Number(candle[4]),
-        volume: Number(candle[5])
-      }));
+      const result = ohlcvData.map((candle: any) => {
+        const timestamp = Number(candle[0]);
+        const open = Number(candle[1]);
+        const high = Number(candle[2]);
+        const low = Number(candle[3]);
+        const close = Number(candle[4]);
+        const volume = Number(candle[5]);
+        
+        // Validate all values are proper numbers
+        if (isNaN(timestamp) || isNaN(open) || isNaN(high) || isNaN(low) || isNaN(close) || isNaN(volume)) {
+          console.warn(`⚠️ Invalid candle data for ${symbol}:`, candle);
+          return null;
+        }
+        
+        return { timestamp, open, high, low, close, volume };
+      }).filter(candle => candle !== null);
 
       console.log(`✅ Retrieved ${result.length} candles for ${symbol} from ${marketType} market`);
       return result;
@@ -229,52 +280,7 @@ export class CCXTMarketDataService {
     }
   }
 
-  async getBatchOHLCV(symbols: string[], timeframe: string = '15m', limit: number = 100, marketType: string = 'spot'): Promise<Array<{ symbol: string; data: OHLCV[] }>> {
-    const forSpot = marketType === 'spot';
-    const results = await this.batchFetchOHLCV(symbols, timeframe, limit, forSpot);
-    
-    // Convert to expected format
-    return Object.entries(results).map(([symbol, data]) => ({ symbol, data }));
-  }
 
-  async batchFetchOHLCV(symbols: string[], timeframe: string = '15m', limit: number = 100, forSpot: boolean = true): Promise<{ [symbol: string]: OHLCV[] }> {
-    const results: { [symbol: string]: OHLCV[] } = {};
-    const batchSize = 8; // Process 8 symbols at a time
-    const batchDelay = 2000; // 2 second delay between batches for production efficiency
-    const marketType = forSpot ? 'spot' : 'linear';
-    
-    console.log(`📊 Starting batch OHLCV fetch for ${symbols.length} symbols from ${marketType} market`);
-    
-    for (let i = 0; i < symbols.length; i += batchSize) {
-      const batch = symbols.slice(i, i + batchSize);
-      console.log(`🔄 Processing batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(symbols.length / batchSize)}: ${batch.join(', ')}`);
-      
-      // Process batch sequentially to avoid rate limits
-      for (const symbol of batch) {
-        try {
-          const ohlcv = await this.getOHLCV(symbol, timeframe, limit, forSpot);
-          results[symbol] = ohlcv;
-          
-          // Small delay between individual requests to prevent rate limiting
-          await new Promise(resolve => setTimeout(resolve, 500));
-        } catch (error) {
-          console.error(`❌ Failed to fetch OHLCV for ${symbol}:`, error instanceof Error ? error.message : 'Unknown error');
-          results[symbol] = [];
-        }
-      }
-      
-      // Delay between batches to prevent rate limiting
-      if (i + batchSize < symbols.length) {
-        console.log(`⏱️ Waiting ${batchDelay}ms before next batch...`);
-        await new Promise(resolve => setTimeout(resolve, batchDelay));
-      }
-    }
-    
-    const successCount = Object.values(results).filter(data => data.length > 0).length;
-    console.log(`✅ Batch fetch complete: ${successCount}/${symbols.length} symbols successful`);
-    
-    return results;
-  }
 }
 
 // Create singleton instance
