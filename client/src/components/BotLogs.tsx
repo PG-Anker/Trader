@@ -20,7 +20,7 @@ export default function BotLogs() {
   const [autoRefresh, setAutoRefresh] = useState(true);
 
   // Fetch bot logs
-  const { data: logs = [], refetch, isLoading } = useQuery({
+  const { data: logs = [], refetch, isLoading } = useQuery<BotLog[]>({
     queryKey: ['/api/bot-logs'],
     refetchInterval: autoRefresh ? 3000 : false, // Poll every 3 seconds for real-time updates
     staleTime: 0, // Always refetch to get fresh data
@@ -101,7 +101,7 @@ export default function BotLogs() {
             </div>
           ) : (
             <div className="space-y-2">
-              {logs.map((log: BotLog) => (
+              {logs.map((log) => (
                 <div
                   key={log.id}
                   className="flex items-start space-x-3 p-2 rounded border-l-4 border-l-blue-500 bg-crypto-dark-800/50 hover:bg-crypto-dark-800 transition-colors text-xs"

@@ -126,7 +126,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.setHeader('Expires', '0');
       res.setHeader('ETag', Date.now().toString()); // Force fresh data
       
-      const logs = await storage.getBotLogs(userId, 100);
+      const logs = await storage.getBotLogs(userId, 300);
       console.log(`📋 DEBUG: Retrieved ${logs.length} bot logs from database`);
       if (logs.length > 0) {
         console.log(`📋 DEBUG: Latest log: ${logs[0].message} (${logs[0].level})`);

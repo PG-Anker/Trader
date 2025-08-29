@@ -289,8 +289,8 @@ export class SpotTradingBot extends EventEmitter {
             symbol,
             rsi: indicators.rsi?.toFixed(2),
             adx: indicators.adx?.toFixed(2),
-            ema12: indicators.ema12?.toFixed(6),
-            ema26: indicators.ema26?.toFixed(6),
+            emaFast: indicators.emaFast?.toFixed(6),
+            emaSlow: indicators.emaSlow?.toFixed(6),
             macdSignal: typeof indicators.macd === 'object' ? (indicators.macd.histogram > 0 ? 'Bullish' : 'Bearish') : 'Neutral',
             rawSignals: signals.length
           });
@@ -329,7 +329,7 @@ export class SpotTradingBot extends EventEmitter {
             category: scoreCategory,
             signals: spotSignals.length,
             rsi: indicators.rsi?.toFixed(2),
-            ema: indicators.ema12?.toFixed(6),
+            ema: indicators.emaFast?.toFixed(6),
             macd: typeof indicators.macd === 'object' ? indicators.macd?.macd?.toFixed(6) : (indicators.macd as any)?.toFixed(6)
           });
 
@@ -460,12 +460,42 @@ export class SpotTradingBot extends EventEmitter {
   }
 
   private calculateTradeScore(indicators: any): number {
-    // Simple scoring algorithm
     let score = 0;
     
-    if (indicators.rsi < 30) score += 2; // Oversold
-    if (indicators.rsi > 70) score -= 2; // Overbought
-    if (indicators.adx > 25) score += 1; // Strong trend
+    // RSI scoring (handle NaN values)
+    if (indicators.rsi && !isNaN(indicators.rsi)) {
+      if (indicators.rsi < 30) score += 2; // Oversold - good for buying
+      else if (indicators.rsi < 40) score += 1.5;
+      else if (indicators.rsi > 70) score -= 1; // Overbought - not ideal for spot
+      else if (indicators.rsi > 60) score += 0.5;
+      else score += 1; // Neutral
+    }
+    
+    // MACD scoring
+    if (indicators.macd && typeof indicators.macd === 'object' && !isNaN(indicators.macd.histogram)) {
+      if (indicators.macd.histogram > 0) score += 1.5; // Bullish momentum
+      else score += 0.5; // Bearish momentum
+    }
+    
+    // EMA trend scoring (use settings-based EMAs)
+    if (indicators.emaFast && indicators.emaSlow && !isNaN(indicators.emaFast) && !isNaN(indicators.emaSlow)) {
+      if (indicators.emaFast > indicators.emaSlow) score += 1.5; // Uptrend
+      else score += 0.5; // Downtrend
+    }
+    
+    // ADX scoring (trend strength)
+    if (indicators.adx && !isNaN(indicators.adx)) {
+      if (indicators.adx > 25) score += 1; // Strong trend
+      else score += 0.5; // Weak trend
+    }
+    
+    // Bollinger Bands scoring
+    if (indicators.bb && indicators.currentPrice && !isNaN(indicators.currentPrice)) {
+      const bbPosition = (indicators.currentPrice - indicators.bb.lower) / (indicators.bb.upper - indicators.bb.lower);
+      if (bbPosition < 0.2) score += 1; // Near lower band - good for buying
+      else if (bbPosition > 0.8) score -= 0.5; // Near upper band - not ideal for spot
+      else score += 0.5; // Middle range
+    }
     
     return Math.max(0, Math.min(5, score));
   }

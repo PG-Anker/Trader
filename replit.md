@@ -117,6 +117,10 @@ Key entities include:
 
 ```
 Changelog:
+- August 28, 2025. CRITICAL FIX: Resolved scoring issue causing all trades to show "Score: 0.0 (avoid)" after 20+ hours of production runtime
+- August 28, 2025. CRITICAL FIX: Technical analysis now properly uses user-configured EMA periods (emaFast/emaSlow) instead of hardcoded 12/26
+- August 28, 2025. ENHANCED: Scoring system now handles NaN values properly and uses correct indicator properties for accurate scoring
+- August 28, 2025. INCREASED: Frontend log display from 100 to 300 entries for better historical visibility  
 - August 28, 2025. FIXED: CCXT dual market system implemented with separate clients (spotExchange/linearExchange) and proper defaultType configuration
 - August 28, 2025. ADDED: Intelligent batching system (8 symbols per batch, 3-second delays) to prevent CloudFront rate limiting and 403 errors
 - August 28, 2025. IMPLEMENTED: Retry logic with exponential backoff (2s, 4s, 8s) for transient network errors and geographic blocking

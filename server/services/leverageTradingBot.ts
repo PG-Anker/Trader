@@ -280,8 +280,8 @@ export class LeverageTradingBot extends EventEmitter {
             symbol,
             rsi: indicators.rsi?.toFixed(2),
             adx: indicators.adx?.toFixed(2),
-            ema12: indicators.ema12?.toFixed(6),
-            ema26: indicators.ema26?.toFixed(6),
+            emaFast: indicators.emaFast?.toFixed(6),
+            emaSlow: indicators.emaSlow?.toFixed(6),
             macdSignal: typeof indicators.macd === 'object' ? (indicators.macd.histogram > 0 ? 'Bullish' : 'Bearish') : 'Neutral',
             rawSignals: signals.length
           });
@@ -320,7 +320,7 @@ export class LeverageTradingBot extends EventEmitter {
             longSignals: signals.filter(s => s.direction === 'LONG').length,
             shortSignals: signals.filter(s => s.direction === 'SHORT').length,
             rsi: indicators.rsi?.toFixed(2),
-            ema: indicators.ema12?.toFixed(6),
+            ema: indicators.emaFast?.toFixed(6),
             macd: typeof indicators.macd === 'object' ? indicators.macd?.macd?.toFixed(6) : (indicators.macd as any)?.toFixed(6)
           });
 
@@ -448,14 +448,33 @@ export class LeverageTradingBot extends EventEmitter {
   }
 
   private calculateTradeScore(indicators: any): number {
-    // Simple scoring algorithm for leverage trading
     let score = 0;
     
-    if (indicators.rsi < 25) score += 3; // Extremely oversold - good for long
-    if (indicators.rsi > 75) score += 3; // Extremely overbought - good for short
-    if (indicators.adx > 25) score += 1.5; // Strong trend
-    if (indicators.macd && typeof indicators.macd === 'object') {
-      if (Math.abs(indicators.macd.histogram) > 0.1) score += 1; // Strong momentum
+    // RSI scoring for leverage (handle NaN values)
+    if (indicators.rsi && !isNaN(indicators.rsi)) {
+      if (indicators.rsi < 25) score += 2.5; // Extremely oversold - good for long
+      else if (indicators.rsi < 35) score += 1.5; // Oversold
+      else if (indicators.rsi > 75) score += 2.5; // Extremely overbought - good for short
+      else if (indicators.rsi > 65) score += 1.5; // Overbought
+      else score += 0.5; // Neutral
+    }
+    
+    // MACD scoring
+    if (indicators.macd && typeof indicators.macd === 'object' && !isNaN(indicators.macd.histogram)) {
+      if (Math.abs(indicators.macd.histogram) > 0) score += 1; // Any momentum
+    }
+    
+    // EMA trend scoring (use settings-based EMAs)
+    if (indicators.emaFast && indicators.emaSlow && !isNaN(indicators.emaFast) && !isNaN(indicators.emaSlow)) {
+      if (Math.abs(indicators.emaFast - indicators.emaSlow) / indicators.emaSlow > 0.01) {
+        score += 1; // Significant trend
+      }
+    }
+    
+    // ADX scoring (trend strength)
+    if (indicators.adx && !isNaN(indicators.adx)) {
+      if (indicators.adx > 25) score += 1.5; // Strong trend
+      else score += 0.5; // Weak trend
     }
     
     return Math.max(0, Math.min(5, score));

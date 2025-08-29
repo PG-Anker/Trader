@@ -7,6 +7,8 @@ export interface TechnicalIndicators {
   };
   ema12: number;
   ema26: number;
+  emaFast: number;
+  emaSlow: number;
   sma20: number;
   bb: {
     upper: number;
@@ -14,6 +16,7 @@ export interface TechnicalIndicators {
     lower: number;
   };
   adx: number;
+  currentPrice: number;
 }
 
 export interface TradingSignal {
@@ -160,20 +163,24 @@ export class TechnicalAnalysis {
 
     const rsi = this.calculateRSI(closes, settings.rsiPeriod);
     const macd = this.calculateMACD(closes, settings.emaFast, settings.emaSlow, settings.macdSignal);
-    const ema12 = this.calculateEMA(closes, 12).slice(-1)[0];
-    const ema26 = this.calculateEMA(closes, 26).slice(-1)[0];
+    const emaFast = this.calculateEMA(closes, settings.emaFast).slice(-1)[0];
+    const emaSlow = this.calculateEMA(closes, settings.emaSlow).slice(-1)[0];
     const sma20 = this.calculateSMA(closes, 20).slice(-1)[0];
     const bb = this.calculateBollingerBands(closes);
     const adx = this.calculateADX(highs, lows, closes, settings.adxPeriod);
+    const currentPrice = closes[closes.length - 1];
 
     const indicators: TechnicalIndicators = {
       rsi,
       macd,
-      ema12,
-      ema26,
+      ema12: emaFast,
+      ema26: emaSlow,
+      emaFast,
+      emaSlow,
       sma20,
       bb,
-      adx
+      adx,
+      currentPrice
     };
 
     const signals = this.generateSignals(indicators, closes[closes.length - 1], settings);
