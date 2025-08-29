@@ -1,0 +1,76 @@
+// ta-test.cjs
+const ccxt = require('ccxt');
+const { RSI, EMA, MACD, ADX } = require('technicalindicators');
+
+async function main() {
+  const exchange = new ccxt.bybit({ enableRateLimit: true, options: { defaultType: 'spot' } });
+  const symbol = 'BTC/USDT';
+  const timeframe = '15m';
+  const limit = 200;
+
+  const ohlcv = await exchange.fetchOHLCV(symbol, timeframe, undefined, limit);
+
+  const closes = ohlcv.map(c => c[4]);
+  const highs = ohlcv.map(c => c[2]);
+  const lows = ohlcv.map(c => c[3]);
+
+  // === Parameters ===
+  const rsiPeriod = 9;
+  const emaFast = 12;
+  const emaSlow = 21;
+  const macdSignal = 20;
+  const adxPeriod = 9;
+  const rsiLow = 30;
+  const rsiHigh = 70;
+
+  // === Indicators ===
+  const rsi = RSI.calculate({ values: closes, period: rsiPeriod });
+  const ema12 = EMA.calculate({ values: closes, period: emaFast });
+  const ema21 = EMA.calculate({ values: closes, period: emaSlow });
+  const macd = MACD.calculate({
+    values: closes,
+    fastPeriod: emaFast,
+    slowPeriod: emaSlow,
+    signalPeriod: macdSignal,
+    SimpleMAOscillator: false,
+    SimpleMASignal: false
+  });
+  const adx = ADX.calculate({ close: closes, high: highs, low: lows, period: adxPeriod });
+
+  const latest = {
+    rsi: rsi.at(-1),
+    emaFast: ema12.at(-1),
+    emaSlow: ema21.at(-1),
+    macd: macd.at(-1),
+    adx: adx.at(-1),
+    lastClose: closes.at(-1),
+  };
+
+  console.log(`Latest values for ${symbol} (${timeframe}):`);
+  console.log(latest);
+
+  // === Confidence Scoring ===
+  let score = 0;
+  let checks = 0;
+
+  checks++;
+  if (latest.rsi < rsiLow) score++;       // bullish
+  else if (latest.rsi > rsiHigh) score--; // bearish
+
+  checks++;
+  if (latest.emaFast > latest.emaSlow) score++;
+  else score--;
+
+  checks++;
+  if (latest.macd.MACD > latest.macd.signal) score++;
+  else score--;
+
+  checks++;
+  if (latest.adx.adx > 20) score++;
+
+  const confidence = ((score + checks) / (2 * checks)) * 100;
+
+  console.log(`Signal confidence: ${confidence.toFixed(2)}%`);
+}
+
+main().catch(err => console.error(err));

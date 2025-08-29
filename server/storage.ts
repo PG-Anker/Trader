@@ -107,7 +107,7 @@ export class DatabaseStorage implements IStorage {
     
     if (!settings) {
       // Create default settings for user
-      const defaultSettings: InsertTradingSettings = {
+      const defaultSettings = {
         userId,
         usdtPerTrade: "100",
         maxPositions: 10,

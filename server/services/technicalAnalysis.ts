@@ -1,3 +1,5 @@
+import { RSI, EMA, MACD, ADX, SMA, BollingerBands } from 'technicalindicators';
+
 export interface TechnicalIndicators {
   rsi: number;
   macd: {
@@ -31,122 +33,6 @@ export interface TradingSignal {
 }
 
 export class TechnicalAnalysis {
-  // RSI calculation
-  static calculateRSI(prices: number[], period: number = 14): number {
-    if (prices.length < period + 1) return 50; // Default neutral value
-
-    let gains = 0;
-    let losses = 0;
-
-    for (let i = 1; i <= period; i++) {
-      const diff = prices[i] - prices[i - 1];
-      if (diff > 0) {
-        gains += diff;
-      } else {
-        losses -= diff;
-      }
-    }
-
-    const avgGain = gains / period;
-    const avgLoss = losses / period;
-
-    if (avgLoss === 0) return 100;
-
-    const rs = avgGain / avgLoss;
-    return 100 - (100 / (1 + rs));
-  }
-
-  // EMA calculation
-  static calculateEMA(prices: number[], period: number): number[] {
-    const k = 2 / (period + 1);
-    const emaArray: number[] = [prices[0]];
-
-    for (let i = 1; i < prices.length; i++) {
-      emaArray.push(prices[i] * k + emaArray[i - 1] * (1 - k));
-    }
-
-    return emaArray;
-  }
-
-  // SMA calculation
-  static calculateSMA(prices: number[], period: number): number[] {
-    const smaArray: number[] = [];
-
-    for (let i = period - 1; i < prices.length; i++) {
-      const sum = prices.slice(i - period + 1, i + 1).reduce((a, b) => a + b, 0);
-      smaArray.push(sum / period);
-    }
-
-    return smaArray;
-  }
-
-  // MACD calculation
-  static calculateMACD(prices: number[], fastPeriod: number = 12, slowPeriod: number = 26, signalPeriod: number = 9) {
-    const emaFast = this.calculateEMA(prices, fastPeriod);
-    const emaSlow = this.calculateEMA(prices, slowPeriod);
-
-    const macdLine = emaFast.map((fast, i) => fast - (emaSlow[i] || 0));
-    const signalLine = this.calculateEMA(macdLine, signalPeriod);
-    const histogram = macdLine.map((macd, i) => macd - (signalLine[i] || 0));
-
-    return {
-      macd: macdLine[macdLine.length - 1] || 0,
-      signal: signalLine[signalLine.length - 1] || 0,
-      histogram: histogram[histogram.length - 1] || 0
-    };
-  }
-
-  // Bollinger Bands calculation
-  static calculateBollingerBands(prices: number[], period: number = 20, stdDev: number = 2) {
-    const sma = this.calculateSMA(prices, period);
-    const currentSMA = sma[sma.length - 1];
-
-    // Calculate standard deviation
-    const recentPrices = prices.slice(-period);
-    const variance = recentPrices.reduce((sum, price) => sum + Math.pow(price - currentSMA, 2), 0) / period;
-    const standardDeviation = Math.sqrt(variance);
-
-    return {
-      upper: currentSMA + (standardDeviation * stdDev),
-      middle: currentSMA,
-      lower: currentSMA - (standardDeviation * stdDev)
-    };
-  }
-
-  // ADX calculation (simplified)
-  static calculateADX(highs: number[], lows: number[], closes: number[], period: number = 14): number {
-    if (highs.length < period + 1) return 25; // Default neutral value
-
-    const trueRanges: number[] = [];
-    const positiveDMs: number[] = [];
-    const negativeDMs: number[] = [];
-
-    for (let i = 1; i < highs.length; i++) {
-      const highDiff = highs[i] - highs[i - 1];
-      const lowDiff = lows[i - 1] - lows[i];
-
-      const trueRange = Math.max(
-        highs[i] - lows[i],
-        Math.abs(highs[i] - closes[i - 1]),
-        Math.abs(lows[i] - closes[i - 1])
-      );
-
-      trueRanges.push(trueRange);
-      positiveDMs.push(highDiff > lowDiff && highDiff > 0 ? highDiff : 0);
-      negativeDMs.push(lowDiff > highDiff && lowDiff > 0 ? lowDiff : 0);
-    }
-
-    // Calculate smoothed averages (simplified)
-    const avgTR = trueRanges.slice(-period).reduce((a, b) => a + b, 0) / period;
-    const avgPosDM = positiveDMs.slice(-period).reduce((a, b) => a + b, 0) / period;
-    const avgNegDM = negativeDMs.slice(-period).reduce((a, b) => a + b, 0) / period;
-
-    const positiveDI = (avgPosDM / avgTR) * 100;
-    const negativeDI = (avgNegDM / avgTR) * 100;
-
-    const dx = Math.abs(positiveDI - negativeDI) / (positiveDI + negativeDI) * 100;
-    return dx || 25;
-  }
 
   // Comprehensive analysis
   static analyzeSymbol(
@@ -157,17 +43,55 @@ export class TechnicalAnalysis {
       throw new Error('Insufficient data for analysis');
     }
 
-    const closes = klineData.map(k => k.close);
-    const highs = klineData.map(k => k.high);
-    const lows = klineData.map(k => k.low);
+    // Convert OHLCV objects to number arrays (ensure numbers, not strings)
+    const closes = klineData.map(k => Number(k.close));
+    const highs = klineData.map(k => Number(k.high));
+    const lows = klineData.map(k => Number(k.low));
 
-    const rsi = this.calculateRSI(closes, settings.rsiPeriod);
-    const macd = this.calculateMACD(closes, settings.emaFast, settings.emaSlow, settings.macdSignal);
-    const emaFast = this.calculateEMA(closes, settings.emaFast).slice(-1)[0];
-    const emaSlow = this.calculateEMA(closes, settings.emaSlow).slice(-1)[0];
-    const sma20 = this.calculateSMA(closes, 20).slice(-1)[0];
-    const bb = this.calculateBollingerBands(closes);
-    const adx = this.calculateADX(highs, lows, closes, settings.adxPeriod);
+    // Verify we have valid numerical data
+    if (closes.some(c => isNaN(c)) || highs.some(h => isNaN(h)) || lows.some(l => isNaN(l))) {
+      throw new Error('Invalid market data: contains non-numerical values');
+    }
+
+    // Use proven technicalindicators library (same as your working external test)
+    const rsiValues = RSI.calculate({ values: closes, period: settings.rsiPeriod });
+    const rsi = rsiValues[rsiValues.length - 1] || 50;
+
+    const emaFastValues = EMA.calculate({ values: closes, period: settings.emaFast });
+    const emaFast = emaFastValues[emaFastValues.length - 1] || closes[closes.length - 1];
+
+    const emaSlowValues = EMA.calculate({ values: closes, period: settings.emaSlow });
+    const emaSlow = emaSlowValues[emaSlowValues.length - 1] || closes[closes.length - 1];
+
+    const macdValues = MACD.calculate({
+      values: closes,
+      fastPeriod: settings.emaFast,
+      slowPeriod: settings.emaSlow,
+      signalPeriod: settings.macdSignal,
+      SimpleMAOscillator: false,
+      SimpleMASignal: false
+    });
+    const macdLatest = macdValues[macdValues.length - 1];
+    const macd = {
+      macd: macdLatest?.MACD || 0,
+      signal: macdLatest?.signal || 0,
+      histogram: macdLatest?.histogram || 0
+    };
+
+    const smaValues = SMA.calculate({ values: closes, period: 20 });
+    const sma20 = smaValues[smaValues.length - 1] || closes[closes.length - 1];
+
+    const bbValues = BollingerBands.calculate({ values: closes, period: 20, stdDev: 2 });
+    const bbLatest = bbValues[bbValues.length - 1];
+    const bb = {
+      upper: bbLatest?.upper || closes[closes.length - 1],
+      middle: bbLatest?.middle || closes[closes.length - 1],
+      lower: bbLatest?.lower || closes[closes.length - 1]
+    };
+
+    const adxValues = ADX.calculate({ close: closes, high: highs, low: lows, period: settings.adxPeriod });
+    const adx = adxValues[adxValues.length - 1]?.adx || 25;
+
     const currentPrice = closes[closes.length - 1];
 
     const indicators: TechnicalIndicators = {
