@@ -26,9 +26,10 @@ export function PositionsTable({ positions, onPositionClose }: PositionsTablePro
       setClosingPositions(prev => new Set(prev).add(positionId));
     },
     onSuccess: (data, positionId) => {
+      const pnlValue = typeof data.pnl === 'string' ? parseFloat(data.pnl) : data.pnl;
       toast({
         title: "Position Closed",
-        description: `Position closed successfully. PnL: ${data.pnl > 0 ? '+' : ''}$${data.pnl.toFixed(2)}`,
+        description: `Position closed successfully. PnL: ${pnlValue >= 0 ? '+' : ''}$${Math.abs(pnlValue).toFixed(2)}`,
       });
       queryClient.invalidateQueries({ queryKey: ['/api/dashboard'] });
       onPositionClose?.();
