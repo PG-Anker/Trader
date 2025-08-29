@@ -1,0 +1,39 @@
+✅ STORAGE: Bot log created successfully with ID: 28517
+✅ DEBUG: Leverage bot log saved with ID 28517
+🔍 DEBUG: Creating leverage bot log for userId 1: [LEVERAGE] 📈 Analyzing IMX/USDT with leverage technical indicators
+🔍 STORAGE: Creating bot log in database: {
+  "userId": 1,
+  "level": "ANALYSIS",
+  "message": "[LEVERAGE] 📈 Analyzing IMX/USDT with leverage technical indicators",
+  "symbol": "IMX/USDT",
+  "data": "{\"symbol\":\"IMX/USDT\",\"timeframe\":\"5m\",\"indicators\":\"RSI, MACD, ADX, EMA\",\"analysisType\":\"Leverage technical analysis based on settings\"}"
+}
+✅ STORAGE: Bot log created successfully with ID: 28518
+✅ DEBUG: Leverage bot log saved with ID 28518
+🔍 DEBUG: Creating leverage bot log for userId 1: [LEVERAGE] 📊 IMX/USDT leverage indicators calculated
+🔍 STORAGE: Creating bot log in database: {
+  "userId": 1,
+  "level": "ANALYSIS",
+  "message": "[LEVERAGE] 📊 IMX/USDT leverage indicators calculated",
+  "symbol": "IMX/USDT",
+  "data": "{\"symbol\":\"IMX/USDT\",\"rsi\":\"NaN\",\"adx\":\"25.00\",\"ema12\":\"NaN\",\"ema26\":\"NaN\",\"macdSignal\":\"Bearish\",\"rawSignals\":0}"
+}
+✅ STORAGE: Bot log created successfully with ID: 28519
+✅ DEBUG: Leverage bot log saved with ID 28519
+🔍 DEBUG: Creating leverage bot log for userId 1: [LEVERAGE] IMX/USDT leverage analysis complete
+🔍 STORAGE: Creating bot log in database: {
+  "userId": 1,
+  "level": "ANALYSIS",
+  "message": "[LEVERAGE] IMX/USDT leverage analysis complete",
+  "symbol": "IMX/USDT",
+  "data": "{\"symbol\":\"IMX/USDT\",\"rsi\":\"NaN\",\"macdCross\":\"Bearish\",\"adx\":\"25.00\",\"signalsFound\":0}"
+}
+✅ STORAGE: Bot log created successfully with ID: 28520
+✅ DEBUG: Leverage bot log saved with ID 28520
+🔍 DEBUG: Creating leverage bot log for userId 1: [LEVERAGE] IMX/USDT: ❌ No leverage signal | Score: 0.0 (avoid)
+🔍 STORAGE: Creating bot log in database: {
+  "userId": 1,
+  "level": "INFO",
+  "message": "[LEVERAGE] IMX/USDT: ❌ No leverage signal | Score: 0.0 (avoid)",
+  "symbol": "IMX/USDT",
+  "data": "{\"symbol\":\"IMX/USDT\",\"score\":0,\"category\":\"avoid\",\"signals\":0,\"longSignals\":0,\"shortSignals\":0,\"rsi\":\"NaN\",\"ema\":\"NaN\",\"macd\":\"0.000000\"}"
