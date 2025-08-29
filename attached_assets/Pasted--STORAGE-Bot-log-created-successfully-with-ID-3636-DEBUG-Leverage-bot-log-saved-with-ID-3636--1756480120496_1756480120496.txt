@@ -1,0 +1,35 @@
+✅ STORAGE: Bot log created successfully with ID: 3636
+✅ DEBUG: Leverage bot log saved with ID 3636
+🔍 DEBUG: Creating leverage bot log for userId 1: [LEVERAGE] PENDLE/USDT leverage analysis complete
+🔍 STORAGE: Creating bot log in database: {
+  "userId": 1,
+  "level": "ANALYSIS",
+  "message": "[LEVERAGE] PENDLE/USDT leverage analysis complete",
+  "symbol": "PENDLE/USDT",
+  "data": "{\"symbol\":\"PENDLE/USDT\",\"rsi\":\"36.02\",\"macdCross\":\"Bearish\",\"adx\":\"27.05\",\"signalsFound\":1}"
+}
+✅ STORAGE: Bot log created successfully with ID: 3637
+✅ DEBUG: Leverage bot log saved with ID 3637
+🔍 DEBUG: Creating leverage bot log for userId 1: [LEVERAGE] PENDLE/USDT: ✅ Leverage signal found | Score: 3.0 (good)
+🔍 STORAGE: Creating bot log in database: {
+  "userId": 1,
+  "level": "INFO",
+  "message": "[LEVERAGE] PENDLE/USDT: ✅ Leverage signal found | Score: 3.0 (good)",
+  "symbol": "PENDLE/USDT",
+  "data": "{\"symbol\":\"PENDLE/USDT\",\"score\":3,\"category\":\"good\",\"signals\":1,\"longSignals\":0,\"shortSignals\":1,\"rsi\":\"36.02\",\"ema\":\"4.688390\",\"macd\":\"-0.008347\"}"
+}
+✅ STORAGE: Bot log created successfully with ID: 3638
+✅ DEBUG: Leverage bot log saved with ID 3638
+🔍 DEBUG: Creating leverage bot log for userId 1: [LEVERAGE] ✅ Leverage market scan cycle complete - comprehensive USDT leverage analysis finished
+🔍 STORAGE: Creating bot log in database: {
+  "userId": 1,
+  "level": "SCAN",
+  "message": "[LEVERAGE] ✅ Leverage market scan cycle complete - comprehensive USDT leverage analysis finished",
+  "symbol": null,
+  "data": "{\"symbolsAnalyzed\":120,\"opportunitiesFound\":44,\"nextScan\":\"30 minutes\",\"tradingMode\":\"LEVERAGE PAPER TRADING\",\"analysisCompleted\":\"Leverage technical indicators for all symbols\"}"
+}
+✅ STORAGE: Bot log created successfully with ID: 3639
+✅ DEBUG: Leverage bot log saved with ID 3639
+[LEVERAGE SCAN] Leverage market scan complete - 44 opportunities found { symbolsAnalyzed: 120, opportunitiesFound: 44 }
+Auth check - Session ID: dvmoxkfx... Sessions available: 1
+Auth success for user: admin

@@ -79,7 +79,10 @@ export function PositionsTable({ positions, onPositionClose }: PositionsTablePro
   const getActionButton = (position: Position) => {
     const isClosing = closingPositions.has(position.id);
     
-    if (tradingMode === 'spot') {
+    // Determine trading mode from position type or direction
+    const isSpotPosition = position.type === 'spot' || position.direction === 'UP';
+    
+    if (isSpotPosition) {
       return (
         <Button
           size="sm"
