@@ -32,7 +32,7 @@ export class CCXTMarketDataService {
       sandbox: false,
       enableRateLimit: true,
       timeout: 15000, // Reduced timeout to prevent hanging
-      rateLimit: 200, // 5 requests per second for faster data collection
+      rateLimit: 100, // 10 requests per second for maximum speed
       headers: {
         'User-Agent': 'CryptoBot-Pro/1.0 (Trading Bot)',
         'Accept': 'application/json',
@@ -156,24 +156,30 @@ export class CCXTMarketDataService {
     return allPairs.slice(0, Math.min(limit, allPairs.length));
   }
 
-  // Fast parallel batch fetching for production speed
+  // Ultra-fast parallel batch fetching for production speed  
   async batchFetchOHLCV(symbols: string[], timeframe: string, limit: number, forSpot: boolean = true): Promise<Record<string, OHLCV[]>> {
     const results: Record<string, OHLCV[]> = {};
-    const batchSize = 10; // 10 parallel requests per batch
-    const batchDelay = 300; // 300ms pause between batches
+    const batchSize = 20; // 20 parallel requests per batch for maximum throughput
+    const batchDelay = 100; // Minimal 100ms pause between batches
+    const startTime = Date.now();
     
-    console.log(`🚀 Batch fetching ${symbols.length} symbols in ${Math.ceil(symbols.length / batchSize)} batches (${batchSize} parallel each)`);
+    console.log(`🚀 ULTRA-FAST batch fetching ${symbols.length} symbols in ${Math.ceil(symbols.length / batchSize)} batches (${batchSize} parallel each)`);
     
     for (let i = 0; i < symbols.length; i += batchSize) {
       const batch = symbols.slice(i, i + batchSize);
       const batchNumber = Math.floor(i / batchSize) + 1;
       const totalBatches = Math.ceil(symbols.length / batchSize);
       
+      const batchStartTime = Date.now();
       console.log(`📦 Processing batch ${batchNumber}/${totalBatches}: ${batch.join(', ')}`);
       
-      const batchResults = await Promise.all(batch.map(async (symbol) => {
+      // Maximum parallelization - all requests in batch happen simultaneously
+      const batchResults = await Promise.allSettled(batch.map(async (symbol) => {
+        const symbolStartTime = Date.now();
         try {
           const ohlcv = await this.getOHLCV(symbol, timeframe, limit, forSpot);
+          const symbolTime = Date.now() - symbolStartTime;
+          console.log(`⚡ ${symbol}: ${ohlcv.length} candles in ${symbolTime}ms`);
           return [symbol, ohlcv] as [string, OHLCV[]];
         } catch (err) {
           console.error(`❌ Batch fetch failed for ${symbol}:`, err);
@@ -181,20 +187,26 @@ export class CCXTMarketDataService {
         }
       }));
       
-      // Store results
-      for (const [symbol, data] of batchResults) {
-        results[symbol] = data;
+      // Store results from settled promises
+      for (const result of batchResults) {
+        if (result.status === 'fulfilled') {
+          const [symbol, data] = result.value;
+          results[symbol] = data;
+        }
       }
       
-      // Pause between batches (except for the last one)
+      const batchTime = Date.now() - batchStartTime;
+      console.log(`✅ Batch ${batchNumber} complete in ${batchTime}ms`);
+      
+      // Minimal pause between batches (except for the last one)
       if (i + batchSize < symbols.length) {
-        console.log(`⏳ Pausing ${batchDelay}ms before next batch...`);
         await new Promise(resolve => setTimeout(resolve, batchDelay));
       }
     }
     
+    const totalTime = Date.now() - startTime;
     const successfulFetches = Object.values(results).filter(data => data.length > 0).length;
-    console.log(`✅ Batch fetch complete: ${successfulFetches}/${symbols.length} symbols retrieved successfully`);
+    console.log(`🎯 ULTRA-FAST batch fetch complete: ${successfulFetches}/${symbols.length} symbols in ${totalTime}ms (${(totalTime/1000).toFixed(1)}s)`);
     
     return results;
   }
@@ -205,9 +217,7 @@ export class CCXTMarketDataService {
       const exchange = forSpot ? this.spotExchange : this.linearExchange;
       const marketType = forSpot ? 'spot' : 'linear';
       
-      console.log(`📊 Fetching ${marketType} OHLCV data for ${symbol} (${limit} candles)`);
-      
-      // Use direct CCXT call without aggressive timeout for production servers
+      // Streamlined direct CCXT call for maximum speed
       const ohlcvData = await exchange.fetchOHLCV(symbol, timeframe, undefined, limit);
       
       if (!ohlcvData || ohlcvData.length === 0) {
