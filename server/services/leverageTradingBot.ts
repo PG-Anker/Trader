@@ -389,10 +389,20 @@ export class LeverageTradingBot extends EventEmitter {
       const quantity = (usdtAmount / signal.entryPrice).toFixed(6);
 
       if (isPaperTrade) {
+        // Validate signal data before creating position
+        if (!signal.symbol || signal.symbol.trim() === '') {
+          await this.log('ERROR', `Invalid symbol in leverage signal: ${JSON.stringify(signal)}`, {
+            symbol: signal.symbol,
+            direction: signal.direction,
+            error: 'Empty or null symbol'
+          });
+          return;
+        }
+
         // Create paper trading position
         const position: InsertPosition = {
           userId: this.userId,
-          symbol: signal.symbol,
+          symbol: signal.symbol.trim(), // Ensure no whitespace
           direction: signal.direction,
           entryPrice: signal.entryPrice.toString(),
           currentPrice: signal.entryPrice.toString(),
@@ -404,10 +414,43 @@ export class LeverageTradingBot extends EventEmitter {
           tradingMode: 'leverage',
           strategy: signal.strategy,
           isPaperTrade: true,
-
         };
 
-        await this.storage.createPosition(position);
+        // Log the position data before creation for debugging
+        await this.log('DEBUG', `Creating leverage position: ${signal.symbol} ${signal.direction}`, {
+          positionData: {
+            symbol: position.symbol,
+            direction: position.direction,
+            entryPrice: position.entryPrice,
+            quantity: position.quantity,
+            tradingMode: position.tradingMode
+          }
+        });
+
+        try {
+          const createdPosition = await this.storage.createPosition(position);
+          
+          // Verify the position was created correctly
+          if (!createdPosition.symbol || createdPosition.symbol.trim() === '') {
+            await this.log('ERROR', `Leverage position created but symbol is empty! ID: ${createdPosition.id}`, {
+              positionId: createdPosition.id,
+              originalSymbol: signal.symbol,
+              storedSymbol: createdPosition.symbol
+            });
+          } else {
+            await this.log('SUCCESS', `Leverage position created successfully: ID ${createdPosition.id} for ${createdPosition.symbol}`, {
+              positionId: createdPosition.id,
+              symbol: createdPosition.symbol,
+              direction: createdPosition.direction
+            });
+          }
+        } catch (error) {
+          await this.log('ERROR', `Failed to create leverage position: ${error instanceof Error ? error.message : 'Unknown error'}`, {
+            symbol: signal.symbol,
+            error: error instanceof Error ? error.message : 'Unknown error'
+          });
+          throw error;
+        }
         
         await this.log('ORDER', `📝 Leverage paper trade executed: ${signal.direction} ${quantity} ${signal.symbol} at $${signal.entryPrice}`, {
           symbol: signal.symbol,

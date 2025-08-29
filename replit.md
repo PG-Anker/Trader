@@ -117,6 +117,10 @@ Key entities include:
 
 ```
 Changelog:
+- August 29, 2025. ENHANCED: Trading bot position creation with comprehensive symbol validation and logging
+- August 29, 2025. FIXED: Position closing API endpoint with proper authentication and PnL calculation
+- August 29, 2025. VERIFIED: Database structure and position storage working correctly in development
+- August 29, 2025. ADDED: Production database cleaner script for fixing corrupted symbol data
 - August 28, 2025. CRITICAL FIX: Frontend crash resolved - fixed undefined tradingMode variable causing black screen
 - August 28, 2025. IMPLEMENTED: Live position monitoring service for continuous paper trade price tracking
 - August 28, 2025. ENHANCED: Auto-exit functionality for paper trades based on stop-loss/take-profit levels
