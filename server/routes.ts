@@ -232,23 +232,77 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Manual trade actions
-  app.post("/api/positions/:id/close", async (req, res) => {
+  app.post("/api/positions/:id/close", requireAuth, async (req, res) => {
     try {
       const positionId = parseInt(req.params.id);
       const userId = (req as any).user.id;
       
-      const result = await botManager.closePosition(positionId, userId);
+      console.log(`🔄 Manual close position request: ID ${positionId} for user ${userId}`);
+      
+      // Get the position to verify ownership and get current price
+      const position = await storage.getPosition(positionId);
+      if (!position) {
+        return res.status(404).json({ message: "Position not found" });
+      }
+      
+      if (position.userId !== userId) {
+        return res.status(403).json({ message: "Unauthorized to close this position" });
+      }
+      
+      if (position.status !== 'open') {
+        return res.status(400).json({ message: "Position is already closed" });
+      }
+      
+      // Calculate final PnL
+      const entryPrice = parseFloat(position.entryPrice);
+      const currentPrice = parseFloat(position.currentPrice);
+      const quantity = parseFloat(position.quantity);
+      
+      let pnl: number;
+      if (position.direction === 'UP' || position.direction === 'LONG') {
+        pnl = (currentPrice - entryPrice) * quantity;
+      } else {
+        pnl = (entryPrice - currentPrice) * quantity;
+      }
+      
+      // Close the position
+      const closedPosition = await storage.closePosition(positionId, currentPrice.toString(), pnl.toString());
+      
+      // Create trade record
+      const trade = await storage.createTrade({
+        userId,
+        symbol: position.symbol,
+        direction: position.direction,
+        entryPrice: position.entryPrice,
+        exitPrice: currentPrice.toString(),
+        quantity: position.quantity,
+        pnl: pnl.toString(),
+        strategy: position.strategy || 'manual_close',
+        tradingMode: position.tradingMode,
+        isPaperTrade: position.isPaperTrade,
+        entryTime: position.createdAt || new Date().toISOString(),
+        exitTime: new Date().toISOString(),
+        duration: Math.floor((Date.now() - new Date(position.createdAt || new Date()).getTime()) / 1000)
+      });
+      
+      console.log(`✅ Position ${positionId} manually closed: ${position.symbol} ${position.direction} - PnL: ${pnl >= 0 ? '+' : ''}$${pnl.toFixed(2)}`);
       
       // Broadcast update
       broadcast({
         type: 'position_closed',
-        data: result
+        data: { position: closedPosition, trade, pnl }
       });
       
-      res.json(result);
+      res.json({ 
+        success: true,
+        position: closedPosition, 
+        trade, 
+        pnl: pnl.toFixed(2),
+        message: `Position closed successfully. PnL: ${pnl >= 0 ? '+' : ''}$${pnl.toFixed(2)}`
+      });
     } catch (error) {
       console.error('Close position error:', error);
-      res.status(500).json({ message: "Failed to close position" });
+      res.status(500).json({ message: error instanceof Error ? error.message : "Failed to close position" });
     }
   });
 
