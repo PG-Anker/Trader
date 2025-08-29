@@ -18,6 +18,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const bybitService = new BybitService();
   const botManager = new BotManager(bybitService, storage);
   
+  // Initialize position monitoring service for live price tracking
+  const { PositionMonitorService } = await import('./services/positionMonitor');
+  const positionMonitor = new PositionMonitorService(storage);
+  positionMonitor.start();
+  
   // Store WebSocket connections
   const wsConnections = new Set<WebSocket>();
   

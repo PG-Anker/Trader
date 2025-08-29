@@ -153,6 +153,14 @@ export class DatabaseStorage implements IStorage {
     return position || undefined;
   }
 
+  async getAllOpenPositions(): Promise<Position[]> {
+    return await db
+      .select()
+      .from(positions)
+      .where(eq(positions.status, 'open'))
+      .orderBy(desc(positions.createdAt));
+  }
+
   async getOpenPositions(userId: number, tradingMode?: string): Promise<Position[]> {
     const conditions = [
       eq(positions.userId, userId),
