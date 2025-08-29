@@ -20,8 +20,8 @@ export default function Dashboard() {
   const [positions, setPositions] = useState<Position[]>([]);
   const [portfolioData, setPortfolioData] = useState<PortfolioData>({ totalValue: '0', availableBalance: '0' });
   const [botStatus, setBotStatus] = useState({ 
-    spot: { isRunning: false, startedAt: null, lastActivity: null, userId: null, type: 'spot' },
-    leverage: { isRunning: false, startedAt: null, lastActivity: null, userId: null, type: 'leverage' },
+    spot: { isRunning: false, startedAt: null, lastActivity: null, userId: null, type: 'spot' as const },
+    leverage: { isRunning: false, startedAt: null, lastActivity: null, userId: null, type: 'leverage' as const },
     // Legacy compatibility
     isRunning: false, 
     startedAt: null, 
@@ -77,6 +77,8 @@ export default function Dashboard() {
       } else {
         // Handle legacy format
         setBotStatus({
+          spot: { isRunning: false, startedAt: null, lastActivity: null, userId: null, type: 'spot' as const },
+          leverage: { isRunning: false, startedAt: null, lastActivity: null, userId: null, type: 'leverage' as const },
           isRunning: botStatusData.isRunning || false,
           startedAt: botStatusData.startedAt || null,
           lastActivity: botStatusData.lastActivity || null,
@@ -260,13 +262,13 @@ export default function Dashboard() {
               {/* Dual Bot Control Components */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <BotControl 
-                  status={botStatus.spot || { isRunning: false, startedAt: null, lastActivity: null, userId: null, type: 'spot' }} 
+                  status={botStatus.spot || { isRunning: false, startedAt: null, lastActivity: null, userId: null, type: 'spot' as const }} 
                   botType="spot"
                   title="Spot Trading Bot"
                   description="Buy low, sell high strategy"
                 />
                 <BotControl 
-                  status={botStatus.leverage || { isRunning: false, startedAt: null, lastActivity: null, userId: null, type: 'leverage' }} 
+                  status={botStatus.leverage || { isRunning: false, startedAt: null, lastActivity: null, userId: null, type: 'leverage' as const }} 
                   botType="leverage"
                   title="Leverage Trading Bot"
                   description="Long and short positions"

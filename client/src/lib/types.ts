@@ -120,3 +120,11 @@ export interface PortfolioData {
   totalValue: string;
   availableBalance: string;
 }
+
+export interface BotStatus {
+  isRunning: boolean;
+  startedAt: string | null;
+  lastActivity: string | null;
+  userId: number | null;
+  type?: 'spot' | 'leverage';
+}
