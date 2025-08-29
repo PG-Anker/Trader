@@ -75,29 +75,13 @@ export default function Dashboard() {
           userId: botStatusData.spot.userId || botStatusData.leverage.userId
         });
       } else {
-        // Handle legacy format - maintain proper structure
-        setBotStatus(prevStatus => ({
-          spot: { 
-            ...prevStatus.spot, 
-            isRunning: botStatusData.isRunning || false,
-            startedAt: botStatusData.startedAt || null,
-            lastActivity: botStatusData.lastActivity || null,
-            userId: botStatusData.userId || null,
-            type: 'spot'
-          },
-          leverage: { 
-            ...prevStatus.leverage, 
-            isRunning: botStatusData.isRunning || false,
-            startedAt: botStatusData.startedAt || null,
-            lastActivity: botStatusData.lastActivity || null,
-            userId: botStatusData.userId || null,
-            type: 'leverage'
-          },
+        // Handle legacy format
+        setBotStatus({
           isRunning: botStatusData.isRunning || false,
           startedAt: botStatusData.startedAt || null,
           lastActivity: botStatusData.lastActivity || null,
           userId: botStatusData.userId || null
-        }));
+        });
       }
     }
   }, [botStatusData]);
